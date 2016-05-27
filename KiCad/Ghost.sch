@@ -1,0 +1,315 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:NorBot
+LIBS:Ghost-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 3
+Title "Ghost - Folkracer"
+Date "2016-05-27"
+Rev ""
+Comp ""
+Comment1 "Frode Lillerud"
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Sheet
+S 1200 3750 2350 2050
+U 5748AB6A
+F0 "FreeIMU" 60
+F1 "FreeIMU.sch" 60
+$EndSheet
+Text Notes 4800 1000 0    197  ~ 0
+GHOST
+$Comp
+L GND #PWR?
+U 1 1 5748AC01
+P 1550 2350
+F 0 "#PWR?" H 1550 2100 50  0001 C CNN
+F 1 "GND" H 1550 2200 50  0000 C CNN
+F 2 "" H 1550 2350 50  0000 C CNN
+F 3 "" H 1550 2350 50  0000 C CNN
+	1    1550 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5748AC15
+P 1800 2000
+F 0 "C?" H 1825 2100 50  0000 L CNN
+F 1 "C" H 1825 1900 50  0000 L CNN
+F 2 "" H 1838 1850 50  0000 C CNN
+F 3 "" H 1800 2000 50  0000 C CNN
+	1    1800 2000
+	1    0    0    -1  
+$EndComp
+$Sheet
+S 3750 3750 2250 2050
+U 5748ACD3
+F0 "IRSensors" 60
+F1 "IRSensors.sch" 60
+$EndSheet
+$Sheet
+S 6200 3750 2100 2050
+U 5748AD4E
+F0 "Bluetooth" 60
+F1 "Bluetooth.sch" 60
+$EndSheet
+$Comp
+L CONN_01X02 P?
+U 1 1 5748C687
+P 1150 2000
+F 0 "P?" H 1150 2150 50  0000 C CNN
+F 1 "CONN_01X02" V 1250 2000 50  0000 C CNN
+F 2 "" H 1150 2000 50  0000 C CNN
+F 3 "" H 1150 2000 50  0000 C CNN
+	1    1150 2000
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 1950 1350 1950
+Wire Wire Line
+	1550 1700 1550 1950
+Wire Wire Line
+	1350 2050 1550 2050
+Wire Wire Line
+	1550 2050 1550 2350
+Wire Wire Line
+	1800 1850 1550 1850
+Connection ~ 1550 1850
+Wire Wire Line
+	1800 2150 1550 2150
+Connection ~ 1550 2150
+$Comp
+L INA219 U?
+U 1 1 5748CB99
+P 3550 2100
+F 0 "U?" H 3550 1750 60  0000 C CNN
+F 1 "INA219" H 3550 2550 60  0000 C CNN
+F 2 "" H 3550 2100 60  0000 C CNN
+F 3 "" H 3550 2100 60  0000 C CNN
+	1    3550 2100
+	1    0    0    -1  
+$EndComp
+Text Notes 2900 1350 0    60   ~ 0
+Current sensor, I2C addr: 0x40
+$Comp
+L GND #PWR?
+U 1 1 5748CCB8
+P 2850 1950
+F 0 "#PWR?" H 2850 1700 50  0001 C CNN
+F 1 "GND" H 2850 1800 50  0000 C CNN
+F 2 "" H 2850 1950 50  0000 C CNN
+F 3 "" H 2850 1950 50  0000 C CNN
+	1    2850 1950
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2850 1950 3000 1950
+Wire Wire Line
+	3000 1950 3000 1850
+$Comp
+L GND #PWR?
+U 1 1 5748CE0B
+P 4400 2200
+F 0 "#PWR?" H 4400 1950 50  0001 C CNN
+F 1 "GND" H 4400 2050 50  0000 C CNN
+F 2 "" H 4400 2200 50  0000 C CNN
+F 3 "" H 4400 2200 50  0000 C CNN
+	1    4400 2200
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4400 2200 4100 2200
+$Comp
+L +5V #PWR?
+U 1 1 5748CE88
+P 4200 2300
+F 0 "#PWR?" H 4200 2150 50  0001 C CNN
+F 1 "+5V" H 4200 2440 50  0000 C CNN
+F 2 "" H 4200 2300 50  0000 C CNN
+F 3 "" H 4200 2300 50  0000 C CNN
+	1    4200 2300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4200 2300 4100 2300
+$Comp
+L +5V #PWR?
+U 1 1 5748CF6D
+P 4200 1950
+F 0 "#PWR?" H 4200 1800 50  0001 C CNN
+F 1 "+5V" H 4200 2090 50  0000 C CNN
+F 2 "" H 4200 1950 50  0000 C CNN
+F 3 "" H 4200 1950 50  0000 C CNN
+	1    4200 1950
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4100 1700 4100 1850
+$Comp
+L +BATT #PWR?
+U 1 1 5748CFCB
+P 1550 1700
+F 0 "#PWR?" H 1550 1550 50  0001 C CNN
+F 1 "+BATT" H 1550 1840 50  0000 C CNN
+F 2 "" H 1550 1700 50  0000 C CNN
+F 3 "" H 1550 1700 50  0000 C CNN
+	1    1550 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L +BATT #PWR?
+U 1 1 5748CFFD
+P 4100 1700
+F 0 "#PWR?" H 4100 1550 50  0001 C CNN
+F 1 "+BATT" H 4100 1840 50  0000 C CNN
+F 2 "" H 4100 1700 50  0000 C CNN
+F 3 "" H 4100 1700 50  0000 C CNN
+	1    4100 1700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 1950 4100 1950
+Text GLabel 2850 2200 0    60   Input ~ 0
+TEENSY_SDA
+Wire Wire Line
+	2850 2200 3000 2200
+Text GLabel 2850 2300 0    60   Input ~ 0
+TEENSY_SCL
+Wire Wire Line
+	3000 2300 2850 2300
+$Comp
+L MIC5219-3.3YM5 U?
+U 1 1 5748D328
+P 6450 2050
+F 0 "U?" H 6450 2450 60  0000 C CNN
+F 1 "MIC5219-3.3YM5" H 6500 1650 60  0000 C CNN
+F 2 "" H 6450 2050 60  0000 C CNN
+F 3 "" H 6450 2050 60  0000 C CNN
+	1    6450 2050
+	1    0    0    -1  
+$EndComp
+Text Notes 5550 1450 0    60   ~ 0
+MIC5219 3.3V LDO regulator (max 500mA out)
+$Comp
+L +5V #PWR?
+U 1 1 5748D426
+P 5800 1850
+F 0 "#PWR?" H 5800 1700 50  0001 C CNN
+F 1 "+5V" H 5800 1990 50  0000 C CNN
+F 2 "" H 5800 1850 50  0000 C CNN
+F 3 "" H 5800 1850 50  0000 C CNN
+	1    5800 1850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5748D489
+P 5800 2050
+F 0 "#PWR?" H 5800 1800 50  0001 C CNN
+F 1 "GND" H 5800 1900 50  0000 C CNN
+F 2 "" H 5800 2050 50  0000 C CNN
+F 3 "" H 5800 2050 50  0000 C CNN
+	1    5800 2050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5800 2050 5950 2050
+Wire Wire Line
+	5800 1850 5950 1850
+Wire Wire Line
+	5950 2250 5850 2250
+Wire Wire Line
+	5850 2250 5850 1850
+Connection ~ 5850 1850
+$Comp
+L C C?
+U 1 1 5748D808
+P 7100 2400
+F 0 "C?" H 7125 2500 50  0000 L CNN
+F 1 "470pF" H 7125 2300 50  0000 L CNN
+F 2 "" H 7138 2250 50  0000 C CNN
+F 3 "" H 7100 2400 50  0000 C CNN
+	1    7100 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5748D8E8
+P 7100 2700
+F 0 "#PWR?" H 7100 2450 50  0001 C CNN
+F 1 "GND" H 7100 2550 50  0000 C CNN
+F 2 "" H 7100 2700 50  0000 C CNN
+F 3 "" H 7100 2700 50  0000 C CNN
+	1    7100 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7100 2550 7100 2700
+$Comp
+L C C?
+U 1 1 5748DBA2
+P 7500 2400
+F 0 "C?" H 7525 2500 50  0000 L CNN
+F 1 "2.2uF" H 7525 2300 50  0000 L CNN
+F 2 "" H 7538 2250 50  0000 C CNN
+F 3 "" H 7500 2400 50  0000 C CNN
+	1    7500 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L +3.3V #PWR?
+U 1 1 5748DE93
+P 7650 1850
+F 0 "#PWR?" H 7650 1700 50  0001 C CNN
+F 1 "+3.3V" H 7650 1990 50  0000 C CNN
+F 2 "" H 7650 1850 50  0000 C CNN
+F 3 "" H 7650 1850 50  0000 C CNN
+	1    7650 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7500 2550 7500 2650
+Wire Wire Line
+	7500 2650 7100 2650
+Connection ~ 7100 2650
+Wire Wire Line
+	6950 2250 7100 2250
+Wire Wire Line
+	7500 2250 7500 1850
+Wire Wire Line
+	6950 1850 7650 1850
+Connection ~ 7500 1850
+$EndSCHEMATC
