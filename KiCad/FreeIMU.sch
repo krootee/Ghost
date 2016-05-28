@@ -34,7 +34,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 3
+Sheet 2 4
 Title ""
 Date ""
 Rev ""
@@ -45,5 +45,246 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 Text Notes 2700 2150 0    60   ~ 0
+MPU-6050 (Farnell: 186474, QFN-24)\nI2C address: 0x68 / 0x69 (depends on AD0 low or high)
+Text HLabel 2000 3400 0    60   Input ~ 0
+VCC
+$Comp
+L C C?
+U 1 1 574C3CF5
+P 2400 3100
+F 0 "C?" H 2425 3200 50  0000 L CNN
+F 1 "10nF" H 2425 3000 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 2438 2950 50  0001 C CNN
+F 3 "" H 2400 3100 50  0000 C CNN
+	1    2400 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 574C3F70
+P 2400 2850
+F 0 "#PWR?" H 2400 2600 50  0001 C CNN
+F 1 "GND" H 2400 2700 50  0000 C CNN
+F 2 "" H 2400 2850 50  0000 C CNN
+F 3 "" H 2400 2850 50  0000 C CNN
+	1    2400 2850
+	-1   0    0    1   
+$EndComp
+Text HLabel 2000 3650 0    60   Input ~ 0
+INT
+Text HLabel 2000 3750 0    60   Input ~ 0
+FSYNC
+$Comp
+L GND #PWR?
+U 1 1 574C4065
+P 2700 3850
+F 0 "#PWR?" H 2700 3600 50  0001 C CNN
+F 1 "GND" H 2700 3700 50  0000 C CNN
+F 2 "" H 2700 3850 50  0000 C CNN
+F 3 "" H 2700 3850 50  0000 C CNN
+	1    2700 3850
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 574C40EB
+P 2800 4750
+F 0 "#PWR?" H 2800 4500 50  0001 C CNN
+F 1 "GND" H 2800 4600 50  0000 C CNN
+F 2 "" H 2800 4750 50  0000 C CNN
+F 3 "" H 2800 4750 50  0000 C CNN
+	1    2800 4750
+	1    0    0    -1  
+$EndComp
+Text HLabel 2950 4550 2    60   Input ~ 0
+GND
+$Comp
+L C C?
+U 1 1 574C41F0
+P 2150 4300
+F 0 "C?" H 2175 4400 50  0000 L CNN
+F 1 "0.1uF" H 2175 4200 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 2188 4150 50  0001 C CNN
+F 3 "" H 2150 4300 50  0000 C CNN
+	1    2150 4300
+	-1   0    0    1   
+$EndComp
+$Comp
+L C C?
+U 1 1 574C457F
+P 2450 4300
+F 0 "C?" H 2475 4400 50  0000 L CNN
+F 1 "2.2nF" H 2475 4200 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 2488 4150 50  0001 C CNN
+F 3 "" H 2450 4300 50  0000 C CNN
+	1    2450 4300
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 574C4E5A
+P 4250 4000
+F 0 "#PWR?" H 4250 3750 50  0001 C CNN
+F 1 "GND" H 4250 3850 50  0000 C CNN
+F 2 "" H 4250 4000 50  0000 C CNN
+F 3 "" H 4250 4000 50  0000 C CNN
+	1    4250 4000
+	1    0    0    -1  
+$EndComp
+Text Notes 2750 1050 0    118  ~ 24
 FreeIMU
+$Comp
+L HMC5883 U?
+U 1 1 574C57C9
+P 7500 3750
+F 0 "U?" H 8000 3050 60  0000 C CNN
+F 1 "HMC5883" H 7500 3750 60  0000 C CNN
+F 2 "Housings_DFN_QFN:QFN-16-1EP_3x3mm_Pitch0.5mm" H 7500 3750 60  0001 C CNN
+F 3 "" H 7500 3750 60  0000 C CNN
+	1    7500 3750
+	1    0    0    -1  
+$EndComp
+Text GLabel 4450 3400 2    60   Input ~ 0
+MPU_SCL
+Text GLabel 4450 3500 2    60   Input ~ 0
+MPU_SDA
+Text GLabel 6450 3450 0    60   Input ~ 0
+MPU_SCL
+Text GLabel 7200 2700 1    60   Input ~ 0
+MPU_SDA
+Text HLabel 6400 3650 0    60   Input ~ 0
+VCC
+Text HLabel 6400 4050 0    60   Input ~ 0
+VCC
+$Comp
+L C C?
+U 1 1 574C6C91
+P 7800 5000
+F 0 "C?" H 7825 5100 50  0000 L CNN
+F 1 "0.22uF" H 7825 4900 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 7838 4850 50  0001 C CNN
+F 3 "" H 7800 5000 50  0000 C CNN
+	1    7800 5000
+	-1   0    0    1   
+$EndComp
+Text Label 8600 3450 0    60   ~ 0
+SETC
+Text Label 7800 5400 0    60   ~ 0
+SETC
+$Comp
+L GND #PWR?
+U 1 1 574C70FE
+P 9450 4350
+F 0 "#PWR?" H 9450 4100 50  0001 C CNN
+F 1 "GND" H 9450 4200 50  0000 C CNN
+F 2 "" H 9450 4350 50  0000 C CNN
+F 3 "" H 9450 4350 50  0000 C CNN
+	1    9450 4350
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 574C7189
+P 8850 3850
+F 0 "C?" H 8875 3950 50  0000 L CNN
+F 1 "4.7uF" H 8875 3750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 8888 3700 50  0001 C CNN
+F 3 "" H 8850 3850 50  0000 C CNN
+	1    8850 3850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2000 3400 2800 3400
+Wire Wire Line
+	2400 3250 2400 3500
+Connection ~ 2400 3400
+Wire Wire Line
+	2400 3500 2800 3500
+Wire Wire Line
+	2400 2950 2400 2850
+Wire Wire Line
+	2000 3650 2800 3650
+Wire Wire Line
+	2000 3750 2800 3750
+Wire Wire Line
+	2800 3850 2700 3850
+Wire Wire Line
+	2800 4150 2800 4750
+Wire Wire Line
+	2150 3950 2800 3950
+Wire Wire Line
+	2150 3950 2150 4150
+Wire Wire Line
+	2800 4050 2450 4050
+Wire Wire Line
+	2450 4050 2450 4150
+Wire Wire Line
+	2450 4450 2450 4550
+Wire Wire Line
+	2150 4550 2950 4550
+Connection ~ 2800 4550
+Wire Wire Line
+	2150 4450 2150 4550
+Connection ~ 2450 4550
+Wire Wire Line
+	4250 4000 4250 3900
+Wire Wire Line
+	4250 3900 4100 3900
+Wire Wire Line
+	4100 3800 4450 3800
+Wire Wire Line
+	4450 3400 4100 3400
+Wire Wire Line
+	4100 3500 4450 3500
+Wire Wire Line
+	4100 3700 4450 3700
+Wire Wire Line
+	6450 3450 6600 3450
+Wire Wire Line
+	7200 2850 7200 2700
+Wire Wire Line
+	6600 3650 6400 3650
+Wire Wire Line
+	6600 4050 6400 4050
+Wire Wire Line
+	8600 3450 8400 3450
+Wire Wire Line
+	7800 4850 7800 4650
+Wire Wire Line
+	7800 5400 7800 5150
+Wire Wire Line
+	8400 4050 9450 4050
+Wire Wire Line
+	9450 3650 9450 4350
+Wire Wire Line
+	8400 3650 9450 3650
+Connection ~ 9450 4050
+Wire Wire Line
+	8400 3850 8700 3850
+Wire Wire Line
+	9000 3850 9450 3850
+Connection ~ 9450 3850
+Text HLabel 7800 2700 1    60   Input ~ 0
+VCC
+Text HLabel 7400 2700 1    60   Input ~ 0
+DRDY
+Wire Wire Line
+	7400 2700 7400 2850
+Wire Wire Line
+	7800 2850 7800 2700
+$Comp
+L MPU-6050 U?
+U 1 1 574CEE9E
+P 3450 3900
+F 0 "U?" H 3450 3450 60  0000 C CNN
+F 1 "MPU-6050" H 3450 4600 60  0000 C CNN
+F 2 "Housings_DFN_QFN:QFN-24-1EP_4x4mm_Pitch0.5mm" H 3250 3950 60  0001 C CNN
+F 3 "" H 3250 3950 60  0000 C CNN
+	1    3450 3900
+	1    0    0    -1  
+$EndComp
+Text HLabel 4450 3700 2    60   Input ~ 0
+SCL
+Text HLabel 4450 3800 2    60   Input ~ 0
+SDA
 $EndSCHEMATC
