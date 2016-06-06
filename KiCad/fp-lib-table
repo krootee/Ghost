@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name Connectors_JST)(type Github)(uri "$(KIGITHUB)/Connectors_JST.pretty")(options "")(descr ""))
+  (lib (name NorBotKiCadFootprints)(type Github)(uri https://github.com/NorbotNorway/NorBotKiCadFootprints.pretty)(options allow_pretty_writing_to_this_dir=C:\git\NorBotKiCadFootprints.pretty)(descr ""))
+)
