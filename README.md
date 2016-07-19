@@ -11,26 +11,41 @@ Ghost is a custom PCB I've made for my folkrace autonomous RC-car.
 ### ESP8266 WiFi
 ### I2C multiplexer and 8 IR sensors
 ### Current sensor
+
+An INA219BIDR is used for sensing current usage. Measures current flow from the battery connected. Device is controlled by I2C. Adafruit has an Arduino library for the INA219.
+
 ### Voltage regulator
 ### GPIOs
 #### Startmodule
+
+For connecting a Startmodule from http://www.startmodule.com/.
+
+NB - Rev 1 had wrong pinout!
+
 #### Steering servo
 
 For controlling a SG-90 or similar microservo for steering.
-1. PWM control signal
-2. +5V
-3. GND
+  1. PWM control signal to Teensy pin 4.
+  2. +5V
+  3. GND
 
 #### Motor
 
 A 3 pin header for connecting an Electronic Speed Control (ESC). I'm using the HobbyKing XC-10A esc.
-  1. PWM control signal
+  1. PWM control signal to Teensy pin 3.
   2. Power from the Li-Po battery. Used to power entire PCB.
   3. Ground
 
 #### General purpose button
 
 A generic purpose switch, usage to be determined by user. Use INPUT_PULLUP when setting pinMode(pin, INPUT_PULLUP).
+
+#### General purpose PWM connector
+
+Usage to be defined by user
+  1. PWM control signal to Teensy pin 16.
+  2. +5V
+  3. GND
 
 #### Wheel encoder
 
