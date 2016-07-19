@@ -8,7 +8,7 @@ Ghost is a custom PCB I've made for my folkrace autonomous RC-car.
 
 ### Teensy 3.1/3.2 (external)
 
-Uses a standard Teensy 3.2 board from pjrc.com. In later versions I'm planning on incorporating a custom Teensy directly into my PCB.
+Uses a standard Teensy 3.2 board from pjrc.com. In later versions I'm planning on incorporating a custom Teensy directly into the PCB.
 
 ### HM-11 bluetooth
 
@@ -74,8 +74,8 @@ Either GP1A51HRJOOF or KTIR0611S photo interrupter.
 
 ## Needed improvements
 
-- Startmodule header needs indicator for direction
-- Startmodule pins are wrong order!! Should be VCC, GND, Start
+- [ ] Startmodule header needs indicator for direction
+- [x] Startmodule pins are wrong order!! Should be VCC, GND, Start
 
 
 --
