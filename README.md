@@ -17,16 +17,16 @@ Ghost is a custom PCB I've made for my folkrace autonomous RC-car.
 #### Steering servo
 
 For controlling a SG-90 or similar microservo for steering.
-Pin 1 = PWM control signal
-Pin 2 = +5V
-Pin 3 = GND
+1. PWM control signal
+2. +5V
+3. GND
 
 #### Motor
 
 A 3 pin header for connecting an Electronic Speed Control (ESC). I'm using the HobbyKing XC-10A esc.
-Pin 1 = PWM control signal
-Pin 2 = Power from the Li-Po battery. Used to power entire PCB.
-Pin 3 = Ground
+  1. PWM control signal
+  2. Power from the Li-Po battery. Used to power entire PCB.
+  3. Ground
 
 #### General purpose button
 
