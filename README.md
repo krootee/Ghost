@@ -2,11 +2,33 @@
 
 ## Summary
 
-Ghost consists of a is a custom PCB I've made for my folkrace autonomous RC-car.
-
 Ghost is an autonomous car used for Folkrace robot competition. It uses a customized Losi 1/24-scale RTR 4WD Rally Car, and with a custom created PCB and various sensors. The "brain" of the car is a Teensy, and it is programmed using Arduino-C.
 
 This GitHub repository contains all relevant info for creating both hardware and software.
+
+## Bill of materials / Partlist
+
+<!-- START COMPATIBILITY TABLE -->
+
+### RC car
+
+                   | Tested Works | Doesn't Work | Not Tested  | Notes
+------------------ | :----------: | :----------: | :---------: | -----
+Losi               |      X       |             |            |
+Atmega32u4 @ 16MHz |      X       |             |            |
+Atmega32u4 @ 8MHz  |      X       |             |            |
+ESP8266            |      X       |             |            |
+Atmega2560 @ 16MHz |      X       |             |            |
+ATSAM3X8E          |      X       |             |            | Use D20/D21.
+ATSAM21D           |      X       |             |            |
+ATtiny85 @ 16MHz   |      X       |             |            | Use SDA/SCL D0/D2
+ATtiny85 @ 8MHz    |      X       |             |            | Use SDA/SCL D0/D2
+Intel Curie @ 32MH |              |             |     X      |
+STM32F2            |              |             |     X      |
+
+<!-- END COMPATIBILITY TABLE -->
+
+### PCB
 
 ## PCB Features
 
@@ -96,37 +118,3 @@ Either GP1A51HRJOOF or KTIR0611S photo interrupter.
 - [ ] Unable to connect to Bluetooth
 - [ ] Red LED doesn't light up. Figure out why.
 #### Revision 2
-
---
-
-<!-- START COMPATIBILITY TABLE -->
-
-## Compatibility
-
-MCU                | Tested Works | Doesn't Work | Not Tested  | Notes
------------------- | :----------: | :----------: | :---------: | -----
-Atmega328 @ 16MHz  |      X       |             |            |
-Atmega328 @ 12MHz  |      X       |             |            |
-Atmega32u4 @ 16MHz |      X       |             |            |
-Atmega32u4 @ 8MHz  |      X       |             |            |
-ESP8266            |      X       |             |            |
-Atmega2560 @ 16MHz |      X       |             |            |
-ATSAM3X8E          |      X       |             |            | Use D20/D21.
-ATSAM21D           |      X       |             |            |
-ATtiny85 @ 16MHz   |      X       |             |            | Use SDA/SCL D0/D2
-ATtiny85 @ 8MHz    |      X       |             |            | Use SDA/SCL D0/D2
-Intel Curie @ 32MHz |             |             |     X       |
-STM32F2            |             |             |     X       |
-
-  * ATmega328 @ 16MHz : Arduino UNO, Adafruit Pro Trinket 5V, Adafruit Metro 328, Adafruit Metro Mini
-  * ATmega328 @ 12MHz : Adafruit Pro Trinket 3V
-  * ATmega32u4 @ 16MHz : Arduino Leonardo, Arduino Micro, Arduino Yun, Teensy 2.0
-  * ATmega32u4 @ 8MHz : Adafruit Flora, Bluefruit Micro
-  * ESP8266 : Adafruit Huzzah
-  * ATmega2560 @ 16MHz : Arduino Mega
-  * ATSAM3X8E : Arduino Due
-  * ATSAM21D : Arduino Zero, M0 Pro
-  * ATtiny85 @ 16MHz : Adafruit Trinket 5V
-  * ATtiny85 @ 8MHz : Adafruit Gemma, Arduino Gemma, Adafruit Trinket 3V
-
-<!-- END COMPATIBILITY TABLE -->
