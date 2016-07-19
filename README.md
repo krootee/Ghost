@@ -7,14 +7,33 @@ Ghost is a custom PCB I've made for my folkrace autonomous RC-car.
 ## Features
 
 ### Teensy 3.1/3.2 (external)
+
+Uses a standard Teensy 3.2 board from pjrc.com. In later versions I'm planning on incorporating a custom Teensy directly into my PCB.
+
 ### HM-11 bluetooth
+
 ### ESP8266 WiFi
+
+An ESP8266MOD.
+
 ### I2C multiplexer and 8 IR sensors
+
+Since all the I2C IR sensors I'm using all have the same I2C address I need to multiplex between them using an I2C mux.
+
+TCA9548APWR.
+
 ### Current sensor
 
 An INA219BIDR is used for sensing current usage. Measures current flow from the battery connected. Device is controlled by I2C. Adafruit has an Arduino library for the INA219.
 
+Arduino code: /Arduino/CurrentSensor/CurrentSensor.ino
+
 ### Voltage regulator
+
+The 7.4V Li-Po battery is connected to the XC-10A ESC, and it provides regulated +5V to the PCB.
+
+On the PCB is a MIC5219-3.3YM5 voltage regulator for providing 3.3V. It has a max output of 500mA.
+
 ### GPIOs
 #### Startmodule
 
