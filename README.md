@@ -6,6 +6,15 @@ Ghost is an autonomous car used for Folkrace robot competition. It uses a custom
 
 This GitHub repository contains all relevant info for creating both hardware and software.
 
+## TODO list
+
+- [ ] Startmodule header needs indicator for direction
+- [ ] Startmodule pins are wrong order!! Should be VCC, GND, Start
+- [ ] Unable to connect to Bluetooth
+- [ ] Red LED doesn't light up. Figure out why.
+- [ ] If Wifi stays, should I connect the Reset pin Teensy so that I can reset via software?
+- [ ] GND pins on Encoder needs to be connected to same GND. No internal connection in component.
+
 ## Bill of materials / Partlist
 
 
@@ -16,18 +25,16 @@ This GitHub repository contains all relevant info for creating both hardware and
 Losi 1/24 RC car |      X       |             |
 HobbyKing XC-10s |      X       |             |
 Motor KV4000(?)  |      X       |             |
-ESP8266            |      X       |             |
-Atmega2560 @ 16MHz |      X       |             |
-ATSAM3X8E          |      X       |             |
-ATSAM21D           |      X       |             |
-ATtiny85 @ 16MHz   |      X       |             |
-ATtiny85 @ 8MHz    |      X       |             |
-Intel Curie @ 32MH |              |             |
-STM32F2            |              |             |
-
 
 
 ### PCB
+
+                    |  Footprint
+------------------- | :------------
+Teensy 3.2          | Custom
+HM-11               | Custom
+Startmodule         | 3 pin header
+etc                 |
 
 ## PCB Features
 
@@ -46,6 +53,15 @@ Is is not allowed to remotely control the car during the Folkrace, but the BT/Wi
 ### ESP8266 WiFi
 
 An ESP8266MOD.
+
+(NB, seems to be the same chip as the Fishino Guppy uses)
+
+Information gathered from (http://www.esp8266.com/wiki/doku.php?id=esp8266-module-family).
+Pin 1, RST: Connect to switch to GND in order to reset.
+Pin 3, EN : Connect to 3.3V to enable.
+Pin 8, VCC: To 3.3V
+Pin 15,GND: To GND
+Pin 16,GPIO15: Need to connect to GND.
 
 ### FreeIMU (accelerometer, gyro and compass)
 
@@ -112,8 +128,5 @@ Either GP1A51HRJOOF or KTIR0611S photo interrupter.
 ## Needed improvements
 
 #### Revision 1
-- [ ] Startmodule header needs indicator for direction
-- [ ] Startmodule pins are wrong order!! Should be VCC, GND, Start
-- [ ] Unable to connect to Bluetooth
-- [ ] Red LED doesn't light up. Figure out why.
+
 #### Revision 2
