@@ -8,7 +8,7 @@ This GitHub repository contains all relevant info for creating both hardware and
 
 ## Bill of materials / Partlist
 
-<!-- START COMPATIBILITY TABLE -->
+
 
 ### RC car
 
@@ -26,7 +26,7 @@ ATtiny85 @ 8MHz    |      X       |             |            | Use SDA/SCL D0/D2
 Intel Curie @ 32MH |              |             |     X      |
 STM32F2            |              |             |     X      |
 
-<!-- END COMPATIBILITY TABLE -->
+
 
 ### PCB
 
