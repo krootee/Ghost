@@ -11,20 +11,19 @@ This GitHub repository contains all relevant info for creating both hardware and
 
 
 ### RC car
-
-                   | Tested Works | Doesn't Work | Not Tested  | Notes
------------------- | :----------: | :----------: | :---------: | -----
-Losi               |      X       |             |            |
-Atmega32u4 @ 16MHz |      X       |             |            |
-Atmega32u4 @ 8MHz  |      X       |             |            |
-ESP8266            |      X       |             |            |
-Atmega2560 @ 16MHz |      X       |             |            |
-ATSAM3X8E          |      X       |             |            | Use D20/D21.
-ATSAM21D           |      X       |             |            |
-ATtiny85 @ 16MHz   |      X       |             |            | Use SDA/SCL D0/D2
-ATtiny85 @ 8MHz    |      X       |             |            | Use SDA/SCL D0/D2
-Intel Curie @ 32MH |              |             |     X      |
-STM32F2            |              |             |     X      |
+                   | Tested Works | Doesn't Work | Not Tested
+------------------ | :----------: | :----------: | :---------
+Losi 1/24 RC car |      X       |             |
+HobbyKing XC-10s |      X       |             |
+Motor KV4000(?)  |      X       |             |
+ESP8266            |      X       |             |
+Atmega2560 @ 16MHz |      X       |             |
+ATSAM3X8E          |      X       |             |
+ATSAM21D           |      X       |             |
+ATtiny85 @ 16MHz   |      X       |             |
+ATtiny85 @ 8MHz    |      X       |             |
+Intel Curie @ 32MH |              |             |
+STM32F2            |              |             |
 
 
 
