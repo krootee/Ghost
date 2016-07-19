@@ -2,25 +2,41 @@
 
 ## Summary
 
-Ghost is a custom PCB I've made for my folkrace autonomous RC-car.
+Ghost consists of a is a custom PCB I've made for my folkrace autonomous RC-car.
 
-## Features
+Ghost is an autonomous car used for Folkrace robot competition. It uses a customized Losi 1/24-scale RTR 4WD Rally Car, and with a custom created PCB and various sensors. The "brain" of the car is a Teensy, and it is programmed using Arduino-C.
+
+This GitHub repository contains all relevant info for creating both hardware and software.
+
+## PCB Features
 
 ### Teensy 3.1/3.2 (external)
 
 Uses a standard Teensy 3.2 board from pjrc.com. In later versions I'm planning on incorporating a custom Teensy directly into the PCB.
 
+The Teensy is based around a MK20DX256VLH7, an ARM Cortex-M4 at 72MHz. It contains 2k  EEPROM where the car's configuration is stored.
+
 ### HM-11 bluetooth
+
+Revision 1 has both Bluetooth and WiFi.  This version is for determining if BT or WiFi is easiest to work with. Later versions will only have one of the two.
+
+Is is not allowed to remotely control the car during the Folkrace, but the BT/WiFi functionality is very useful during debugging and experimentation. It allows receiving telemetry data during racing, and makes it easy to change configuration without reprogramming entire Teensy.
 
 ### ESP8266 WiFi
 
 An ESP8266MOD.
 
+### FreeIMU (accelerometer, gyro and compass)
+
+In order to detect movement there is an MPU6050 MEMS motion tracking device with accelerometer and gyro, and an HMC5883 compass. This is the combination used by FreeIMU (http://www.varesano.net/projects/hardware/FreeIMU).
+
 ### I2C multiplexer and 8 IR sensors
 
-Since all the I2C IR sensors I'm using all have the same I2C address I need to multiplex between them using an I2C mux.
+Since the I2C IR sensors I'm using all have the same I2C address I need to multiplex between them using an I2C mux.
 
-TCA9548APWR.
+The multiplexer is an TCA9548APWR with eight channels.
+
+The IR sensors are eight Sharp GP2Y0E02B, which uses I2C. It has range 4-50cm.
 
 ### Current sensor
 
@@ -74,9 +90,12 @@ Either GP1A51HRJOOF or KTIR0611S photo interrupter.
 
 ## Needed improvements
 
+#### Revision 1
 - [ ] Startmodule header needs indicator for direction
-- [x] Startmodule pins are wrong order!! Should be VCC, GND, Start
-
+- [ ] Startmodule pins are wrong order!! Should be VCC, GND, Start
+- [ ] Unable to connect to Bluetooth
+- [ ] Red LED doesn't light up. Figure out why.
+#### Revision 2
 
 --
 
