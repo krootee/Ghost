@@ -52,9 +52,9 @@ Is is not allowed to remotely control the car during the Folkrace, but the BT/Wi
 
 ### ESP8266 WiFi
 
-An ESP8266MOD.
+An ESP-12E.
 
-(NB, seems to be the same chip as the Fishino Guppy uses)
+The ESP8266 contains an 80MHz 32-bit RISC CPU with 16 GPIOs, SPI, UART and I2C. In itself it is a powerful chip, and could potentially make the Teensy redundant.
 
 Information gathered from (http://www.esp8266.com/wiki/doku.php?id=esp8266-module-family).
 Pin 1, RST: Connect to switch to GND in order to reset.
