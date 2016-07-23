@@ -13,7 +13,9 @@ This GitHub repository contains all relevant info for creating both hardware and
 - [ ] Unable to connect to Bluetooth
 - [ ] Red LED doesn't light up. Figure out why.
 - [ ] If Wifi stays, should I connect the Reset pin Teensy so that I can reset via software?
-- [ ] GND pins on Encoder needs to be connected to same GND. No internal connection in component.
+- [ ] Change to TCA9548ARGER
+- [ ] Change to 0603 size for capacitors and resistors
+- [ ] Make board smaller. Move mounting holes.
 
 ## Bill of materials / Partlist
 
@@ -29,12 +31,24 @@ Motor KV4000(?)  |      X       |             |
 
 ### PCB
 
-                    |  Footprint
+                    |  Tested
 ------------------- | :------------
-Teensy 3.2          | Custom
-HM-11               | Custom
-Startmodule         | 3 pin header
-etc                 |
+Teensy 3.2          | OK
+ESP-12E             | OK, connects to WiFi
+HM-11               | Blinks, but needs more testing
+Startmodule         | WRONG PINS!
+MPU-6050            | OK
+HMC5883             | (not tested)
+TCA9548APWR + IR    | Partially tested. I2C responds, but sensors give weird values.
+Encoder             | OK
+Servo               | (not tested)
+Motor               | Testing unsuccessful. Need to figure out the ESC.
+INA219              | Partially tested. I2C works, but needs more testing.
+RGB                 | (not tested)
+PWM                 | (not tested)
+General purp. button| OK
+Transistor LEDS     | Green works, but not Red.
+
 
 ## PCB Features
 
@@ -63,15 +77,24 @@ Pin 8, VCC: To 3.3V
 Pin 15,GND: To GND
 Pin 16,GPIO15: Need to connect to GND.
 
-### FreeIMU (accelerometer, gyro and compass)
+### MPU-6050 (accelerometer and gyro)
 
-In order to detect movement there is an MPU6050 MEMS motion tracking device with accelerometer and gyro, and an HMC5883 compass. This is the combination used by FreeIMU (http://www.varesano.net/projects/hardware/FreeIMU).
+In order to detect movement there is an MPU6050 MEMS motion tracking device with accelerometer and gyro, and an HMC5883 compass.
+
+To interface the MPU-6050 I'm using code from Jeff Rowberg (https://github.com/jrowberg/i2cdevlib/tree/master/Arduino/MPU6050)
+
+ Alternatively I'm going to use FreeIMU (http://www.varesano.net/projects/hardware/FreeIMU).
+
+### HMC5883 (compass)
+
+The compass is a slave-I2C device where the MPU-6050 is the master. FreeIMU uses these two components together.
 
 ### I2C multiplexer and 8 IR sensors
 
 Since the I2C IR sensors I'm using all have the same I2C address I need to multiplex between them using an I2C mux.
 
 The multiplexer is an TCA9548APWR with eight channels.
+In Rev1 I'm using a multiplexer with footprint TSSOP (7.8 x 4.4 mm). In future revisions I'm considering changing to TCA9548ARGER which has a VQFN footprint (4 x 4 mm). They both have 24 pins.
 
 The IR sensors are eight Sharp GP2Y0E02B, which uses I2C. It has range 4-50cm.
 
