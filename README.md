@@ -8,6 +8,7 @@ This GitHub repository contains all relevant info for creating both hardware and
 
 ## TODO list
 
+#### PCB
 - [ ] Startmodule header needs indicator for direction
 - [ ] Startmodule pins are wrong order!! Should be VCC, GND, Start
 - [ ] Unable to connect to Bluetooth
@@ -16,6 +17,14 @@ This GitHub repository contains all relevant info for creating both hardware and
 - [ ] Change to TCA9548ARGER
 - [ ] Change to 0603 size for capacitors and resistors
 - [ ] Make board smaller. Move mounting holes.
+- [ ] Remove extra PWM pins?
+- [ ] Change pin headers around so that pin 1 (the square) is GND
+
+#### Car
+- [ ] Change the steering servo
+- [ ] Mount wheel encoder
+- [ ] Create mount for IR sensors
+- [ ] Figure out which battery to use
 
 ## Bill of materials / Partlist
 
@@ -36,12 +45,12 @@ Motor KV4000(?)  |      X       |             |
 Teensy 3.2          | OK
 ESP-12E             | OK, connects to WiFi
 HM-11               | Blinks, but needs more testing
-Startmodule         | WRONG PINS!
+Startmodule         | WRONG PINS! Should be VCC, GND, Start
 MPU-6050            | OK
 HMC5883             | (not tested)
 TCA9548APWR + IR    | Partially tested. I2C responds, but sensors give weird values.
 Encoder             | OK
-Servo               | (not tested)
+Steering servo      | OK
 Motor               | Testing unsuccessful. Need to figure out the ESC.
 INA219              | Partially tested. I2C works, but needs more testing.
 RGB                 | (not tested)

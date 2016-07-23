@@ -1,3 +1,7 @@
+/*
+ * Testing motor
+ */
+
 #include <Servo.h>
 
 Servo esc;
@@ -8,13 +12,13 @@ void setup()
 //delay(5000); //Delay to give me enough time to control esc to battery
 esc.attach(3);
 
-esc.write(180);
-delay(3000);
+//esc.write(180);
+//delay(3000);
 
-esc.write(0);
-delay(3000);
+//esc.write(0);
+//delay(3000);
 
-esc.write(90);
+//esc.write(90);
 /*
  for(int i=0; i<1000; i++) //Arming
 {
