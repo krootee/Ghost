@@ -19,6 +19,11 @@ This GitHub repository contains all relevant info for creating both hardware and
 - [ ] Make board smaller. Move mounting holes.
 - [ ] Remove extra PWM pins?
 - [ ] Change pin headers around so that pin 1 (the square) is GND
+- [ ] Put all pin headers on the border of the PCB
+- [ ] Use resistor array for IR sensor resistors
+- [ ] Add 6 pin header for FTDI Basic, for programming ESP8266
+- [ ] Change the Q1 transistor schematic component to use Q_NPN_BEC
+- [ ] Move LEDs to a more visible place
 
 #### Car
 - [ ] Change the steering servo
@@ -51,12 +56,12 @@ HMC5883             | (not tested)
 TCA9548APWR + IR    | Partially tested. I2C responds, but sensors give weird values.
 Encoder             | OK
 Steering servo      | OK
-Motor               | Testing unsuccessful. Need to figure out the ESC.
+Motor               | Partially tested. Car moves :)
 INA219              | Partially tested. I2C works, but needs more testing.
 RGB                 | (not tested)
 PWM                 | (not tested)
 General purp. button| OK
-Transistor LEDS     | Green works, but not Red.
+Transistor LEDS     | Green works, but not Red. Missing trace on PCB + wrong schematic part. Collector and Emitter are switched! Change to Q_NPN_BEC in KiCad.
 
 
 ## PCB Features
@@ -115,9 +120,17 @@ Arduino code: /Arduino/CurrentSensor/CurrentSensor.ino
 
 ### Voltage regulator
 
-The 7.4V Li-Po battery is connected to the XC-10A ESC, and it provides regulated +5V to the PCB.
+The 7.4V Li-Po battery is connected to the XC-10A ESC, and it provides regulated +5V/1A to the PCB. The Hobbyking XC-10A accepts from 3v-13V, so I could potentially use an 11.1V LiPo.
 
 On the PCB is a MIC5219-3.3YM5 voltage regulator for providing 3.3V. It has a max output of 500mA.
+
+### Toggle LEDs
+
+There are two leds, one red and one green, which can be toggled from Teensy. Only one of them can be active at any given time.
+
+When Teensy pin 2 is HIGH the transistor turns on, and the Green led lights up. When pin 2 is LOW the Red LED lights up.
+
+NB, in Rev 1 the schematic part for the transistor is wrong. It has switched Collector and Emitter, leaving the red led on always.
 
 ### GPIOs
 #### Startmodule
