@@ -23,7 +23,8 @@ This GitHub repository contains all relevant info for creating both hardware and
 - [ ] Use resistor array for IR sensor resistors
 - [ ] Add 6 pin header for FTDI Basic, for programming ESP8266
 - [ ] Change the Q1 transistor schematic component to use Q_NPN_BEC
-- [ ] Move LEDs to a more visible place
+- [ ] Fix missing trace between R7 and D3(red)
+- [ ] Move LEDs to a more visible place. They are under Teensy USB now.
 
 #### Car
 - [ ] Change the steering servo
