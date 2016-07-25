@@ -10,7 +10,7 @@ Servo esc;
 void calibrateXC10A()
 {
   Serial.print("Calibrating HobbyKing XC-10A ESC...");
-  short wait_time = 3000; //milliseconds
+  short wait_time = 2500; //milliseconds
   
   //Set maximum forward throtte
   Serial.print("MAX...");
@@ -25,7 +25,7 @@ void calibrateXC10A()
   //Go to center
   Serial.println("Center");
   esc.writeMicroseconds(1500);
-  delay(max(wait_time*2, 4000)); //Need to wait a while here before trying to move motor first time. Minimum 4000(?)ms.
+  delay(max(wait_time*2, 6000)); //Need to wait a while here before trying to move motor first time. Minimum about 6000ms. (max() returns the highest of the two numbers)
 }
 
 void normalStartup()
