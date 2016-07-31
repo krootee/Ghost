@@ -64,7 +64,7 @@ void loop()
   }
   */
 
-  esc.write(110);
+  esc.write(170);
   //delay(1000);
   //esc.write(90);
   //delay(100);  

@@ -14,6 +14,7 @@ This GitHub repository contains all relevant info for creating both hardware and
 - [ ] Unable to connect to Bluetooth
 - [ ] Red LED doesn't light up. Figure out why.
 - [ ] If Wifi stays, should I connect the Reset pin Teensy so that I can reset via software?
+- [ ] Switch for pulling GPIO0 on ESP8266 to GND for firmware programming.
 - [ ] Change to TCA9548ARGER
 - [ ] Change to 0603 size for capacitors and resistors
 - [ ] Make board smaller. Move mounting holes.
@@ -25,12 +26,20 @@ This GitHub repository contains all relevant info for creating both hardware and
 - [ ] Change the Q1 transistor schematic component to use Q_NPN_BEC
 - [ ] Fix missing trace between R7 and D3(red)
 - [ ] Move LEDs to a more visible place. They are under Teensy USB now.
+- [ ] Move MPU-6050 to the center of the board.
+- [ ] Make sure I have four mountingholes for acrylic cover
+- [ ] Current size is about 90mm x 63mm. Try to reduce to "Sick of Beige" size 80x49 or 70x43.
 
 #### Car
 - [ ] Change the steering servo
 - [ ] Mount wheel encoder
 - [ ] Create mount for IR sensors
 - [ ] Figure out which battery to use
+- [ ] Mount new motor.
+- [ ] Figure out the gears for the motor
+
+#### Other
+- [ ] Laser-cut an acrylic cover for PCB
 
 ## Bill of materials / Partlist
 
