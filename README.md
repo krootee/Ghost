@@ -10,13 +10,13 @@ This GitHub repository contains all relevant info for creating both hardware and
 
 #### PCB
 - [ ] Startmodule header needs indicator for direction
-- [ ] Startmodule pins are wrong order!! Should be VCC, GND, Start
+- [X] Startmodule pins are wrong order!! Should be VCC, GND, Start
 - [ ] Unable to connect to Bluetooth
 - [ ] Red LED doesn't light up. Figure out why.
 - [ ] If Wifi stays, should I connect the Reset pin Teensy so that I can reset via software?
 - [ ] Switch for pulling GPIO0 on ESP8266 to GND for firmware programming.
 - [ ] Change to TCA9548ARGER
-- [ ] Change to 0603 size for capacitors and resistors
+- [X] Change to 0603 size for capacitors and resistors
 - [ ] Make board smaller. Move mounting holes.
 - [ ] Remove extra PWM pins?
 - [ ] Change pin headers around so that pin 1 (the square) is GND

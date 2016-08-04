@@ -58,14 +58,14 @@ F7 "SCL" I L 4050 7150 60
 F8 "SDA" I L 4050 7000 60 
 $EndSheet
 Text Notes 4800 1000 0    197  ~ 39
-GHOST rev 1
+GHOST (rev 2)
 $Comp
 L C C1
 U 1 1 5748AC15
 P 3300 2250
 F 0 "C1" H 3325 2350 50  0000 L CNN
 F 1 "0.1-1uF" H 3325 2150 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805" H 3338 2100 50  0001 C CNN
+F 2 "Capacitors_SMD:C_0603" H 3338 2100 50  0001 C CNN
 F 3 "" H 3300 2250 50  0000 C CNN
 	1    3300 2250
 	1    0    0    -1  
@@ -160,7 +160,7 @@ U 1 1 5748D808
 P 7900 2200
 F 0 "C2" H 7925 2300 50  0000 L CNN
 F 1 "470pF" H 7925 2100 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805" H 7938 2050 50  0001 C CNN
+F 2 "Capacitors_SMD:C_0603" H 7938 2050 50  0001 C CNN
 F 3 "" H 7900 2200 50  0000 C CNN
 	1    7900 2200
 	1    0    0    -1  
@@ -182,7 +182,7 @@ U 1 1 5748DBA2
 P 8300 1950
 F 0 "C3" H 8325 2050 50  0000 L CNN
 F 1 "2.2uF" H 8325 1850 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805" H 8338 1800 50  0001 C CNN
+F 2 "Capacitors_SMD:C_0603" H 8338 1800 50  0001 C CNN
 F 3 "" H 8300 1950 50  0000 C CNN
 	1    8300 1950
 	1    0    0    -1  
@@ -512,7 +512,7 @@ U 1 1 574AC4CF
 P 9600 1700
 F 0 "R4" V 9680 1700 50  0000 C CNN
 F 1 "40" V 9600 1700 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805" V 9530 1700 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603" V 9530 1700 50  0001 C CNN
 F 3 "" H 9600 1700 50  0000 C CNN
 	1    9600 1700
 	-1   0    0    1   
@@ -631,23 +631,23 @@ $EndComp
 $Comp
 L CONN_01X03 P2
 U 1 1 574B6658
-P 1150 3300
-F 0 "P2" H 1150 3500 50  0000 C CNN
-F 1 "SERVO" V 1250 3300 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x03" H 1150 3300 50  0001 C CNN
-F 3 "" H 1150 3300 50  0000 C CNN
-	1    1150 3300
+P 1150 3250
+F 0 "P2" H 1150 3450 50  0000 C CNN
+F 1 "SERVO" V 1250 3250 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x03" H 1150 3250 50  0001 C CNN
+F 3 "" H 1150 3250 50  0000 C CNN
+	1    1150 3250
 	-1   0    0    -1  
 $EndComp
 $Comp
 L +5V #PWR023
 U 1 1 574B9848
-P 1850 3300
-F 0 "#PWR023" H 1850 3150 50  0001 C CNN
-F 1 "+5V" H 1850 3440 50  0000 C CNN
-F 2 "" H 1850 3300 50  0000 C CNN
-F 3 "" H 1850 3300 50  0000 C CNN
-	1    1850 3300
+P 1850 3250
+F 0 "#PWR023" H 1850 3100 50  0001 C CNN
+F 1 "+5V" H 1850 3390 50  0000 C CNN
+F 2 "" H 1850 3250 50  0000 C CNN
+F 3 "" H 1850 3250 50  0000 C CNN
+	1    1850 3250
 	0    1    1    0   
 $EndComp
 $Comp
@@ -664,40 +664,40 @@ $EndComp
 $Comp
 L GND #PWR025
 U 1 1 574BA687
-P 1400 3400
-F 0 "#PWR025" H 1400 3150 50  0001 C CNN
-F 1 "GND" H 1400 3250 50  0000 C CNN
-F 2 "" H 1400 3400 50  0000 C CNN
-F 3 "" H 1400 3400 50  0000 C CNN
-	1    1400 3400
+P 1400 3350
+F 0 "#PWR025" H 1400 3100 50  0001 C CNN
+F 1 "GND" H 1400 3200 50  0000 C CNN
+F 2 "" H 1400 3350 50  0000 C CNN
+F 3 "" H 1400 3350 50  0000 C CNN
+	1    1400 3350
 	0    -1   -1   0   
 $EndComp
 Text GLabel 1250 1350 2    60   Input ~ 0
 MOTOR
-Text GLabel 1400 3200 2    60   Input ~ 0
+Text GLabel 1400 3150 2    60   Input ~ 0
 STEERING
 $Comp
 L CONN_01X03 P3
 U 1 1 574BC3C3
-P 1150 4200
-F 0 "P3" H 1150 4400 50  0000 C CNN
-F 1 "START" V 1250 4200 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x03" H 1150 4200 50  0001 C CNN
-F 3 "" H 1150 4200 50  0000 C CNN
-	1    1150 4200
+P 1150 4250
+F 0 "P3" H 1150 4450 50  0000 C CNN
+F 1 "START" V 1250 4250 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x03" H 1150 4250 50  0001 C CNN
+F 3 "" H 1150 4250 50  0000 C CNN
+	1    1150 4250
 	-1   0    0    -1  
 $EndComp
-Text GLabel 1450 4100 2    60   Input ~ 0
+Text GLabel 1500 4350 2    60   Input ~ 0
 START
 $Comp
 L GND #PWR026
 U 1 1 574BC667
-P 1450 4300
-F 0 "#PWR026" H 1450 4050 50  0001 C CNN
-F 1 "GND" H 1450 4150 50  0000 C CNN
-F 2 "" H 1450 4300 50  0000 C CNN
-F 3 "" H 1450 4300 50  0000 C CNN
-	1    1450 4300
+P 1500 4250
+F 0 "#PWR026" H 1500 4000 50  0001 C CNN
+F 1 "GND" H 1500 4100 50  0000 C CNN
+F 2 "" H 1500 4250 50  0000 C CNN
+F 3 "" H 1500 4250 50  0000 C CNN
+	1    1500 4250
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
@@ -705,17 +705,11 @@ Wire Wire Line
 Wire Wire Line
 	1150 1550 1850 1550
 Wire Wire Line
-	1400 3200 1350 3200
+	1400 3150 1350 3150
 Wire Wire Line
-	1350 3300 1850 3300
+	1350 3250 1850 3250
 Wire Wire Line
-	1400 3400 1350 3400
-Wire Wire Line
-	1350 4100 1450 4100
-Wire Wire Line
-	1450 4200 1350 4200
-Wire Wire Line
-	1350 4300 1450 4300
+	1400 3350 1350 3350
 Text GLabel 3450 3700 0    60   Input ~ 0
 MOTOR
 Text GLabel 3450 3800 0    60   Input ~ 0
@@ -734,10 +728,10 @@ Text GLabel 8350 3850 0    60   Input ~ 0
 BLUETOOTH_RX
 Text Notes 750  1050 0    60   ~ 0
 Motor is a Hobbyking XC-10A ESC (Product ID: 913000001)\nIt has a 5V regulator onboard which supplies the PCB with power.\n3 pin connector is thus a power-input, but also used for PWM controlling motor.
-Text Notes 700  3000 0    60   ~ 0
-Steering is a SG-90 microservo
-Text Notes 750  3900 0    60   ~ 0
-Start is from Startmodule.com.\nNB, use female header.\nCan be power-cycled from Teensy
+Text Notes 700  2950 0    60   ~ 0
+Steering can be a SG-90 microservo.
+Text Notes 750  3950 0    60   ~ 0
+Start is from Startmodule.com.\nNB, use female header.\nCan be power-cycled from Teensy\nVCC: 3.3-5V
 $Comp
 L +BATT #PWR027
 U 1 1 574CD430
@@ -790,7 +784,7 @@ Connection ~ 3700 2450
 Wire Wire Line
 	3800 2250 3700 2250
 Connection ~ 3700 2350
-Text GLabel 1450 4200 2    60   Input ~ 0
+Text GLabel 1500 4150 2    60   Input ~ 0
 START_POWER
 Text GLabel 3450 4000 0    60   Input ~ 0
 START_POWER
@@ -1122,7 +1116,7 @@ U 1 1 5752B944
 P 7450 5300
 F 0 "C9" H 7475 5400 50  0000 L CNN
 F 1 "100nF" H 7475 5200 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805" H 7488 5150 50  0001 C CNN
+F 2 "Capacitors_SMD:C_0603" H 7488 5150 50  0001 C CNN
 F 3 "" H 7450 5300 50  0000 C CNN
 	1    7450 5300
 	1    0    0    -1  
@@ -1332,4 +1326,10 @@ Wireless Network. Can be enabled/disabled.
 Wire Wire Line
 	3650 3600 3450 3600
 NoConn ~ 3650 4500
+Wire Wire Line
+	1500 4250 1350 4250
+Wire Wire Line
+	1350 4150 1500 4150
+Wire Wire Line
+	1500 4350 1350 4350
 $EndSCHEMATC
