@@ -9,28 +9,32 @@ This GitHub repository contains all relevant info for creating both hardware and
 ## TODO list
 
 #### PCB
-- [ ] Startmodule header needs indicator for direction
+##### Schematic
+
 - [X] Startmodule pins are wrong order!! Should be VCC, GND, Start
-- [ ] Unable to connect to Bluetooth
-- [ ] Red LED doesn't light up. Figure out why.
-- [ ] If Wifi stays, should I connect the Reset pin Teensy so that I can reset via software?
-- [ ] Switch for pulling GPIO0 on ESP8266 to GND for firmware programming.
-- [ ] Change to TCA9548ARGER
-- [X] Change to 0603 size for capacitors and resistors
-- [ ] Make board smaller. Move mounting holes.
-- [ ] Remove extra PWM pins?
-- [ ] Change pin headers around so that pin 1 (the square) is GND
+- [X] Connect the Reset pin Teensy so that I can reset via software
+- [X] Add pushbutton for pulling GPIO0 on ESP8266 to GND for firmware programming.
+- [X] Change to TCA9548ARGER
+- [X] Change from 0805 to 0603 size for capacitors, resistors and leds.
+- [X] Remove extra PWM pins?
+- [X] Change pin headers around so that pin 1 (the square) is GND
+- [X] Use resistor array for IR sensor resistors
+- [X] Red LED is always on. Figure out why. (was Q1 pins switched)
+- [X] Change the Q1 transistor schematic component to use Q_NPN_BEC
+- [X] Add 6 pin header for FTDI Basic, for programming ESP8266
+- [ ] Remove LED strip connector?
+
+##### Board/layout
+- [ ] Current size is about 90mm x 63mm. Try to reduce to "Sick of Beige" size 80x49 or 70x43.
+- [ ] Make sure I have four mountingholes for acrylic cover
+- [ ] Startmodule header needs indicator for direction
 - [ ] Put all pin headers on the border of the PCB
-- [ ] Use resistor array for IR sensor resistors
-- [ ] Add 6 pin header for FTDI Basic, for programming ESP8266
-- [ ] Change the Q1 transistor schematic component to use Q_NPN_BEC
 - [ ] Fix missing trace between R7 and D3(red)
 - [ ] Move LEDs to a more visible place. They are under Teensy USB now.
 - [ ] Move MPU-6050 to the center of the board.
-- [ ] Make sure I have four mountingholes for acrylic cover
-- [ ] Current size is about 90mm x 63mm. Try to reduce to "Sick of Beige" size 80x49 or 70x43.
 
 #### Car
+- [X] Fix wireposition on steering servo
 - [ ] Change the steering servo
 - [ ] Mount wheel encoder
 - [ ] Create mount for IR sensors
@@ -39,6 +43,7 @@ This GitHub repository contains all relevant info for creating both hardware and
 - [ ] Figure out the gears for the motor
 
 #### Other
+- [ ] Draw acrylic cover for PCB in OpenSCAD
 - [ ] Laser-cut an acrylic cover for PCB
 
 ## Bill of materials / Partlist
@@ -78,15 +83,17 @@ Transistor LEDS     | Green works, but not Red. Missing trace on PCB + wrong sch
 
 ### Teensy 3.1/3.2 (external)
 
-Uses a standard Teensy 3.2 board from pjrc.com. In later versions I'm planning on incorporating a custom Teensy directly into the PCB.
+Uses a standard Teensy 3.2 board from pjrc.com.
 
-The Teensy is based around a MK20DX256VLH7, an ARM Cortex-M4 at 72MHz. It contains 2k  EEPROM where the car's configuration is stored.
+The Teensy is based around a MK20DX256VLH7, an ARM Cortex-M4 at 72MHz. It contains 2k EEPROM where the car's configuration is stored.
+
+In later versions I'm planning on incorporating a custom Teensy directly into the PCB. If so, then I can remove the MIC5219-3.3, since the Teensy also comes with a 3.3V regulator.
 
 ### HM-11 bluetooth
 
-Revision 1 has both Bluetooth and WiFi.  This version is for determining if BT or WiFi is easiest to work with. Later versions will only have one of the two.
+Revision 1 has both Bluetooth and WiFi. This version is for determining if BT or WiFi is easiest to work with. Later versions will only have one of the two.
 
-Is is not allowed to remotely control the car during the Folkrace, but the BT/WiFi functionality is very useful during debugging and experimentation. It allows receiving telemetry data during racing, and makes it easy to change configuration without reprogramming entire Teensy.
+It is not allowed to remotely control the car during the Folkrace, but the BT/WiFi functionality is very useful during debugging and experimentation. It allows receiving telemetry data during racing, and makes it easy to change configuration without reprogramming entire Teensy.
 
 ### ESP8266 WiFi
 
@@ -109,6 +116,8 @@ To interface the MPU-6050 I'm using code from Jeff Rowberg (https://github.com/j
 
  Alternatively I'm going to use FreeIMU (http://www.varesano.net/projects/hardware/FreeIMU).
 
+ Future revisions might replace this with a MPU-9250.
+
 ### HMC5883 (compass)
 
 The compass is a slave-I2C device where the MPU-6050 is the master. FreeIMU uses these two components together.
@@ -118,7 +127,7 @@ The compass is a slave-I2C device where the MPU-6050 is the master. FreeIMU uses
 Since the I2C IR sensors I'm using all have the same I2C address I need to multiplex between them using an I2C mux.
 
 The multiplexer is an TCA9548APWR with eight channels.
-In Rev1 I'm using a multiplexer with footprint TSSOP (7.8 x 4.4 mm). In future revisions I'm considering changing to TCA9548ARGER which has a VQFN footprint (4 x 4 mm). They both have 24 pins.
+In Rev 1 I'm using a multiplexer with footprint TSSOP (7.8 x 4.4 mm). In future revisions I'm considering changing to TCA9548ARGER which has a VQFN footprint (4 x 4 mm). They both have 24 pins, but NOT the same pin configuration.
 
 The IR sensors are eight Sharp GP2Y0E02B, which uses I2C. It has range 4-50cm.
 
@@ -134,24 +143,27 @@ The 7.4V Li-Po battery is connected to the XC-10A ESC, and it provides regulated
 
 On the PCB is a MIC5219-3.3YM5 voltage regulator for providing 3.3V. It has a max output of 500mA.
 
+The Teensy also has built in 3.3V regulator. It can supply 500mA. Currently not used.
+
 ### Toggle LEDs
 
 There are two leds, one red and one green, which can be toggled from Teensy. Only one of them can be active at any given time.
 
 When Teensy pin 2 is HIGH the transistor turns on, and the Green led lights up. When pin 2 is LOW the Red LED lights up.
 
-NB, in Rev 1 the schematic part for the transistor is wrong. It has switched Collector and Emitter, leaving the red led on always.
+NB, in Rev 1 the schematic part for the transistor is wrong. It has switched Collector and Emitter, leaving the red led on always. Fixed in Rev 2.
 
 ### GPIOs
 #### Startmodule
 
 For connecting a Startmodule from http://www.startmodule.com/.
 
-NB - Rev 1 had wrong pinout!
+NB - Rev 1 had wrong pinout! Fixed in Rev 2.
 
 #### Steering servo
 
-For controlling a SG-90 or similar microservo for steering.
+For controlling a SG-90 or similar microservo for steering. I'm using Losi part LOSB0814, which is a three-pin replacement servo with servo saver.
+
   1. PWM control signal to Teensy pin 4.
   2. +5V
   3. GND
@@ -159,9 +171,12 @@ For controlling a SG-90 or similar microservo for steering.
 #### Motor
 
 A 3 pin header for connecting an Electronic Speed Control (ESC). I'm using the HobbyKing XC-10A esc.
+
   1. PWM control signal to Teensy pin 3.
   2. Power from the Li-Po battery. Used to power entire PCB.
   3. Ground
+
+Arduino code: Arduino\MotorHobbykingXC10AESC\MotorHobbykingXC10AESC.ino
 
 #### General purpose button
 
@@ -176,12 +191,8 @@ Usage to be defined by user
 
 #### Wheel encoder
 
-Either GP1A51HRJOOF or KTIR0611S photo interrupter.
+Either GP1A51HRJOOF or KTIR0611S photo interrupter. Used to measure rate of spinning for the main drive shaft.
 
 ## Current consumption
 
-## Needed improvements
-
-#### Revision 1
-
-#### Revision 2
+(todo)
