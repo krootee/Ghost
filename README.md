@@ -45,6 +45,7 @@ This GitHub repository contains all relevant info for creating both hardware and
 #### Other
 - [ ] Draw acrylic cover for PCB in OpenSCAD
 - [ ] Laser-cut an acrylic cover for PCB
+- [ ] Use 0.1 ohm 1% 2W current sense resistor for the INA219. Find part at Farnell.
 
 ## Bill of materials / Partlist
 
