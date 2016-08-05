@@ -135,6 +135,8 @@ The IR sensors are eight Sharp GP2Y0E02B, which uses I2C. It has range 4-50cm.
 
 An INA219BIDR is used for sensing current usage. Measures current flow from the battery connected. Device is controlled by I2C. Adafruit has an Arduino library for the INA219.
 
+The sensor can sense up to 3.2A in 0.8mA steps.
+
 Arduino code: /Arduino/CurrentSensor/CurrentSensor.ino
 
 ### Voltage regulator
