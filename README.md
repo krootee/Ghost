@@ -198,4 +198,6 @@ Either GP1A51HRJOOF or KTIR0611S photo interrupter. Used to measure rate of spin
 
 ## Current consumption
 
+If I need more than 500mA on the 3.3V rail I might go for å AMS1117 or similar, which can handle 1A.
+
 (todo)
