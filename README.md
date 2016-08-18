@@ -6,6 +6,8 @@ Ghost is an autonomous car used for Folkrace robot competition. It uses a custom
 
 This GitHub repository contains all relevant info for creating both hardware and software.
 
+More details about the project can be found on Hackaday: https://hackaday.io/project/12995-autonomous-model-car
+
 ## TODO list
 
 #### PCB
