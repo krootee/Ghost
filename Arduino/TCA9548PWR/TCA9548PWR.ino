@@ -1,6 +1,6 @@
 /*
  * Test the TCA9548PWR and two of the GP2Y0E02B IR sensors
- * The values from the two sensors can be visualized using Serial Plotter in Arduino IDE.
+ * The values from the three sensors can be visualized using Serial Plotter in Arduino IDE.
  * Frode Lillerud, 23.july 2016
  */
 
@@ -15,6 +15,8 @@ extern "C"
 #define SHIFT           0x35
 #define TCA_ADDRESS     0x70
 
+int activeSensor = -1;
+
 //Change the channel in the TCA I2C multiplexer
 void setActiveSensor(uint8_t i)
 {
@@ -23,6 +25,8 @@ void setActiveSensor(uint8_t i)
   Wire.beginTransmission(TCA_ADDRESS);
   Wire.write(1 << i);
   Wire.endTransmission();
+
+  activeSensor = i;
 }
 
 int shift = 0;
@@ -40,7 +44,7 @@ void setupIRSensors()
 
   Wire.requestFrom(SENSOR_ADDRESS, 1, false);
   while (Wire.available() == 0)
-    Trace("Waiting for TCA to reply...");
+    Trace("Waiting for TCA9548/sensor to reply...");
   shift = Wire.read();
   //Trace(shift);
 }
@@ -53,7 +57,11 @@ int readFromActiveSensor()
   Wire.endTransmission();
 
   Wire.requestFrom(SENSOR_ADDRESS, 2);
-  while (Wire.available() < 2);
+  while (Wire.available() < 2)
+  {
+    TraceNoLine("Waiting for sensor: ");
+    Trace(activeSensor);
+  }
 
   hi = Wire.read();
   low = Wire.read();
@@ -64,6 +72,7 @@ int readFromActiveSensor()
 
 int getSensorDistanceInCm(int sensornumber)
 {
+  //Serial.println(sensornumber);
   //Set active channel on the TCA I2C multiplexer
   setActiveSensor(sensornumber);
   int cm = readFromActiveSensor();
@@ -82,11 +91,11 @@ void TraceNoLine(const String& message)
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(38400);
   Trace("Serial OK");
   
   Wire.begin();
-  delay(100);
+  delay(1000);
   setActiveSensor(1);
   setupIRSensors(); 
   Serial.print("Setup done");
@@ -97,7 +106,10 @@ void loop()
   int cm = getSensorDistanceInCm(1);
   Serial.print(cm);
   Serial.print(",");
-  cm = getSensorDistanceInCm(2);
+  cm = getSensorDistanceInCm(0);
+  Serial.print(cm);
+  Serial.print(",");
+  cm = getSensorDistanceInCm(7);
   Serial.println(cm);
   delay(100);
   
