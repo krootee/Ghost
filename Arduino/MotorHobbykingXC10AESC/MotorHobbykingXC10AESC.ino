@@ -64,13 +64,13 @@ void loop()
   }
   */
 
-  esc.write(170);
+  //esc.write(120); //170
   //delay(1000);
   //esc.write(90);
   //delay(100);  
 
   //Type values from 0 to 90 to 180 in Serial Monitor to manually control motor.
-  /*
+  
   if (Serial.available())
   {
     int value = Serial.parseInt();
@@ -78,5 +78,5 @@ void loop()
     Serial.print("ESC set to ");
     Serial.println(value);
   }
-  */
+  
 }
