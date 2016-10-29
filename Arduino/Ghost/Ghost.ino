@@ -19,9 +19,6 @@ extern "C"
 //PID regulator
 double Setpoint, Input, Output;
 double Kp, Ki, Kd;
-Kp = 1.0;
-Ki = 0.0;
-Kd = 5.0;
 PID pid(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 //Servo related variables
@@ -132,7 +129,7 @@ void setup() {
   steering.write(130); //ca middle
 
   motor.attach(motorPin);
-  //calibrateXC10A();
+  calibrateXC10A();
   
   Wire.begin();
   delay(1000);
@@ -141,12 +138,23 @@ void setup() {
   Serial.print("Setup done");
 
   //PID
-  Setpoint = 50;
-  pid.SetOutputLimits(90, 180); //
+  Input = 50.0;
+  Setpoint = 50.0;
+  Kp = 10.0; //5
+  Ki = 0.1; //0
+  Kd = 10000; //2
+  pid.SetOutputLimits(95, 180); //
+  pid.SetSampleTime(20); //ms
+  pid.SetControllerDirection(REVERSE);
+  pid.SetTunings(Kp, Ki, Kd);
   pid.SetMode(AUTOMATIC);
 }
 
+elapsedMicros elapsed;
+
 void loop() {
+
+  int loopTime = 20000; //us
 
   //Get value from sensors
   int left = getSensorDistanceInCm(1);
@@ -155,7 +163,7 @@ void loop() {
   int pos = (right*100 / (right+left));
 
   //PID
-  Input = pos;
+  Input = (right*100.0 / (right+left));
   pid.Compute();
 
   //Serial.print(left);
@@ -168,14 +176,14 @@ void loop() {
   //int pos = 120;
   Serial.print(Input);
   Serial.print(",");
-  Serial.println(Output);
+  Serial.print(Output);
   //Serial.print(",");
   //int ms = map(pos, 0, 100, 90, 180);
   //Serial.println(ms);
   steering.write(Output);
-  delay(50);
+  //delay(50);
 
-  int speed = 83;
+  int speed = 82;
   //motor.write(speed);
   /*
   if (Serial.available())
@@ -186,4 +194,11 @@ void loop() {
     Serial.println(value);
   }
   */
+
+  //Serial.print("Elapsed us: ");
+  Serial.print(",");
+  Serial.println(elapsed);
+  while (elapsed < loopTime) {}
+  elapsed = 0; 
+  
 }
