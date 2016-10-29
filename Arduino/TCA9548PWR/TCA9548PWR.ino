@@ -59,8 +59,8 @@ int readFromActiveSensor()
   Wire.requestFrom(SENSOR_ADDRESS, 2);
   while (Wire.available() < 2)
   {
-    TraceNoLine("Waiting for sensor: ");
-    Trace(activeSensor);
+    //TraceNoLine("Waiting for sensor: ");
+    //Trace(activeSensor);
   }
 
   hi = Wire.read();
