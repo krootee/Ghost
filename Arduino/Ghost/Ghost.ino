@@ -18,7 +18,7 @@ extern "C"
 
 //PID regulator
 double Setpoint, Input, Output;
-double Kp, Ki, Kd;
+double Kp = 2, Ki = 5, Kd = 1;
 PID pid(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 //Servo related variables
@@ -122,22 +122,25 @@ void TraceNoLine(const String& message)
 }
 
 void setup() {
-  Serial.begin(38400);
+  Serial.begin(115200);
   Trace("Serial OK");
 
+  Serial.println("Configuring steering");
   steering.attach(servoPin); 
   steering.write(130); //ca middle
 
+  Serial.println("Configuring motor");
   motor.attach(motorPin);
   calibrateXC10A();
-  
+
+  Serial.println("Configuring I2C and sensors");
   Wire.begin();
   delay(1000);
   setActiveSensor(1);
   setupIRSensors(); 
-  Serial.print("Setup done");
-
+  
   //PID
+  Serial.println("Configuring PID");
   Input = 50.0;
   Setpoint = 50.0;
   Kp = 10.0; //5
@@ -147,20 +150,23 @@ void setup() {
   pid.SetSampleTime(20); //ms
   pid.SetControllerDirection(REVERSE);
   pid.SetTunings(Kp, Ki, Kd);
+  pid.SetResolution(MICROS);
   pid.SetMode(AUTOMATIC);
+
+  Serial.print("Setup done");
 }
 
 elapsedMicros elapsed;
 
 void loop() {
 
-  int loopTime = 20000; //us
+  int loopTime = 5000; //us
 
   //Get value from sensors
   int left = getSensorDistanceInCm(1);
   int right = getSensorDistanceInCm(7);
 
-  int pos = (right*100 / (right+left));
+  //int pos = (right*100 / (right+left));
 
   //PID
   Input = (right*100.0 / (right+left));
@@ -176,14 +182,14 @@ void loop() {
   //int pos = 120;
   Serial.print(Input);
   Serial.print(",");
-  Serial.print(Output);
+  Serial.println(Output);
   //Serial.print(",");
   //int ms = map(pos, 0, 100, 90, 180);
   //Serial.println(ms);
   steering.write(Output);
   //delay(50);
 
-  int speed = 82;
+  //int speed = 82;
   //motor.write(speed);
   /*
   if (Serial.available())
@@ -196,8 +202,8 @@ void loop() {
   */
 
   //Serial.print("Elapsed us: ");
-  Serial.print(",");
-  Serial.println(elapsed);
+  //Serial.print(",");
+  //Serial.println(elapsed);
   while (elapsed < loopTime) {}
   elapsed = 0; 
   

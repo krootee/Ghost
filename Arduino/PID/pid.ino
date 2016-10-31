@@ -1,22 +1,23 @@
 #include <PID_v1.h>
 
 //Define Variables we'll be connecting to
-double Setpoint, Input, Output;
+double Setpoint, Temperature, Power;
 
 //Specify the links and initial tuning parameters
-PID myPID(&Input, &Output, &Setpoint,2,5,1, DIRECT);
+PID myPID(&Temperature, &Power, &Setpoint,2,5,1, DIRECT);
 
 void setup()
 {
   //initialize the variables we're linked to
   Serial.begin(115200);
   
-  Input = 0;
-  Setpoint = 100;
+  Power = 0;
+  Temperature = 0;
+  Setpoint = 220; //degrees 
 
   //turn the PID on
   
-  myPID.SetTunings(1,1,1);
+  myPID.SetTunings(10,1,1);
   myPID.SetSampleTime(30);
   //myPID.SetOutputLimits(90,180);
   myPID.SetMode(AUTOMATIC);
@@ -25,23 +26,39 @@ void setup()
 void loop()
 {
   myPID.Compute();
+
+  setOvenPower(Power);
+  
   Serial.print(Setpoint);
   Serial.print(",");
-  Serial.print(Input);
+  Serial.print(Temperature);
   Serial.print(",");
-  Serial.println(Output);
+  Serial.println(Power);
 
   if (Serial.available() > 0)
   {
     Setpoint = Serial.parseInt();
   }
 
-  if (Output > Input)
-    Input++;
-  else if (Output == Input)
-    ;
-  else
-    Input--;
+  
+
+  //Temperature = getOvenTemperature();
 
   delay(100);
 }
+
+void setOvenPower(double power)
+{
+  if (power > 128)
+    Temperature++;
+  if (power = 128)
+    ;
+  if (power < 128)
+    Temperature--;
+}
+
+int getOvenTemperature()
+{
+  return Temperature;
+}
+
