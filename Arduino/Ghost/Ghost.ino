@@ -160,17 +160,18 @@ elapsedMicros elapsed;
 
 void loop() {
 
-  int loopTime = 5000; //us
+  unsigned loopTime = 2000; //us
 
   //Get value from sensors
   int left = getSensorDistanceInCm(1);
   int right = getSensorDistanceInCm(7);
 
-  //int pos = (right*100 / (right+left));
+  //NOT PID
+  int pos = (right*100 / (right+left));
 
   //PID
-  Input = (right*100.0 / (right+left));
-  pid.Compute();
+  //Input = (right*100.0 / (right+left));
+  //pid.Compute();
 
   //Serial.print(left);
   //Serial.print(",");
@@ -180,17 +181,17 @@ void loop() {
 
   //Turn
   //int pos = 120;
-  Serial.print(Input);
-  Serial.print(",");
-  Serial.println(Output);
+  //Serial.print(Input);
   //Serial.print(",");
-  //int ms = map(pos, 0, 100, 90, 180);
+  //Serial.println(Output);
+  //Serial.print(",");
+  int ms = map(pos, 0, 100, 90, 180);
   //Serial.println(ms);
-  steering.write(Output);
+  steering.write(ms);
   //delay(50);
 
-  //int speed = 82;
-  //motor.write(speed);
+  int speed = 82;
+  motor.write(speed);
   /*
   if (Serial.available())
   {
