@@ -6,15 +6,25 @@
 #include <Servo.h>
 #include <Wire.h>
 #include <PID_v1.h>
+#include "Car.h"
 extern "C"
 {
   #include "utility/twi.h"
 }
 
-#define SENSOR_ADDRESS  0x80 >> 1
-#define DISTANCE_REG    0x5E
-#define SHIFT           0x35
-#define TCA_ADDRESS     0x70
+enum startmoduleStates {
+  WAITING,
+  RUNNING,
+  STOPPED
+};
+
+
+
+const int STARTMODULE_PIN = 5;
+volatile startmoduleStates startmodule_state = WAITING;
+
+
+
 
 //PID regulator
 double Setpoint, Input, Output;
@@ -27,89 +37,9 @@ Servo steering;
 int motorPin = 3;
 Servo motor;
 
-//Sensor related variables
-int activeSensor = -1;
-int shift = 0;
-byte hi,low;
-int distance;
+const int LED_PIN = 13;
 
-void calibrateXC10A()
-{
-  Serial.print("Calibrating HobbyKing XC-10A ESC...");
-  short wait_time = 2500; //milliseconds
-  
-  //Set maximum forward throtte
-  Serial.print("MAX...");
-  motor.writeMicroseconds(2000);
-  delay(wait_time);
-
-  //Set full reverse
-  Serial.print("MIN...");
-  motor.writeMicroseconds(1000);
-  delay(wait_time);
-
-  //Go to center
-  Serial.println("Center");
-  motor.writeMicroseconds(1500);
-  delay(max(wait_time*2, 6000)); //Need to wait a while here before trying to move motor first time. Minimum about 6000ms. (max() returns the highest of the two numbers)
-}
-
-//Change the channel in the TCA I2C multiplexer
-void setActiveSensor(uint8_t i)
-{
-  if (i > 7) return;
-
-  Wire.beginTransmission(TCA_ADDRESS);
-  Wire.write(1 << i);
-  Wire.endTransmission();
-
-  activeSensor = i;
-}
-
-void setupIRSensors()
-{
-  //TODO, what does the SHIFT register actually contain? And why do we care?
-  Wire.beginTransmission(SENSOR_ADDRESS);
-  Wire.write(SHIFT);
-  Wire.endTransmission();
-
-  delay(200); //Sometimes the below code never receives data back... Is this really needed?
-
-  Wire.requestFrom(SENSOR_ADDRESS, 1, false);
-  while (Wire.available() == 0)
-    Trace("Waiting for TCA9548/sensor to reply...");
-  shift = Wire.read();
-  //Trace(shift);
-}
-
-int readFromActiveSensor()
-{
-  Wire.beginTransmission(SENSOR_ADDRESS);
-  Wire.write(DISTANCE_REG);
-  Wire.endTransmission();
-
-  Wire.requestFrom(SENSOR_ADDRESS, 2);
-  while (Wire.available() < 2)
-  {
-    //TraceNoLine("Waiting for sensor: ");
-    //Trace(activeSensor);
-  }
-
-  hi = Wire.read();
-  low = Wire.read();
-  distance = (hi * 16 + low) / 16 / (int)pow(2, shift);
-
-  return distance;
-}
-
-int getSensorDistanceInCm(int sensornumber)
-{
-  //Serial.println(sensornumber);
-  //Set active channel on the TCA I2C multiplexer
-  setActiveSensor(sensornumber);
-  int cm = readFromActiveSensor();
-  return cm;
-}
+Car car(STARTMODULE_PIN, LED_PIN);
 
 void Trace(const String& message)
 {
@@ -153,6 +83,15 @@ void setup() {
   pid.SetResolution(MICROS);
   pid.SetMode(AUTOMATIC);
 
+  //Startmodule
+  Serial.println("Configuring StartModule");
+  pinMode(STARTMODULE_PIN, INPUT);
+  attachInterrupt(STARTMODULE_PIN, changeStartmoduleState, CHANGE);
+  startmodule_state = WAITING;
+
+  //Configure Car
+  car.stop();
+
   Serial.print("Setup done");
 }
 
@@ -160,38 +99,52 @@ elapsedMicros elapsed;
 
 void loop() {
 
-  unsigned loopTime = 2000; //us
-
-  //Get value from sensors
-  int left = getSensorDistanceInCm(1);
-  int right = getSensorDistanceInCm(7);
-
-  //NOT PID
-  int pos = (right*100 / (right+left));
-
-  //PID
-  //Input = (right*100.0 / (right+left));
-  //pid.Compute();
-
-  //Serial.print(left);
-  //Serial.print(",");
-  //Serial.println(right);
-
-  //Figure out where to turn
-
-  //Turn
-  //int pos = 120;
-  //Serial.print(Input);
-  //Serial.print(",");
-  //Serial.println(Output);
-  //Serial.print(",");
-  int ms = map(pos, 0, 100, 90, 180);
-  //Serial.println(ms);
-  steering.write(ms);
-  //delay(50);
-
-  int speed = 82;
-  motor.write(speed);
+  if (startmodule_state == WAITING)
+  {
+    Serial.print("WAITING");
+  }
+  else if (startmodule_state == RUNNING)
+  {
+    //Get value from sensors
+    int left = getSensorDistanceInCm(1);
+    int right = getSensorDistanceInCm(7);
+  
+    //NOT PID
+    int pos = (right*100 / (right+left));
+  
+    //PID
+    //Input = (right*100.0 / (right+left));
+    //pid.Compute();
+  
+    //Serial.print(left);
+    //Serial.print(",");
+    //Serial.println(right);
+  
+    //Figure out where to turn
+  
+    //Turn
+    //int pos = 120;
+    //Serial.print(Input);
+    //Serial.print(",");
+    //Serial.println(Output);
+    //Serial.print(",");
+    int ms = map(pos, 0, 100, 90, 180);
+    //Serial.println(ms);
+    steering.write(ms);
+    //delay(50);
+  
+    int speed = 82;
+    motor.write(speed);
+  }
+  else if (startmodule_state == STOPPED)
+  {
+    motor.writeMicroseconds(1500);
+    Serial.print("STOPPED");
+    car.blinkLed(500);
+  }
+  else {
+    Serial.print("Unknown startmodule state");
+  }
   /*
   if (Serial.available())
   {
@@ -205,6 +158,9 @@ void loop() {
   //Serial.print("Elapsed us: ");
   //Serial.print(",");
   //Serial.println(elapsed);
+
+  //Wait here so that each loop takes an exact amount of time.
+  unsigned loopTime = 2000; //us
   while (elapsed < loopTime) {}
   elapsed = 0; 
   
