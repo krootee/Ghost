@@ -18,13 +18,8 @@ enum startmoduleStates {
   STOPPED
 };
 
-
-
 const int STARTMODULE_PIN = 5;
 volatile startmoduleStates startmodule_state = WAITING;
-
-
-
 
 //PID regulator
 double Setpoint, Input, Output;
@@ -32,6 +27,7 @@ double Kp = 2, Ki = 5, Kd = 1;
 PID pid(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 //Servo related variables
+const int STEERING_PIN = 4;
 int servoPin = 4;
 Servo steering;
 int motorPin = 3;
@@ -39,7 +35,7 @@ Servo motor;
 
 const int LED_PIN = 13;
 
-Car car(STARTMODULE_PIN, LED_PIN);
+Car car(STARTMODULE_PIN, LED_PIN, STEERING_PIN);
 
 void Trace(const String& message)
 {
@@ -131,6 +127,7 @@ void loop() {
     int ms = map(pos, 0, 100, 90, 180);
     //Serial.println(ms);
     steering.write(ms);
+    car.turnTo(ms);
     //delay(50);
   
     int speed = 82;
