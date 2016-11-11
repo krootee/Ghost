@@ -12,13 +12,13 @@ class Car
 {
 	public: 
 		Car(int startModulePin, int ledPin);
-    void stop();
-    void drive();
-    void blinkLed(int speed);
+		void stop();
+		void drive();
+		void blinkLed(int speed);
 	private:
 		int _startModulePin;
-    int _motorPin;
-    int _ledPin;
+		int _motorPin;
+		int _ledPin;
 };
 
 #endif

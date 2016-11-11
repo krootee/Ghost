@@ -29,4 +29,3 @@ void Car::blinkLed(int speed)
   digitalWrite(_ledPin, LOW);
   delay(speed);
 }
-
