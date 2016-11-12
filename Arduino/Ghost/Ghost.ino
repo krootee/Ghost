@@ -18,20 +18,18 @@ enum startmoduleStates {
   STOPPED
 };
 
-
-
 const int STARTMODULE_PIN = 5;
 volatile startmoduleStates startmodule_state = WAITING;
 
-const int FRONT_DISTANCE = 20;
+const int FRONT_DISTANCE = 25;
 const int CRASH_DISTANCE = 10;
 
 bool Debug = false;
 
 //PID regulator
-double Setpoint, Input, Output;
-double Kp = 2, Ki = 5, Kd = 1;
-PID pid(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
+//double Setpoint, Input, Output;
+//double Kp = 2, Ki = 5, Kd = 1;
+//PID pid(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 //Servo related variables
 int servoPin = 4;
@@ -113,7 +111,7 @@ void loop() {
     int right = getSensorDistanceInCm(7);
   
     //NOT PID
-    int pos = (right*100 / (right+left));
+    int pos = (right*100 / (right+left)); //Gives a value between 0 and 100.
   
     //PID
     //Input = (right*100.0 / (right+left));
@@ -129,7 +127,12 @@ void loop() {
 
     //If we're close to a wall, then turn more abruptly
     if (center < FRONT_DISTANCE)
-      pos *= 2;
+    {
+      if (pos < 50)
+        pos /= 2;
+      if (pos > 50)
+        pos *= 2;
+    }
 
     int ms = map(pos, 0, 100, 90, 180);
     
@@ -150,7 +153,7 @@ void loop() {
     //Driving speed
     int speed = 84;
     if (center < CRASH_DISTANCE)
-      speed = -1*speed; //reverse direction
+      speed = 100; //reverse direction (90'ish is center)
     
     motor.write(speed);
   }
