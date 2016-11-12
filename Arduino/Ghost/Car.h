@@ -15,6 +15,8 @@ class Car
 		void stop();
 		void drive();
 		void blinkLed(int speed);
+    void ledOn();
+    void ledOff();
 	private:
 		int _startModulePin;
 		int _motorPin;

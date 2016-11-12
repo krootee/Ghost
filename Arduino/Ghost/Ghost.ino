@@ -25,6 +25,7 @@ const int FRONT_DISTANCE = 25;
 const int CRASH_DISTANCE = 10;
 
 bool Debug = false;
+bool MotorDisabled = false;
 
 //PID regulator
 //double Setpoint, Input, Output;
@@ -129,9 +130,9 @@ void loop() {
     if (center < FRONT_DISTANCE)
     {
       if (pos < 50)
-        pos /= 2;
+        pos /= 3;
       if (pos > 50)
-        pos *= 2;
+        pos *= 3;
     }
 
     int ms = map(pos, 0, 100, 90, 180);
@@ -151,15 +152,25 @@ void loop() {
     steering.write(ms);
 
     //Driving speed
-    int speed = 84;
-    if (center < CRASH_DISTANCE)
-      speed = 100; //reverse direction (90'ish is center)
-    
-    motor.write(speed);
+    int speed = 83;
+    //if (center < CRASH_DISTANCE)
+    //{
+      //speed = 100; //reverse direction (90'ish is center)
+      //car.ledOn();
+    //}
+    //else
+    //{
+      //car.ledOff();
+    //}
+
+    if (!MotorDisabled)
+      motor.write(speed);
   }
   else if (startmodule_state == STOPPED)
   {
     motor.writeMicroseconds(1500);
+    motor.detach();
+    steering.detach();
     Serial.print("STOPPED");
     car.blinkLed(500);
   }

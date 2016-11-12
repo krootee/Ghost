@@ -29,3 +29,14 @@ void Car::blinkLed(int speed)
   digitalWrite(_ledPin, LOW);
   delay(speed);
 }
+
+void Car::ledOn()
+{
+  digitalWrite(_ledPin, HIGH);
+}
+
+void Car::ledOff()
+{
+  digitalWrite(_ledPin, LOW);
+}
+
