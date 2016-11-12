@@ -23,10 +23,15 @@ Car::Car(int startModulePin, int ledPin, int steeringPin)
 /*
  * Minimum is typically around -35, and maximum around 35 (???)
  */
-void Car::Configure(int minSteeringAngle, int maxSteeringAngle)
+void Car::configureSteering(int minSteeringAngle, int maxSteeringAngle)
 {
   _minSteering = minSteeringAngle;
   _maxSteering = maxSteeringAngle;
+}
+
+void Car::getState()
+{
+	return startmodule_state.WAITING;
 }
 
 void Car::turn(int angle)
