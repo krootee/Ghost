@@ -23,8 +23,10 @@ enum startmoduleStates {
 const int STARTMODULE_PIN = 5;
 volatile startmoduleStates startmodule_state = WAITING;
 
+const int FRONT_DISTANCE = 20;
+const int CRASH_DISTANCE = 10;
 
-
+bool Debug = false;
 
 //PID regulator
 double Setpoint, Input, Output;
@@ -59,9 +61,11 @@ void setup() {
   steering.attach(servoPin); 
   steering.write(130); //ca middle
 
-  Serial.println("Configuring motor");
-  motor.attach(motorPin);
-  calibrateXC10A();
+  //Startmodule
+  Serial.println("Configuring StartModule");
+  pinMode(STARTMODULE_PIN, INPUT);
+  attachInterrupt(STARTMODULE_PIN, changeStartmoduleState, CHANGE);
+  startmodule_state = WAITING;
 
   Serial.println("Configuring I2C and sensors");
   Wire.begin();
@@ -70,7 +74,7 @@ void setup() {
   setupIRSensors(); 
   
   //PID
-  Serial.println("Configuring PID");
+  /*Serial.println("Configuring PID");
   Input = 50.0;
   Setpoint = 50.0;
   Kp = 10.0; //5
@@ -82,15 +86,13 @@ void setup() {
   pid.SetTunings(Kp, Ki, Kd);
   pid.SetResolution(MICROS);
   pid.SetMode(AUTOMATIC);
-
-  //Startmodule
-  Serial.println("Configuring StartModule");
-  pinMode(STARTMODULE_PIN, INPUT);
-  attachInterrupt(STARTMODULE_PIN, changeStartmoduleState, CHANGE);
-  startmodule_state = WAITING;
+*/
+  Serial.println("Configuring motor");
+  motor.attach(motorPin);
+  calibrateXC10A();
 
   //Configure Car
-  car.stop();
+  //car.stop();
 
   Serial.print("Setup done");
 }
@@ -101,11 +103,12 @@ void loop() {
 
   if (startmodule_state == WAITING)
   {
-    Serial.print("WAITING");
+    //Serial.print("WAITING");
   }
   else if (startmodule_state == RUNNING)
   {
     //Get value from sensors
+    int center = getSensorDistanceInCm(0);
     int left = getSensorDistanceInCm(1);
     int right = getSensorDistanceInCm(7);
   
@@ -123,17 +126,32 @@ void loop() {
     //Figure out where to turn
   
     //Turn
-    //int pos = 120;
-    //Serial.print(Input);
-    //Serial.print(",");
-    //Serial.println(Output);
-    //Serial.print(",");
+
+    //If we're close to a wall, then turn more abruptly
+    if (center < FRONT_DISTANCE)
+      pos *= 2;
+
     int ms = map(pos, 0, 100, 90, 180);
+    
+    if (Debug)
+    {
+      Serial.print(center);
+      Serial.print(",");
+      Serial.print(left);
+      Serial.print(",");
+      Serial.print(right);
+      Serial.print(",");
+      Serial.println(ms);
+    }
+    
     //Serial.println(ms);
     steering.write(ms);
-    //delay(50);
-  
-    int speed = 82;
+
+    //Driving speed
+    int speed = 84;
+    if (center < CRASH_DISTANCE)
+      speed = -1*speed; //reverse direction
+    
     motor.write(speed);
   }
   else if (startmodule_state == STOPPED)
