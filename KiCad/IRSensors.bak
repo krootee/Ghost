@@ -175,13 +175,13 @@ F 3 "" H 8500 1900 50  0000 C CNN
 	1    8500 1900
 	1    0    0    -1  
 $EndComp
-Text Label 8850 1550 0    60   ~ 0
-SDA_0
 Text Label 8850 1650 0    60   ~ 0
+SDA_0
+Text Label 8850 1550 0    60   ~ 0
 SCL_0
-Text Label 8850 1750 0    60   ~ 0
-SDA_1
 Text Label 8850 1850 0    60   ~ 0
+SDA_1
+Text Label 8850 1750 0    60   ~ 0
 SCL_1
 Wire Wire Line
 	8700 1550 8850 1550
@@ -219,13 +219,13 @@ F 3 "" H 8500 2900 50  0000 C CNN
 	1    8500 2900
 	1    0    0    -1  
 $EndComp
-Text Label 8850 2550 0    60   ~ 0
-SDA_2
 Text Label 8850 2650 0    60   ~ 0
+SDA_2
+Text Label 8850 2550 0    60   ~ 0
 SCL_2
-Text Label 8850 2750 0    60   ~ 0
-SDA_3
 Text Label 8850 2850 0    60   ~ 0
+SDA_3
+Text Label 8850 2750 0    60   ~ 0
 SCL_3
 Wire Wire Line
 	8700 2550 8850 2550
@@ -261,13 +261,13 @@ F 3 "" H 8500 3800 50  0000 C CNN
 	1    8500 3800
 	1    0    0    -1  
 $EndComp
-Text Label 8850 3450 0    60   ~ 0
-SDA_4
 Text Label 8850 3550 0    60   ~ 0
+SDA_4
+Text Label 8850 3450 0    60   ~ 0
 SCL_4
-Text Label 8850 3650 0    60   ~ 0
-SDA_5
 Text Label 8850 3750 0    60   ~ 0
+SDA_5
+Text Label 8850 3650 0    60   ~ 0
 SCL_5
 Wire Wire Line
 	8700 3450 8850 3450
@@ -303,13 +303,13 @@ F 3 "" H 8500 4700 50  0000 C CNN
 	1    8500 4700
 	1    0    0    -1  
 $EndComp
-Text Label 8850 4350 0    60   ~ 0
-SDA_6
 Text Label 8850 4450 0    60   ~ 0
+SDA_6
+Text Label 8850 4350 0    60   ~ 0
 SCL_6
-Text Label 8850 4550 0    60   ~ 0
-SDA_7
 Text Label 8850 4650 0    60   ~ 0
+SDA_7
+Text Label 8850 4550 0    60   ~ 0
 SCL_7
 Wire Wire Line
 	8700 4350 8850 4350
