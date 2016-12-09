@@ -1,0 +1,15 @@
+include "map.inc"
+
+#Configure the GUI window
+window
+(
+  size [1280 1024]
+  scale 210
+)
+
+#Load the environment bitmap
+floorplan
+(
+  bitmap "bitmaps/test.bmp"
+  size [4 4 0.1]
+)
