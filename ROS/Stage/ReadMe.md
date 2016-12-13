@@ -15,9 +15,17 @@ Then start simulation by running
 
 ´´´stage gothenburg.world´´´
 
+NB - I was unable to get Player working on Ubuntu 16.04. I tried downloading the current snapshot from https://sourceforge.net/p/playerstage/svn/HEAD/tree/, and built it, but never managed to get everything working.
+
 ### Links
 http://rtv.github.io/Stage/
 and
 http://playerstage.sourceforge.net/index.php?src=stage
 and
 http://player-stage-manual.readthedocs.io/
+
+http://askubuntu.com/questions/859110/install-package-robot-player-on-ubuntu-16-04
+
+http://answers.ros.org/question/249570/gazebo-or-rviz/
+
+https://discourse.ros.org/t/using-ros-for-simulating-autonomous-rc-cars/924

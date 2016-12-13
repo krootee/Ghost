@@ -1,4 +1,9 @@
+# Track from Gothenburg Robot SM
+# Author: Frode Lillerud, des 216
+
 include "map.inc"
+include "bigbob.inc"
+include "orange.inc"
 
 #Configure the GUI window
 window
@@ -13,3 +18,16 @@ floorplan
   bitmap "bitmaps/test.bmp"
   size [4 4 0.1]
 )
+
+bigbob
+(
+  name "bob"
+  pose  [0 0 0 0]
+  color "blue"
+)
+
+#orange
+#(
+  #name "orange1"
+  #pose [-2 -5 0 0]
+#)
