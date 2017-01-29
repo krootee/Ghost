@@ -8,6 +8,9 @@ Most of the code in this directory are small Arduino sketches focused on just te
 
 The code in the Ghost folder is the main program for the RC car. It contains the full program for running the RC car.
 
+### Path planning
+
+Middle Path (MP) and Minimum Curvature Path (MCP) - see http://www.aueb.gr/users/ion/docs/stavrinos_bsc_thesis.pdf
 
 ##### Further research
 

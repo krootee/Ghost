@@ -1,36 +1,34 @@
-//https://code.visualstudio.com/docs/languages/cpp
+// https://code.visualstudio.com/docs/languages/cpp
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 
 #include <sstream>
 
-int main(int argc, char **argv)
-{
-    ros::init(argc, argv, "talker");
-    ros::NodeHandle n;
+int main(int argc, char **argv) {
 
-    ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+  ros::init(argc, argv, "talker");
+  ros::NodeHandle n;
 
-    ros::Rate loop_rate(10);
+  ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 
-    int count = 0;
-    while (ros::ok())
-    {
-        std_msgs::String msg;
-        std::stringstream ss;
-        ss << "hello world" << count;
-        msg.data = ss.str();
+  ros::Rate loop_rate(10);
 
-        ROS_INFO("%s", msg.data.c_str());
+  int count = 0;
+  while (ros::ok()) {
+    std_msgs::String msg;
+    std::stringstream ss;
+    ss << "hello world" << count;
+    msg.data = ss.str();
 
-        chatter_pub.publish(msg);
+    ROS_INFO("%s", msg.data.c_str());
 
-        ros::spinOnce();
+    chatter_pub.publish(msg);
 
-        loop_rate.sleep();
-        ++count;
-    }
+    ros::spinOnce();
 
-    return 0;
+    loop_rate.sleep();
+    ++count;
+  }
+  return 0;
 }
