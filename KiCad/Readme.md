@@ -10,9 +10,8 @@ Check out the USB driver chip CH340.
 ##### Schematic
 
 - [X] Startmodule pins are wrong order!! Should be VCC, GND, Start
-- [X] Connect the Reset pin Teensy so that I can reset via software
-- [X] Add pushbutton for pulling GPIO0 on ESP8266 to GND for firmware programming.
-- [X] Change to TCA9548ARGER
+- [X] Add two buttons for ESP-WROOM-32
+- [X] Change to TCA9548ARGER (smaller footprint than TCA9548APWR)
 - [X] Change from 0805 to 0603 size for capacitors, resistors and leds.
 - [X] Remove extra PWM pins?
 - [X] Change pin headers around so that pin 1 (the square) is GND
@@ -21,6 +20,8 @@ Check out the USB driver chip CH340.
 - [X] Change the Q1 transistor schematic component to use Q_NPN_BEC
 - [X] Add 6 pin header for FTDI Basic, for programming ESP8266
 - [ ] Remove LED strip connector?
+- [ ] Add connectors to breakout ESP-WROOM-32 pins?
+- [ ] Micro USB for programming ESP-WROOM-32s
 
 ##### Board/layout
 - [ ] Current size is about 90mm x 63mm. Try to reduce to "Sick of Beige" size 80x49 or 70x43.
@@ -30,6 +31,7 @@ Check out the USB driver chip CH340.
 - [ ] Fix missing trace between R7 and D3(red)
 - [ ] Move LEDs to a more visible place. They are under Teensy USB now.
 - [ ] Move MPU-6050 to the center of the board.
+- [ ] Make sure antenna part of ESP-WROOM-32 sticks outside board.
 
 #### Car
 - [X] Fix wireposition on steering servo
@@ -59,15 +61,16 @@ Motor KV4000(?)  |      X       |             |
 
 ### PCB
 
-                    |  Tested
+                    |  Status
 ------------------- | :------------
-Teensy 3.2          | OK
-ESP-12E             | OK, connects to WiFi
-HM-11               | Blinks, but needs more testing
+Teensy 3.2(obsolete)| OK
+ESP-12E (obsolete)  | OK, connects to WiFi
+ESP-WROOM-32        |
+HM-11 (Obsolete)    | Blinks, but needs more testing
 Startmodule         | WRONG PINS! Should be VCC, GND, Start
 MPU-6050            | OK
 HMC5883             | (not tested)
-TCA9548APWR + IR    | Partially tested. I2C responds, but sensors give weird values.
+TCA9548ARGER + IR   |
 Encoder             | OK
 Steering servo      | OK
 Motor               | Partially tested. Car moves :)
