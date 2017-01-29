@@ -2,6 +2,10 @@
 
 ## TODO list
 
+
+Check out the USB driver chip CH340.
+
+
 #### PCB
 ##### Schematic
 
