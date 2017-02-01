@@ -22,6 +22,9 @@ Check out the USB driver chip CH340.
 - [ ] Remove LED strip connector?
 - [ ] Add connectors to breakout ESP-WROOM-32 pins?
 - [ ] Micro USB for programming ESP-WROOM-32s
+- [ ] CP2102 (or similar USB-to-UART bridge)
+- [ ] Use the new 47uF or 100uF alu caps?
+- [ ] Use the new resistor networks?
 
 ##### Board/layout
 - [ ] Current size is about 90mm x 63mm. Try to reduce to "Sick of Beige" size 80x49 or 70x43.

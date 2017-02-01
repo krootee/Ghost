@@ -34,7 +34,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 3
+Sheet 3 4
 Title ""
 Date ""
 Rev ""
@@ -162,8 +162,8 @@ F 3 "" H 5300 1550 60  0000 C CNN
 	1    5300 1500
 	1    0    0    -1  
 $EndComp
-Text Notes 4300 1000 0    60   ~ 0
-JST SH connectors, 4 pin, 1mm pitch
+Text Notes 3750 1100 0    60   ~ 0
+JST SH connectors, 4 pin, 1mm pitch\nFarnell partno: 167-9129 (top entry) or 183-0839 (right angle)
 $Comp
 L R_PACK4 RP1
 U 1 1 57A37F9E
@@ -192,7 +192,7 @@ Wire Wire Line
 Wire Wire Line
 	8850 1850 8700 1850
 Text Notes 7350 1250 0    60   ~ 0
-Pull-up resistors for I2C. \nUsing resistor array to save board space.\nFarnell partno: 924-1213
+1k pull-up resistors for I2C. \nUsing resistor array to save board space.\nFarnell partno: 923-4519
 Text HLabel 7900 1550 0    60   Input ~ 0
 VCC
 Wire Wire Line
@@ -603,6 +603,6 @@ F 3 "" H 2350 2300 60  0000 C CNN
 	1    2300 2150
 	1    0    0    -1  
 $EndComp
-Text Notes 1750 1150 0    60   ~ 0
+Text Notes 1750 1350 0    60   ~ 0
 I2C multiplexer\nTCA9548ARGER\nFarnell partno: 249-6588
 $EndSCHEMATC

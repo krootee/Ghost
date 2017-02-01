@@ -34,7 +34,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 3
+Sheet 1 4
 Title "Ghost - Folkracer"
 Date "2016-05-27"
 Rev ""
@@ -81,7 +81,7 @@ F4 "SCL" I L 9900 5650 60
 F5 "GND" I L 9900 5800 60 
 $EndSheet
 Text Notes 5100 1450 0    60   ~ 0
-Current sensor - INA219BIDR\nFarnell: 2496402\nI2C addr: 0x40
+Current sensor - INA219BIDR\nFarnell: 249-6402\nI2C addr: 0x40
 $Comp
 L GND #PWR17
 U 1 1 5748CCB8
@@ -223,7 +223,9 @@ $EndComp
 Wire Wire Line
 	8800 1850 8950 1850
 Wire Wire Line
-	8800 1650 8950 1650
+	8800 1650 8850 1650
+Wire Wire Line
+	8850 1650 8950 1650
 Wire Wire Line
 	8950 2050 8850 2050
 Wire Wire Line
@@ -238,7 +240,9 @@ Wire Wire Line
 Wire Wire Line
 	10500 1800 10500 1650
 Wire Wire Line
-	9950 1650 10650 1650
+	9950 1650 10500 1650
+Wire Wire Line
+	10500 1650 10650 1650
 Connection ~ 10500 1650
 $Comp
 L +3.3V #PWR28
@@ -410,7 +414,9 @@ $EndComp
 Wire Wire Line
 	1150 1350 1250 1350
 Wire Wire Line
-	1150 1550 1850 1550
+	1150 1550 1750 1550
+Wire Wire Line
+	1750 1550 1850 1550
 Wire Wire Line
 	1650 2700 1600 2700
 Wire Wire Line
@@ -452,7 +458,11 @@ F 3 "" H 5600 2150 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4400 1900 5050 1900
+	4400 1900 4550 1900
+Wire Wire Line
+	4550 1900 4950 1900
+Wire Wire Line
+	4950 1900 5050 1900
 Wire Wire Line
 	4950 1650 5450 1650
 Wire Wire Line
@@ -460,7 +470,9 @@ Wire Wire Line
 Wire Wire Line
 	6300 1650 6300 1900
 Wire Wire Line
-	6150 1900 6450 1900
+	6150 1900 6300 1900
+Wire Wire Line
+	6300 1900 6450 1900
 Connection ~ 6300 1900
 Wire Wire Line
 	6300 2200 6150 2200
@@ -470,11 +482,19 @@ Connection ~ 4950 1900
 Wire Wire Line
 	4950 2000 5050 2000
 Wire Wire Line
-	4950 1650 4950 2000
+	4950 1650 4950 1900
 Wire Wire Line
-	4950 2150 4950 2450
+	4950 1900 4950 2000
 Wire Wire Line
-	4550 2350 5050 2350
+	4950 2150 4950 2250
+Wire Wire Line
+	4950 2250 4950 2350
+Wire Wire Line
+	4950 2350 4950 2450
+Wire Wire Line
+	4550 2350 4950 2350
+Wire Wire Line
+	4950 2350 5050 2350
 Wire Wire Line
 	5050 2250 4950 2250
 Connection ~ 4950 2350
@@ -487,7 +507,9 @@ Connection ~ 4550 1900
 Wire Wire Line
 	4550 2300 4550 2350
 Wire Wire Line
-	1150 1450 2000 1450
+	1150 1450 1750 1450
+Wire Wire Line
+	1750 1450 2000 1450
 $Comp
 L PWR_FLAG #FLG1
 U 1 1 574F994A
@@ -593,7 +615,9 @@ Wire Wire Line
 Text GLabel 3050 7250 2    60   Input ~ 0
 ENCODER
 Wire Wire Line
-	2900 7050 3100 7050
+	2900 7050 3000 7050
+Wire Wire Line
+	3000 7050 3100 7050
 Wire Wire Line
 	3050 7250 3000 7250
 Wire Wire Line
@@ -676,7 +700,9 @@ $EndComp
 Wire Wire Line
 	7850 5950 7850 5800
 Wire Wire Line
-	7850 5300 7850 5500
+	7850 5300 7850 5400
+Wire Wire Line
+	7850 5400 7850 5500
 Wire Wire Line
 	8100 5500 8100 5400
 Wire Wire Line
@@ -782,7 +808,9 @@ F 3 "" H 3650 3500 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3650 3350 4650 3350
+	3650 3350 3950 3350
+Wire Wire Line
+	3950 3350 4650 3350
 Connection ~ 3950 3350
 Wire Wire Line
 	3650 3350 3650 3200
@@ -824,9 +852,13 @@ F 3 "" H 4350 2850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4250 3450 4650 3450
+	4250 3450 4350 3450
 Wire Wire Line
-	4350 3450 4350 3200
+	4350 3450 4650 3450
+Wire Wire Line
+	4350 3450 4350 3250
+Wire Wire Line
+	4350 3250 4350 3200
 Wire Wire Line
 	4350 2900 4350 2850
 $Comp
@@ -866,7 +898,9 @@ F 3 "" H 6100 5600 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6100 5150 6100 5250
+	6100 5150 6100 5200
+Wire Wire Line
+	6100 5200 6100 5250
 Wire Wire Line
 	6100 5550 6100 5600
 Text GLabel 6200 5200 2    60   Input ~ 0
@@ -886,7 +920,9 @@ F 3 "" H 6900 4500 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	6550 4500 6750 4500
+	6550 4500 6700 4500
+Wire Wire Line
+	6700 4500 6750 4500
 $Comp
 L +3.3V #PWR22
 U 1 1 58904C61
@@ -934,11 +970,15 @@ F 3 "" H 10200 3350 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	9900 3350 10050 3350
+	9900 3350 9950 3350
+Wire Wire Line
+	9950 3350 10050 3350
 Wire Wire Line
 	9300 3350 9200 3350
 Wire Wire Line
-	9200 3350 9200 3700
+	9200 3350 9200 3600
+Wire Wire Line
+	9200 3600 9200 3700
 $Comp
 L C C12
 U 1 1 589069CA
@@ -992,11 +1032,15 @@ F 3 "" H 10200 4050 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	9900 4050 10050 4050
+	9900 4050 9950 4050
+Wire Wire Line
+	9950 4050 10050 4050
 Wire Wire Line
 	9300 4050 9200 4050
 Wire Wire Line
-	9200 4050 9200 4400
+	9200 4050 9200 4300
+Wire Wire Line
+	9200 4300 9200 4400
 $Comp
 L C C13
 U 1 1 5890902B
@@ -1096,5 +1140,11 @@ Wire Wire Line
 Wire Wire Line
 	1900 5000 2200 5000
 Text Notes 2250 5300 0    60   ~ 0
-(add USB bridge here)
+(add CP2102 USB bridge here)
+$Sheet
+S 2350 5700 500  150 
+U 58929DA4
+F0 "USB" 60
+F1 "USB.sch" 60
+$EndSheet
 $EndSCHEMATC
