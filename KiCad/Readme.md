@@ -6,19 +6,45 @@
 Check out the USB driver chip CH340.
 
 
-#### PCB
-##### Schematic
+### PCBs
 
-- [X] Startmodule pins are wrong order!! Should be VCC, GND, Start
-- [X] Add two buttons for ESP-WROOM-32
-- [X] Change to TCA9548ARGER (smaller footprint than TCA9548APWR)
-- [X] Change from 0805 to 0603 size for capacitors, resistors and leds.
-- [X] Remove extra PWM pins?
-- [X] Change pin headers around so that pin 1 (the square) is GND
-- [X] Use resistor array for IR sensor resistors
-- [X] Red LED is always on. Figure out why. (was Q1 pins switched)
-- [X] Change the Q1 transistor schematic component to use Q_NPN_BEC
-- [X] Add 6 pin header for FTDI Basic, for programming ESP8266
+A thought is to use several PCB's, and stack them together using stacking connectors.
+Boards should use "Sick of Beige" format 70x43, 60x37 or 50x31.
+
+#### Split up PCB into 2 or 3 boards
+
+##### PCB - Microcontroller
+
+- [ ] ESP-WROOM-32
+- [ ] MicroUSB
+- [ ] USB-to-UART (CH340, CP2102)
+- [ ] Power LED
+- [ ] Tx/Rx LEDs
+- [ ] Two buttons for ESP-WROOM-32 (Boot / Enable)
+
+##### PCB - Sensors and connectors
+
+- [ ] I2C multipexer (TCA9548ARGER, 2pcs)
+- [ ] 16 connectors for I2C/IR sensors
+- [ ] RGB LED
+- [ ] Connector for Startmodule
+- [ ] Connector for Steering servo
+- [ ] Connector for ESC/Motor
+- [ ] Accelerometer/Gyro (MPU-6050)
+- [ ] Compass (HMC5883)
+
+### Schematic
+
+- [x] Startmodule pins are wrong order!! Should be VCC, GND, Start
+- [x] Add two buttons for ESP-WROOM-32
+- [x] Change to TCA9548ARGER (smaller footprint than TCA9548APWR)
+- [x] Change from 0805 to 0603 size for capacitors, resistors and leds.
+- [x] Remove extra PWM pins?
+- [x] Change pin headers around so that pin 1 (the square) is GND
+- [x] Use resistor array for IR sensor resistors
+- [x] Red LED is always on. Figure out why. (was Q1 pins switched)
+- [x] Change the Q1 transistor schematic component to use Q_NPN_BEC
+- [x] Add 6 pin header for FTDI Basic, for programming ESP8266
 - [ ] Remove LED strip connector?
 - [ ] Add connectors to breakout ESP-WROOM-32 pins?
 - [ ] Micro USB for programming ESP-WROOM-32s
