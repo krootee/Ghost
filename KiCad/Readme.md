@@ -5,6 +5,7 @@
 
 Check out the USB driver chip CH340.
 
+https://esp-idf.readthedocs.io/
 
 ### PCBs
 
