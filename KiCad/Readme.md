@@ -33,6 +33,7 @@ Boards should use "Sick of Beige" format 70x43, 60x37 or 50x31.
 - [ ] Connector for ESC/Motor
 - [ ] Accelerometer/Gyro (MPU-6050)
 - [ ] Compass (HMC5883)
+- [ ] 3V3->5V level shifter (BSS138, see Sparkfun)
 
 ### Schematic
 
