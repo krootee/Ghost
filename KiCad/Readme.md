@@ -12,6 +12,8 @@ https://esp-idf.readthedocs.io/
 A thought is to use several PCB's, and stack them together using stacking connectors.
 Boards should use "Sick of Beige" format 70x43, 60x37 or 50x31.
 
+There is a KiCad footprint for the Hirose FX8C-60 pin connector at: https://github.com/librespacefoundation/lsf-kicad-libs
+
 #### Split up PCB into 2 or 3 boards
 
 ##### PCB - Microcontroller

@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name NorBotKiCadFootprints)(type Github)(uri https://github.com/NorbotNorway/NorBotKiCadFootprints.pretty)(options allow_pretty_writing_to_this_dir=/home/frode/GIT/NorBotKiCadFootprints.pretty)(descr ""))
+  (lib (name hrs-fx8c)(type KiCad)(uri /home/frode/GIT/lsf-kicad-libs/hrs-fx8c.pretty)(options "")(descr ""))
+  (lib (name sickOfBeige)(type KiCad)(uri /home/frode/GIT/openscad-scripts/sick-of-beige/sick-of-beige.pretty)(options "")(descr ""))
+)
