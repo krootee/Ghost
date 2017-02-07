@@ -1,4 +1,4 @@
-update=sø. 05. feb. 2017 kl. 15.07 +0100
+update=ti. 07. feb. 2017 kl. 22.34 +0100
 version=1
 last_client=kicad
 [pcbnew]
@@ -23,8 +23,6 @@ ModuleOutlineThickness=0.150000000000
 [cvpcb]
 version=1
 NetIExt=net
-[general]
-version=1
 [eeschema]
 version=1
 LibDir=../../../NorBotKiCadSchematicLibraries
@@ -70,3 +68,5 @@ NetFmtName=
 SpiceForceRefPrefix=0
 SpiceUseNetNumbers=0
 LabSize=60
+[general]
+version=1
