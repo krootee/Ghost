@@ -1,6 +1,10 @@
-update=ti. 21. feb. 2017 kl. 22.09 +0100
+update=22/05/2015 07:44:53
 version=1
 last_client=kicad
+[general]
+version=1
+RootSch=
+BoardNm=
 [pcbnew]
 version=1
 LastNetListRead=
@@ -25,7 +29,7 @@ version=1
 NetIExt=net
 [eeschema]
 version=1
-LibDir=../../../NorBotKiCadSchematicLibraries
+LibDir=
 [eeschema/libraries]
 LibName1=power
 LibName2=device
@@ -56,17 +60,3 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
-LibName30=/home/frode/GIT/NorBotKiCadSchematicLibraries/NorBot
-LibName31=switches
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=Plot
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-LabSize=60
-[general]
-version=1

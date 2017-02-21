@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name hrs-fx8c)(type KiCad)(uri /home/frode/GIT/lsf-kicad-libs/hrs-fx8c.pretty)(options "")(descr ""))
+  (lib (name sick-of-beige)(type KiCad)(uri /home/frode/GIT/openscad-scripts/sick-of-beige/sick-of-beige.pretty)(options "")(descr ""))
+)
