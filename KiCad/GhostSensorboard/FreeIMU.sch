@@ -45,8 +45,8 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Notes 2700 2150 0    60   ~ 0
-MPU-6050 (Farnell: 186474, QFN-24)\nI2C address: 0x68 / 0x69 (depends on AD0 low or high)
+Text Notes 2900 2750 0    60   ~ 0
+MPU-6050 gyro/accelerometer\nFarnellno: 186-474\nFootprint: QFN-24\nI2C address: 0x68 / 0x69 (depends on AD0 low or high)
 Text HLabel 2000 3400 0    60   Input ~ 0
 VCC
 $Comp
@@ -288,4 +288,6 @@ Wire Wire Line
 	9850 3450 9850 5400
 Wire Wire Line
 	9850 5400 7800 5400
+Text Notes 8550 2800 0    60   ~ 0
+HMC5883 compass\nFarnell no: 197-1743\nI2C address: 0x1E
 $EndSCHEMATC

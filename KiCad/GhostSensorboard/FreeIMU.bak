@@ -31,15 +31,15 @@ LIBS:valves
 LIBS:NorBot
 LIBS:switches
 LIBS:GhostSensorboard-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 2
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "Ghost Sensorboard"
+Date "2017-02-25"
+Rev "1"
+Comp "Frode Lillerud"
 Comment1 ""
 Comment2 ""
 Comment3 ""

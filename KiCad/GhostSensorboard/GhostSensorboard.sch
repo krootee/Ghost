@@ -822,7 +822,7 @@ Wire Wire Line
 Wire Wire Line
 	7700 2900 7650 2900
 Text Notes 5950 1900 2    39   ~ 0
-Sharp GP2Y0E02B IR sensors\nI2C address: 0x??\nRange 4-50 cm\nJST SH connectors, 4 pin, 1mm pitch
+Sharp GP2Y0E02B IR sensors\nI2C address: 0x80\nRange 4-50 cm\nJST SH connectors, 4 pin, 1mm pitch
 Text Notes 1000 5800 0    39   ~ 0
 SteeringServo\nPWM signal has been levelshifted from 3V3 to 5V logic.
 $Comp
@@ -1497,45 +1497,6 @@ F 3 "" H 10750 1650 50  0000 C CNN
 	1    10750 1650
 	0    -1   -1   0   
 $EndComp
-$Comp
-L GND #PWR055
-U 1 1 589AE82D
-P 10750 2650
-F 0 "#PWR055" H 10750 2400 50  0001 C CNN
-F 1 "GND" H 10750 2500 50  0000 C CNN
-F 2 "" H 10750 2650 50  0000 C CNN
-F 3 "" H 10750 2650 50  0000 C CNN
-	1    10750 2650
-	0    -1   -1   0   
-$EndComp
-$Comp
-L GND #PWR056
-U 1 1 589AF43D
-P 10750 2750
-F 0 "#PWR056" H 10750 2500 50  0001 C CNN
-F 1 "GND" H 10750 2600 50  0000 C CNN
-F 2 "" H 10750 2750 50  0000 C CNN
-F 3 "" H 10750 2750 50  0000 C CNN
-	1    10750 2750
-	0    -1   -1   0   
-$EndComp
-$Comp
-L GND #PWR057
-U 1 1 589AF4DB
-P 10750 2850
-F 0 "#PWR057" H 10750 2600 50  0001 C CNN
-F 1 "GND" H 10750 2700 50  0000 C CNN
-F 2 "" H 10750 2850 50  0000 C CNN
-F 3 "" H 10750 2850 50  0000 C CNN
-	1    10750 2850
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	10750 2650 10450 2650
-Wire Wire Line
-	10750 2750 10450 2750
-Wire Wire Line
-	10450 2850 10750 2850
 Wire Wire Line
 	10750 1650 10450 1650
 Wire Wire Line
@@ -1909,4 +1870,9 @@ Wire Wire Line
 	10550 3850 10450 3850
 Wire Wire Line
 	9950 3850 9850 3850
+NoConn ~ 10450 2650
+NoConn ~ 10450 2750
+NoConn ~ 10450 2850
+Text Notes 1350 3950 0    39   ~ 0
+TCA9548ARGER I2C multiplexer\nI2C address: 0x70
 $EndSCHEMATC
