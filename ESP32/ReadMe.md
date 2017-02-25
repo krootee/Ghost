@@ -5,19 +5,25 @@ This page contains my notes about programming the ESP-WROOM-32 module.
 The primary sourcecode for the Ghost-folkracer car is in the /Folkracer directory.
 All code for testing individual parts of the car can be found in the /TestPrograms dir.
 
-Documentation for ESP-IDF can be found at: https://esp-idf.readthedocs.io
+Documentation and installation guide for ESP-IDF can be found at: https://esp-idf.readthedocs.io
 
-## Prerequisites (Ubuntu)
+## Prerequisites (Ubuntu/Linux Mint)
 
-(See link above)
+Perform installation Step 0 to Step 2 from the documentation link above.
+
+In addition, add this to ~/.bashrc as well (from Step 4):
+
+    export IDF_PATH=~/esp/esp-idf
 
 ## Flashing
 
-    make app-flash
+Go to the /Ghost/ESP32/Folkracer directory, and run
+
+    make flash (flashes app, bootloader and partition table)
 
 or
 
-    make flash
+    make app-flash (flashes just the app)
 
 ## Using OTA
 
@@ -44,8 +50,25 @@ Install Minicom
 and to use
 
     minicom --device /dev/ttyUSB0
+    
+or you can use
+
+    make monitor
+    
+Quit it using Ctrl+] (which is Ctrl+AltGr+9)
 
 ## Troubleshooting
+
+#### Unable to flash via USB - permission denied
+
+When running "make app-flash" or similar you get error saying permission denied to the USB device.
+
+This can be fixed by adding the current Linux-user to the 'dialout' group.
+
+    sudo usermod -a -G dialout $USER
+    
+Reboot the machine afterwards.
+
 
 #### OTA fails
 https://github.com/espressif/esp-idf/issues/231
