@@ -50,6 +50,12 @@ Install Minicom
 and to use
 
     minicom --device /dev/ttyUSB0
+    
+or you can use
+
+    make monitor
+    
+Quit it using Ctrl+] (which is Ctrl+AltGr+9)
 
 ## Troubleshooting
 
