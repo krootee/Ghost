@@ -45,7 +45,7 @@ void helloWorldTask(void *pvParameter)
   while (1)
   {
     printf("Hello from ESP32!\n");
-    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    vTaskDelay(800 / portTICK_PERIOD_MS);
   }
 }
 
