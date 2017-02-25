@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:GhostESP32-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -31,15 +32,15 @@ LIBS:valves
 LIBS:NorBot
 LIBS:switches
 LIBS:GhostESP32-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "Ghost ESP32"
+Date "2017-02-25"
+Rev "1"
+Comp "Frode Lillerud"
 Comment1 ""
 Comment2 ""
 Comment3 ""
@@ -61,7 +62,7 @@ $EndComp
 Text Notes 4150 1200 0    60   ~ 0
 A shield based around the ESP-WROOM-32\nIt uses a stackable header from Hirose to connect to other boards.\nBoard is powered by 5.0V either through MicroUSB, or via 60-pin connector, or by separate power pins.
 $Comp
-L USB_OTG P1
+L USB_OTG-RESCUE-GhostESP32 P1
 U 1 1 5893902B
 P 950 3000
 F 0 "P1" H 1275 2875 50  0000 C CNN

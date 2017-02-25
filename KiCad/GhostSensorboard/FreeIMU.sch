@@ -31,15 +31,15 @@ LIBS:valves
 LIBS:NorBot
 LIBS:switches
 LIBS:GhostSensorboard-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 2
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "Ghost Sensorboard"
+Date "2017-02-25"
+Rev "1"
+Comp "Frode Lillerud"
 Comment1 ""
 Comment2 ""
 Comment3 ""
@@ -140,7 +140,7 @@ U 1 1 574C57C9
 P 7500 3750
 F 0 "U6" H 8000 3050 60  0000 C CNN
 F 1 "HMC5883" H 7500 3750 60  0000 C CNN
-F 2 "Housings_DFN_QFN:QFN-16-1EP_3x3mm_Pitch0.5mm" H 7500 3750 60  0001 C CNN
+F 2 "NorBotKiCadFootprints:HMC5883" H 7500 3750 60  0001 C CNN
 F 3 "" H 7500 3750 60  0000 C CNN
 	1    7500 3750
 	1    0    0    -1  

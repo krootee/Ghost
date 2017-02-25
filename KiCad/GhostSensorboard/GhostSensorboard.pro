@@ -1,4 +1,4 @@
-update=ti. 21. feb. 2017 kl. 22.09 +0100
+update=Sat 25 Feb 2017 10:34:43 AM CET
 version=1
 last_client=kicad
 [pcbnew]
@@ -58,6 +58,8 @@ LibName28=contrib
 LibName29=valves
 LibName30=/home/frode/GIT/NorBotKiCadSchematicLibraries/NorBot
 LibName31=switches
+[general]
+version=1
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
@@ -65,8 +67,6 @@ PlotDirectoryName=Plot
 SubpartIdSeparator=0
 SubpartFirstId=65
 NetFmtName=
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
+SpiceAjustPassiveValues=0
 LabSize=60
-[general]
-version=1
+ERC_TestSimilarLabels=1

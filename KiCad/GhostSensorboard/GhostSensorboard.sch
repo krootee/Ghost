@@ -31,15 +31,15 @@ LIBS:valves
 LIBS:NorBot
 LIBS:switches
 LIBS:GhostSensorboard-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 2
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "Ghost Sensorboard"
+Date "2017-02-25"
+Rev "1"
+Comp "Frode Lillerud"
 Comment1 ""
 Comment2 ""
 Comment3 ""
@@ -51,7 +51,7 @@ U 1 1 589706B0
 P 10200 2400
 F 0 "P4" H 10200 3950 50  0000 C CNN
 F 1 "CONN_02X30" V 10200 2400 50  0000 C CNN
-F 2 "hrs-fx8c:hrs-fx8c-60p-sv" H 10200 1900 50  0001 C CNN
+F 2 "hrs-fx8c:hrs-fx8c-60s-sv" H 10200 1900 50  0001 C CNN
 F 3 "" H 10200 1900 50  0000 C CNN
 	1    10200 2400
 	1    0    0    -1  
@@ -329,13 +329,13 @@ F 3 "" H 1400 1100 50  0000 C CNN
 	1    1400 1100
 	1    0    0    -1  
 $EndComp
-Text GLabel 850  1450 0    39   Input ~ 0
-SD0
 Text GLabel 850  1350 0    39   Input ~ 0
+SD0
+Text GLabel 850  1450 0    39   Input ~ 0
 SC0
-Text GLabel 850  1250 0    39   Input ~ 0
-SD1
 Text GLabel 850  1150 0    39   Input ~ 0
+SD1
+Text GLabel 850  1250 0    39   Input ~ 0
 SC1
 Wire Wire Line
 	850  1150 900  1150
@@ -437,13 +437,13 @@ Text GLabel 2350 2250 2    39   Input ~ 0
 SD1
 Text GLabel 2350 2350 2    39   Input ~ 0
 SC1
-Text GLabel 1800 1450 0    39   Input ~ 0
-SD2
 Text GLabel 1800 1350 0    39   Input ~ 0
+SD2
+Text GLabel 1800 1450 0    39   Input ~ 0
 SC2
-Text GLabel 1800 1250 0    39   Input ~ 0
-SD3
 Text GLabel 1800 1150 0    39   Input ~ 0
+SD3
+Text GLabel 1800 1250 0    39   Input ~ 0
 SC3
 Text GLabel 2350 2850 2    39   Input ~ 0
 SD4
@@ -469,21 +469,21 @@ Text GLabel 2350 2650 2    39   Input ~ 0
 SD3
 Text GLabel 2350 2750 2    39   Input ~ 0
 SC3
-Text GLabel 2850 1650 0    39   Input ~ 0
-SD4
 Text GLabel 2850 1550 0    39   Input ~ 0
+SD4
+Text GLabel 2850 1650 0    39   Input ~ 0
 SC4
-Text GLabel 2850 1450 0    39   Input ~ 0
-SD5
 Text GLabel 2850 1350 0    39   Input ~ 0
+SD5
+Text GLabel 2850 1450 0    39   Input ~ 0
 SC5
-Text GLabel 2850 1250 0    39   Input ~ 0
-SD6
 Text GLabel 2850 1150 0    39   Input ~ 0
+SD6
+Text GLabel 2850 1250 0    39   Input ~ 0
 SC6
-Text GLabel 2850 1050 0    39   Input ~ 0
-SD7
 Text GLabel 2850 950  0    39   Input ~ 0
+SD7
+Text GLabel 2850 1050 0    39   Input ~ 0
 SC7
 Wire Wire Line
 	2850 1150 2900 1150
@@ -982,7 +982,7 @@ Wire Wire Line
 	6200 6950 6200 7000
 Text Notes 5600 6650 2    39   ~ 0
 Level shifting IO signals from 3V3 to 5V.
-Text GLabel 9800 3550 0    39   Input ~ 0
+Text GLabel 9850 2450 0    39   Input ~ 0
 GPIO_StartModule
 Text GLabel 1400 5350 2    39   Input ~ 0
 GPIO_StartModule
@@ -1383,9 +1383,9 @@ Text GLabel 9850 3750 0    39   Input ~ 0
 GPIO_LED
 Text GLabel 9900 950  0    39   Input ~ 0
 GPIO_IR
-Text GLabel 9850 3850 0    39   Input ~ 0
-GPIO_STEERING
 Text GLabel 10550 3850 2    39   Input ~ 0
+GPIO_STEERING
+Text GLabel 9850 3850 0    39   Input ~ 0
 GPIO_MOTOR
 $Comp
 L +3V3 #PWR045
@@ -1583,7 +1583,6 @@ NoConn ~ 10450 3350
 NoConn ~ 10450 3050
 NoConn ~ 10450 1750
 NoConn ~ 10450 2550
-NoConn ~ 9950 2550
 NoConn ~ 9950 3050
 NoConn ~ 9950 3150
 NoConn ~ 9950 3350
@@ -1841,8 +1840,6 @@ NoConn ~ 10450 1350
 Wire Wire Line
 	9950 3450 9800 3450
 Wire Wire Line
-	9800 3550 9950 3550
-Wire Wire Line
 	10600 3450 10450 3450
 Wire Wire Line
 	10600 3250 10450 3250
@@ -1871,15 +1868,9 @@ NoConn ~ 9950 3650
 NoConn ~ 9950 3250
 NoConn ~ 10450 3150
 Wire Wire Line
-	10550 3850 10450 3850
-Wire Wire Line
 	10450 3750 10550 3750
 Wire Wire Line
-	9950 3850 9850 3850
-Wire Wire Line
 	9950 950  9900 950 
-NoConn ~ 9950 2450
-NoConn ~ 10450 2450
 Wire Wire Line
 	9950 3750 9850 3750
 $Comp
@@ -1909,4 +1900,13 @@ Wire Wire Line
 	2900 950  2850 950 
 Wire Wire Line
 	2850 1050 2900 1050
+NoConn ~ 9950 3550
+Wire Wire Line
+	9950 2450 9850 2450
+NoConn ~ 10450 2450
+NoConn ~ 9950 2550
+Wire Wire Line
+	10550 3850 10450 3850
+Wire Wire Line
+	9950 3850 9850 3850
 $EndSCHEMATC
