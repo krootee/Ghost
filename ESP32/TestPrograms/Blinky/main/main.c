@@ -40,11 +40,16 @@ void blink_task(void *pvParameter)
     }
 }
 
-void helloWorldTask(void *pvParameter)
+void helloWorldTask(void *pvParameters)
 {
+  char *pcTaskName;
+  pcTaskName = (char*) pvParameters;
+
+
+
   while (1)
   {
-    printf("Hello from ESP32!\n");
+    printf("Hello from task %s on ESP32!\n", pcTaskName);
     vTaskDelay(800 / portTICK_PERIOD_MS);
   }
 }
@@ -64,5 +69,5 @@ void app_main()
   - pxCreatedTask = used to pass handle. Can be NULL.
   */
   xTaskCreate(&blink_task, "blink_task", 512, NULL, 5, NULL);
-  xTaskCreate(&helloWorldTask, "helloWorld", 4096, NULL, 4, NULL);
+  xTaskCreate(&helloWorldTask, "helloWorld", 4096, "hh", 4, NULL);
 }
