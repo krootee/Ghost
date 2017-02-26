@@ -1,56 +1,76 @@
+#include <stdio.h>
 #include "freertos/FreeRTOS.h"
-//#include "esp_wifi.h"
-//#include "esp_system.h"
-//#include "esp_event.h"
-//#include "esp_event_loop.h"
-//#include "nvs_flash.h"
-//#include "driver/gpio.h"
+#include "freertos/task.h"
+#include "esp_system.h"
+#include "driver/gpio.h"
+#include <esp_log.h>
+#include "sdkconfig.h"
 
 /*
- * Testprogram for ServoSteering
- * Configure GPIO port X as a PWM output
- * Move steering wheels back and forth
-
- https://www.youtube.com/watch?v=rarE-WI_Y0A
+ * Testprogram for using a Startmodule (http://startmodule.com/) from a ESP32.
+ * Startmodule connected to pins 23 (start), 21 (for vcc) and GND.
+ * Using GPIO 21 to supply power to the Startmodule, which means we can powercycle via software and reset button.
+ * Frode Lillerud, NorBot, febuary 2017
  */
 
-#define GPIO_STEERING_IO  10
-#define GPIO_OUTPUT_PIN_SEL (GPIO_STEERING_IO)
+#define LED_GPIO GPIO_NUM_5
+#define STARTMODULE_GPIO GPIO_NUM_23
+#define POWER_GPIO GPIO_NUM_21
 
-void app_main(void)
+enum StartModule {
+  WAITING = 0,
+  STARTED = 1,
+  STOPPED = 2
+};
+
+static int state = 0;
+
+void isr_startmodule_toggled(void *args)
 {
-  gpio_config_t io_conf;
-  io_conf.intr_type = GPIO_PIN_INTR_DISABLE; //Disable interrupt
-  io_conf.mode = GPIO_MODE_OUTPUT; //Set Output mode
-  io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL; //Mask bit we want to set
-  io_conf.pull_down_en = 0; //Disable pull-down mode
-  io_conf.pull_up_en = 0; //Didable pull-up mode
-  gpio_config(&io_conf);
-  /*
-    nvs_flash_init();
-    tcpip_adapter_init();
-    ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
-    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
-    ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
-    ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
-    ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
-    wifi_config_t sta_config = {
-        .sta = {
-            .ssid = "Skynet",
-            .password = "W4r3zl4ck",
-            .bssid_set = false
-        }
-    };
-    ESP_ERROR_CHECK( esp_wifi_set_config(WIFI_IF_STA, &sta_config) );
-    ESP_ERROR_CHECK( esp_wifi_start() );
-    ESP_ERROR_CHECK( esp_wifi_connect() );
+  int startmodule_state = gpio_get_level(STARTMODULE_GPIO);
+  gpio_set_level(LED_GPIO, startmodule_state);
+  printf("Startmodule triggered\n");
 
-    gpio_set_direction(GPIO_NUM_4, GPIO_MODE_OUTPUT);
-    int level = 0;
-    while (true) {
-        gpio_set_level(GPIO_NUM_4, level);
-        level = !level;
-        vTaskDelay(300 / portTICK_PERIOD_MS);
-    }
-    */
+  state++;
+}
+
+//Configure the PIN's used by starmodule, and add interrupt handler.
+void startmodule_task(void *pvParameter)
+{
+  //Configure Startmodule
+  gpio_config_t btn_config;
+  btn_config.intr_type = GPIO_INTR_ANYEDGE; 	//Enable interrupt on both rising and falling edges
+  btn_config.mode = GPIO_MODE_INPUT;        	//Set as Input
+  btn_config.pin_bit_mask = (1 << STARTMODULE_GPIO); //Bitmask
+  btn_config.pull_up_en = GPIO_PULLUP_DISABLE; 	//Disable pullup
+  btn_config.pull_down_en = GPIO_PULLDOWN_ENABLE; //Enable pulldown
+  gpio_config(&btn_config);
+  printf("Startmodule configured\n");
+
+  //Configure GPIO pin as output for powering the Startmodule
+  gpio_pad_select_gpio(POWER_GPIO);
+  gpio_set_direction(POWER_GPIO, GPIO_MODE_OUTPUT);
+  gpio_set_level(POWER_GPIO, 1);
+
+  //Configure LED on ESP32 board to mimic LED on Startmodule
+  gpio_pad_select_gpio(LED_GPIO);					//Set pin as GPIO
+  gpio_set_direction(LED_GPIO, GPIO_MODE_OUTPUT);	//Set as Output
+  printf("LED configured\n");
+
+  //Configure interrupt and add handler
+  gpio_install_isr_service(0);						//Start Interrupt Service Routine service
+  gpio_isr_handler_add(STARTMODULE_GPIO, isr_startmodule_toggled, NULL); //Add handler of interrupt
+  printf("Interrupt configured\n");
+
+  //Wait
+  while (1)
+  {
+      ESP_LOGI("Startmodule", "Current state: %d", state);
+      vTaskDelay(1000/portTICK_PERIOD_MS);  //Yield CPU time
+  }
+}
+
+void app_main()
+{
+  xTaskCreate(&startmodule_task, "Startmodule", 2048, NULL, 5, NULL);
 }
