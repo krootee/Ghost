@@ -43,39 +43,55 @@ void  setup_button_to_led(void *pvParameter)
 
 void app_main()
 {
-	printf("Developing via Eclipse\n");
-  //gpio_pad_select_gpio(BUTTON_GPIO);
+	//Configure button
+	gpio_pad_select_gpio(GPIO_NUM_0);
+	gpio_set_direction(GPIO_NUM_0, GPIO_MODE_INPUT);
 
-  //Configure button
-  gpio_config_t btn_config;
-  btn_config.intr_type = GPIO_INTR_ANYEDGE; //Enable interrupt on positive/negative flank
-  btn_config.mode = GPIO_MODE_INPUT;        //Input
-  btn_config.pin_bit_mask = BUTTON_GPIO;    //Set pin where button is connected
-  btn_config.pull_up_en = GPIO_PULLUP_ENABLE; //Disable pullup
-  btn_config.pull_down_en = GPIO_PULLDOWN_DISABLE; //Enable pulldown
-  gpio_config(&btn_config);
+	//Configure LED
+	gpio_pad_select_gpio(GPIO_NUM_5);
+	gpio_set_direction(GPIO_NUM_5, GPIO_MODE_OUTPUT);
 
-  printf("Button configured\n");
+	while(1)
+	{
+		//Set LED to same value as button
+		int level = gpio_get_level(GPIO_NUM_0);
+		gpio_set_level(GPIO_NUM_5, level);
+		vTaskDelay(10/portTICK_RATE_MS);
+	}
 
-  //Configure LED
-  gpio_config_t led_config;
-  led_config.intr_type = GPIO_INTR_DISABLE;
-  led_config.pin_bit_mask = LED_GPIO;
-  led_config.mode = GPIO_MODE_OUTPUT;
-  led_config.pull_up_en = 0;
-  led_config.pull_down_en = 1;
-  gpio_config(&led_config);
-  printf("LED configured\n");
-
-  gpio_pad_select_gpio(LED_GPIO);
-
-  //queue_handle = xQueueCreate(10, sizeof(uint32_t)); //Create a queue that can store ten uint's
-
-  xTaskCreate(&setup_button_to_led, "buttonToLED", 4096, NULL, 5, NULL);
-
-  while (1)
-  {
-    vTaskDelay(1000 / portTICK_RATE_MS);
-    //gpio_set_level(BUTTON_GPIO, 1);
-  }
+//	printf("Developing via Eclipse\n");
+//  //gpio_pad_select_gpio(BUTTON_GPIO);
+//
+//  //Configure button
+//  gpio_config_t btn_config;
+//  btn_config.intr_type = GPIO_INTR_ANYEDGE; //Enable interrupt on positive/negative flank
+//  btn_config.mode = GPIO_MODE_INPUT;        //Input
+//  btn_config.pin_bit_mask = BUTTON_GPIO;    //Set pin where button is connected
+//  btn_config.pull_up_en = GPIO_PULLUP_ENABLE; //Disable pullup
+//  btn_config.pull_down_en = GPIO_PULLDOWN_DISABLE; //Enable pulldown
+//  gpio_config(&btn_config);
+//
+//  printf("Button configured\n");
+//
+//  //Configure LED
+//  gpio_config_t led_config;
+//  led_config.intr_type = GPIO_INTR_DISABLE;
+//  led_config.pin_bit_mask = LED_GPIO;
+//  led_config.mode = GPIO_MODE_OUTPUT;
+//  led_config.pull_up_en = 0;
+//  led_config.pull_down_en = 1;
+//  gpio_config(&led_config);
+//  printf("LED configured\n");
+//
+//  gpio_pad_select_gpio(LED_GPIO);
+//
+//  //queue_handle = xQueueCreate(10, sizeof(uint32_t)); //Create a queue that can store ten uint's
+//
+//  xTaskCreate(&setup_button_to_led, "buttonToLED", 4096, NULL, 5, NULL);
+//
+//  while (1)
+//  {
+//    vTaskDelay(1000 / portTICK_RATE_MS);
+//    //gpio_set_level(BUTTON_GPIO, 1);
+//  }
 }
