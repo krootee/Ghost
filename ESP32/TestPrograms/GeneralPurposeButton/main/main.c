@@ -43,6 +43,7 @@ void  setup_button_to_led(void *pvParameter)
 
 void app_main()
 {
+	printf("Developing via Eclipse\n");
   //gpio_pad_select_gpio(BUTTON_GPIO);
 
   //Configure button
