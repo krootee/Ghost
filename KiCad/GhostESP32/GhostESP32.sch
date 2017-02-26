@@ -1789,4 +1789,6 @@ F 3 "" H -800 750 50  0001 C CNN
 $EndComp
 Text Notes 2050 1950 0    60   ~ 0
 MC33269DT-3.3G\nFarnel no: 165-2330\n1.1V dropout, 800mA out
+Text Notes 5200 1600 0    60   ~ 0
+Note, pins 34 - 39 are INPUT mode ONLY.\nNote, pins 6-11 are used by SPI-flash, and cannot be used for other purposes.
 $EndSCHEMATC
