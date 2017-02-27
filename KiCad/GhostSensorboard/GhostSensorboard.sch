@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:GhostSensorboard-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -72,7 +73,7 @@ F 3 "" H 1850 2700 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L BSS138 Q1
+L BSS138-RESCUE-GhostSensorboard Q1
 U 1 1 5897081C
 P 4150 7400
 F 0 "Q1" V 4450 7350 50  0000 L CNN
@@ -168,7 +169,7 @@ F 3 "" H 1450 6200 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 Text Notes 1000 4950 0    39   ~ 0
-Startmodule\nUse a female 3pin header.\nAccepts both 3V3 and 5V.
+Startmodule\nUse a female 3pin header.\nAccepts both 3V3 and 5V.\nPower is supplied via GPIO, so that recycle can be done via software.
 $Comp
 L R_Pack04 RN1
 U 1 1 58973482
@@ -421,7 +422,7 @@ F 3 "" H 3400 850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3300 1350 3400 1350
+	3400 1350 3300 1350
 Wire Wire Line
 	3400 850  3400 1650
 Wire Wire Line
@@ -847,17 +848,6 @@ F 3 "" H 1600 5250 50  0000 C CNN
 	1    1600 5250
 	0    -1   -1   0   
 $EndComp
-$Comp
-L +3V3 #PWR028
-U 1 1 589806BE
-P 1400 5150
-F 0 "#PWR028" H 1400 5000 50  0001 C CNN
-F 1 "+3V3" H 1400 5290 50  0000 C CNN
-F 2 "" H 1400 5150 50  0000 C CNN
-F 3 "" H 1400 5150 50  0000 C CNN
-	1    1400 5150
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	1300 5150 1400 5150
 Wire Wire Line
@@ -903,7 +893,7 @@ Wire Wire Line
 Wire Wire Line
 	1300 7050 1450 7050
 $Comp
-L BSS138 Q2
+L BSS138-RESCUE-GhostSensorboard Q2
 U 1 1 58982B38
 P 5900 7400
 F 0 "Q2" V 6200 7350 50  0000 L CNN
@@ -1373,7 +1363,7 @@ Wire Wire Line
 	4200 6150 3950 6150
 Text Notes 6450 4200 0    39   ~ 0
 Gyro/Accelerometer/Compass
-Text GLabel 10550 3750 2    39   Input ~ 0
+Text GLabel 10600 3650 2    39   Input ~ 0
 GPIO_DRDY
 Text GLabel 9850 2750 0    39   Input ~ 0
 GPIO_INT
@@ -1383,9 +1373,9 @@ Text GLabel 9850 3750 0    39   Input ~ 0
 GPIO_LED
 Text GLabel 9900 950  0    39   Input ~ 0
 GPIO_IR
-Text GLabel 10550 3850 2    39   Input ~ 0
+Text GLabel 10600 3850 2    39   Input ~ 0
 GPIO_STEERING
-Text GLabel 9850 3850 0    39   Input ~ 0
+Text GLabel 9800 3550 0    39   Input ~ 0
 GPIO_MOTOR
 $Comp
 L +3V3 #PWR045
@@ -1824,12 +1814,9 @@ Wire Wire Line
 	9950 2750 9850 2750
 Wire Wire Line
 	9850 2850 9950 2850
-NoConn ~ 10450 3650
 NoConn ~ 9950 3650
 NoConn ~ 9950 3250
 NoConn ~ 10450 3150
-Wire Wire Line
-	10450 3750 10550 3750
 Wire Wire Line
 	9950 950  9900 950 
 Wire Wire Line
@@ -1861,18 +1848,26 @@ Wire Wire Line
 	2900 950  2850 950 
 Wire Wire Line
 	2850 1050 2900 1050
-NoConn ~ 9950 3550
 Wire Wire Line
 	9950 2450 9850 2450
-NoConn ~ 10450 2450
 NoConn ~ 9950 2550
 Wire Wire Line
-	10550 3850 10450 3850
-Wire Wire Line
-	9950 3850 9850 3850
+	10600 3850 10450 3850
 NoConn ~ 10450 2650
 NoConn ~ 10450 2750
 NoConn ~ 10450 2850
 Text Notes 1350 3950 0    39   ~ 0
 TCA9548ARGER I2C multiplexer\nI2C address: 0x70
+Text GLabel 10500 2450 2    39   Input ~ 0
+GPIO_StartModule_VCC
+Wire Wire Line
+	10450 2450 10500 2450
+Text GLabel 1400 5150 2    39   Input ~ 0
+GPIO_StartModule_VCC
+Wire Wire Line
+	9950 3550 9800 3550
+NoConn ~ 9950 3850
+Wire Wire Line
+	10450 3650 10600 3650
+NoConn ~ 10450 3750
 $EndSCHEMATC
