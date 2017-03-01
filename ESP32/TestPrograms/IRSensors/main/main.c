@@ -17,20 +17,37 @@
 // #define SDA_GPIO = 25;
 // #define SCL_GPIO = 23;
 
+void setup_i2c()
+{
+  //Configure as I2C master
+  i2c_config_t conf;
+  conf.mode = I2C_MODE_MASTER;
+  conf.sda_io_num = SDA_PIN;
+  conf.scl_io_num = SCL_PIN;
+  conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
+  conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
+  conf.master.clk_speed = 100000;
+  i2c_param_config(I2C_NUM_0, &conf);
+
+  i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
+}
+
 void app_main()
 {
-  // //Configure as I2C master
-  // i2c_config_t conf;
-  // conf.mode = I2C_MODE_MASTER;
-  // conf.sda_io_num = SDA_GPIO;
-  // conf.scl_io_num = SCL_GPIO;
-  // conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
-  // conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
-  // conf.master.clk_speed = 100000; //100kHz
-  // i2c_param_config(I2C_NUM_0, &conf);
-  //
-  // i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
+
+  setup_i2c();
 
   //xTaskCreate(&task_i2cscanner, "I2Cscanner",4096, NULL, 5, NULL);
-  xTaskCreate(&task_tmp102, "TMP102",4096, NULL, 5, NULL);
+  //xTaskCreate(&task_tmp102, "TMP102",4096, NULL, 5, NULL);
+
+  while(1)
+  {
+    esp_err_t result = tmp102_detect_device();
+    if (result == ESP_OK)
+      printf("Celsius: %g\n", tmp102_get_temperature());
+    else
+      printf("Unable to detect tmp102 device. Error: %d\n", result);
+
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+  }
 }
