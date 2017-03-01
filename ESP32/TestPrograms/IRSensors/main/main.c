@@ -7,6 +7,7 @@
 #include "sdkconfig.h"
 #include "i2cscanner.c"
 #include "tmp102.c"
+#include "irsensor_gp2y0e02b.c"
 
 /*
  * Testprogram for using a TCA9548 I2C multiplexer, and the IR sensors (which I forget the name of...) with ESP32
@@ -42,11 +43,19 @@ void app_main()
 
   while(1)
   {
+    //Read temperature sensor
     esp_err_t result = tmp102_detect_device();
     if (result == ESP_OK)
       printf("Celsius: %g\n", tmp102_get_temperature());
     else
       printf("Unable to detect tmp102 device. Error: %d\n", result);
+
+    //Read distance sensor
+    esp_err_t irsensor_exists = irsensor_detect_device();
+    if (irsensor_exists == ESP_OK)
+      printf("Distance: %d", irsensor_get_distance());
+    else
+      printf("Unable to detect IR-sensor device\n");
 
     vTaskDelay(1000 / portTICK_PERIOD_MS);
   }

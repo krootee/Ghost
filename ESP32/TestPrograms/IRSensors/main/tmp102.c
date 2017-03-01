@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "sdkconfig.h"
 
+
 /*
  * ESP32 driver for the I2C based TMP102 temperature sensor.
  * Frode Lillerud, febuary 2017
@@ -22,8 +23,15 @@
 #define ACK 0x1
 #define NACK 0x0
 
+#define CHECK_BIT(var,pos) ((var) & (1<<(pos)))
+
+uint8_t twos_complement(uint8_t val)
+{
+    return -(unsigned int)val;
+}
+
 //Writes the TMP102 address to the I2C bus, and waits for an ACK.
-esp_err_t tmp102_detectDevice()
+esp_err_t tmp102_detect_device()
 {
   //Write to the I2C device. If it responds with an ACK then it exists.
   i2c_cmd_handle_t cmd = i2c_cmd_link_create();
@@ -39,7 +47,7 @@ esp_err_t tmp102_detectDevice()
   return result;
 }
 
-float tmp102_getTemperature()
+float tmp102_get_temperature()
 {
   i2c_cmd_handle_t cmd = i2c_cmd_link_create();
 
@@ -54,9 +62,25 @@ float tmp102_getTemperature()
   ESP_ERROR_CHECK(i2c_master_cmd_begin(I2C_NUM_0, cmd, 100 / portTICK_PERIOD_MS));
   i2c_cmd_link_delete(cmd);
 
-  float celsius = ((data[0] << 4) | (data[1] >> 4)) * 0.0625;
+  //http://forums.netduino.com/index.php?/topic/4138-tmp102-temperature-sensor/?hl=tmp102
+  return ((short)((data[0] << 8) | data[1]))/256.0;
+/*
+  short value = (data[0] << 4) | (data[1] >> 4);
+  if (value & (1 << 11)) //Is the most significant bit set?
+  {
+    //printf("Negative\n");
+    //Negative temperature. Value is two's complement.
+    return ((twos_complement(value)+1) * 0.0625) * -1;
+  }
+  else {
+    //Positive temperature
+    //float celsius = value * 0.0625;
 
-  return celsius;
+    float celsius = data[0] + ((data[1] >> 4) * 0.0625);
+
+    return celsius;
+  }
+  */
 }
 
 void task_tmp102(void *ignore)
