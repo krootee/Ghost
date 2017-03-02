@@ -51,11 +51,11 @@ void app_main()
       printf("Unable to detect tmp102 device. Error: %d\n", result);
 
     //Read distance sensor
-    esp_err_t irsensor_exists = irsensor_detect_device();
-    if (irsensor_exists == ESP_OK)
-      printf("Distance: %d", irsensor_get_distance());
-    else
-      printf("Unable to detect IR-sensor device\n");
+    // esp_err_t irsensor_exists = irsensor_detect_device();
+    // if (irsensor_exists == ESP_OK)
+    //   printf("Distance: %d", irsensor_get_distance());
+    // else
+    //   printf("Unable to detect IR-sensor device\n");
 
     vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
