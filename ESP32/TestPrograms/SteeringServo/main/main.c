@@ -66,7 +66,7 @@ void app_main(void)
     wifi_config_t sta_config = {
         .sta = {
             .ssid = "Skynet",
-            .password = "W4r3zl4ck",
+            .password = "secret",
             .bssid_set = false
         }
     };

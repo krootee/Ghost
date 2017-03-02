@@ -54,6 +54,6 @@ void app_main()
     else
       printf("Unable to detect IR-sensor device\n");
 
-    vTaskDelay(250 / portTICK_PERIOD_MS);
+    vTaskDelay(20 / portTICK_PERIOD_MS);
   }
 }
