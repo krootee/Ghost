@@ -25,6 +25,10 @@ or
 
     make app-flash (flashes just the app)
 
+## Configuring Eclipse
+
+When starting Eclipse, set ~/GIT/Ghost/ESP32 as the workspace folder.
+
 ## Using OTA
 
 First, make sure the ota.bin firmware has been deployed using USB cable.
@@ -50,11 +54,11 @@ Install Minicom
 and to use
 
     minicom --device /dev/ttyUSB0
-    
+
 or you can use
 
     make monitor
-    
+
 Quit it using Ctrl+] (which is Ctrl+AltGr+9)
 
 ## Troubleshooting
@@ -66,7 +70,7 @@ When running "make app-flash" or similar you get error saying permission denied 
 This can be fixed by adding the current Linux-user to the 'dialout' group.
 
     sudo usermod -a -G dialout $USER
-    
+
 Reboot the machine afterwards.
 
 
