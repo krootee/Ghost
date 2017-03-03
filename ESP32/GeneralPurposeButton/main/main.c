@@ -6,6 +6,10 @@
 #include <esp_log.h>
 #include "sdkconfig.h"
 
+/*
+ * Frode Lillerud, march 2017
+ */
+
 #define LED_GPIO GPIO_NUM_5
 #define BUTTON_GPIO GPIO_NUM_0
 

@@ -2,3 +2,5 @@
 ESP32/\.metadata/\.log
 
 *.log
+
+ESP32/\.metadata
