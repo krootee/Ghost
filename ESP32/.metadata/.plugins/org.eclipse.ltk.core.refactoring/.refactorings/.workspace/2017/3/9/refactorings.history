@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;DataViaWiFi&apos;" deleteContents="true" description="Delete resource &apos;DataViaWiFi&apos;" element1="/DataViaWiFi" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1488580339635"/>
+</session>
