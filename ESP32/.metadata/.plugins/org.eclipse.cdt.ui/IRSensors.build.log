@@ -1,0 +1,23 @@
+23:17:32 **** Build of configuration Default for project IRSensors ****
+make monitor 
+--- forcing DTR inactive
+--- forcing RTS inactive
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/runpy.py", line 174, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/usr/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/usr/lib/python2.7/dist-packages/serial/tools/miniterm.py", line 878, in <module>
+    main()
+  File "/usr/lib/python2.7/dist-packages/serial/tools/miniterm.py", line 850, in main
+    filters=filters)
+  File "/usr/lib/python2.7/dist-packages/serial/tools/miniterm.py", line 316, in __init__
+    self.console = Console()
+  File "/usr/lib/python2.7/dist-packages/serial/tools/miniterm.py", line 124, in __init__
+    self.old = termios.tcgetattr(self.fd)
+termios.error: (25, 'Inappropriate ioctl for device')
+make: *** [monitor] Error 1
+/home/frode/esp/esp-idf/components/esptool_py/Makefile.projbuild:76: recipe for target 'monitor' failed
+
+23:17:32 Build Finished (took 222ms)
+

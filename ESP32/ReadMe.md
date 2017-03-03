@@ -29,6 +29,21 @@ or
 
 When starting Eclipse, set ~/GIT/Ghost/ESP32 as the workspace folder.
 
+On properties for the project, go to "C/C++ Build", and uncheck "Use default build command".
+Go to Environment, and add IDF_PATH = ~/esp/esp-idf
+Go to "C/C++ General"->"Paths and Symbols", select "GNU C", click Add..., and add these:
+
+    ${IDF_PATH}/components/esp32/include
+    ${IDF_PATH}/components/newlib/include
+    ${IDF_PATH}/components/freertos/include
+    ${IDF_PATH}/components/nvs_flash/include
+    ${IDF_PATH}/components/driver/include
+    ${IDF_PATH}/components/log/include
+
+and lastly
+
+    /myapp/build/include (with the "Is a workspace path" checkbox ticked, and correct appname)
+
 ## Using OTA
 
 First, make sure the ota.bin firmware has been deployed using USB cable.
