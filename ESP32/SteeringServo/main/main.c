@@ -19,6 +19,8 @@
 #define GPIO_STEERING_IO  10
 #define GPIO_OUTPUT_PIN_SEL (GPIO_STEERING_IO)
 
+#define SLEEP(ms) vTaskDelay(ms / portTICK_PERIOD_MS)
+
 void app_main(void)
 {
   /*
@@ -33,8 +35,8 @@ void app_main(void)
 
   //Set a LEDC timer for PWM
   ledc_timer_config_t timer_conf;
-  timer_conf.bit_num = LEDC_TIMER_12_BIT;
-  timer_conf.freq_hz = 1000;
+  timer_conf.bit_num = LEDC_TIMER_15_BIT;
+  timer_conf.freq_hz = 50; //50 = 20ms
   timer_conf.speed_mode = LEDC_HIGH_SPEED_MODE;
   timer_conf.timer_num = LEDC_TIMER_0;
   ledc_timer_config(&timer_conf);
@@ -42,44 +44,28 @@ void app_main(void)
   //Set a LEDC channel
   ledc_channel_config_t ledc_conf;
   ledc_conf.channel = LEDC_CHANNEL_0;
-  ledc_conf.duty = 220;
+  ledc_conf.duty = 3276;
   ledc_conf.gpio_num = 4;
   ledc_conf.intr_type = LEDC_INTR_DISABLE;
   ledc_conf.speed_mode = LEDC_HIGH_SPEED_MODE;
   ledc_conf.timer_sel = LEDC_TIMER_0;
   ledc_channel_config(&ledc_conf);
 
-  for (int i = 220; i < 400; i++)
+  while(1)
   {
-    ledc_conf.duty = i;
-    ledc_channel_config(&ledc_conf);
-    vTaskDelay(30 / portTICK_PERIOD_MS);
-  }
-  /*
-    nvs_flash_init();
-    tcpip_adapter_init();
-    ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
-    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
-    ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
-    ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
-    ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
-    wifi_config_t sta_config = {
-        .sta = {
-            .ssid = "Skynet",
-            .password = "secret",
-            .bssid_set = false
-        }
-    };
-    ESP_ERROR_CHECK( esp_wifi_set_config(WIFI_IF_STA, &sta_config) );
-    ESP_ERROR_CHECK( esp_wifi_start() );
-    ESP_ERROR_CHECK( esp_wifi_connect() );
 
-    gpio_set_direction(GPIO_NUM_4, GPIO_MODE_OUTPUT);
-    int level = 0;
-    while (true) {
-        gpio_set_level(GPIO_NUM_4, level);
-        level = !level;
-        vTaskDelay(300 / portTICK_PERIOD_MS);
-    }
-    */
+	  for (int duty_cycle = 1638; duty_cycle < 3276; duty_cycle += 20)
+	  {
+		ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, duty_cycle);
+		ledc_update_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0);
+		SLEEP(10);
+	  }
+
+	  for (int duty_cycle = 3276; duty_cycle > 1638; duty_cycle -= 20)
+	  {
+			ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, duty_cycle);
+			ledc_update_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0);
+			SLEEP(10);
+	  }
+  }
 }
