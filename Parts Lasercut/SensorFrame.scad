@@ -1,48 +1,51 @@
 $fn=100;
 
+/*
+ * Material: Biltema, 4mm Plexiglass
+ * Laser cutter settings: 10mm/s 100% power
+ */
+
 module sensor()
 {
     width = 8;
+    scaleFactor = 1.18;
+    
+    scale(scaleFactor)
     translate([0,-2.5,-5])
     union() {
-        color("black") cube([5.5,5,10]);
-        translate([5,-1.5,-3]) color("green") cube([1,width,19]);
+        cube([5.5,5,10]);
+        translate([5,-1.5,-3]) cube([1,width,19]);
     }
 }
 
-module side()
+module curve(radius, width)
 {
-    translate([30,45/2,0]) 
+    difference()
     {
-        difference()
-        {
-            cube([75,10,1], center=true);
-            #rotate(-45) sensor();
-            #rotate(-135) sensor();
-        }
+        linear_extrude(height=3) circle(radius);
+        linear_extrude(height=3) circle(radius-width);
+        translate([-50,0,0]) cube([100,150,50], center=true);
+       
     }
 }
 
-module curve()
+module part(includeSensorHoles)
 {
+    difference() 
+    {
+        curve(radius=33, width=13);
+    
+        if (includeSensorHoles)
+            for (a = [-75 : 25 : 75])
+                rotate(a) translate([30-12, 0, 0]) sensor();
+    }
+}
+
+projection(cut=false) 
 difference()
 {
-    circle(30);
-    circle(20);
-    for (a = [-60 : 26 : 60])
-        rotate(a) translate([19, 0, 0]) sensor();
-}
-}
-
-difference() {
-
-    union() {
-        translate([-10,0,0]) curve();
-        
-        //side();
-        //mirror([0,1,0]) side();
-        //translate([30,-17+2.5,0]) cube([60,5,1], center=true);
-    }
-    translate([-25,0,0]) cube([50,100,3], center=true);
-    sensor();
+    part(true);
+    for (i = [-30 : -60 : -150])
+        rotate(i)
+        translate([0,29,-5]) cylinder(r=1.53, h=200);
 }
