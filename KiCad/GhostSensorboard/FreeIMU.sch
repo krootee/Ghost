@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:GhostSensorboard-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -31,22 +32,22 @@ LIBS:valves
 LIBS:NorBot
 LIBS:switches
 LIBS:GhostSensorboard-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 2
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "Ghost Sensorboard"
+Date "2017-02-25"
+Rev "1"
+Comp "Frode Lillerud"
 Comment1 ""
 Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Notes 2700 2150 0    60   ~ 0
-MPU-6050 (Farnell: 186474, QFN-24)\nI2C address: 0x68 / 0x69 (depends on AD0 low or high)
+Text Notes 2900 2750 0    60   ~ 0
+MPU-6050 gyro/accelerometer\nFarnellno: 186-474\nFootprint: QFN-24\nI2C address: 0x68 / 0x69 (depends on AD0 low or high)
 Text HLabel 2000 3400 0    60   Input ~ 0
 VCC
 $Comp
@@ -61,10 +62,10 @@ F 3 "" H 2400 3100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR067
+L GND #PWR074
 U 1 1 574C3F70
 P 2400 2850
-F 0 "#PWR067" H 2400 2600 50  0001 C CNN
+F 0 "#PWR074" H 2400 2600 50  0001 C CNN
 F 1 "GND" H 2400 2700 50  0000 C CNN
 F 2 "" H 2400 2850 50  0000 C CNN
 F 3 "" H 2400 2850 50  0000 C CNN
@@ -76,10 +77,10 @@ INT
 Text HLabel 2000 3750 0    60   Input ~ 0
 FSYNC
 $Comp
-L GND #PWR068
+L GND #PWR075
 U 1 1 574C4065
 P 2700 3850
-F 0 "#PWR068" H 2700 3600 50  0001 C CNN
+F 0 "#PWR075" H 2700 3600 50  0001 C CNN
 F 1 "GND" H 2700 3700 50  0000 C CNN
 F 2 "" H 2700 3850 50  0000 C CNN
 F 3 "" H 2700 3850 50  0000 C CNN
@@ -87,10 +88,10 @@ F 3 "" H 2700 3850 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR069
+L GND #PWR076
 U 1 1 574C40EB
 P 2800 4750
-F 0 "#PWR069" H 2800 4500 50  0001 C CNN
+F 0 "#PWR076" H 2800 4500 50  0001 C CNN
 F 1 "GND" H 2800 4600 50  0000 C CNN
 F 2 "" H 2800 4750 50  0000 C CNN
 F 3 "" H 2800 4750 50  0000 C CNN
@@ -122,10 +123,10 @@ F 3 "" H 2450 4300 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR070
+L GND #PWR077
 U 1 1 574C4E5A
 P 4250 4000
-F 0 "#PWR070" H 4250 3750 50  0001 C CNN
+F 0 "#PWR077" H 4250 3750 50  0001 C CNN
 F 1 "GND" H 4250 3850 50  0000 C CNN
 F 2 "" H 4250 4000 50  0000 C CNN
 F 3 "" H 4250 4000 50  0000 C CNN
@@ -140,7 +141,7 @@ U 1 1 574C57C9
 P 7500 3750
 F 0 "U6" H 8000 3050 60  0000 C CNN
 F 1 "HMC5883" H 7500 3750 60  0000 C CNN
-F 2 "Housings_DFN_QFN:QFN-16-1EP_3x3mm_Pitch0.5mm" H 7500 3750 60  0001 C CNN
+F 2 "NorBotKiCadFootprints:HMC5883" H 7500 3750 60  0001 C CNN
 F 3 "" H 7500 3750 60  0000 C CNN
 	1    7500 3750
 	1    0    0    -1  
@@ -169,10 +170,10 @@ F 3 "" H 7800 5000 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR071
+L GND #PWR078
 U 1 1 574C70FE
 P 9450 4350
-F 0 "#PWR071" H 9450 4100 50  0001 C CNN
+F 0 "#PWR078" H 9450 4100 50  0001 C CNN
 F 1 "GND" H 9450 4200 50  0000 C CNN
 F 2 "" H 9450 4350 50  0000 C CNN
 F 3 "" H 9450 4350 50  0000 C CNN
@@ -288,4 +289,6 @@ Wire Wire Line
 	9850 3450 9850 5400
 Wire Wire Line
 	9850 5400 7800 5400
+Text Notes 8550 2800 0    60   ~ 0
+HMC5883 compass\nFarnell no: 197-1743\nI2C address: 0x1E
 $EndSCHEMATC

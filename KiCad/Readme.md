@@ -13,6 +13,7 @@ A thought is to use several PCB's, and stack them together using stacking connec
 Boards should use "Sick of Beige" format 70x43, 60x37 or 50x31.
 
 There is a KiCad footprint for the Hirose FX8C-60 pin connector at: https://github.com/librespacefoundation/lsf-kicad-libs
+and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 
 #### Split up PCB into 2 or 3 boards
 
