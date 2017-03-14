@@ -1422,4 +1422,5 @@ Text GLabel 7650 3200 2    39   Input ~ 0
 IO0
 Wire Wire Line
 	7650 3200 7300 3200
+NoConn ~ 7950 5850
 $EndSCHEMATC

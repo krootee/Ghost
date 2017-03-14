@@ -36,7 +36,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 2
+Sheet 2 3
 Title "Ghost Sensorboard"
 Date "2017-03-10"
 Rev "2"
@@ -133,8 +133,6 @@ F 3 "" H 4250 4000 50  0000 C CNN
 	1    4250 4000
 	1    0    0    -1  
 $EndComp
-Text Notes 2750 1050 0    118  ~ 24
-FreeIMU
 $Comp
 L HMC5883 U6
 U 1 1 574C57C9
@@ -146,14 +144,6 @@ F 3 "" H 7500 3750 60  0000 C CNN
 	1    7500 3750
 	1    0    0    -1  
 $EndComp
-Text GLabel 4450 3400 2    60   Input ~ 0
-MPU_SCL
-Text GLabel 4450 3500 2    60   Input ~ 0
-MPU_SDA
-Text GLabel 6450 3450 0    60   Input ~ 0
-MPU_SCL
-Text GLabel 7200 2700 1    60   Input ~ 0
-MPU_SDA
 Text HLabel 6400 3650 0    60   Input ~ 0
 VCC
 Text HLabel 6400 4050 0    60   Input ~ 0
@@ -231,10 +221,6 @@ Wire Wire Line
 Wire Wire Line
 	4100 3800 4450 3800
 Wire Wire Line
-	4450 3400 4100 3400
-Wire Wire Line
-	4100 3500 4450 3500
-Wire Wire Line
 	4100 3700 4450 3700
 Wire Wire Line
 	6450 3450 6600 3450
@@ -291,4 +277,10 @@ Wire Wire Line
 	9850 5400 7800 5400
 Text Notes 8550 2800 0    60   ~ 0
 HMC5883 compass\nFarnell no: 197-1743\nI2C address: 0x1E
+NoConn ~ 4100 3400
+NoConn ~ 4100 3500
+Text HLabel 6450 3450 0    60   Input ~ 0
+SCL
+Text HLabel 7200 2700 1    60   Input ~ 0
+SDA
 $EndSCHEMATC
