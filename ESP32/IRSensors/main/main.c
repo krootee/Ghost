@@ -33,9 +33,11 @@ void setup_i2c()
 void app_main()
 {
 
-  setup_i2c();
+  //setup_i2c();
 
-  //xTaskCreate(&task_i2cscanner, "I2Cscanner",4096, NULL, 5, NULL);
+  //vTaskDelay(10000 / portTICK_PERIOD_MS);
+
+  xTaskCreate(&task_i2cscanner, "I2Cscanner",4096, NULL, 5, NULL);
   //xTaskCreate(&task_tmp102, "TMP102",4096, NULL, 5, NULL);
 
   while(1)
@@ -54,6 +56,6 @@ void app_main()
     else
       printf("Unable to detect IR-sensor device\n");
 
-    vTaskDelay(20 / portTICK_PERIOD_MS);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 }

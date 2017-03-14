@@ -10,11 +10,12 @@
  * Frode Lillerud, march 2017
  */
 
-#define LED_GPIO GPIO_NUM_23
-#define BUTTON_GPIO GPIO_NUM_0
+#define LED_GPIO GPIO_NUM_32
+#define BUTTON_GPIO GPIO_NUM_10
 
 void isr_button_pressed(void *args)
 {
+  printf("Button pressed\n");
   int btn_state = gpio_get_level(BUTTON_GPIO);
   gpio_set_level(LED_GPIO,btn_state);
 }
@@ -22,6 +23,9 @@ void isr_button_pressed(void *args)
 void task_button_to_led(void *pvParameter)
 {
   //Configure button
+  //gpio_pad_select_gpio(BUTTON_GPIO);
+  //gpio_set_direction(BUTTON_GPIO, GPIO_MODE_INPUT);
+
   gpio_config_t btn_config;
   btn_config.intr_type = GPIO_INTR_ANYEDGE; 	//Enable interrupt on both rising and falling edges
   btn_config.mode = GPIO_MODE_INPUT;        	//Set as Input
