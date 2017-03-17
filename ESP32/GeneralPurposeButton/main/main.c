@@ -10,12 +10,12 @@
  * Frode Lillerud, march 2017
  */
 
-#define LED_GPIO GPIO_NUM_32
-#define BUTTON_GPIO GPIO_NUM_10
+#define LED_GPIO GPIO_NUM_5
+#define BUTTON_GPIO GPIO_NUM_0
 
 void isr_button_pressed(void *args)
 {
-  printf("Button pressed\n");
+  //printf("Button pressed\n");
   int btn_state = gpio_get_level(BUTTON_GPIO);
   gpio_set_level(LED_GPIO,btn_state);
 }
