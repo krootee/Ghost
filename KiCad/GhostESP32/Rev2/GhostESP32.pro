@@ -1,4 +1,4 @@
-update=Sun 12 Mar 2017 08:49:18 PM CET
+update=Sun 19 Mar 2017 01:20:11 PM CET
 version=1
 last_client=kicad
 [pcbnew]
@@ -25,16 +25,6 @@ version=1
 NetIExt=net
 [general]
 version=1
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=Plot/
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=Pcbnew
-SpiceAjustPassiveValues=0
-LabSize=60
-ERC_TestSimilarLabels=1
 [eeschema]
 version=1
 LibDir=../../../NorBotKiCadSchematicLibraries
@@ -71,3 +61,13 @@ LibName29=contrib
 LibName30=valves
 LibName31=/home/frode/GIT/NorBotKiCadSchematicLibraries/NorBot
 LibName32=switches
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=Plot/
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=Pcbnew
+SpiceAjustPassiveValues=0
+LabSize=60
+ERC_TestSimilarLabels=1

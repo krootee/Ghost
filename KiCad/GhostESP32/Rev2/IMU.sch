@@ -36,16 +36,16 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 2
-Title ""
-Date ""
-Rev ""
-Comp ""
-Comment1 ""
+Title "Ghost ESP32"
+Date "2017-03-19"
+Rev "2"
+Comp "Frode Lillerud"
+Comment1 "Work in progress"
 Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Notes 2700 2150 0    60   ~ 0
+Text Notes 2100 2300 0    60   ~ 0
 MPU-6050 (Farnell: 186474, QFN-24)\nI2C address: 0x68 / 0x69 (depends on AD0 low or high)
 Text HLabel 2000 3400 0    60   Input ~ 0
 VCC
@@ -61,10 +61,10 @@ F 3 "" H 2400 3100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR049
+L GND #PWR052
 U 1 1 58C9D2F9
 P 2400 2850
-F 0 "#PWR049" H 2400 2600 50  0001 C CNN
+F 0 "#PWR052" H 2400 2600 50  0001 C CNN
 F 1 "GND" H 2400 2700 50  0000 C CNN
 F 2 "" H 2400 2850 50  0000 C CNN
 F 3 "" H 2400 2850 50  0000 C CNN
@@ -73,13 +73,11 @@ F 3 "" H 2400 2850 50  0000 C CNN
 $EndComp
 Text HLabel 2000 3650 0    60   Input ~ 0
 INT
-Text HLabel 2000 3750 0    60   Input ~ 0
-FSYNC
 $Comp
-L GND #PWR050
+L GND #PWR053
 U 1 1 58C9D2FA
 P 2700 3850
-F 0 "#PWR050" H 2700 3600 50  0001 C CNN
+F 0 "#PWR053" H 2700 3600 50  0001 C CNN
 F 1 "GND" H 2700 3700 50  0000 C CNN
 F 2 "" H 2700 3850 50  0000 C CNN
 F 3 "" H 2700 3850 50  0000 C CNN
@@ -87,10 +85,10 @@ F 3 "" H 2700 3850 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR051
+L GND #PWR054
 U 1 1 58C9D2FB
 P 2800 4750
-F 0 "#PWR051" H 2800 4500 50  0001 C CNN
+F 0 "#PWR054" H 2800 4500 50  0001 C CNN
 F 1 "GND" H 2800 4600 50  0000 C CNN
 F 2 "" H 2800 4750 50  0000 C CNN
 F 3 "" H 2800 4750 50  0000 C CNN
@@ -122,10 +120,10 @@ F 3 "" H 2450 4300 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR052
+L GND #PWR055
 U 1 1 58C9D2FE
 P 4250 4000
-F 0 "#PWR052" H 4250 3750 50  0001 C CNN
+F 0 "#PWR055" H 4250 3750 50  0001 C CNN
 F 1 "GND" H 4250 3850 50  0000 C CNN
 F 2 "" H 4250 4000 50  0000 C CNN
 F 3 "" H 4250 4000 50  0000 C CNN
@@ -159,10 +157,10 @@ F 3 "" H 7800 5000 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR053
+L GND #PWR056
 U 1 1 58C9D301
 P 9450 4350
-F 0 "#PWR053" H 9450 4100 50  0001 C CNN
+F 0 "#PWR056" H 9450 4100 50  0001 C CNN
 F 1 "GND" H 9450 4200 50  0000 C CNN
 F 2 "" H 9450 4350 50  0000 C CNN
 F 3 "" H 9450 4350 50  0000 C CNN
@@ -192,7 +190,7 @@ Wire Wire Line
 Wire Wire Line
 	2000 3650 2800 3650
 Wire Wire Line
-	2000 3750 2800 3750
+	2700 3750 2800 3750
 Wire Wire Line
 	2800 3850 2700 3850
 Wire Wire Line
@@ -236,7 +234,7 @@ Wire Wire Line
 Wire Wire Line
 	7800 5400 7800 5150
 Wire Wire Line
-	8400 4050 9450 4050
+	9450 4050 8400 4050
 Wire Wire Line
 	9450 3650 9450 4350
 Wire Wire Line
@@ -280,4 +278,17 @@ Text HLabel 6450 3450 0    60   Input ~ 0
 SCL
 Text HLabel 7200 2700 1    60   Input ~ 0
 SDA
+$Comp
+L GND #PWR057
+U 1 1 58CD4E8D
+P 2700 3750
+F 0 "#PWR057" H 2700 3500 50  0001 C CNN
+F 1 "GND" H 2700 3600 50  0000 C CNN
+F 2 "" H 2700 3750 50  0000 C CNN
+F 3 "" H 2700 3750 50  0000 C CNN
+	1    2700 3750
+	0    1    1    0   
+$EndComp
+Text Notes 6300 2250 0    60   ~ 0
+HMC5883 compass\nFarnell no: 197-1743\n\nDRDY pin: "Data Ready, Interrupt Pin. Internally pulled high. Optional connection. Low for 250\nµsec when data is placed in the data output registers"
 $EndSCHEMATC
