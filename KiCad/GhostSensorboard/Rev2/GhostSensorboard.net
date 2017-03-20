@@ -1,8 +1,8 @@
 (export (version D)
   (design
     (source /home/frode/GIT/Ghost/KiCad/GhostSensorboard/Rev2/GhostSensorboard.sch)
-    (date "Sun 19 Mar 2017 01:22:31 PM CET")
-    (tool "Eeschema no-vcs-found-996cba7~58~ubuntu16.04.1")
+    (date "Mon 20 Mar 2017 10:02:22 PM CET")
+    (tool "Eeschema no-vcs-found-ecdfa40~58~ubuntu16.04.1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
         (title "Ghost Sensorboard")
@@ -535,10 +535,10 @@
       (uri /usr/share/kicad/library/device.lib))
     (library (logical conn)
       (uri /usr/share/kicad/library/conn.lib))
-    (library (logical NorBot)
-      (uri /home/frode/GIT/NorBotKiCadSchematicLibraries/NorBot.lib))
     (library (logical switches)
-      (uri /usr/share/kicad/library/switches.lib)))
+      (uri /usr/share/kicad/library/switches.lib))
+    (library (logical NorBot)
+      (uri /home/frode/GIT/NorBotKiCadSchematicLibraries/NorBot.lib)))
   (nets
     (net (code 1) (name GND)
       (node (ref U1) (pin 18))

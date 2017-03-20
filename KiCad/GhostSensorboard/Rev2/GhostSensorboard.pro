@@ -1,4 +1,4 @@
-update=Sun 19 Mar 2017 01:21:17 PM CET
+update=Mon 20 Mar 2017 11:48:39 PM CET
 version=1
 last_client=kicad
 [pcbnew]
@@ -64,7 +64,7 @@ LibName32=switches
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
-PlotDirectoryName=Plot
+PlotDirectoryName=plot
 SubpartIdSeparator=0
 SubpartFirstId=65
 NetFmtName=Pcbnew

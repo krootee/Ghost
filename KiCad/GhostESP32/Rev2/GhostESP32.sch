@@ -1057,7 +1057,7 @@ $EndComp
 Wire Wire Line
 	6350 7000 6650 7000
 Text Notes 5250 6500 0    60   ~ 0
-Reset button for ESP32
+Reset button for ESP32\nFarnell no: 152-2053
 NoConn ~ 10300 5500
 Text Notes 2100 3800 0    60   ~ 0
 Green LED

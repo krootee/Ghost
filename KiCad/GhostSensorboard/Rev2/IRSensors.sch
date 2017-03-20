@@ -38,10 +38,10 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 2
 Title "Ghost Sensorboard"
-Date "2017-03-19"
+Date "2017-03-20"
 Rev "2"
 Comp "Frode Lillerud"
-Comment1 "Work in progress"
+Comment1 "https://github.com/Scalpel78/Ghost/tree/master/KiCad/GhostSensorboard/Rev2"
 Comment2 ""
 Comment3 ""
 Comment4 ""
@@ -463,21 +463,21 @@ Text GLabel 2550 3800 0    60   Input ~ 0
 SD9
 Text GLabel 2550 3700 0    60   Input ~ 0
 SC9
-Text GLabel 2550 2800 0    60   Input ~ 0
-SD10
 Text GLabel 2550 2900 0    60   Input ~ 0
+SD10
+Text GLabel 2550 2800 0    60   Input ~ 0
 SC10
-Text GLabel 2550 2600 0    60   Input ~ 0
-SD11
 Text GLabel 2550 2700 0    60   Input ~ 0
+SD11
+Text GLabel 2550 2600 0    60   Input ~ 0
 SC11
-Text GLabel 2550 2400 0    60   Input ~ 0
-SD12
 Text GLabel 2550 2500 0    60   Input ~ 0
+SD12
+Text GLabel 2550 2400 0    60   Input ~ 0
 SC12
-Text GLabel 2550 2200 0    60   Input ~ 0
-SD13
 Text GLabel 2550 2300 0    60   Input ~ 0
+SD13
+Text GLabel 2550 2200 0    60   Input ~ 0
 SC13
 Text GLabel 2550 4400 0    60   Input ~ 0
 SD14
