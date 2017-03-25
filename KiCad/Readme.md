@@ -1,42 +1,41 @@
-# Custom PCB
+# Custom PCB for
 
-## TODO list
-
-
-Check out the USB driver chip CH340.
 
 https://esp-idf.readthedocs.io/
 
 ### PCBs
 
-A thought is to use several PCB's, and stack them together using stacking connectors.
-Boards should use "Sick of Beige" format 70x43, 60x37 or 50x31.
+The electronics use two boards that are connected together using a Hirose FX8C connector.
+
+The bottom board, the GhostESP32, contains primarily the ESP32 and micro USB.
+
+The top board, the GhostSensorboard, contains primarily connectors for all the sensors, servos, power, startmodule, etc.
+
+In the first revision it used the "Sick of Beige" 50x50 formfactor, but in the second revision this has been reduced to the slightly smaller 60x37 formfactor. Also, in the second revision the accelerometer/gyro and compass has been moved from the top board to the bottom board.
 
 There is a KiCad footprint for the Hirose FX8C-60 pin connector at: https://github.com/librespacefoundation/lsf-kicad-libs
 and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 
-#### Split up PCB into 2 or 3 boards
+#### PCB - GhostESP32 (Microcontroller)
 
-##### PCB - Microcontroller
+- [x] ESP-WROOM-32
+- [x] MicroUSB
+- [x] USB-to-UART (CP2102)
+- [x] Power LED
+- [x] Tx/Rx LEDs
+- [x] Reset buttons for ESP-WROOM-32 (Reset)
+- [x] Accelerometer/Gyro (MPU-6050)
+- [x] Compass (HMC5883)
 
-- [ ] ESP-WROOM-32
-- [ ] MicroUSB
-- [ ] USB-to-UART (CH340, CP2102)
-- [ ] Power LED
-- [ ] Tx/Rx LEDs
-- [ ] Two buttons for ESP-WROOM-32 (Boot / Enable)
+##### PCB - GhostSensorboard (Sensors and connectors)
 
-##### PCB - Sensors and connectors
-
-- [ ] I2C multipexer (TCA9548ARGER, 2pcs)
-- [ ] 16 connectors for I2C/IR sensors
+- [x] I2C multipexer (TCA9548ARGER, 2pcs)
+- [x] 16 connectors for I2C/IR sensors
 - [ ] RGB LED
-- [ ] Connector for Startmodule
-- [ ] Connector for Steering servo
-- [ ] Connector for ESC/Motor
-- [ ] Accelerometer/Gyro (MPU-6050)
-- [ ] Compass (HMC5883)
-- [ ] 3V3->5V level shifter (BSS138, see Sparkfun)
+- [x] Connector for Startmodule
+- [x] Connector for Steering servo
+- [x] Connector for ESC/Motor
+- [x] 3V3->5V level shifter (BSS138, see Sparkfun)
 
 ### Schematic
 
@@ -86,34 +85,6 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 
 
 ### RC car
-                   | Tested Works | Doesn't Work | Not Tested
------------------- | :----------: | :----------: | :---------
-Losi 1/24 RC car |      X       |             |
-HobbyKing XC-10s |      X       |             |
-Motor KV4000(?)  |      X       |             |
-
-
-### PCB
-
-                    |  Status
-------------------- | :------------
-Teensy 3.2(obsolete)| OK
-ESP-12E (obsolete)  | OK, connects to WiFi
-ESP-WROOM-32        |
-HM-11 (Obsolete)    | Blinks, but needs more testing
-Startmodule         | WRONG PINS! Should be VCC, GND, Start
-MPU-6050            | OK
-HMC5883             | (not tested)
-TCA9548ARGER + IR   |
-Encoder             | OK
-Steering servo      | OK
-Motor               | Partially tested. Car moves :)
-INA219              | Partially tested. I2C works, but needs more testing.
-RGB                 | (not tested)
-PWM                 | (not tested)
-General purp. button| OK
-Transistor LEDS     | Green works, but not Red. Missing trace on PCB + wrong schematic part. Collector and Emitter are switched! Change to Q_NPN_BEC in KiCad.
-
 
 ## PCB Features
 
@@ -246,3 +217,5 @@ https://github.com/platisd/AndroidCar/
 https://github.com/esp8266/Arduino/blob/master/doc/reference.md
 
 http://control.ee.ethz.ch/index.cgi?page=publications&action=list&publty=all&author=&firstyear=&lastyear=&ta_words=rule&ifagroup=all
+
+Check out the USB driver chip CH340.
