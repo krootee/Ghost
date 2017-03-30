@@ -37,6 +37,13 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 - [x] Connector for ESC/Motor
 - [x] 3V3->5V level shifter (BSS138, see Sparkfun)
 
+### Notes for Rev 3
+- [ ] Replace MPU6050 and HMC5883 with a MPU9250
+- [ ] 6mm keepout around the mounting holes, see Sick of Beiges specs
+- [ ] Is the button on Sensorboard tall enough?
+
+------- OLD BELOW ----------
+
 ### Schematic
 
 - [x] Startmodule pins are wrong order!! Should be VCC, GND, Start

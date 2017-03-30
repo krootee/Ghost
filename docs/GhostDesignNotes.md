@@ -22,19 +22,32 @@ ___
 ## State handling
 
 Overall car state:
-<pre>
-{
-  mode: 'driving',
-  heading: 270,
-  speed: 1.5
-}
-</pre>
 
 ```
 {
-  state: 'driving',
-  heading: 270,
-  speed: 1.5
+  env: {
+    leftwalll: 32,
+    rightwall: 29,
+    incline: 3
+  },
+  pose: {
+    velocity: 180,
+    direction: 230,
+    steering: 76,
+    motorspeed: 102,
+    odometer: 79
+  },
+  sensors: {
+    irsensor1: true,
+    irsensor2: true,
+    irsensor3: true,
+    irsensor4: false,
+    irsensor5: true,
+    odometer: true,
+    compass: true,
+    startmodule: true,
+    accelerometer: true
+  }
 }
 ```
 
@@ -42,7 +55,7 @@ The modes can be: 'waiting', 'driving', 'stopped'.
 
 Heading is degrees in [0-360].
 
-Speed is in meters pr second. It is the actual speed, not the desired speed.
+Speed is in centimeters pr second. It is the actual speed, not the desired speed.
 ___
 
 ## Sensor Fusion
