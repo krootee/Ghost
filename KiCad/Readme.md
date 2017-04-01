@@ -1,9 +1,4 @@
-# Custom PCB for
-
-
-https://esp-idf.readthedocs.io/
-
-### PCBs
+# Custom PCBs for Ghost
 
 The electronics use two boards that are connected together using a Hirose FX8C connector.
 
@@ -15,6 +10,22 @@ In the first revision it used the "Sick of Beige" 50x50 formfactor, but in the s
 
 There is a KiCad footprint for the Hirose FX8C-60 pin connector at: https://github.com/librespacefoundation/lsf-kicad-libs
 and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
+
+https://esp-idf.readthedocs.io/
+
+### Specifications (rev 2)
+
+* **Dimensions: ** 60mm x 37mm (Sick-of-beige)
+* **SoC:** ESP-WROOM-32
+* **CPU:** 240MHz dual core Tensilica LX6 microcontroller
+* **Wireless**: 2.4GHz Wi-Fi
+* **Bluetooth:**
+* **Power:** 5V
+* **Accelerometer:** MPU-6050
+* **Compass:** HMC5883
+* **Connectors**: 2 servos, 1 startmodule, 1 encoder, 16 I2C IR sensors
+* **IR:** 38kHz receiver
+
 
 #### PCB - GhostESP32 (Microcontroller)
 
@@ -29,7 +40,7 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 
 ##### PCB - GhostSensorboard (Sensors and connectors)
 
-- [x] I2C multipexer (TCA9548ARGER, 2pcs)
+- [x] I2C multiplexer (TCA9548ARGER, 2pcs)
 - [x] 16 connectors for I2C/IR sensors
 - [ ] RGB LED
 - [x] Connector for Startmodule
@@ -41,10 +52,11 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 - [ ] Replace MPU6050 and HMC5883 with a MPU9250
 - [ ] 6mm keepout around the mounting holes, see Sick of Beiges specs
 - [ ] Is the button on Sensorboard tall enough?
+- [ ] Include LiPo charger?
+- [ ] Include motor driver? (MC33926 has two outputs, needs 8V-28V input)
+- [ ] RGB LED?
 
-------- OLD BELOW ----------
-
-### Schematic
+### Notes for Rev 2
 
 - [x] Startmodule pins are wrong order!! Should be VCC, GND, Start
 - [x] Add two buttons for ESP-WROOM-32
@@ -56,52 +68,40 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 - [x] Red LED is always on. Figure out why. (was Q1 pins switched)
 - [x] Change the Q1 transistor schematic component to use Q_NPN_BEC
 - [x] Add 6 pin header for FTDI Basic, for programming ESP8266
-- [ ] Remove LED strip connector?
+- [x] Remove LED strip connector?
 - [ ] Add connectors to breakout ESP-WROOM-32 pins?
-- [ ] Micro USB for programming ESP-WROOM-32s
-- [ ] CP2102 (or similar USB-to-UART bridge)
+- [x] Micro USB for programming ESP-WROOM-32s
+- [x] CP2102 (or similar USB-to-UART bridge)
 - [ ] Use the new 47uF or 100uF alu caps?
-- [ ] Use the new resistor networks?
+- [x] Use the new resistor networks?
 
 ##### Board/layout
-- [ ] Current size is about 90mm x 63mm. Try to reduce to "Sick of Beige" size 80x49 or 70x43.
-- [ ] Make sure I have four mountingholes for acrylic cover
+- [x] Current size is about 90mm x 63mm. Try to reduce to "Sick of Beige" size 80x49 or 70x43.
+- [x] Make sure I have four mountingholes for acrylic cover
 - [ ] Startmodule header needs indicator for direction
 - [ ] Put all pin headers on the border of the PCB
-- [ ] Fix missing trace between R7 and D3(red)
-- [ ] Move LEDs to a more visible place. They are under Teensy USB now.
-- [ ] Move MPU-6050 to the center of the board.
-- [ ] Make sure antenna part of ESP-WROOM-32 sticks outside board.
+- [x] Fix missing trace between R7 and D3(red)
+- [x] Move LEDs to a more visible place. They are under Teensy USB now.
+- [x] Move MPU-6050 to the center of the board.
+- [x] Make sure antenna part of ESP-WROOM-32 sticks outside board.
 
-#### Car
+### Car
 - [X] Fix wireposition on steering servo
 - [ ] Change the steering servo
 - [ ] Mount wheel encoder
 - [ ] Create mount for IR sensors
 - [ ] Figure out which battery to use
 - [ ] Mount new motor.
-- [ ] Figure out the gears for the motor
 
 #### Other
 - [ ] Draw acrylic cover for PCB in OpenSCAD
 - [ ] Laser-cut an acrylic cover for PCB
-- [ ] Use 0.1 ohm 1% 2W current sense resistor for the INA219. Find part at Farnell.
-
-## Bill of materials / Partlist
-
-
 
 ### RC car
 
 ## PCB Features
 
-### Teensy 3.1/3.2 (external)
-
-Uses a standard Teensy 3.2 board from pjrc.com.
-
-The Teensy is based around a MK20DX256VLH7, an ARM Cortex-M4 at 72MHz. It contains 2k EEPROM where the car's configuration is stored.
-
-In later versions I'm planning on incorporating a custom Teensy directly into the PCB. If so, then I can remove the MIC5219-3.3, since the Teensy also comes with a 3.3V regulator.
+### ESP-WROOM-32
 
 ### HM-11 bluetooth
 
