@@ -17,7 +17,7 @@
 #include "driver/gpio.h"
 #include "sdkconfig.h"
 
-//#include "i2cscanner.c"
+#include "i2cscanner.c"
 
 // esp_err_t event_handler(void *ctx, system_event_t *event)
 // {
@@ -26,11 +26,10 @@
 
 void app_main()
 {
-  //xTaskCreate(&task_i2cscanner, "I2Cscanner",4096, NULL, 5, NULL);
-  nvs_flash_init();
+  xTaskCreate(&task_i2cscanner, "I2Cscanner",4096, NULL, 5, NULL);
+  //nvs_flash_init();
 
   while (true) {
     vTaskDelay(300 / portTICK_PERIOD_MS);
-    printf("Test");
   }
 }
