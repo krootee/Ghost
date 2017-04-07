@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include "sdkconfig.h"
 
-#define SDA_PIN 33
-#define SCL_PIN 32
+#define SDA_PIN GPIO_NUM_33
+#define SCL_PIN GPIO_NUM_32
 
 static char tag[] = "i2cscanner";
 

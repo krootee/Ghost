@@ -5,9 +5,9 @@
 #include "driver/gpio.h"
 #include <esp_log.h>
 #include "sdkconfig.h"
-#include "i2cscanner.c"
-#include "tmp102.c"
-#include "irsensor_gp2y0e02b.c"
+//#include "i2cscanner.c"
+//#include "tmp102.c"
+//#include "irsensor_gp2y0e02b.c"
 
 /*
  * Testprogram for using a TCA9548 I2C multiplexer, and the IR sensors GP2Y0E02B with ESP32
@@ -15,6 +15,7 @@
  * Frode Lillerud, NorBot, febuary 2017
  */
 
+/*
 void setup_i2c()
 {
   //Configure as I2C master
@@ -29,6 +30,7 @@ void setup_i2c()
 
   ESP_ERROR_CHECK(i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0));
 }
+*/
 
 void app_main()
 {
@@ -37,7 +39,7 @@ void app_main()
 
   //vTaskDelay(10000 / portTICK_PERIOD_MS);
 
-  xTaskCreate(&task_i2cscanner, "I2Cscanner",4096, NULL, 5, NULL);
+  //xTaskCreate(&task_i2cscanner, "I2Cscanner",4096, NULL, 5, NULL);
   //xTaskCreate(&task_tmp102, "TMP102",4096, NULL, 5, NULL);
 
   while(1)
@@ -50,12 +52,13 @@ void app_main()
     //   printf("Unable to detect tmp102 device. Error: %d\n", result);
 
     //Read distance sensor
-    esp_err_t irsensor_exists = irsensor_detect_device();
+    /*esp_err_t irsensor_exists = irsensor_detect_device();
     if (irsensor_exists == ESP_OK)
       printf("Distance: %d\n", irsensor_get_distance());
     else
       printf("Unable to detect IR-sensor device\n");
-
+*/
+printf("Hello");
     vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 }
