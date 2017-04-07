@@ -42,7 +42,7 @@ void app_main()
 
   while(1)
   {
-    //Read temperature sensor
+    //Read temperature senanglesor
     // esp_err_t result = tmp102_detect_device();
     // if (result == ESP_OK)
     //   printf("Celsius: %g\n", tmp102_get_temperature());

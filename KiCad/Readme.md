@@ -1,4 +1,4 @@
-# Custom PCB for
+# Custom PCB for Ghost
 
 
 https://esp-idf.readthedocs.io/
@@ -39,9 +39,15 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 
 ### Notes for Rev 3
 - [ ] Replace MPU6050 and HMC5883 with a MPU9250
+- [ ] Remove the TX/RX leds and BSS138 opamps
+- [ ] Move motor and steering connectors away from ESP32 on other board
+- [ ] Typo. Steering is mistakenly written as Start.
 - [ ] 6mm keepout around the mounting holes, see Sick of Beiges specs
 - [ ] Is the button on Sensorboard tall enough?
-
+- [ ] All resistors and capacitors should use footprint 0402.
+- [ ] Add LiPo charger?
+- [ ] Add motor driver (MCP8063? DRV10970?)
+- [ ] Put an LED in each corner of the Ghost Sensorboard
 ------- OLD BELOW ----------
 
 ### Schematic

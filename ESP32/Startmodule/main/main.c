@@ -9,8 +9,8 @@
 
 /*
  * Testprogram for using a Startmodule (http://startmodule.com/) from an ESP32.
- * Startmodule connected to pins 23 (start), 21 (for vcc) and GND.
- * Using GPIO 21 to supply power to the Startmodule, which means we can powercycle via software and reset button.
+ * Startmodule connected to pins 17 (start), 25 (for vcc) and GND.
+ * Using GPIO 25 to supply power to the Startmodule, which means we can powercycle via software and reset button.
  * Frode Lillerud, NorBot, febuary 2017
  */
 

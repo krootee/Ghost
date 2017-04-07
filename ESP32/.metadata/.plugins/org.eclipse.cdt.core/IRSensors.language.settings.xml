@@ -23,6 +23,7 @@
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/expat/include/expat"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/fatfs/src"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/freertos/include"/>
+						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/jsmn/include"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/json/include"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/json/port/include"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/log/include"/>
@@ -56,7 +57,7 @@
 						</entry>
 						<entry kind="macro" name="ESP_PLATFORM" value=""/>
 						<entry kind="macro" name="HAVE_CONFIG_H" value=""/>
-						<entry kind="macro" name="IDF_VER" value="&quot;v2.0-rc1-154-g3b8c9a4&quot;"/>
+						<entry kind="macro" name="IDF_VER" value="&quot;v2.0-rc1-315-gd96b8c3&quot;"/>
 						<entry kind="macro" name="MBEDTLS_CONFIG_FILE" value="&quot;mbedtls/esp_config.h&quot;"/>
 						<entry kind="macro" name="WITH_POSIX" value=""/>
 					</resource>
@@ -79,6 +80,7 @@
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/expat/include/expat"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/fatfs/src"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/freertos/include"/>
+						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/jsmn/include"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/json/include"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/json/port/include"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/log/include"/>
@@ -112,7 +114,7 @@
 						</entry>
 						<entry kind="macro" name="ESP_PLATFORM" value=""/>
 						<entry kind="macro" name="HAVE_CONFIG_H" value=""/>
-						<entry kind="macro" name="IDF_VER" value="&quot;v2.0-rc1-154-g3b8c9a4&quot;"/>
+						<entry kind="macro" name="IDF_VER" value="&quot;v2.0-rc1-315-gd96b8c3&quot;"/>
 						<entry kind="macro" name="MBEDTLS_CONFIG_FILE" value="&quot;mbedtls/esp_config.h&quot;"/>
 						<entry kind="macro" name="WITH_POSIX" value=""/>
 					</resource>
@@ -135,6 +137,7 @@
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/expat/include/expat"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/fatfs/src"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/freertos/include"/>
+						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/jsmn/include"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/json/include"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/json/port/include"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/log/include"/>
@@ -168,7 +171,7 @@
 						</entry>
 						<entry kind="macro" name="ESP_PLATFORM" value=""/>
 						<entry kind="macro" name="HAVE_CONFIG_H" value=""/>
-						<entry kind="macro" name="IDF_VER" value="&quot;v2.0-rc1-154-g3b8c9a4&quot;"/>
+						<entry kind="macro" name="IDF_VER" value="&quot;v2.0-rc1-315-gd96b8c3&quot;"/>
 						<entry kind="macro" name="MBEDTLS_CONFIG_FILE" value="&quot;mbedtls/esp_config.h&quot;"/>
 						<entry kind="macro" name="WITH_POSIX" value=""/>
 					</resource>
@@ -191,6 +194,7 @@
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/expat/include/expat"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/fatfs/src"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/freertos/include"/>
+						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/jsmn/include"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/json/include"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/json/port/include"/>
 						<entry kind="includePath" name="/home/frode/esp/esp-idf/components/log/include"/>
@@ -224,7 +228,7 @@
 						</entry>
 						<entry kind="macro" name="ESP_PLATFORM" value=""/>
 						<entry kind="macro" name="HAVE_CONFIG_H" value=""/>
-						<entry kind="macro" name="IDF_VER" value="&quot;v2.0-rc1-154-g3b8c9a4&quot;"/>
+						<entry kind="macro" name="IDF_VER" value="&quot;v2.0-rc1-315-gd96b8c3&quot;"/>
 						<entry kind="macro" name="MBEDTLS_CONFIG_FILE" value="&quot;mbedtls/esp_config.h&quot;"/>
 						<entry kind="macro" name="WITH_POSIX" value=""/>
 					</resource>

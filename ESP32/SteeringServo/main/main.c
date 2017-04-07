@@ -16,7 +16,7 @@
  https://www.youtube.com/watch?v=rarE-WI_Y0A
  */
 
-#define GPIO_STEERING_IO  10
+#define GPIO_STEERING_IO  GPIO_NUM_26
 #define GPIO_OUTPUT_PIN_SEL (GPIO_STEERING_IO)
 
 #define SLEEP(ms) vTaskDelay(ms / portTICK_PERIOD_MS)
@@ -45,7 +45,7 @@ void app_main(void)
   ledc_channel_config_t ledc_conf;
   ledc_conf.channel = LEDC_CHANNEL_0;
   ledc_conf.duty = 3276;
-  ledc_conf.gpio_num = 4;
+  ledc_conf.gpio_num = GPIO_STEERING_IO;
   ledc_conf.intr_type = LEDC_INTR_DISABLE;
   ledc_conf.speed_mode = LEDC_HIGH_SPEED_MODE;
   ledc_conf.timer_sel = LEDC_TIMER_0;

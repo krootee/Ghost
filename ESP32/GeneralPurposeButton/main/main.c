@@ -10,8 +10,8 @@
  * Frode Lillerud, march 2017
  */
 
-#define LED_GPIO GPIO_NUM_5
-#define BUTTON_GPIO GPIO_NUM_0
+#define LED_GPIO GPIO_NUM_23
+#define BUTTON_GPIO GPIO_NUM_18
 
 void isr_button_pressed(void *args)
 {

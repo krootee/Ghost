@@ -14,8 +14,8 @@
  //https://github.com/espressif/esp-idf/blob/master/examples/peripherals/i2c/main/i2c_test.c
  //https://github.com/nkolban/esp32-snippets/blob/master/hardware/compass/hmc5883l.c
 
-#define SDA_PIN 14
-#define SCL_PIN 13
+//#define SDA_PIN 14
+//#define SCL_PIN 13
 #define TMP102_ADDR 0x48
 
 #define ACK_CHECK_ON 0x1

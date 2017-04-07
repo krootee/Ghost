@@ -10,9 +10,9 @@
  * Frode Lillerud, march 2017
  */
 
-#define LED_GPIO GPIO_NUM_5
-#define STARTMODULE_GPIO GPIO_NUM_23
-#define POWER_GPIO GPIO_NUM_21
+#define LED_GPIO GPIO_NUM_23
+#define STARTMODULE_GPIO GPIO_NUM_17
+#define POWER_GPIO GPIO_NUM_25
 
 enum StartModule {
   WAITING = 0,
@@ -26,7 +26,7 @@ void isr_startmodule_toggled(void *args)
 {
   int startmodule_state = gpio_get_level(STARTMODULE_GPIO);
   gpio_set_level(LED_GPIO, startmodule_state);
-  printf("Startmodule triggered\n");
+  //printf("Startmodule triggered\n");
 
   state++;
 }

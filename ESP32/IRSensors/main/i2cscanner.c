@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include "sdkconfig.h"
 
-#define SDA_PIN 14
-#define SCL_PIN 13
+#define SDA_PIN 33
+#define SCL_PIN 32
 
 static char tag[] = "i2cscanner";
 
@@ -33,7 +33,7 @@ void task_i2cscanner(void *ignore) {
 		i2c_master_write_byte(cmd, (i << 1) | I2C_MASTER_WRITE, 1 /* expect ack */);
 		i2c_master_stop(cmd);
 
-		espRc = i2c_master_cmd_begin(I2C_NUM_0, cmd, 100/portTICK_PERIOD_MS);
+		espRc = i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000/portTICK_PERIOD_MS);
 		if (i%16 == 0) {
 			printf("\n%.2x:", i);
 		}
