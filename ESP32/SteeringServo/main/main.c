@@ -16,7 +16,7 @@
  https://www.youtube.com/watch?v=rarE-WI_Y0A
  */
 
-#define GPIO_STEERING_IO  GPIO_NUM_26
+#define GPIO_STEERING_IO  GPIO_NUM_27
 #define GPIO_OUTPUT_PIN_SEL (GPIO_STEERING_IO)
 
 #define SLEEP(ms) vTaskDelay(ms / portTICK_PERIOD_MS)
