@@ -49,7 +49,7 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 - [ ] Add motor driver (MCP8063? DRV10970?)
 - [ ] Put an LED in each corner of the Ghost Sensorboard
 - [ ] Ground area used by U12+P3 is not connected to rest of board!
-
+- [ ] Breakout more of the pins from ESP32 to headers
 
 
 ------- OLD BELOW ----------
