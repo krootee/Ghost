@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include "sdkconfig.h"
 
-#define SDA_PIN GPIO_NUM_33
-#define SCL_PIN GPIO_NUM_32
+#define SDA_PIN GPIO_NUM_13 //33
+#define SCL_PIN GPIO_NUM_14 //32
 
 static char tag[] = "i2cscanner";
 
@@ -18,7 +18,7 @@ void task_i2cscanner(void *ignore) {
 	conf.scl_io_num = SCL_PIN;
 	conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
 	conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
-	conf.master.clk_speed = 100000;
+	conf.master.clk_speed = 1020000;
 	i2c_param_config(I2C_NUM_0, &conf);
 
 	i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
@@ -33,7 +33,7 @@ void task_i2cscanner(void *ignore) {
 		i2c_master_write_byte(cmd, (i << 1) | I2C_MASTER_WRITE, 1 /* expect ack */);
 		i2c_master_stop(cmd);
 
-		espRc = i2c_master_cmd_begin(I2C_NUM_0, cmd, 10/portTICK_PERIOD_MS);
+		espRc = i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000/portTICK_PERIOD_MS);
 		if (i%16 == 0) {
 			printf("\n%.2x:", i);
 		}
