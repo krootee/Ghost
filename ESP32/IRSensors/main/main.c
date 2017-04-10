@@ -50,12 +50,14 @@ void app_main()
   conf.mode = I2C_MODE_MASTER;
   conf.sda_io_num = SDA_PIN;
   conf.scl_io_num = SCL_PIN;
-  conf.sda_pullup_en = GPIO_PULLUP_DISABLE;
-  conf.scl_pullup_en = GPIO_PULLUP_DISABLE;
+  conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
+  conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
   conf.master.clk_speed = 1000000;
   i2c_param_config(I2C_NUM_0, &conf);
 
   i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
+
+  vTaskDelay(200/portTICK_PERIOD_MS);
 
   tca9548_set_channel(1);
 
@@ -68,12 +70,22 @@ void app_main()
     //else
     // printf("Unable to detect tmp102 device. Error: %d\n", result);
 
-    //Read distance sensor
+    for (int i = 0; i <= 8; i++)
+    //for (int i = 0; (1 << i) != 128; i++)
+    {
+     tca9548_set_channel(i);
+     uint8_t c = tca9548_get_channel();
+     printf("Channel: %d\n", c);
+    //
+    //   printf("Active channel: %d\n", i);
+    //
+    //   //Read distance sensor
     esp_err_t irsensor_exists = irsensor_detect_device();
     if (irsensor_exists == ESP_OK)
-      printf("Distance: %d\n", irsensor_get_distance());
+     printf("[OK] Distance: %d\n", irsensor_get_distance());
     else
-      printf("Unable to detect IR-sensor device\n");
+     printf("[ERROR] Unable to detect IR-sensor device\n");
+    }
 
 //printf("Hello\n");
     vTaskDelay(1000 / portTICK_PERIOD_MS);
