@@ -31,3 +31,13 @@ void pwm_configure(int pin)
   ledc_conf.timer_sel = LEDC_TIMER_0;
   ledc_channel_config(&ledc_conf);
 }
+
+//Set the PWM pulse width in microseconds.
+//A servo typically works between 1000 and 2000us.
+void pwm_set_microseconds(int usec)
+{
+  int duty_cycle = usec;
+
+  ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, duty_cycle);
+  ledc_update_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0);
+}
