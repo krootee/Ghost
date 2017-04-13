@@ -2,12 +2,14 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="gettime" key="selection"/>
+		<item value="I2C_NUM" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="I2C_NUM"/>
+			<item value="#define SDA_PIN 14"/>
 			<item value="gettime"/>
 			<item value="uint32_t now ="/>
 			<item value="TestPrograms"/>
@@ -16,10 +18,10 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="294" key="DIALOG_WIDTH"/>
+		<item value="296" key="DIALOG_WIDTH"/>
 		<item value="1|Noto Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 		<item value="428" key="DIALOG_HEIGHT"/>
-		<item value="814" key="DIALOG_X_ORIGIN"/>
-		<item value="242" key="DIALOG_Y_ORIGIN"/>
+		<item value="1245" key="DIALOG_X_ORIGIN"/>
+		<item value="217" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>
