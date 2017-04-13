@@ -10,6 +10,8 @@
 #include <esp_log.h>
 #include <string>
 #include "sdkconfig.h"
+#include "driver/gpio.h"
+#include "LED.h"
 
 
 static char tag[]="cpp_helloworld";
@@ -39,7 +41,13 @@ private:
 void app_main(void)
 {
 	Greeting myGreeting;
-	myGreeting.setName("Neil");
+	myGreeting.setName("Frode");
 	myGreeting.helloEnglish();
 	myGreeting.helloFrench();
+
+	LED l(GPIO_NUM_23);
+
+	l.Blink(200);
+
+	printf("Blink done");
 }
