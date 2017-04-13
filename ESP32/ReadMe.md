@@ -25,6 +25,15 @@ or
 
     make app-flash (flashes just the app)
 
+or
+
+    make all flash monitor (builds everything, flashes and starts the monitor with one command)
+
+
+## Performance
+
+    make -j5 (performs the build with parallell threads)
+
 ## Configuring Eclipse
 
 When starting Eclipse, set ~/GIT/Ghost/ESP32 as the workspace folder.
