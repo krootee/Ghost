@@ -8,6 +8,8 @@
 #ifndef MAIN_CARSTATE_H_
 #define MAIN_CARSTATE_H_
 
+#include "StartModule.h"
+
 //https://www.codeproject.com/Articles/1921/Singleton-Pattern-its-implementation-with-C
 
 class CarState {
@@ -19,7 +21,7 @@ public:
 
 	void motor_set_speed(int);
 
-	int startmotor_state;
+	eStartModuleState startmodule_state;
 
 private:
 

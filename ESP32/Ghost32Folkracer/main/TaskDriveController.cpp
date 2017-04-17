@@ -21,7 +21,7 @@ void task_drive_controller(void *p)
 
 	for (;;)
 	{
-		if (state->startmotor_state == 1) //Startmodule
+		if (state->startmodule_state == eStartModuleState::RUNNING) //Startmodule
 		{
 			//TODO: Analyze the sensordata
 
