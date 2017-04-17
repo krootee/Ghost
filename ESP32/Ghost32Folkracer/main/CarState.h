@@ -8,21 +8,28 @@
 #ifndef MAIN_CARSTATE_H_
 #define MAIN_CARSTATE_H_
 
+//https://www.codeproject.com/Articles/1921/Singleton-Pattern-its-implementation-with-C
+
 class CarState {
 public:
-	CarState();
+
 	virtual ~CarState();
 
-	static 	CarState& getInstance();
+	static 	CarState* getInstance();
 
 	void motor_set_speed(int);
 
+	int startmotor_state;
+
 private:
 
-	//CarState() {}
+	static bool instanceFlag;
+	static CarState* instance;
+	CarState(); //The constructor is private
 
-	CarState(CarState const&) = delete;
-	void operator=(CarState const&) = delete;
+
+	//CarState(CarState const&) = delete;
+	//void operator=(CarState const&) = delete;
 
 	int DesiredSpeed;
 	int StartModule;

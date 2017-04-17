@@ -13,12 +13,11 @@
 #include "driver/gpio.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "StartModule.cpp"
 //#include "LED.h"
 
-#include "StartModule.c"
-//#include "ResetButton.c"
 #include "TaskMotor.cpp"
-
+#include "TaskDriveController.cpp"
 
 //static char tag[]="cpp_helloworld";
 
@@ -58,6 +57,9 @@ void app_main(void)
 {
 	//Startmodule task uses interrupt, and updates the global state.
 	xTaskCreate(startmodule_task, "Startmodule task", 4096, NULL, 2, NULL);
+
+	//Drive-controller. The main component which examines the result from the sensors, and tells the actuators what to do.
+	xTaskCreate(task_drive_controller, "Drive controller task", 4096, NULL, 2, NULL);
 
 	//Motor task controls the speed of the motor, by looking at state
 	xTaskCreate(task_motor, "Motor task", 4096, NULL, 2, NULL);

@@ -5,17 +5,31 @@
  *      Author: frode
  */
 
+#include <iostream>
 #include "CarState.h"
+
+using namespace std;
 
 CarState::CarState() {
 	// TODO Auto-generated constructor stub
 
 }
 
-CarState& CarState::getInstance() {
-	//Singleton
-	static CarState instance;
-	return instance;
+bool CarState::instanceFlag = false;
+CarState* CarState::instance = NULL;
+
+CarState* CarState::getInstance() {
+
+	if (!instanceFlag)
+	{
+		instance = new CarState();
+		instanceFlag = true;
+		return instance;
+	}
+	else
+	{
+		return instance;
+	}
 }
 
 void CarState::motor_set_speed(int speed)
@@ -24,6 +38,6 @@ void CarState::motor_set_speed(int speed)
 }
 
 CarState::~CarState() {
-	// TODO Auto-generated destructor stub
+	instanceFlag = false;
 }
 

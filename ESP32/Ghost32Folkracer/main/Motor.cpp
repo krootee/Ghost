@@ -33,7 +33,7 @@ Motor::~Motor() {
 	// TODO Auto-generated destructor stub
 }
 
-void SetSpeed(int speed)
+void Motor::SetSpeed(int speed)
 {
 	//TODO, control speed by setting PWM dutycycle/frequency/duration
 	int duty_cycle = speed;

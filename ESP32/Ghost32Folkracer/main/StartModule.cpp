@@ -6,6 +6,8 @@
 #include <esp_log.h>
 #include "sdkconfig.h"
 
+#include "CarState.h"
+
 /*
  * Frode Lillerud, march 2017
  */
@@ -26,6 +28,10 @@ void isr_startmodule_toggled(void *args)
 {
   int startmodule_state = gpio_get_level(STARTMODULE_GPIO);
   gpio_set_level(LED_GPIO, startmodule_state);
+
+  //CarState *state;
+  //state = CarState::getInstance();
+  //state->startmodule_state++;
 
   state++;
 }

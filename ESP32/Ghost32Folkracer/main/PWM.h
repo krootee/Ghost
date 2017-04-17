@@ -12,6 +12,9 @@ class PWM {
 public:
 	PWM();
 	virtual ~PWM();
+
+	void SetDutyCycle(int);
+	void SetFreqency(int);
 };
 
 #endif /* MAIN_PWM_H_ */
