@@ -7,7 +7,9 @@
 
 #include "Motor.h"
 
-Motor::Motor(int pin) : PWM (pin)
+const char* tag = "Motor";
+
+Motor::Motor(int pin) : PWM (pin, LEDC_CHANNEL_0, LEDC_TIMER_0)
 {
 	;
 }
@@ -50,17 +52,19 @@ void Motor::SetSpeed(int speed)
 void Motor::calibrate()
 {
 	//Maximum throttle
-	//pwm_set_microseconds(3400);
+	ESP_LOGI(tag, "Calibration: MAX...");
 	this->SetDutyCycle(3400);
 	vTaskDelay(3000 / portTICK_PERIOD_MS); //Delay for 2.5 seconds
 
 	//Minimum throttle
-	//pwm_set_microseconds(1800);
+	ESP_LOGI(tag, "Calibration: MIN...");
 	this->SetDutyCycle(1800);
 	vTaskDelay(3000 / portTICK_PERIOD_MS); //Delay for 2.5 seconds
 
 	//Center
-	//pwm_set_microseconds(2460);
+	ESP_LOGI(tag, "Calibration: CENTER...");
 	this->SetDutyCycle(2460);
 	vTaskDelay(3000 / portTICK_PERIOD_MS); //Delay for 2.5 seconds
+
+	ESP_LOGI(tag, "Calibration complete");
 }

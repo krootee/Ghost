@@ -27,7 +27,7 @@ void task_drive_controller(void *p)
 
 			//TODO: Tell motor and steering what to do
 			m.SetSpeed(50);
-			s.SetAngle(0);
+			//s.SetAngle(0);
 		}
 
 		vTaskDelay(1000/portTICK_PERIOD_MS);  //Yield CPU time

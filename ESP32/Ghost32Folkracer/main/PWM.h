@@ -12,11 +12,14 @@
 
 class PWM {
 public:
-	PWM(int);
+	PWM(int, ledc_channel_t, ledc_timer_t);
 	virtual ~PWM();
 
 	void SetDutyCycle(int);
 	void SetFreqency(int);
+private:
+	ledc_channel_t channel;
+	ledc_timer_t timer;
 };
 
 #endif /* MAIN_PWM_H_ */

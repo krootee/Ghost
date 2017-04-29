@@ -7,7 +7,7 @@
 
 #include "ServoSteering.h"
 
-ServoSteering::ServoSteering(int pin) : PWM(pin){
+ServoSteering::ServoSteering(int pin) : PWM(pin, LEDC_CHANNEL_1, LEDC_TIMER_1){
 	// TODO Auto-generated constructor stub
 
 }
@@ -16,7 +16,7 @@ ServoSteering::~ServoSteering() {
 	// TODO Auto-generated destructor stub
 }
 
-void ServoSteering::SetAngle(int angle)
+void ServoSteering::TurnTo(int angle)
 {
-	//TODO, set angle
+	this->SetDutyCycle(angle); //TODO
 }

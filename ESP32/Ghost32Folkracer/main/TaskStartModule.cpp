@@ -19,14 +19,6 @@ extern int global_state_startmodule;
 #define STARTMODULE_GPIO GPIO_NUM_17
 #define POWER_GPIO GPIO_NUM_25
 
-//enum eStartModuleState {
-//  WAITING = 0,
-//  STARTED = 1,
-//  STOPPED = 2
-//};
-
-static int state = 0;
-
 void isr_startmodule_toggled(void *args)
 {
   int startmodule_state = gpio_get_level(STARTMODULE_GPIO);
@@ -42,8 +34,6 @@ void isr_startmodule_toggled(void *args)
   //StartModule sm(STARTMODULE_GPIO);
   //sm->GoToNextState();
   //sm.GoToNextState();
-
-  //state++;
 }
 
 //Configure the PIN's used by starmodule, and add interrupt handler.
@@ -77,7 +67,7 @@ void task_startmodule(void *pvParameter)
   //Wait
   while (1)
   {
-      ESP_LOGD("Startmodule", "Current state: %d", state);
-      vTaskDelay(1000/portTICK_PERIOD_MS);  //Yield CPU time
+      //ESP_LOGD("Startmodule", "Current state: %d", state);
+      vTaskDelay(500/portTICK_PERIOD_MS);  //Yield CPU time
   }
 }

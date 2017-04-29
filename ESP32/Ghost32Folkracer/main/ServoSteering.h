@@ -16,7 +16,7 @@ public:
 	virtual ~ServoSteering();
 
 	//Set the angle of the servo. 0 is center.
-	void SetAngle(int);
+	void TurnTo(int);
 };
 
 #endif /* MAIN_SERVOSTEERING_H_ */

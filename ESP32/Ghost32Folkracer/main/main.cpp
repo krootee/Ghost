@@ -19,38 +19,15 @@
 #include "StartModule.h"
 
 #define MOTOR_PIN GPIO_NUM_26
+#define STEERING_PIN GPIO_NUM_27
 
-//static char tag[]="cpp_helloworld";
+static char tag[]="Ghost32";
 
 extern "C" {
 	void app_main(void);
 }
 
-//class Greeting {
-//public:
-//	void helloEnglish() {
-//		ESP_LOGD(tag, "Hello %s", name.c_str());
-//	}
-//
-//	void helloFrench() {
-//		ESP_LOGD(tag, "Bonjour %s", name.c_str());
-//	}
-//
-//	void setName(std::string name) {
-//		this->name = name;
-//	}
-//private:
-//	std::string name = "";
-//
-//};
-
-//static char tag[] = "Ghost32";
-//static const char* tag = "Ghost32";
-
-//struct car_state {
-//	int startmodule_state;
-//};
-
+//Global variables
 int state_motor_speed = 0;
 int global_state_startmodule = eStartModuleState::WAITING;
 
@@ -72,6 +49,8 @@ void app_main(void)
 	Motor motor(MOTOR_PIN);
 	motor.calibrate();
 
+	ServoSteering steering(STEERING_PIN);
+
 	//LED l(GPIO_NUM_23);
 	//l.Blink(200);
 
@@ -79,18 +58,23 @@ void app_main(void)
 	{
 		if (global_state_startmodule == eStartModuleState::WAITING)
 		{
+			ESP_LOGD(tag, "In WAITING state");
 			motor.SetSpeed(0);
+			steering.TurnTo(1700);
 		}
 		else if (global_state_startmodule == eStartModuleState::RUNNING)
 		{
-			motor.SetSpeed(2500);
+			ESP_LOGD(tag, "In RUNNING state");
+			motor.SetSpeed(3000);
+			steering.TurnTo(2450);
 		}
 		else if (global_state_startmodule == eStartModuleState::STOPPED)
 		{
+			ESP_LOGD(tag, "In STOPPED state");
 			motor.SetSpeed(0);
+			steering.TurnTo(3200);
 		}
 
-		//printf("State from other file: %d\n", state);
-		vTaskDelay(1000 / portTICK_PERIOD_MS);
+		vTaskDelay(100 / portTICK_PERIOD_MS);
 	}
 }
