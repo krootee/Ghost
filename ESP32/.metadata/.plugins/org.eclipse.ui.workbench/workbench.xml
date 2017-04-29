@@ -43,57 +43,112 @@
 <part id="9"/>
 <part id="10"/>
 <part id="11"/>
+<part id="12"/>
+<part id="13"/>
+<part id="14"/>
+<part id="15"/>
+<part id="16"/>
+<part id="17"/>
+<part id="18"/>
+<part id="19"/>
+<part id="20"/>
+<part id="21"/>
+<part id="22"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="/home/frode/GIT/Ghost/ESP32/Encoder/main/main.c" title="main.c" tooltip="Encoder/main/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Encoder/main/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" partName="main.cpp" path="/home/frode/GIT/Ghost/ESP32/CPlusPlus/main/main.cpp" title="main.cpp" tooltip="CPlusPlus/main/main.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CPlusPlus/main/main.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="3" selectionOffset="421" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="c_timeutils.c" partName="c_timeutils.c" path="/home/frode/GIT/Ghost/ESP32/Encoder/main/c_timeutils.c" title="c_timeutils.c" tooltip="Encoder/main/c_timeutils.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Encoder/main/c_timeutils.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="15" selectionOffset="508" selectionTopPixel="110"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="LED.cpp" partName="LED.cpp" path="/home/frode/GIT/Ghost/ESP32/CPlusPlus/main/LED.cpp" title="LED.cpp" tooltip="CPlusPlus/main/LED.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CPlusPlus/main/LED.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="444" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="c_timeutils.h" partName="c_timeutils.h" path="/home/frode/GIT/Ghost/ESP32/Encoder/main/c_timeutils.h" title="c_timeutils.h" tooltip="Encoder/main/c_timeutils.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Encoder/main/c_timeutils.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="15" selectionOffset="512" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="LED.h" partName="LED.h" path="/home/frode/GIT/Ghost/ESP32/CPlusPlus/main/LED.h" title="LED.h" tooltip="CPlusPlus/main/LED.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CPlusPlus/main/LED.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="57" selectionOffset="133" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="/home/frode/GIT/Ghost/ESP32/IRSensors/main/main.c" title="main.c" tooltip="IRSensors/main/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IRSensors/main/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="398" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" partName="main.cpp" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/main.cpp" title="main.cpp" tooltip="Ghost32Folkracer/main/main.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/main.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1220" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="/home/frode/GIT/Ghost/ESP32/Startmodule/main/main.c" title="main.c" tooltip="Startmodule/main/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Startmodule/main/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="613" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ActuatorCommands.cpp" partName="ActuatorCommands.cpp" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/ActuatorCommands.cpp" title="ActuatorCommands.cpp" tooltip="Ghost32Folkracer/main/ActuatorCommands.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/ActuatorCommands.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="StartModule.c" partName="StartModule.c" path="/home/frode/GIT/Ghost/ESP32/Startmodule/main/StartModule.c" title="StartModule.c" tooltip="Startmodule/main/StartModule.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Startmodule/main/StartModule.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="226" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ActuatorCommands.h" partName="ActuatorCommands.h" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/ActuatorCommands.h" title="ActuatorCommands.h" tooltip="Ghost32Folkracer/main/ActuatorCommands.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/ActuatorCommands.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="339" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="i2cscanner.c" partName="i2cscanner.c" path="/home/frode/GIT/Ghost/ESP32/IRSensors/main/i2cscanner.c" title="i2cscanner.c" tooltip="IRSensors/main/i2cscanner.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IRSensors/main/i2cscanner.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="826" selectionTopPixel="414"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="PWM.cpp" partName="PWM.cpp" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/PWM.cpp" title="PWM.cpp" tooltip="Ghost32Folkracer/main/PWM.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/PWM.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="irsensor_gp2y0e02b.c" partName="irsensor_gp2y0e02b.c" path="/home/frode/GIT/Ghost/ESP32/IRSensors/main/irsensor_gp2y0e02b.c" title="irsensor_gp2y0e02b.c" tooltip="IRSensors/main/irsensor_gp2y0e02b.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IRSensors/main/irsensor_gp2y0e02b.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="7" selectionOffset="1933" selectionTopPixel="846"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="PWM.h" partName="PWM.h" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/PWM.h" title="PWM.h" tooltip="Ghost32Folkracer/main/PWM.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/PWM.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="206" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="tmp102.c" partName="tmp102.c" path="/home/frode/GIT/Ghost/ESP32/IRSensors/main/tmp102.c" title="tmp102.c" tooltip="IRSensors/main/tmp102.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IRSensors/main/tmp102.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="7" selectionOffset="3411" selectionTopPixel="1944"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ResetButton.c" partName="ResetButton.c" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/ResetButton.c" title="ResetButton.c" tooltip="Ghost32Folkracer/main/ResetButton.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/ResetButton.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="173" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="/home/frode/GIT/Ghost/ESP32/GeneralPurposeButton/main/main.c" title="main.c" tooltip="GeneralPurposeButton/main/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/GeneralPurposeButton/main/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1141" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ResetLogic.cpp" partName="ResetLogic.cpp" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/ResetLogic.cpp" title="ResetLogic.cpp" tooltip="Ghost32Folkracer/main/ResetLogic.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/ResetLogic.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="277" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="/home/frode/GIT/Ghost/ESP32/SteeringServo/main/main.c" title="main.c" tooltip="SteeringServo/main/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SteeringServo/main/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1326" selectionTopPixel="357"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ResetLogic.h" partName="ResetLogic.h" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/ResetLogic.h" title="ResetLogic.h" tooltip="Ghost32Folkracer/main/ResetLogic.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/ResetLogic.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="151" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ledc.h" partName="ledc.h" title="ledc.h" tooltip="/home/frode/esp/esp-idf/components/driver/include/driver/ledc.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" path="/home/frode/esp/esp-idf/components/driver/include/driver/ledc.h" project="SteeringServo"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3074" selectionTopPixel="1332"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="Motor.cpp" partName="Motor.cpp" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/Motor.cpp" title="Motor.cpp" tooltip="Ghost32Folkracer/main/Motor.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/Motor.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="796" selectionTopPixel="63"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="Motor.h" partName="Motor.h" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/Motor.h" title="Motor.h" tooltip="Ghost32Folkracer/main/Motor.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/Motor.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="5" selectionOffset="320" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="TaskMotor.cpp" partName="TaskMotor.cpp" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/TaskMotor.cpp" title="TaskMotor.cpp" tooltip="Ghost32Folkracer/main/TaskMotor.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/TaskMotor.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="413" selectionTopPixel="30"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="CarState.cpp" partName="CarState.cpp" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/CarState.cpp" title="CarState.cpp" tooltip="Ghost32Folkracer/main/CarState.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/CarState.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="321" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="CarState.h" partName="CarState.h" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/CarState.h" title="CarState.h" tooltip="Ghost32Folkracer/main/CarState.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/CarState.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="137" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="TaskDriveController.cpp" partName="TaskDriveController.cpp" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/TaskDriveController.cpp" title="TaskDriveController.cpp" tooltip="Ghost32Folkracer/main/TaskDriveController.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/TaskDriveController.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="463" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ServoSteering.cpp" partName="ServoSteering.cpp" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/ServoSteering.cpp" title="ServoSteering.cpp" tooltip="Ghost32Folkracer/main/ServoSteering.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/ServoSteering.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="326" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ServoSteering.h" partName="ServoSteering.h" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/ServoSteering.h" title="ServoSteering.h" tooltip="Ghost32Folkracer/main/ServoSteering.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/ServoSteering.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="157" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="TaskStartModule.cpp" partName="TaskStartModule.cpp" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/TaskStartModule.cpp" title="TaskStartModule.cpp" tooltip="Ghost32Folkracer/main/TaskStartModule.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/TaskStartModule.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="745" selectionTopPixel="263"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="TaskStartModule.h" partName="TaskStartModule.h" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/TaskStartModule.h" title="TaskStartModule.h" tooltip="Ghost32Folkracer/main/TaskStartModule.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/TaskStartModule.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="88" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="StartModule.cpp" partName="StartModule.cpp" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/StartModule.cpp" title="StartModule.cpp" tooltip="Ghost32Folkracer/main/StartModule.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/StartModule.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="210" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="StartModule.h" partName="StartModule.h" path="/home/frode/GIT/Ghost/ESP32/Ghost32Folkracer/main/StartModule.h" title="StartModule.h" tooltip="Ghost32Folkracer/main/StartModule.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Ghost32Folkracer/main/StartModule.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="260" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -283,7 +338,7 @@
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.14719748" ratioLeft="281" ratioRight="1628" relationship="2" relative="topLeft"/>
-<info folder="true" part="bottom" ratio="0.71226925" ratioLeft="656" ratioRight="265" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="bottom" ratio="0.64929426" ratioLeft="598" ratioRight="323" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
@@ -314,168 +369,164 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Encoder/main/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Encoder/main/c_timeutils.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IRSensors/main/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Startmodule/main/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Startmodule/main/StartModule.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IRSensors/main/i2cscanner.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IRSensors/main/irsensor_gp2y0e02b.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IRSensors/main/tmp102.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/GeneralPurposeButton/main/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SteeringServo/main/main.c"/>
-<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/home/frode/esp/esp-idf/components/driver/include/driver/gpio.h" project="SteeringServo"/>
-<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/home/frode/esp/esp-idf/components/driver/include/driver/ledc.h" project="SteeringServo"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Ghost32Folkracer/main/CarState.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Ghost32Folkracer/main/CarState.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Ghost32Folkracer/main/TaskDriveController.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Ghost32Folkracer/main/StartModule.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Ghost32Folkracer/main/main.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Ghost32Folkracer/main/StartModule.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Ghost32Folkracer/main/TaskStartModule.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Ghost32Folkracer/main/TaskStartModule.h"/>
 </editors>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1229" y="0"/>
+<item historyLabel="TaskDriveController.cpp" index="2">
+<position info="not_deleted" x="341" y="0"/>
 </item>
-<item historyLabel="c_timeutils.c" index="1">
-<position info="not_deleted" x="508" y="15"/>
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="594" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1229" y="0"/>
+<item historyLabel="CarState.h" index="1">
+<position info="not_deleted" x="385" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="874" y="0"/>
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="411" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="644" y="0"/>
+<item historyLabel="CarState.cpp" index="0">
+<position info="not_deleted" x="321" y="0"/>
 </item>
-<item historyLabel="main.c" index="2">
-<position info="not_deleted" x="1239" y="0"/>
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="478" y="0"/>
 </item>
-<item historyLabel="main.c" index="3">
-<position info="not_deleted" x="380" y="0"/>
+<item historyLabel="TaskDriveController.cpp" index="2">
+<position info="not_deleted" x="427" y="0"/>
 </item>
-<item historyLabel="StartModule.c" index="4">
-<position info="not_deleted" x="237" y="0"/>
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="354" y="0"/>
 </item>
-<item historyLabel="main.c" index="3">
-<position info="not_deleted" x="380" y="0"/>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="77" y="0"/>
 </item>
-<item historyLabel="StartModule.c" index="4">
-<position info="not_deleted" x="305" y="0"/>
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="330" y="81"/>
 </item>
-<item historyLabel="main.c" index="3">
-<position info="not_deleted" x="380" y="0"/>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="77" y="0"/>
 </item>
-<item historyLabel="StartModule.c" index="4">
-<position info="not_deleted" x="1051" y="0"/>
+<item historyLabel="CarState.h" index="1">
+<position info="not_deleted" x="354" y="0"/>
 </item>
-<item historyLabel="main.c" index="2">
-<position info="not_deleted" x="572" y="0"/>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="22" y="0"/>
 </item>
-<item historyLabel="i2cscanner.c" index="5">
-<position info="not_deleted" x="971" y="0"/>
+<item historyLabel="CarState.h" index="1">
+<position info="not_deleted" x="403" y="0"/>
 </item>
-<item historyLabel="irsensor_gp2y0e02b.c" index="6">
-<position info="not_deleted" x="833" y="0"/>
+<item historyLabel="TaskDriveController.cpp" index="2">
+<position info="not_deleted" x="463" y="0"/>
 </item>
-<item historyLabel="main.c" index="2">
-<position info="not_deleted" x="572" y="0"/>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="55" y="0"/>
 </item>
-<item historyLabel="tmp102.c" index="7">
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="330" y="81"/>
+</item>
+<item historyLabel="TaskDriveController.cpp" index="2">
+<position info="not_deleted" x="463" y="0"/>
+</item>
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="723" y="0"/>
+</item>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="55" y="0"/>
+</item>
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="723" y="0"/>
+</item>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="45" y="0"/>
+</item>
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="652" y="29"/>
+</item>
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="721" y="0"/>
+</item>
+<item historyLabel="TaskStartModule.cpp" index="6">
+<position info="not_deleted" x="889" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="4">
+<position info="not_deleted" x="1220" y="0"/>
+</item>
+<item historyLabel="TaskStartModule.cpp" index="6">
+<position info="not_deleted" x="714" y="33"/>
+</item>
+<item historyLabel="TaskStartModule.h" index="7">
+<position info="not_deleted" x="49" y="0"/>
+</item>
+<item historyLabel="TaskDriveController.cpp" index="2">
+<position info="not_deleted" x="463" y="0"/>
+</item>
+<item historyLabel="CarState.h" index="1">
+<position info="not_deleted" x="403" y="0"/>
+</item>
+<item historyLabel="TaskStartModule.cpp" index="6">
+<position info="not_deleted" x="747" y="0"/>
+</item>
+<item historyLabel="StartModule.cpp" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="main.c" index="2">
-<position info="not_deleted" x="908" y="0"/>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="324" y="0"/>
 </item>
-<item historyLabel="irsensor_gp2y0e02b.c" index="6">
-<position info="not_deleted" x="486" y="0"/>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="384" y="0"/>
 </item>
-<item historyLabel="main.c" index="2">
-<position info="not_deleted" x="827" y="0"/>
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="285" y="0"/>
 </item>
-<item historyLabel="irsensor_gp2y0e02b.c" index="6">
-<position info="not_deleted" x="2431" y="0"/>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="384" y="0"/>
 </item>
-<item historyLabel="main.c" index="2">
-<position info="not_deleted" x="565" y="0"/>
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="285" y="0"/>
 </item>
-<item historyLabel="i2cscanner.c" index="5">
-<position info="not_deleted" x="183" y="0"/>
+<item historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="513" y="0"/>
 </item>
-<item historyLabel="irsensor_gp2y0e02b.c" index="6">
-<position info="not_deleted" x="1910" y="0"/>
+<item historyLabel="TaskStartModule.cpp" index="6">
+<position info="not_deleted" x="921" y="0"/>
 </item>
-<item historyLabel="main.c" index="2">
-<position info="not_deleted" x="795" y="0"/>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="360" y="24"/>
 </item>
-<item historyLabel="irsensor_gp2y0e02b.c" index="6">
-<position info="not_deleted" x="1293" y="0"/>
+<item historyLabel="TaskStartModule.h" index="7">
+<position info="not_deleted" x="2" y="86"/>
 </item>
-<item historyLabel="i2cscanner.c" index="5">
-<position info="not_deleted" x="550" y="0"/>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="389" y="0"/>
 </item>
-<item historyLabel="irsensor_gp2y0e02b.c" index="6">
-<position info="not_deleted" x="1293" y="0"/>
+<item historyLabel="TaskStartModule.cpp" index="6">
+<position info="not_deleted" x="460" y="0"/>
 </item>
-<item historyLabel="main.c" index="2">
-<position info="not_deleted" x="795" y="0"/>
+<item historyLabel="TaskStartModule.h" index="7">
+<position info="not_deleted" x="0" y="88"/>
 </item>
-<item historyLabel="tmp102.c" index="7">
-<position info="not_deleted" x="498" y="0"/>
+<item historyLabel="TaskDriveController.cpp" index="2">
+<position info="not_deleted" x="463" y="0"/>
 </item>
-<item historyLabel="i2cscanner.c" index="5">
-<position info="not_deleted" x="577" y="0"/>
+<item historyLabel="CarState.h" index="1">
+<position info="not_deleted" x="137" y="0"/>
 </item>
-<item historyLabel="irsensor_gp2y0e02b.c" index="6">
-<position info="not_deleted" x="1293" y="0"/>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="214" y="0"/>
 </item>
-<item historyLabel="tmp102.c" index="7">
-<position info="not_deleted" x="3411" y="7"/>
+<item historyLabel="TaskStartModule.cpp" index="6">
+<position info="not_deleted" x="745" y="0"/>
 </item>
-<item historyLabel="irsensor_gp2y0e02b.c" index="6">
-<position info="not_deleted" x="1933" y="7"/>
+<item historyLabel="StartModule.h" index="5">
+<position info="not_deleted" x="260" y="0"/>
 </item>
-<item historyLabel="i2cscanner.c" index="5">
-<position info="not_deleted" x="826" y="0"/>
-</item>
-<item historyLabel="main.c" index="8">
-<position info="not_deleted" x="1141" y="0"/>
-</item>
-<item historyLabel="main.c" index="9">
-<position/>
-</item>
-<item historyLabel="gpio.h" index="10">
-<position info="not_deleted" x="3099" y="11"/>
-</item>
-<item historyLabel="main.c" index="9">
-<position info="not_deleted" x="712" y="0"/>
-</item>
-<item historyLabel="main.c" index="3">
-<position info="not_deleted" x="613" y="0"/>
-</item>
-<item historyLabel="StartModule.c" index="4">
-<position info="not_deleted" x="226" y="11"/>
-</item>
-<item historyLabel="main.c" index="9">
-<position info="not_deleted" x="440" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="662" y="0"/>
-</item>
-<item historyLabel="main.c" index="9">
-<position info="not_deleted" x="1326" y="0"/>
-</item>
-<item historyLabel="ledc.h" index="11">
-<position info="not_deleted" x="3173" y="8"/>
-</item>
-<item historyLabel="ledc.h" index="11">
-<position info="not_deleted" x="1121" y="0"/>
-</item>
-<item historyLabel="main.c" index="9">
-<position info="not_deleted" x="1326" y="0"/>
-</item>
-<item historyLabel="ledc.h" index="11">
-<position info="not_deleted" x="3074" y="0"/>
-</item>
-<item historyLabel="main.c" index="2">
-<position info="not_deleted" x="795" y="0"/>
-</item>
-<item active="true" historyLabel="i2cscanner.c" index="5">
-<position info="not_deleted" x="826" y="0"/>
+<item active="true" historyLabel="StartModule.cpp" index="3">
+<position info="not_deleted" x="513" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -483,6 +534,12 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="topLeft"/>
+</trimArea>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="topRight"/>
+</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -490,54 +547,52 @@
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+<trimItem IMemento.internal.id="bottom"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ledc.h" tooltip="/home/frode/esp/esp-idf/components/driver/include/driver/ledc.h">
-<persistable path="/home/frode/esp/esp-idf/components/driver/include/driver/ledc.h" project="SteeringServo"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="StartModule.h" tooltip="Ghost32Folkracer/main/StartModule.h">
+<persistable path="/Ghost32Folkracer/main/StartModule.h"/>
 </file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gpio.h" tooltip="/home/frode/esp/esp-idf/components/driver/include/driver/gpio.h">
-<persistable path="/home/frode/esp/esp-idf/components/driver/include/driver/gpio.h" project="SteeringServo"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="StartModule.cpp" tooltip="Ghost32Folkracer/main/StartModule.cpp">
+<persistable path="/Ghost32Folkracer/main/StartModule.cpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="SteeringServo/main/main.c">
-<persistable path="/SteeringServo/main/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ServoSteering.h" tooltip="Ghost32Folkracer/main/ServoSteering.h">
+<persistable path="/Ghost32Folkracer/main/ServoSteering.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ServoSteering.cpp" tooltip="Ghost32Folkracer/main/ServoSteering.cpp">
+<persistable path="/Ghost32Folkracer/main/ServoSteering.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="TaskDriveController.cpp" tooltip="Ghost32Folkracer/main/TaskDriveController.cpp">
+<persistable path="/Ghost32Folkracer/main/TaskDriveController.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="CarState.h" tooltip="Ghost32Folkracer/main/CarState.h">
+<persistable path="/Ghost32Folkracer/main/CarState.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="CarState.cpp" tooltip="Ghost32Folkracer/main/CarState.cpp">
+<persistable path="/Ghost32Folkracer/main/CarState.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="TaskMotor.cpp" tooltip="Ghost32Folkracer/main/TaskMotor.cpp">
+<persistable path="/Ghost32Folkracer/main/TaskMotor.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="Motor.h" tooltip="Ghost32Folkracer/main/Motor.h">
+<persistable path="/Ghost32Folkracer/main/Motor.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="Motor.cpp" tooltip="Ghost32Folkracer/main/Motor.cpp">
+<persistable path="/Ghost32Folkracer/main/Motor.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ResetLogic.h" tooltip="Ghost32Folkracer/main/ResetLogic.h">
+<persistable path="/Ghost32Folkracer/main/ResetLogic.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ResetLogic.cpp" tooltip="Ghost32Folkracer/main/ResetLogic.cpp">
+<persistable path="/Ghost32Folkracer/main/ResetLogic.cpp"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="GeneralPurposeButton/main/main.c">
 <persistable path="/GeneralPurposeButton/main/main.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tmp102.c" tooltip="IRSensors/main/tmp102.c">
-<persistable path="/IRSensors/main/tmp102.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="irsensor_gp2y0e02b.c" tooltip="IRSensors/main/irsensor_gp2y0e02b.c">
-<persistable path="/IRSensors/main/irsensor_gp2y0e02b.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="i2cscanner.c" tooltip="IRSensors/main/i2cscanner.c">
-<persistable path="/IRSensors/main/i2cscanner.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="StartModule.c" tooltip="Startmodule/main/StartModule.c">
-<persistable path="/Startmodule/main/StartModule.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="Startmodule/main/main.c">
-<persistable path="/Startmodule/main/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="IRSensors/main/main.c">
-<persistable path="/IRSensors/main/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="c_timeutils.h" tooltip="Encoder/main/c_timeutils.h">
-<persistable path="/Encoder/main/c_timeutils.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="c_timeutils.c" tooltip="Encoder/main/c_timeutils.c">
-<persistable path="/Encoder/main/c_timeutils.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="Encoder/main/main.c">
-<persistable path="/Encoder/main/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sdkconfig.h" tooltip="WiFiMQTT/build/include/sdkconfig.h">
-<persistable path="/WiFiMQTT/build/include/sdkconfig.h"/>
-</file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="esp_wifi.h" tooltip="/home/frode/esp/esp-idf/components/esp32/include/esp_wifi.h">
-<persistable path="/home/frode/esp/esp-idf/components/esp32/include/esp_wifi.h" project="WiFiMQTT"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ResetButton.c" tooltip="Ghost32Folkracer/main/ResetButton.c">
+<persistable path="/Ghost32Folkracer/main/ResetButton.c"/>
 </file>
 </mruList>
 </workbench>

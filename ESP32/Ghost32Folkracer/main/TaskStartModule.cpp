@@ -9,6 +9,8 @@
 #include "StartModule.h"
 #include "CarState.h"
 
+extern int global_state_startmodule;
+
 /*
  * Frode Lillerud, march 2017
  */
@@ -34,11 +36,14 @@ void isr_startmodule_toggled(void *args)
   //state = CarState::getInstance();
   //((int)(state->startmodule_state))++;
 
-  StartModule sm(STARTMODULE_GPIO);
-  //sm->GoToNextState();
-  sm.GoToNextState();
+  //Take the startmodule state to the next state.
+  global_state_startmodule++;
 
-  state++;
+  //StartModule sm(STARTMODULE_GPIO);
+  //sm->GoToNextState();
+  //sm.GoToNextState();
+
+  //state++;
 }
 
 //Configure the PIN's used by starmodule, and add interrupt handler.

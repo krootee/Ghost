@@ -7,7 +7,7 @@
 
 #include "ServoSteering.h"
 
-ServoSteering::ServoSteering() {
+ServoSteering::ServoSteering(int pin) : PWM(pin){
 	// TODO Auto-generated constructor stub
 
 }

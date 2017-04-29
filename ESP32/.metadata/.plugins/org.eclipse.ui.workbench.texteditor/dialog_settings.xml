@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="I2C_NUM" key="selection"/>
+		<item value="&#x09;car_state s;" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="&#x09;car_state s;"/>
 			<item value="I2C_NUM"/>
 			<item value="#define SDA_PIN 14"/>
 			<item value="gettime"/>

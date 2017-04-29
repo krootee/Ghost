@@ -16,6 +16,9 @@
 #include "TaskMotor.cpp"
 #include "TaskDriveController.cpp"
 #include "TaskStartModule.cpp"
+#include "StartModule.h"
+
+#define MOTOR_PIN GPIO_NUM_26
 
 //static char tag[]="cpp_helloworld";
 
@@ -49,7 +52,7 @@ extern "C" {
 //};
 
 int state_motor_speed = 0;
-int state_startmodule = 0;
+int global_state_startmodule = eStartModuleState::WAITING;
 
 void app_main(void)
 {
@@ -57,21 +60,36 @@ void app_main(void)
 	xTaskCreate(task_startmodule, "Startmodule task", 4096, NULL, 2, NULL);
 
 	//Drive-controller. The main component which examines the result from the sensors, and tells the actuators what to do.
-	xTaskCreate(task_drive_controller, "Drive controller task", 4096, NULL, 2, NULL);
+	//xTaskCreate(task_drive_controller, "Drive controller task", 4096, NULL, 2, NULL);
 
 	//Motor task controls the speed of the motor, by looking at state
-	xTaskCreate(task_motor, "Motor task", 4096, NULL, 2, NULL);
+	//xTaskCreate(task_motor, "Motor task", 4096, NULL, 2, NULL);
 
 	//TODO: Steering task
-	//TODO: IR Sesors task
+	//TODO: IR Sensors task
 	//TODO: Accelerometer/Compass task
 
+	Motor motor(MOTOR_PIN);
+	motor.calibrate();
 
 	//LED l(GPIO_NUM_23);
 	//l.Blink(200);
 
 	for (;;)
 	{
+		if (global_state_startmodule == eStartModuleState::WAITING)
+		{
+			motor.SetSpeed(0);
+		}
+		else if (global_state_startmodule == eStartModuleState::RUNNING)
+		{
+			motor.SetSpeed(2500);
+		}
+		else if (global_state_startmodule == eStartModuleState::STOPPED)
+		{
+			motor.SetSpeed(0);
+		}
+
 		//printf("State from other file: %d\n", state);
 		vTaskDelay(1000 / portTICK_PERIOD_MS);
 	}

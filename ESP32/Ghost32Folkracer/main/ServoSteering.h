@@ -12,7 +12,7 @@
 
 class ServoSteering : public PWM {
 public:
-	ServoSteering();
+	ServoSteering(int);
 	virtual ~ServoSteering();
 
 	//Set the angle of the servo. 0 is center.

@@ -16,14 +16,18 @@
 #include <esp_log.h>
 #include "sdkconfig.h"
 #include "driver/ledc.h"
+#include "PWM.h"
 
-class Motor {
+class Motor : public PWM
+{
 public:
-	Motor(int);
+	//Motor(int pin) : PWM(pin);
+	Motor (int pin);
 	virtual ~Motor();
 
 	//void SetPin(int);
 	void SetSpeed(int);
+	void calibrate();
 };
 
 #endif /* MAIN_MOTOR_H_ */
