@@ -17,6 +17,8 @@
 #include "TaskDriveController.cpp"
 #include "TaskStartModule.cpp"
 #include "StartModule.h"
+#include "Sensors/IRSensor.h"
+//#include "Sensors/IRSensorConfig.h"
 
 #define MOTOR_PIN GPIO_NUM_26
 #define STEERING_PIN GPIO_NUM_27
@@ -51,6 +53,21 @@ void app_main(void)
 
 	ServoSteering steering(STEERING_PIN);
 
+	//IRSensorArray irsensors();
+	//int readings[16] = irsensors.getDistances();
+
+	//double mounting_angle = 45.0;
+
+	Sensors::IRSensorConfig irsensor_conf;
+	irsensor_conf.mounting_angle = 45.0;
+	irsensor_conf.offset_x_mm = 20.0;
+	irsensor_conf.offset_y_mm = 9.5;
+
+	Sensors::IRSensor irsensor(irsensor_conf);
+
+	//Compass compass();
+	//int heading = compass.read();
+
 	//LED l(GPIO_NUM_23);
 	//l.Blink(200);
 
@@ -60,19 +77,21 @@ void app_main(void)
 		{
 			ESP_LOGD(tag, "In WAITING state");
 			motor.SetSpeed(0);
-			steering.TurnTo(1700);
+			steering.TurnTo(2200);
+			int cm = irsensor.getDistance();
+			printf("CM: %d", cm);
 		}
 		else if (global_state_startmodule == eStartModuleState::RUNNING)
 		{
 			ESP_LOGD(tag, "In RUNNING state");
 			motor.SetSpeed(3000);
-			steering.TurnTo(2450);
+			steering.TurnTo(3000);
 		}
 		else if (global_state_startmodule == eStartModuleState::STOPPED)
 		{
 			ESP_LOGD(tag, "In STOPPED state");
-			motor.SetSpeed(0);
-			steering.TurnTo(3200);
+			motor.SetSpeed(1500);
+			steering.TurnTo(4000);
 		}
 
 		vTaskDelay(100 / portTICK_PERIOD_MS);
