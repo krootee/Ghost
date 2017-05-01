@@ -73,9 +73,10 @@ void app_main()
     for (int i = 0; i <= 8; i++)
     //for (int i = 0; (1 << i) != 128; i++)
     {
+    	ESP_LOGI(tag, "Setting channel: %d\n", i);
      tca9548_set_channel(i);
      uint8_t c = tca9548_get_channel();
-     printf("Channel: %d\n", c);
+     ESP_LOGI(tag, "Getting channel: %d\n", c);
     //
     //   printf("Active channel: %d\n", i);
     //

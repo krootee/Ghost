@@ -18,10 +18,18 @@
 #include "TaskStartModule.cpp"
 #include "StartModule.h"
 #include "Sensors/IRSensor.h"
+#include "Sensors/TCA9548.h"
 //#include "Sensors/IRSensorConfig.h"
 
 #define MOTOR_PIN GPIO_NUM_26
 #define STEERING_PIN GPIO_NUM_27
+
+#define SDA_PIN GPIO_NUM_13 //33
+#define SCL_PIN GPIO_NUM_14 //32
+
+//#undef ESP_ERROR_CHECK
+//#define ESP_ERROR_CHECK(x)   do { esp_err_t rc = (x); if (rc != ESP_OK) { ESP_LOGE("err", "esp_err_t = %d", rc); assert(0 && #x);} } while(0);
+
 
 static char tag[]="Ghost32";
 
@@ -53,6 +61,24 @@ void app_main(void)
 
 	ServoSteering steering(STEERING_PIN);
 
+	//Set up I2C
+	i2c_config_t conf;
+	conf.mode = I2C_MODE_MASTER;
+	conf.sda_io_num = SDA_PIN;
+	conf.scl_io_num = SCL_PIN;
+	conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
+	conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
+	conf.master.clk_speed = 1000000;
+	i2c_param_config(I2C_NUM_0, &conf);
+
+	i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
+
+	Sensors::TCA9548 tca9548;
+	esp_err_t result = tca9548.setChannel(1);
+	ESP_LOGD(tag, "TCA9548 channel result: %d", result);
+	ESP_ERROR_CHECK(result);
+
+
 	//IRSensorArray irsensors();
 	//int readings[16] = irsensors.getDistances();
 
@@ -64,6 +90,9 @@ void app_main(void)
 	irsensor_conf.offset_y_mm = 9.5;
 
 	Sensors::IRSensor irsensor(irsensor_conf);
+	//esp_err_t irsensor_found = irsensor.detectDevice();
+	//if (irsensor_found != ESP_OK)
+	//	ESP_LOGE(tag, "Unable to detect IRSensor");
 
 	//Compass compass();
 	//int heading = compass.read();
@@ -77,9 +106,10 @@ void app_main(void)
 		{
 			ESP_LOGD(tag, "In WAITING state");
 			motor.SetSpeed(0);
-			steering.TurnTo(2200);
+			//steering.TurnTo(2200);
 			int cm = irsensor.getDistance();
-			printf("CM: %d", cm);
+			ESP_LOGD(tag, "Distance: %d", cm);
+			//printf("[W] CM: %d\n", cm);
 		}
 		else if (global_state_startmodule == eStartModuleState::RUNNING)
 		{

@@ -1,3 +1,19 @@
+/*
+ * TCA9548.cpp
+ *
+ *  Created on: Apr 30, 2017
+ *      Author: frode
+ */
+
+#include "TCA9548.h"
+
+namespace Sensors {
+
+TCA9548::TCA9548() {
+	// TODO Auto-generated constructor stub
+
+}
+
 #include <driver/i2c.h>
 #include <esp_log.h>
 #include <freertos/FreeRTOS.h>
@@ -11,9 +27,7 @@
 #define ACK_CHECK_ON 0x1
 #define ACK 0x1
 
-const char* tag = "tca9548";
-
-esp_err_t tca9548_set_channel(int channel)
+esp_err_t TCA9548::setChannel(int channel)
 {
   //Contact the TCA9548. Does it respond with an ACK?
   i2c_cmd_handle_t cmd = i2c_cmd_link_create();
@@ -45,13 +59,12 @@ esp_err_t tca9548_set_channel(int channel)
   else
   {
     //ESP_ERROR_CHECK(result);
-    //printf("[ERROR] [TCA9548] I2C ERROR: %d\n", result);
-    ESP_LOGE(tag, "I2C error: %d\n", result);
+    printf("[ERROR] [TCA9548] I2C ERROR: %d\n", result);
     return -1;
   }
 }
 
-uint8_t tca9548_get_channel()
+uint8_t TCA9548::getChannel()
 {
   //Contact the TCA9548. Does it respond with an ACK?
   i2c_cmd_handle_t cmd = i2c_cmd_link_create();
@@ -81,8 +94,10 @@ uint8_t tca9548_get_channel()
   else
   {
     //ESP_ERROR_CHECK(result);
-    //printf("[ERROR] [TCA9548] I2C ERROR: %d\n", result);
-    ESP_LOGE(tag, "I2C error: %d\n", result);
+    printf("[ERROR] [TCA9548] I2C ERROR: %d\n", result);
     return -1;
   }
 }
+
+
+} /* namespace Sensors */
