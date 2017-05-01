@@ -68,11 +68,11 @@ void app_main() {
 		//else
 		// printf("Unable to detect tmp102 device. Error: %d\n", result);
 
-		for (int i = 0; i <= 8; i++)
+		for (int channel = 0; channel <= 8; channel++)
 		//for (int i = 0; (1 << i) != 128; i++)
 				{
 			//ESP_LOGI(tag, "Setting channel: %d\n", i);
-			tca9548_set_channel(i);
+			tca9548_set_channel(channel);
 			uint8_t c = tca9548_get_channel();
 			//ESP_LOGI(tag, "Getting channel: %d\n", c);
 			//
@@ -82,10 +82,10 @@ void app_main() {
 			esp_err_t irsensor_exists = irsensor_detect_device();
 			if (irsensor_exists == ESP_OK) {
 				int distance = irsensor_get_distance();
-				ESP_LOGI(tag, "Distance: %d\n", distance);
+				ESP_LOGI(tag, "Channel %d, distance: %d\n", channel, distance);
 			} else
 			ESP_LOGW(tag, "Unable to detect IR-sensor device on channel %d\n",
-					i);
+					channel);
 		}
 
 //printf("Hello\n");

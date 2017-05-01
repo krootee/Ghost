@@ -114,8 +114,22 @@ void app_main(void)
 		else if (global_state_startmodule == eStartModuleState::RUNNING)
 		{
 			ESP_LOGD(tag, "In RUNNING state");
-			motor.SetSpeed(3000);
-			steering.TurnTo(3000);
+			//motor.SetSpeed(3000);
+
+			int left, right = 0;
+
+			tca9548.setChannel(0);
+			left = irsensor.getDistance();
+			ESP_LOGI(tag, "Left: %d", left);
+
+			tca9548.setChannel(1);
+			right = irsensor.getDistance();
+			ESP_LOGI(tag, "Right: %d", right);
+
+			if (left > right)
+				steering.TurnTo(3000);
+			else
+				steering.TurnTo(2200);
 		}
 		else if (global_state_startmodule == eStartModuleState::STOPPED)
 		{
