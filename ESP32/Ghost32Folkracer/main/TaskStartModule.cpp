@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/queue.h"
 #include "esp_system.h"
 #include "driver/gpio.h"
 #include <esp_log.h>
 #include "sdkconfig.h"
 
 #include "StartModule.h"
-#include "CarState.h"
-
-extern int global_state_startmodule;
+//#include "CarState.h"
 
 /*
  * Frode Lillerud, march 2017
@@ -19,21 +18,19 @@ extern int global_state_startmodule;
 #define STARTMODULE_GPIO GPIO_NUM_17
 #define POWER_GPIO GPIO_NUM_25
 
+extern int global_state_startmodule;
+extern QueueHandle_t queue_startmodule;
+
 void isr_startmodule_toggled(void *args)
 {
   int startmodule_state = gpio_get_level(STARTMODULE_GPIO);
   gpio_set_level(LED_GPIO, startmodule_state);
 
-  //CarState *state;
-  //state = CarState::getInstance();
-  //((int)(state->startmodule_state))++;
-
   //Take the startmodule state to the next state.
   global_state_startmodule++;
 
-  //StartModule sm(STARTMODULE_GPIO);
-  //sm->GoToNextState();
-  //sm.GoToNextState();
+  //Pass the current value to the queue
+  xQueueSendToBackFromISR(queue_startmodule, &startmodule_state, NULL);
 }
 
 //Configure the PIN's used by starmodule, and add interrupt handler.

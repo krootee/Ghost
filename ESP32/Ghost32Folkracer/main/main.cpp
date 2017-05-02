@@ -13,6 +13,7 @@
 #include "driver/gpio.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/queue.h"
 #include "TaskMotor.cpp"
 #include "TaskDriveController.cpp"
 #include "TaskStartModule.cpp"
@@ -40,11 +41,30 @@ extern "C" {
 //Global variables
 int state_motor_speed = 0;
 int global_state_startmodule = eStartModuleState::WAITING;
+QueueHandle_t queue_startmodule;
+
+void task_listener(void *parameters)
+{
+	int x = 123;
+
+	while (true)
+	{
+		ESP_LOGI(tag, "Waiting for queue");
+		BaseType_t rc = xQueueReceive(queue_startmodule, &x, portMAX_DELAY);
+		ESP_LOGI(tag, "Queue said %d", rc);
+	}
+}
 
 void app_main(void)
 {
+	//Queue
+	int queue_size = 1;
+	queue_startmodule = xQueueCreate(queue_size, sizeof(int));
+
 	//Startmodule task uses interrupt, and updates the global state.
 	xTaskCreate(task_startmodule, "Startmodule task", 4096, NULL, 2, NULL);
+
+	xTaskCreate(task_listener, "Queue listener task", 4096, NULL, 3, NULL);
 
 	//Drive-controller. The main component which examines the result from the sensors, and tells the actuators what to do.
 	//xTaskCreate(task_drive_controller, "Drive controller task", 4096, NULL, 2, NULL);
