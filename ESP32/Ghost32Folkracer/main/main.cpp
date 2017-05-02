@@ -42,46 +42,100 @@ extern "C" {
 int state_motor_speed = 0;
 int global_state_startmodule = eStartModuleState::WAITING;
 QueueHandle_t queue_startmodule;
+QueueHandle_t queue_steering;
 
 void task_listener(void *parameters)
 {
-	int x = 123;
+	int x = 89;
 
 	while (true)
 	{
-		ESP_LOGI(tag, "Waiting for queue");
+		ESP_LOGW(tag, "Listening on queue_startmodule...");
 		BaseType_t rc = xQueueReceive(queue_startmodule, &x, portMAX_DELAY);
-		ESP_LOGI(tag, "Queue said %d", rc);
+		ESP_LOGW(tag, "queue_startmodule said %d", rc);
 	}
+}
+
+void task_irsensors(void *p)
+{
+	ESP_LOGI(tag, "task_irsensors started");
+
+	Sensors::TCA9548 tca9548;
+	esp_err_t result = tca9548.setChannel(1);
+
+	Sensors::IRSensorConfig irsensor_conf;
+	irsensor_conf.mounting_angle = 45.0;
+	irsensor_conf.offset_x_mm = 20.0;
+	irsensor_conf.offset_y_mm = 9.5;
+
+	Sensors::IRSensor irsensor(irsensor_conf);
+
+	while (true)
+	{
+		int left, right = 0;
+
+		tca9548.setChannel(0);
+		left = irsensor.getDistance();
+		//ESP_LOGI(tag, "Left: %d", left);
+
+		tca9548.setChannel(1);
+		right = irsensor.getDistance();
+		//ESP_LOGI(tag, "Right: %d", right);
+
+		int angle = 0;
+		if (left > right)
+			angle = 3000;
+			//steering.TurnTo(3000);
+		else
+			angle = 2200;
+			//steering.TurnTo(2200);
+		ESP_LOGI(tag, "Angle %d", angle);
+
+		xQueueSend(queue_steering, &angle, NULL);
+
+		vTaskDelay(pdMS_TO_TICKS(20));
+	}
+
+	vTaskDelete(NULL);
+}
+
+void task_drivecomputer(void *p)
+{
+	ESP_LOGI(tag, "task_drivecomputer started");
+
+	while (true)
+	{
+		vTaskDelay(pdMS_TO_TICKS(500));
+	}
+
+	vTaskDelete(NULL);
+}
+
+void task_actuators(void *p)
+{
+	ESP_LOGI(tag, "task_actuators started");
+
+	ServoSteering steering(STEERING_PIN);
+
+
+	while (true)
+	{
+		int angle = 0;
+		ESP_LOGI(tag, "task_actuators waiting for steering command...");
+		if(xQueueReceive(queue_steering, &angle, portMAX_DELAY) == pdPASS)
+		{
+			ESP_LOGI(tag, "TurnTo(%d)", angle);
+			steering.TurnTo(angle);
+		}
+		vTaskDelay(pdMS_TO_TICKS(20));
+	}
+
+	vTaskDelete(NULL);
 }
 
 void app_main(void)
 {
-	//Queue
-	int queue_size = 1;
-	queue_startmodule = xQueueCreate(queue_size, sizeof(int));
-
-	//Startmodule task uses interrupt, and updates the global state.
-	xTaskCreate(task_startmodule, "Startmodule task", 4096, NULL, 2, NULL);
-
-	xTaskCreate(task_listener, "Queue listener task", 4096, NULL, 3, NULL);
-
-	//Drive-controller. The main component which examines the result from the sensors, and tells the actuators what to do.
-	//xTaskCreate(task_drive_controller, "Drive controller task", 4096, NULL, 2, NULL);
-
-	//Motor task controls the speed of the motor, by looking at state
-	//xTaskCreate(task_motor, "Motor task", 4096, NULL, 2, NULL);
-
-	//TODO: Steering task
-	//TODO: IR Sensors task
-	//TODO: Accelerometer/Compass task
-
-	Motor motor(MOTOR_PIN);
-	motor.calibrate();
-
-	ServoSteering steering(STEERING_PIN);
-
-	//Set up I2C
+	//Setup I2C
 	i2c_config_t conf;
 	conf.mode = I2C_MODE_MASTER;
 	conf.sda_io_num = SDA_PIN;
@@ -90,8 +144,38 @@ void app_main(void)
 	conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
 	conf.master.clk_speed = 1000000;
 	i2c_param_config(I2C_NUM_0, &conf);
-
 	i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
+
+	//Create Queues
+	int queue_size_startmodule = 2;
+	queue_startmodule = xQueueCreate(queue_size_startmodule, sizeof(int));
+	queue_steering = xQueueCreate(10, sizeof(int));
+
+	/*
+	 * Create Tasks
+	 *
+	 * The lowest priority tasks gather sensorvalues, and passes them to higher level
+	 * task which processes the data. Then that task sends drive instructions to even higher
+	 * level tasks which manipulates actuators (steering and motor).
+	 *
+	 * IRSensors -> array of distances -> DriveComputer
+	 * Compass -> heading -> DriveComputer
+	 * DriveComputer -> Motor
+	 * DriveComputer -> Steering
+	 */
+
+	xTaskCreate(task_startmodule, "Startmodule task", 4096, NULL, 2, NULL);
+	xTaskCreate(task_irsensors, "IRSensors", 4096, NULL, 2, NULL);
+	//xTaskCreate(task_listener, "Queue listener task", 4096, NULL, 3, NULL);
+	xTaskCreate(task_drivecomputer, "Driver task", 4096, NULL, 4, NULL);
+	xTaskCreate(task_actuators, "Actuators task", 4096, NULL, 5, NULL);
+
+	//Experimenting below...
+
+	Motor motor(MOTOR_PIN);
+	motor.calibrate();
+
+	ServoSteering steering(STEERING_PIN);
 
 	Sensors::TCA9548 tca9548;
 	esp_err_t result = tca9548.setChannel(1);
@@ -122,6 +206,11 @@ void app_main(void)
 
 	for (;;)
 	{
+		vTaskDelay(pdMS_TO_TICKS(500));
+	}
+
+	for (;;)
+	{
 		if (global_state_startmodule == eStartModuleState::WAITING)
 		{
 			ESP_LOGD(tag, "In WAITING state");
@@ -133,27 +222,28 @@ void app_main(void)
 		}
 		else if (global_state_startmodule == eStartModuleState::RUNNING)
 		{
-			ESP_LOGD(tag, "In RUNNING state");
+			//ESP_LOGD(tag, "In RUNNING state");
 			//motor.SetSpeed(3000);
 
 			int left, right = 0;
 
 			tca9548.setChannel(0);
 			left = irsensor.getDistance();
-			ESP_LOGI(tag, "Left: %d", left);
+			//ESP_LOGI(tag, "Left: %d", left);
 
 			tca9548.setChannel(1);
 			right = irsensor.getDistance();
-			ESP_LOGI(tag, "Right: %d", right);
+			//ESP_LOGI(tag, "Right: %d", right);
 
 			if (left > right)
 				steering.TurnTo(3000);
 			else
 				steering.TurnTo(2200);
+
 		}
 		else if (global_state_startmodule == eStartModuleState::STOPPED)
 		{
-			ESP_LOGD(tag, "In STOPPED state");
+			//ESP_LOGD(tag, "In STOPPED state");
 			motor.SetSpeed(1500);
 			steering.TurnTo(4000);
 		}

@@ -29,6 +29,8 @@ void isr_startmodule_toggled(void *args)
   //Take the startmodule state to the next state.
   global_state_startmodule++;
 
+  startmodule_state = 654;
+
   //Pass the current value to the queue
   xQueueSendToBackFromISR(queue_startmodule, &startmodule_state, NULL);
 }
