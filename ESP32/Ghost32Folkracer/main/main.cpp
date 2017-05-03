@@ -129,7 +129,7 @@ void task_irsensors(void *p) {
 		}
 
 		//xQueueSend(queue_actuators, &m, NULL);
-		xQueueSend(queue_sensorvalues, &data, NULL);
+		xQueueSend(queue_sensorvalues, &data, 0);
 
 		vTaskDelay(pdMS_TO_TICKS(20));
 	}
@@ -156,7 +156,7 @@ void task_drivecomputer(void *p) {
 			}
 
 			//Send the desired actuator movements to the queue.
-			xQueueSend(queue_actuators, &m, NULL);
+			xQueueSend(queue_actuators, &m, 0);
 		}
 
 		vTaskDelay(pdMS_TO_TICKS(20));
