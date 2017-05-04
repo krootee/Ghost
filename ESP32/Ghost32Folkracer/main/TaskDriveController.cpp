@@ -14,7 +14,7 @@
 void task_drive_controller(void *p)
 {
 	Motor m(GPIO_NUM_26);
-	ServoSteering s(GPIO_NUM_1); //TODO
+	ServoSteering s(GPIO_NUM_1, 2000, 4100); //TODO
 
 	CarState *state;
 	state = CarState::getInstance();

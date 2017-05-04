@@ -95,24 +95,24 @@ void task_irsensors(void *p) {
 	Sensors::IRSensor irsensor(irsensor_conf);
 
 	while (true) {
-		int left, right = 0;
-
-		tca9548.setChannel(0);
-		left = irsensor.getDistance();
+//		int left, right = 0;
+//
+//		tca9548.setChannel(0);
+//		left = irsensor.getDistance();
 		//ESP_LOGI(tag, "Left: %d", left);
 
-		tca9548.setChannel(1);
-		right = irsensor.getDistance();
+//		tca9548.setChannel(1);
+//		right = irsensor.getDistance();
 		//ESP_LOGI(tag, "Right: %d", right);
-
-		int angle = 0;
-		if (left > right)
-			angle = 3000;
-		//steering.TurnTo(3000);
-		else
-			angle = 2200;
-		//steering.TurnTo(2200);
-		ESP_LOGI(tag, "Angle %d", angle);
+//
+//		int angle = 0;
+//		if (left > right)
+//			angle = 3000;
+//		//steering.TurnTo(3000);
+//		else
+//			angle = 2200;
+//		//steering.TurnTo(2200);
+		//ESP_LOGI(tag, "Angle %d", angle);
 
 		sensorvalues_t data;
 		//data.compass = 300;
@@ -146,14 +146,22 @@ void task_drivecomputer(void *p) {
 		//Listen for incoming sensor-data
 		sensorvalues_t data;
 		if (xQueueReceive(queue_sensorvalues, &data, portMAX_DELAY) == pdPASS) {
-			if (data.irdata[4] > data.irdata[1]) {
-				m.speed = 50;
-				m.steering_angle = 2700;
-			}
-			else
-			{
-				m.steering_angle = 1200;
-			}
+
+			int left = data.irdata[4];
+			int right = data.irdata[1];
+
+			//int percent = ((left+right)/2)
+			int percent = (left*100 / (right+left));
+			m.steering_angle = percent;
+
+//			if (data.irdata[4] < data.irdata[1]) {
+//				m.speed = 50;
+//				m.steering_angle = 30;
+//			}
+//			else
+//			{
+//				m.steering_angle = 70;
+//			}
 
 			//Send the desired actuator movements to the queue.
 			xQueueSend(queue_actuators, &m, 0);
@@ -168,7 +176,9 @@ void task_drivecomputer(void *p) {
 void task_actuators(void *p) {
 	ESP_LOGI(tag, "task_actuators started");
 
-	ServoSteering steering(STEERING_PIN);
+	int min = 2000;
+	int max = 4100;
+	ServoSteering steering(STEERING_PIN, min, max);
 
 	while (true) {
 		movement_t m;
@@ -228,7 +238,7 @@ void app_main(void) {
 	Motor motor(MOTOR_PIN);
 	motor.calibrate();
 
-	ServoSteering steering(STEERING_PIN);
+	ServoSteering steering(STEERING_PIN, 2000, 4100);
 
 	Sensors::TCA9548 tca9548;
 	esp_err_t result = tca9548.setChannel(1);

@@ -7,8 +7,10 @@
 
 #include "ServoSteering.h"
 
-ServoSteering::ServoSteering(int pin) : PWM(pin, LEDC_CHANNEL_1, LEDC_TIMER_1){
-	// TODO Auto-generated constructor stub
+ServoSteering::ServoSteering(int pin, int min, int max) : PWM(pin, LEDC_CHANNEL_1, LEDC_TIMER_1){
+
+	this->min_duty_cycle = min;
+	this->max_duty_cycle = max;
 
 }
 
@@ -16,7 +18,12 @@ ServoSteering::~ServoSteering() {
 	// TODO Auto-generated destructor stub
 }
 
-void ServoSteering::TurnTo(int angle)
+void ServoSteering::TurnTo(int percent)
 {
-	this->SetDutyCycle(angle); //TODO
+	int duty_cycle;
+	duty_cycle = (((this->max_duty_cycle - this->min_duty_cycle)*percent)/100)+this->min_duty_cycle;
+
+	ESP_LOGI("ServoSteering", "DutyCycle: %d", duty_cycle);
+
+	this->SetDutyCycle(duty_cycle);
 }
