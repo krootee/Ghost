@@ -147,12 +147,19 @@ void task_drivecomputer(void *p) {
 		sensorvalues_t data;
 		if (xQueueReceive(queue_sensorvalues, &data, portMAX_DELAY) == pdPASS) {
 
-			int left = data.irdata[4];
-			int right = data.irdata[1];
+			int left1 = data.irdata[4];
+			int right1 = data.irdata[1];
+			int left2 = data.irdata[0];
+			int right2 = data.irdata[5];
 
-			//int percent = ((left+right)/2)
-			int percent = (left*100 / (right+left));
+			int percent = (left1*100 / (right1+left1));
 			m.steering_angle = percent;
+
+			//Speed
+			if (left2 < 20 || right2 < 20)
+				m.speed = 0; //Stop
+			else
+				m.speed = 70;
 
 //			if (data.irdata[4] < data.irdata[1]) {
 //				m.speed = 50;
@@ -179,17 +186,19 @@ void task_actuators(void *p) {
 	int min = 2000;
 	int max = 4100;
 	ServoSteering steering(STEERING_PIN, min, max);
+	Motor motor(MOTOR_PIN, 1800, 3400);
+	motor.calibrate();
 
 	while (true) {
 		movement_t m;
-		ESP_LOGI(tag, "task_actuators waiting for steering command...");
+		//ESP_LOGI(tag, "task_actuators waiting for steering command...");
 
 		//Wait for an incoming command telling us to change motorspeed, or turn the wheels.
 		if (xQueueReceive(queue_actuators, &m, portMAX_DELAY) == pdPASS) {
-			ESP_LOGI(tag, "TurnTo(%d)", m.steering_angle);
-			steering.TurnTo(m.steering_angle);
-
-			//TODO, motor
+			//ESP_LOGI(tag, "TurnTo(%d)", m.steering_angle);
+			//steering.TurnTo(m.steering_angle);
+			ESP_LOGI(tag, "SetSpeed(%d)", m.speed);
+			motor.SetSpeed(m.speed);
 		}
 		vTaskDelay(pdMS_TO_TICKS(20));
 	}
@@ -233,29 +242,33 @@ void app_main(void) {
 	xTaskCreate(task_drivecomputer, "Driver task", 4096, NULL, 4, NULL);
 	xTaskCreate(task_actuators, "Actuators task", 4096, NULL, 5, NULL);
 
+	for (;;) {
+		vTaskDelay(pdMS_TO_TICKS(1000));
+	}
+
 	//Experimenting below...
 
-	Motor motor(MOTOR_PIN);
-	motor.calibrate();
+	//Motor motor(MOTOR_PIN, 1800, 3400);
+	//motor.calibrate();
 
-	ServoSteering steering(STEERING_PIN, 2000, 4100);
+	//ServoSteering steering(STEERING_PIN, 2000, 4100);
 
-	Sensors::TCA9548 tca9548;
-	esp_err_t result = tca9548.setChannel(1);
-	ESP_LOGD(tag, "TCA9548 channel result: %d", result);
-	ESP_ERROR_CHECK(result);
+	//Sensors::TCA9548 tca9548;
+	//esp_err_t result = tca9548.setChannel(1);
+	//ESP_LOGD(tag, "TCA9548 channel result: %d", result);
+	//ESP_ERROR_CHECK(result);
 
 	//IRSensorArray irsensors();
 	//int readings[16] = irsensors.getDistances();
 
 	//double mounting_angle = 45.0;
 
-	Sensors::IRSensorConfig irsensor_conf;
-	irsensor_conf.mounting_angle = 45.0;
-	irsensor_conf.offset_x_mm = 20.0;
-	irsensor_conf.offset_y_mm = 9.5;
-
-	Sensors::IRSensor irsensor(irsensor_conf);
+//	Sensors::IRSensorConfig irsensor_conf;
+//	irsensor_conf.mounting_angle = 45.0;
+//	irsensor_conf.offset_x_mm = 20.0;
+//	irsensor_conf.offset_y_mm = 9.5;
+//
+//	Sensors::IRSensor irsensor(irsensor_conf);
 	//esp_err_t irsensor_found = irsensor.detectDevice();
 	//if (irsensor_found != ESP_OK)
 	//	ESP_LOGE(tag, "Unable to detect IRSensor");
@@ -266,43 +279,41 @@ void app_main(void) {
 	//LED l(GPIO_NUM_23);
 	//l.Blink(200);
 
-	for (;;) {
-		vTaskDelay(pdMS_TO_TICKS(500));
-	}
 
-	for (;;) {
-		if (global_state_startmodule == eStartModuleState::WAITING) {
-			ESP_LOGD(tag, "In WAITING state");
-			motor.SetSpeed(0);
-			//steering.TurnTo(2200);
-			int cm = irsensor.getDistance();
-			ESP_LOGD(tag, "Distance: %d", cm);
-			//printf("[W] CM: %d\n", cm);
-		} else if (global_state_startmodule == eStartModuleState::RUNNING) {
-			//ESP_LOGD(tag, "In RUNNING state");
-			//motor.SetSpeed(3000);
 
-			int left, right = 0;
-
-			tca9548.setChannel(0);
-			left = irsensor.getDistance();
-			//ESP_LOGI(tag, "Left: %d", left);
-
-			tca9548.setChannel(1);
-			right = irsensor.getDistance();
-			//ESP_LOGI(tag, "Right: %d", right);
-
-			if (left > right)
-				steering.TurnTo(3000);
-			else
-				steering.TurnTo(2200);
-
-		} else if (global_state_startmodule == eStartModuleState::STOPPED) {
-			//ESP_LOGD(tag, "In STOPPED state");
-			motor.SetSpeed(1500);
-			steering.TurnTo(4000);
-		}
-
-		vTaskDelay(100 / portTICK_PERIOD_MS);
-	}
+//	for (;;) {
+//		if (global_state_startmodule == eStartModuleState::WAITING) {
+//			ESP_LOGD(tag, "In WAITING state");
+//			motor.SetSpeed(0);
+//			//steering.TurnTo(2200);
+//			int cm = irsensor.getDistance();
+//			ESP_LOGD(tag, "Distance: %d", cm);
+//			//printf("[W] CM: %d\n", cm);
+//		} else if (global_state_startmodule == eStartModuleState::RUNNING) {
+//			//ESP_LOGD(tag, "In RUNNING state");
+//			//motor.SetSpeed(3000);
+//
+//			int left, right = 0;
+//
+//			tca9548.setChannel(0);
+//			left = irsensor.getDistance();
+//			//ESP_LOGI(tag, "Left: %d", left);
+//
+//			tca9548.setChannel(1);
+//			right = irsensor.getDistance();
+//			//ESP_LOGI(tag, "Right: %d", right);
+//
+//			if (left > right)
+//				steering.TurnTo(3000);
+//			else
+//				steering.TurnTo(2200);
+//
+//		} else if (global_state_startmodule == eStartModuleState::STOPPED) {
+//			//ESP_LOGD(tag, "In STOPPED state");
+//			motor.SetSpeed(1500);
+//			steering.TurnTo(4000);
+//		}
+//
+//		vTaskDelay(100 / portTICK_PERIOD_MS);
+//	}
 }

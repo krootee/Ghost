@@ -9,9 +9,10 @@
 
 const char* tag = "Motor";
 
-Motor::Motor(int pin) : PWM (pin, LEDC_CHANNEL_0, LEDC_TIMER_0)
+Motor::Motor(int pin, int min, int max) : PWM (pin, LEDC_CHANNEL_0, LEDC_TIMER_0)
 {
-	;
+	this->max = max;
+	this->min = min;
 }
 
 //	//Configure PWM for this pin
@@ -38,32 +39,36 @@ Motor::~Motor() {
 	// TODO Auto-generated destructor stub
 }
 
-void Motor::SetSpeed(int speed)
+//100 is full forward, 0 is stop, -100 is full reverse
+void Motor::SetSpeed(int percent)
 {
-	//TODO, control speed by setting PWM dutycycle/frequency/duration
-	//int duty_cycle = speed;
+	//TODO, handle negative percent
+	int duty_cycle;
+	duty_cycle = (((this->max - this->min)*percent)/100)+this->min;
 
-	//ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, duty_cycle);
-	//ledc_update_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0);
-
-	this->SetDutyCycle(speed); //TODO
+	this->SetDutyCycle(duty_cycle);
 }
 
 void Motor::calibrate()
 {
+	//max: 3400
+	//min: 1800
+	//center: 2460
+
 	//Maximum throttle
 	ESP_LOGI(tag, "Calibration: MAX...");
-	this->SetDutyCycle(3400);
+	this->SetDutyCycle(this->max);
 	vTaskDelay(3000 / portTICK_PERIOD_MS); //Delay for 2.5 seconds
 
 	//Minimum throttle
 	ESP_LOGI(tag, "Calibration: MIN...");
-	this->SetDutyCycle(1800);
+	this->SetDutyCycle(this->min);
 	vTaskDelay(3000 / portTICK_PERIOD_MS); //Delay for 2.5 seconds
 
 	//Center
 	ESP_LOGI(tag, "Calibration: CENTER...");
-	this->SetDutyCycle(2460);
+	int center = ((this->max - this->min)/2)+this->min;
+	this->SetDutyCycle(center);
 	vTaskDelay(3000 / portTICK_PERIOD_MS); //Delay for 2.5 seconds
 
 	ESP_LOGI(tag, "Calibration complete");

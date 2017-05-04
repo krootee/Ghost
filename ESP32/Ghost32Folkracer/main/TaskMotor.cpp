@@ -16,7 +16,7 @@ void task_motor(void *p)
 {
 	//Configure the motor
 
-	Motor motor(MOTOR_PIN);
+	Motor motor(MOTOR_PIN, 1800, 3400);
 
 	for(;;)
 	{

@@ -13,7 +13,7 @@
 
 void task_drive_controller(void *p)
 {
-	Motor m(GPIO_NUM_26);
+	Motor m(GPIO_NUM_26, 1800, 3400);
 	ServoSteering s(GPIO_NUM_1, 2000, 4100); //TODO
 
 	CarState *state;

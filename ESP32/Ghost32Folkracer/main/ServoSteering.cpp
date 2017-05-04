@@ -23,7 +23,7 @@ void ServoSteering::TurnTo(int percent)
 	int duty_cycle;
 	duty_cycle = (((this->max_duty_cycle - this->min_duty_cycle)*percent)/100)+this->min_duty_cycle;
 
-	ESP_LOGI("ServoSteering", "DutyCycle: %d", duty_cycle);
+	//ESP_LOGI("ServoSteering", "DutyCycle: %d", duty_cycle);
 
 	this->SetDutyCycle(duty_cycle);
 }

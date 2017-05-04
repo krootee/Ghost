@@ -22,12 +22,16 @@ class Motor : public PWM
 {
 public:
 	//Motor(int pin) : PWM(pin);
-	Motor (int pin);
+	Motor (int pin, int, int);
 	virtual ~Motor();
 
 	//void SetPin(int);
 	void SetSpeed(int);
 	void calibrate();
+
+private:
+	int min;
+	int max;
 };
 
 #endif /* MAIN_MOTOR_H_ */
