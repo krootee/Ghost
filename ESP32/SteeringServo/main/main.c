@@ -53,15 +53,18 @@ void app_main(void)
 
   while(1)
   {
+	  int min = 2000;
+	  int max = 4100;
 
-	  for (int duty_cycle = 1638; duty_cycle < 3276; duty_cycle += 20)
+	  //1638 -> 3276
+	  for (int duty_cycle = min; duty_cycle < max; duty_cycle += 150)
 	  {
 		ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, duty_cycle);
 		ledc_update_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0);
 		SLEEP(10);
 	  }
 
-	  for (int duty_cycle = 3276; duty_cycle > 1638; duty_cycle -= 20)
+	  for (int duty_cycle = max; duty_cycle > min; duty_cycle -= 150)
 	  {
 			ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, duty_cycle);
 			ledc_update_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0);
