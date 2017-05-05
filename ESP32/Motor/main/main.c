@@ -27,5 +27,30 @@ void app_main(void)
   motor_calibrate();
 
   //TODO, set speed
-  motor_set_speed(3000);
+  while (true)
+  {
+
+
+    for (int s = 1800; s < 3600; s += 20)
+    {
+      motor_set_speed(s);
+      SLEEP(100);
+    }
+    for (int s = 3600; s > 1800; s -= 20)
+    {
+      motor_set_speed(s);
+      SLEEP(100);
+    }
+  }
+
+
+  // motor_set_speed(2000);
+  //
+  // vTaskDelay(3000 / portTICK_PERIOD_MS); //Delay for 2.5 seconds
+  //
+  // motor_set_speed(3000);
+  //
+  // vTaskDelay(3000 / portTICK_PERIOD_MS); //Delay for 2.5 seconds
+  //
+  // motor_set_speed(4000);
 }

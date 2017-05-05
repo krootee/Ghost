@@ -13,40 +13,73 @@ Motor::Motor(int pin, int min, int max) : PWM (pin, LEDC_CHANNEL_0, LEDC_TIMER_0
 {
 	this->max = max;
 	this->min = min;
+	this->current_duty_cycle = ((max-min)/2)+min; //center
+	this->center = ((max-min)/2)+min; //center
 }
 
-//	//Configure PWM for this pin
-//	//TODO - move to PWM class
-//	ledc_timer_config_t timer_conf;
-//	timer_conf.bit_num = LEDC_TIMER_15_BIT;
-//	timer_conf.freq_hz = 50; //50 = 20ms
-//	timer_conf.speed_mode = LEDC_HIGH_SPEED_MODE;
-//	timer_conf.timer_num = LEDC_TIMER_0;
-//	ledc_timer_config(&timer_conf);
-//
-//	//Set a LEDC channel for PWM
-//	ledc_channel_config_t ledc_conf;
-//	ledc_conf.channel = LEDC_CHANNEL_0;
-//	ledc_conf.duty = 3276;
-//	ledc_conf.gpio_num = pin;
-//	ledc_conf.intr_type = LEDC_INTR_DISABLE;
-//	ledc_conf.speed_mode = LEDC_HIGH_SPEED_MODE;
-//	ledc_conf.timer_sel = LEDC_TIMER_0;
-//	ledc_channel_config(&ledc_conf);
-//}
 
 Motor::~Motor() {
 	// TODO Auto-generated destructor stub
+}
+
+long map(long x, long in_min, long in_max, long out_min, long out_max)
+{
+	//https://www.arduino.cc/en/reference/map
+	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
 //100 is full forward, 0 is stop, -100 is full reverse
 void Motor::SetSpeed(int percent)
 {
 	//TODO, handle negative percent
-	int duty_cycle;
-	duty_cycle = (((this->max - this->min)*percent)/100)+this->min;
+	//int duty_cycle;
+	//duty_cycle = (((this->max - this->min)*percent)/100)+this->min;
 
-	this->SetDutyCycle(duty_cycle);
+
+	int target_duty_cycle;
+	if (this->current_direction == eDirection::FORWARD)
+		target_duty_cycle = map(percent, 0, 100, this->center, this->max);
+	else
+		target_duty_cycle = map(percent, 0, 100, this->center, this->min);
+	ESP_LOGI(tag, "Target Duty cycle: %d", target_duty_cycle);
+
+	//Change speed softly
+//	int soft_step_size = 2;
+//	while (abs(this->current_duty_cycle - target_duty_cycle) > soft_step_size)
+//	{
+//		if (this->current_duty_cycle > target_duty_cycle)
+//			this->current_duty_cycle-=soft_step_size;
+//		else
+//			this->current_duty_cycle+=soft_step_size;
+//		this->SetDutyCycle(this->current_duty_cycle);
+//		vTaskDelay(pdMS_TO_TICKS(10));
+//	}
+
+//	if (this->current_duty_cycle > this->center && target_duty_cycle <= this->center)
+//	{
+//		this->current_duty_cycle = this->center;
+//		this->SetDutyCycle(this->center);
+//		vTaskDelay(pdMS_TO_TICKS(3000));
+//	}
+//	if (this->current_duty_cycle < this->center && target_duty_cycle >= this->center)
+//	{
+//		this->current_duty_cycle = this->center;
+//		this->SetDutyCycle(this->center);
+//		vTaskDelay(pdMS_TO_TICKS(3000));
+//	}
+
+	this->current_duty_cycle = target_duty_cycle;
+	this->SetDutyCycle(target_duty_cycle);
+}
+
+void Motor::SetDirection(eDirection direction)
+{
+	if (direction != this->current_direction) //about to change direction
+	{
+		this->SetSpeed(0);
+		vTaskDelay(pdMS_TO_TICKS(3000));
+		this->current_direction = direction;
+	}
 }
 
 void Motor::calibrate()

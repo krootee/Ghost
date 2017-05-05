@@ -17,6 +17,12 @@
 #include "sdkconfig.h"
 #include "driver/ledc.h"
 #include "PWM.h"
+#include <cmath>
+
+enum eDirection : int {
+  BACKWARD = 0,
+  FORWARD = 1
+};
 
 class Motor : public PWM
 {
@@ -27,11 +33,15 @@ public:
 
 	//void SetPin(int);
 	void SetSpeed(int);
+	void SetDirection(eDirection);
 	void calibrate();
 
 private:
 	int min;
 	int max;
+	int center;
+	int current_duty_cycle;
+	eDirection current_direction;
 };
 
 #endif /* MAIN_MOTOR_H_ */

@@ -20,6 +20,7 @@
 #include "StartModule.h"
 #include "Sensors/IRSensor.h"
 #include "Sensors/TCA9548.h"
+#include "pid.h"
 //#include "Sensors/IRSensorConfig.h"
 
 #define MOTOR_PIN GPIO_NUM_26
@@ -46,6 +47,7 @@ QueueHandle_t queue_actuators;
 
 struct movement_t {
 	int speed;
+	eDirection direction;
 	int steering_angle;
 };
 
@@ -85,7 +87,8 @@ void task_irsensors(void *p) {
 	ESP_LOGI(tag, "task_irsensors started");
 
 	Sensors::TCA9548 tca9548;
-	esp_err_t result = tca9548.setChannel(1);
+	//esp_err_t result =
+	tca9548.setChannel(1);
 
 	Sensors::IRSensorConfig irsensor_conf;
 	irsensor_conf.mounting_angle = 45.0;
@@ -157,18 +160,17 @@ void task_drivecomputer(void *p) {
 
 			//Speed
 			if (left2 < 20 || right2 < 20)
-				m.speed = 0; //Stop
+			{
+				m.speed = 50;
+				m.direction = BACKWARD;
+			}
 			else
-				m.speed = 70;
+			{
+				m.direction = FORWARD;
+				m.speed = 50;
+			}
 
-//			if (data.irdata[4] < data.irdata[1]) {
-//				m.speed = 50;
-//				m.steering_angle = 30;
-//			}
-//			else
-//			{
-//				m.steering_angle = 70;
-//			}
+			//TODO, add PID controller?
 
 			//Send the desired actuator movements to the queue.
 			xQueueSend(queue_actuators, &m, 0);
@@ -197,8 +199,9 @@ void task_actuators(void *p) {
 		if (xQueueReceive(queue_actuators, &m, portMAX_DELAY) == pdPASS) {
 			//ESP_LOGI(tag, "TurnTo(%d)", m.steering_angle);
 			//steering.TurnTo(m.steering_angle);
-			ESP_LOGI(tag, "SetSpeed(%d)", m.speed);
+			motor.SetDirection(m.direction);
 			motor.SetSpeed(m.speed);
+			ESP_LOGI(tag, "SetSpeed(%d)", m.speed);
 		}
 		vTaskDelay(pdMS_TO_TICKS(20));
 	}
@@ -219,10 +222,10 @@ void app_main(void) {
 	i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
 
 	//Create Queues
-	int queue_size_startmodule = 2;
+	int queue_size_startmodule = 1;
 	queue_startmodule = xQueueCreate(queue_size_startmodule, sizeof(int));
-	queue_sensorvalues = xQueueCreate(10, sizeof(sensorvalues_t));
-	queue_actuators = xQueueCreate(10, sizeof(movement_t));
+	queue_sensorvalues = xQueueCreate(1, sizeof(sensorvalues_t));
+	queue_actuators = xQueueCreate(1, sizeof(movement_t));
 
 	/*
 	 * Create Tasks

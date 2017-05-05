@@ -5,6 +5,7 @@
  */
 
 //#include <freertos/task.h>
+#include <esp_log.h>
 #include "freertos/FreeRTOS.h"
 //#include "esp_wifi.h"
 //#include "esp_system.h"
@@ -20,7 +21,7 @@
 void motor_calibrate()
 {
   //Maximum throttle
-  pwm_set_microseconds(3400);
+  pwm_set_microseconds(3600);
   vTaskDelay(3000 / portTICK_PERIOD_MS); //Delay for 2.5 seconds
 
   //Minimum throttle
@@ -35,5 +36,6 @@ void motor_calibrate()
 //Set speed. -100 is full reverse, 0 is no movement, 100 is full forward.
 void motor_set_speed(int speed)
 {
+  ESP_LOGI("motor", "Speed: %d", speed);
   pwm_set_microseconds(speed);
 }
