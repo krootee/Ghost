@@ -38,9 +38,8 @@ void Motor::ToggleEnable()
 //100 is full forward, 0 is stop, -100 is full reverse
 void Motor::SetSpeed(int percent)
 {
-	if (!this->enabled)
-		percent = 0;
-		//return;
+	//if (!this->enabled)
+//		percent = 0;
 
 	//TODO, handle negative percent
 	//int duty_cycle;
@@ -85,8 +84,8 @@ void Motor::SetSpeed(int percent)
 
 void Motor::SetDirection(eDirection direction)
 {
-	if (!this->enabled)
-		return;
+//	if (!this->enabled)
+//		return;
 
 	if (direction != this->current_direction) //about to change direction
 	{

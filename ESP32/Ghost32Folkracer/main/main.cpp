@@ -116,6 +116,7 @@ void task_irsensors(void *p) {
 	Sensors::IRSensor irsensor(irsensor_conf);
 
 	while (true) {
+		ESP_LOGI(tag, "IRSensors loop");
 //		int left, right = 0;
 //
 //		tca9548.setChannel(0);
@@ -172,6 +173,7 @@ void task_drivecomputer(void *p) {
 //	}
 
 	while (true) {
+		ESP_LOGI(tag, "DriveComputer loop");
 
 
 
@@ -184,21 +186,40 @@ void task_drivecomputer(void *p) {
 			int right1 = data.irdata[1];
 			int left2 = data.irdata[0];
 			int right2 = data.irdata[5];
+			ESP_LOGI(tag, "Left1: %d", left1);
+			ESP_LOGI(tag, "Left2: %d", left2);
+			ESP_LOGI(tag, "Right1: %d", right1);
+			ESP_LOGI(tag, "Right2: %d", right2);
 
-			int percent = (left1*100 / (right1+left1));
+			int leftTotal = left1 + left2;
+			int rightTotal = right1 + right2;
+			//ESP_LOGI(tag, "LeftTotal: %d", leftTotal);
+			//ESP_LOGI(tag, "RightTotal: %d", rightTotal);
+
+			int percent = (leftTotal*100 / (rightTotal+leftTotal));
 			m.steering_angle = percent;
 
 			//Speed
-			if (left2 < 20 || right2 < 20)
+			m.speed = 10;
+			m.direction = FORWARD;
+
+			if (left2 < 10 && right2 < 10)
 			{
-				m.speed = 25;
+				//Crashing into wall
+				m.speed = 30;
 				m.direction = BACKWARD;
+				m.steering_angle *= 2;
 			}
-			else
-			{
-				m.speed = 25;
-				m.direction = FORWARD;
-			}
+//			else if (left2 < 20 || right2 < 20)
+//			{
+//				m.speed = 10;
+//				m.direction = FORWARD;
+//			}
+//			else
+//			{
+//				m.speed = 25;
+//				m.direction = FORWARD;
+//			}
 
 			//TODO, add PID controller?
 
@@ -222,20 +243,22 @@ void task_actuators(void *p) {
 	motor.calibrate();
 
 	while (true) {
+		ESP_LOGI(tag, "Actuators loop");
 		movement_t m;
 		//ESP_LOGI(tag, "task_actuators waiting for steering command...");
 
 		//Startmodule
-		int x = 0;
-		if (xQueueReceive(queue_startmodule, &x, portMAX_DELAY) == pdPASS) {
-			ESP_LOGI(tag, "Startmodule says: %d", x);
-			motor.ToggleEnable();
-		}
+//		int x = 0;
+//		if (xQueueReceive(queue_startmodule, &x, portMAX_DELAY) == pdPASS) {
+//			ESP_LOGI(tag, "Startmodule toggling motors: %d", x);
+//			//motor.ToggleEnable();
+//		}
 
 		//Wait for an incoming command telling us to change motorspeed, or turn the wheels.
 		if (xQueueReceive(queue_actuators, &m, portMAX_DELAY) == pdPASS) {
-			//ESP_LOGI(tag, "TurnTo(%d)", m.steering_angle);
-			//motor.SetEnable(false);
+			ESP_LOGI(tag, "TurnTo(%d)", m.steering_angle);
+			//motor.SetEnable(true);
+			ESP_LOGI(tag, "Steering angle: %d", m.steering_angle);
 			steering.TurnTo(m.steering_angle);
 			motor.SetDirection(m.direction);
 			motor.SetSpeed(m.speed);
@@ -279,7 +302,7 @@ void app_main(void) {
 	 */
 
 	xTaskCreate(task_startmodule, "Startmodule task", 4096, NULL, 2, NULL);
-	xTaskCreate(task_irsensors, "IRSensors", 4096, NULL, 2, NULL);
+	xTaskCreate(task_irsensors, "IRSensors", 4096, NULL, 3, NULL);
 	//xTaskCreate(task_listener, "Listener", 4096, NULL, 2, NULL);
 	xTaskCreate(task_drivecomputer, "Driver task", 4096, NULL, 4, NULL);
 	xTaskCreate(task_actuators, "Actuators task", 4096, NULL, 5, NULL);
