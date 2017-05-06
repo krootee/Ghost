@@ -201,28 +201,35 @@ void task_drivecomputer(void *p) {
 			int percent = (leftTotal*100 / (rightTotal+leftTotal));
 			m.steering_angle = percent;
 
+			//Start calculating angle to wall
 			VectorCalculator calc;
 			Point p1 = calc.FindPointFromAngleAndDistance(60, left1);
 			//Compensate for X/Y offset sensor positions
-			p1.x = p1.x + 5.2;
+			p1.x = p1.x - 5.2;
 			p1.y = p1.y + 2.8;
 			Point p2 = calc.FindPointFromAngleAndDistance(25, left2);
 			Point vWall = calc.SubtractPoints(p2, p1);
 			Point vCar = {x: 1, y:0};
 			float angleToWall = calc.GetAngleBetweenVectors(vCar, vWall);
 			angleToWall = angleToWall * 180.0/M_PI; //From radians to degrees
-			if (vWall.x < 0)
+			if (vWall.y < 0)
 				angleToWall *= -1;
+			float wallAngleCompensation = 1.0; //1.0 is keep as is.
+			if (angleToWall > 45) wallAngleCompensation = 0.5;
+			if (angleToWall < -45) wallAngleCompensation = 1.5;
+			m.steering_angle *= wallAngleCompensation;
+			//End calculating angle to wall
 
+			//m.steering_angle
 			ESP_LOGI(tag, "Angle to wall: %0.2f", angleToWall);
 
 			//Speed
 			m.speed = 10;
 			m.direction = FORWARD;
 
+			//Crashing into wall
 			if (left2 < 10 && right2 < 10)
 			{
-				//Crashing into wall
 				m.speed = 30;
 				m.direction = BACKWARD;
 				m.steering_angle *= 2;
@@ -241,7 +248,7 @@ void task_drivecomputer(void *p) {
 			//TODO, add PID controller?
 
 			//Send the desired actuator movements to the queue.
-			//xQueueSend(queue_actuators, &m, 0);
+			xQueueSend(queue_actuators, &m, 0);
 		}
 
 		vTaskDelay(pdMS_TO_TICKS(20));
