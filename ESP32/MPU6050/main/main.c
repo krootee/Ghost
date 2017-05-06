@@ -21,7 +21,7 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 
 void app_main(void)
 {
-    xTaskCreate(&task_mpu6050, "task_mpu6050", 512, NULL, 5, NULL);
+    xTaskCreate(&task_mpu6050, "task_mpu6050", 4096, NULL, 5, NULL);
 
     while (true) {
         vTaskDelay(300 / portTICK_PERIOD_MS);
