@@ -51,8 +51,9 @@ QueueHandle_t queue_actuators;
 
 //Configuration
 bool useWallCompensation = true;
-bool doubleSpeedWhenUsingWallCompensation = false;
-bool useCrashSensing = false;
+bool doubleSpeedWhenUsingWallCompensation = false; //Double speed if we're driving parallell to wall.
+bool useCrashSensing = true; 	//If we're about to hit a wall, then perform quick turn.
+bool useReverseOnCrash = true; //If up-close to wall in front, then reverse.
 int defaultSpeed = 14;
 //Cofnfiguration end
 
@@ -183,7 +184,6 @@ void task_drivecomputer(void *p) {
 
 	Sensors::MPU6050 mpu6050;
 
-
 	//Wait for StartModule
 
 //	int x = 123;
@@ -277,7 +277,8 @@ void task_drivecomputer(void *p) {
 //				}
 
 				//Adjust speed (go twice as fast if we are parallell to the wall)
-				if (useWallCompensation && doubleSpeedWhenUsingWallCompensation) {
+				if (useWallCompensation
+						&& doubleSpeedWhenUsingWallCompensation) {
 					if (abs(angleToWall) < 10)
 						m.speed *= 2;
 				}
@@ -290,8 +291,10 @@ void task_drivecomputer(void *p) {
 						else
 							m.steering_angle = 0;
 					}
+				}
 
-					//Crashed into wall
+				//Crashed into wall
+				if (useReverseOnCrash) {
 					if (left2 < 10 && right2 < 10) {
 						m.speed = 20;
 						m.direction = BACKWARD;
