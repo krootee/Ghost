@@ -23,6 +23,8 @@
 #include "pid.h"
 //#include "Sensors/IRSensorConfig.h"
 #include "VectorCalculator.h"
+#include "MovementDetector.h"
+#include "Sensors/MPU6050.h"
 #include <cmath>
 
 #define MOTOR_PIN GPIO_NUM_26
@@ -46,6 +48,13 @@ int global_state_startmodule = eStartModuleState::WAITING;
 QueueHandle_t queue_startmodule;
 QueueHandle_t queue_sensorvalues;
 QueueHandle_t queue_actuators;
+
+//Configuration
+bool useWallCompensation = true;
+bool doubleSpeedWhenUsingWallCompensation = false;
+bool useCrashSensing = false;
+int defaultSpeed = 14;
+//Cofnfiguration end
 
 struct movement_t {
 	int speed;
@@ -73,8 +82,13 @@ struct sensorvalues_t {
 	int sensor15;
 	int compass;
 	int irdata[16];
-
 };
+
+//extern struct accelerometer_data {
+//	int x;
+//	int y;
+//	int z;
+//};
 
 void task_listener(void *parameters) {
 	int x = 89;
@@ -156,7 +170,7 @@ void task_irsensors(void *p) {
 		//xQueueSend(queue_actuators, &m, NULL);
 		xQueueSend(queue_sensorvalues, &data, 0);
 
-		vTaskDelay(pdMS_TO_TICKS(20));
+		vTaskDelay(pdMS_TO_TICKS(10));
 	}
 
 	vTaskDelete(NULL);
@@ -164,6 +178,11 @@ void task_irsensors(void *p) {
 
 void task_drivecomputer(void *p) {
 	ESP_LOGI(tag, "task_drivecomputer started");
+
+	Sensors::MovementDetector movementDetector;
+
+	Sensors::MPU6050 mpu6050;
+
 
 	//Wait for StartModule
 
@@ -187,10 +206,16 @@ void task_drivecomputer(void *p) {
 
 			//ESP_LOGI(tag, "DriveComputer loop");
 
+//			Sensors::accelerometer_data acc = mpu6050.Read();
+//			ESP_LOGI(tag, "X: %d", acc.x);
+//			ESP_LOGI(tag, "Y: %d", acc.y);
+//			ESP_LOGI(tag, "Z: %d", acc.z);
+
 			//Listen for incoming sensor-data
 			sensorvalues_t data;
 			if (xQueueReceive(queue_sensorvalues, &data, portMAX_DELAY)
 					== pdPASS) {
+
 				movement_t m;
 
 				int left1 = data.irdata[4];
@@ -211,8 +236,8 @@ void task_drivecomputer(void *p) {
 				m.steering_angle = percent;
 
 				//Start calculating angle to wall
-				bool useWallCompensation = false;
-				float angleToWall;
+
+				float angleToWall = 0.0;
 				if (useWallCompensation) {
 					VectorCalculator calc;
 					Point p1 = calc.FindPointFromAngleAndDistance(60, left1);
@@ -238,28 +263,40 @@ void task_drivecomputer(void *p) {
 				//End calculating angle to wall
 
 				//Speed - set default speed and direction
-				m.speed = 10;
+				m.speed = defaultSpeed;
 				m.direction = FORWARD;
 
+				//Standing still? Then stop the motor.
+//				std::vector<int> s;
+//				s.assign(data.irdata, data.irdata+16);
+//				movementDetector.SaveIRSensorReadings(s);
+//				if (movementDetector.IsStandingStill())
+//				{
+//					ESP_LOGW(tag, "NO MOTION DETECTED!");
+//					m.speed = 0;
+//				}
+
 				//Adjust speed (go twice as fast if we are parallell to the wall)
-				if (useWallCompensation) {
+				if (useWallCompensation && doubleSpeedWhenUsingWallCompensation) {
 					if (abs(angleToWall) < 10)
 						m.speed *= 2;
 				}
 
 				//About to crash, make big turn!
-				if (left2 < 20 && right2 < 20) {
-					if (m.steering_angle > 50)
-						m.steering_angle = 100;
-					else
-						m.steering_angle = 0;
-				}
+				if (useCrashSensing) {
+					if (left2 < 20 && right2 < 20) {
+						if (m.steering_angle > 50)
+							m.steering_angle = 100;
+						else
+							m.steering_angle = 0;
+					}
 
-				//Crashed into wall
-				if (left2 < 10 && right2 < 10) {
-					m.speed = 20;
-					m.direction = BACKWARD;
-					m.steering_angle *= -2;
+					//Crashed into wall
+					if (left2 < 10 && right2 < 10) {
+						m.speed = 20;
+						m.direction = BACKWARD;
+						m.steering_angle *= -2;
+					}
 				}
 
 				//TODO, add PID controller?
@@ -269,7 +306,7 @@ void task_drivecomputer(void *p) {
 			}
 		}
 
-		vTaskDelay(pdMS_TO_TICKS(20));
+		vTaskDelay(pdMS_TO_TICKS(10));
 	}
 
 	vTaskDelete(NULL);
@@ -306,7 +343,7 @@ void task_actuators(void *p) {
 			motor.SetSpeed(m.speed);
 			ESP_LOGI(tag, "SetSpeed(%d)", m.speed);
 		}
-		vTaskDelay(pdMS_TO_TICKS(20));
+		vTaskDelay(pdMS_TO_TICKS(10));
 	}
 
 	vTaskDelete(NULL);
