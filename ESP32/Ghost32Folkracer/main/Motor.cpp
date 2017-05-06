@@ -16,6 +16,7 @@ Motor::Motor(int pin, int min, int max) : PWM (pin, LEDC_CHANNEL_0, LEDC_TIMER_0
 	this->current_duty_cycle = ((max-min)/2)+min; //center
 	this->center = ((max-min)/2)+min; //center
 	this->enabled = false;
+	this-> waiting_for_direction_change = false;
 }
 
 
@@ -87,11 +88,13 @@ void Motor::SetDirection(eDirection direction)
 //	if (!this->enabled)
 //		return;
 
-	if (direction != this->current_direction) //about to change direction
+	if (direction != this->current_direction && !this->waiting_for_direction_change) //about to change direction
 	{
+		this->waiting_for_direction_change = true;
 		this->SetSpeed(0);
-		vTaskDelay(pdMS_TO_TICKS(3000));
+		vTaskDelay(pdMS_TO_TICKS(1500));
 		this->current_direction = direction;
+		this->waiting_for_direction_change = false;
 	}
 }
 

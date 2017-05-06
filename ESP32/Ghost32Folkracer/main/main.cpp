@@ -118,7 +118,7 @@ void task_irsensors(void *p) {
 	Sensors::IRSensor irsensor(irsensor_conf);
 
 	while (true) {
-		ESP_LOGI(tag, "IRSensors loop");
+//		ESP_LOGI(tag, "IRSensors loop");
 //		int left, right = 0;
 //
 //		tca9548.setChannel(0);
@@ -166,6 +166,7 @@ void task_drivecomputer(void *p) {
 	ESP_LOGI(tag, "task_drivecomputer started");
 
 	//Wait for StartModule
+
 //	int x = 123;
 //	//BaseType_t rc = xQueueReceive(queue_startmodule, &x, portMAX_DELAY);
 //	ESP_LOGI(tag, "Drivecomputer waiting for Startmodule");
@@ -175,80 +176,97 @@ void task_drivecomputer(void *p) {
 //	}
 
 	while (true) {
-		ESP_LOGI(tag, "DriveComputer loop");
-
-
-
-		//Listen for incoming sensor-data
-		sensorvalues_t data;
-		if (xQueueReceive(queue_sensorvalues, &data, portMAX_DELAY) == pdPASS) {
+		if (global_state_startmodule == eStartModuleState::WAITING
+				|| global_state_startmodule == eStartModuleState::STOPPED) {
 			movement_t m;
-
-			int left1 = data.irdata[4];
-			int right1 = data.irdata[1];
-			int left2 = data.irdata[0];
-			int right2 = data.irdata[5];
-			ESP_LOGI(tag, "Left1: %d", left1);
-			ESP_LOGI(tag, "Left2: %d", left2);
-			ESP_LOGI(tag, "Right1: %d", right1);
-			ESP_LOGI(tag, "Right2: %d", right2);
-
-			int leftTotal = left1 + left2;
-			int rightTotal = right1 + right2;
-			//ESP_LOGI(tag, "LeftTotal: %d", leftTotal);
-			//ESP_LOGI(tag, "RightTotal: %d", rightTotal);
-
-			int percent = (leftTotal*100 / (rightTotal+leftTotal));
-			m.steering_angle = percent;
-
-			//Start calculating angle to wall
-			VectorCalculator calc;
-			Point p1 = calc.FindPointFromAngleAndDistance(60, left1);
-			//Compensate for X/Y offset sensor positions
-			p1.x = p1.x - 5.2;
-			p1.y = p1.y + 2.8;
-			Point p2 = calc.FindPointFromAngleAndDistance(25, left2);
-			Point vWall = calc.SubtractPoints(p2, p1);
-			Point vCar = {x: 1, y:0};
-			float angleToWall = calc.GetAngleBetweenVectors(vCar, vWall);
-			angleToWall = angleToWall * 180.0/M_PI; //From radians to degrees
-			if (vWall.y < 0)
-				angleToWall *= -1;
-			float wallAngleCompensation = 1.0; //1.0 is keep as is.
-			if (angleToWall > 45) wallAngleCompensation = 0.5;
-			if (angleToWall < -45) wallAngleCompensation = 1.5;
-			m.steering_angle *= wallAngleCompensation;
-			//End calculating angle to wall
-
-			//m.steering_angle
-			ESP_LOGI(tag, "Angle to wall: %0.2f", angleToWall);
-
-			//Speed
-			m.speed = 10;
-			m.direction = FORWARD;
-
-			//Crashing into wall
-			if (left2 < 10 && right2 < 10)
-			{
-				m.speed = 30;
-				m.direction = BACKWARD;
-				m.steering_angle *= 2;
-			}
-//			else if (left2 < 20 || right2 < 20)
-//			{
-//				m.speed = 10;
-//				m.direction = FORWARD;
-//			}
-//			else
-//			{
-//				m.speed = 25;
-//				m.direction = FORWARD;
-//			}
-
-			//TODO, add PID controller?
-
-			//Send the desired actuator movements to the queue.
+			m.speed = 0;
+			m.steering_angle = 50;
 			xQueueSend(queue_actuators, &m, 0);
+			//continue;
+		} else if (global_state_startmodule == eStartModuleState::RUNNING) {
+
+			//ESP_LOGI(tag, "DriveComputer loop");
+
+			//Listen for incoming sensor-data
+			sensorvalues_t data;
+			if (xQueueReceive(queue_sensorvalues, &data, portMAX_DELAY)
+					== pdPASS) {
+				movement_t m;
+
+				int left1 = data.irdata[4];
+				int right1 = data.irdata[1];
+				int left2 = data.irdata[0];
+				int right2 = data.irdata[5];
+				ESP_LOGI(tag, "Left1: %d", left1);
+				ESP_LOGI(tag, "Left2: %d", left2);
+				ESP_LOGI(tag, "Right1: %d", right1);
+				ESP_LOGI(tag, "Right2: %d", right2);
+
+				int leftTotal = left1 + left2;
+				int rightTotal = right1 + right2;
+				//ESP_LOGI(tag, "LeftTotal: %d", leftTotal);
+				//ESP_LOGI(tag, "RightTotal: %d", rightTotal);
+
+				int percent = (leftTotal * 100 / (rightTotal + leftTotal));
+				m.steering_angle = percent;
+
+				//Start calculating angle to wall
+				bool useWallCompensation = false;
+				float angleToWall;
+				if (useWallCompensation) {
+					VectorCalculator calc;
+					Point p1 = calc.FindPointFromAngleAndDistance(60, left1);
+					//Compensate for X/Y offset sensor positions
+					p1.x = p1.x - 5.2;
+					p1.y = p1.y + 2.8;
+					Point p2 = calc.FindPointFromAngleAndDistance(25, left2);
+					Point vWall = calc.SubtractPoints(p2, p1);
+					Point
+					vCar = {x: 1, y:0};
+					angleToWall = calc.GetAngleBetweenVectors(vCar, vWall);
+					angleToWall = angleToWall * 180.0 / M_PI; //From radians to degrees
+					if (vWall.y < 0)
+						angleToWall *= -1;
+					float wallAngleCompensation = 1.0; //1.0 is keep as is.
+					if (angleToWall > 45)
+						wallAngleCompensation = 0.5;
+					if (angleToWall < -45)
+						wallAngleCompensation = 1.5;
+					m.steering_angle *= wallAngleCompensation;
+					ESP_LOGI(tag, "Angle to wall: %0.2f", angleToWall);
+				}
+				//End calculating angle to wall
+
+				//Speed - set default speed and direction
+				m.speed = 10;
+				m.direction = FORWARD;
+
+				//Adjust speed (go twice as fast if we are parallell to the wall)
+				if (useWallCompensation) {
+					if (abs(angleToWall) < 10)
+						m.speed *= 2;
+				}
+
+				//About to crash, make big turn!
+				if (left2 < 20 && right2 < 20) {
+					if (m.steering_angle > 50)
+						m.steering_angle = 100;
+					else
+						m.steering_angle = 0;
+				}
+
+				//Crashed into wall
+				if (left2 < 10 && right2 < 10) {
+					m.speed = 20;
+					m.direction = BACKWARD;
+					m.steering_angle *= -2;
+				}
+
+				//TODO, add PID controller?
+
+				//Send the desired actuator movements to the queue.
+				xQueueSend(queue_actuators, &m, 0);
+			}
 		}
 
 		vTaskDelay(pdMS_TO_TICKS(20));
@@ -367,8 +385,6 @@ void app_main(void) {
 
 	//LED l(GPIO_NUM_23);
 	//l.Blink(200);
-
-
 
 //	for (;;) {
 //		if (global_state_startmodule == eStartModuleState::WAITING) {

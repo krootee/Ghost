@@ -44,6 +44,7 @@ private:
 	int current_duty_cycle;
 	eDirection current_direction;
 	bool enabled;
+	bool waiting_for_direction_change;
 };
 
 #endif /* MAIN_MOTOR_H_ */
