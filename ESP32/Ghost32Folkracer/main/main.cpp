@@ -22,6 +22,8 @@
 #include "Sensors/TCA9548.h"
 #include "pid.h"
 //#include "Sensors/IRSensorConfig.h"
+#include "VectorCalculator.h"
+#include <cmath>
 
 #define MOTOR_PIN GPIO_NUM_26
 #define STEERING_PIN GPIO_NUM_27
@@ -199,6 +201,21 @@ void task_drivecomputer(void *p) {
 			int percent = (leftTotal*100 / (rightTotal+leftTotal));
 			m.steering_angle = percent;
 
+			VectorCalculator calc;
+			Point p1 = calc.FindPointFromAngleAndDistance(60, left1);
+			//Compensate for X/Y offset sensor positions
+			p1.x = p1.x + 5.2;
+			p1.y = p1.y + 2.8;
+			Point p2 = calc.FindPointFromAngleAndDistance(25, left2);
+			Point vWall = calc.SubtractPoints(p2, p1);
+			Point vCar = {x: 1, y:0};
+			float angleToWall = calc.GetAngleBetweenVectors(vCar, vWall);
+			angleToWall = angleToWall * 180.0/M_PI; //From radians to degrees
+			if (vWall.x < 0)
+				angleToWall *= -1;
+
+			ESP_LOGI(tag, "Angle to wall: %0.2f", angleToWall);
+
 			//Speed
 			m.speed = 10;
 			m.direction = FORWARD;
@@ -224,7 +241,7 @@ void task_drivecomputer(void *p) {
 			//TODO, add PID controller?
 
 			//Send the desired actuator movements to the queue.
-			xQueueSend(queue_actuators, &m, 0);
+			//xQueueSend(queue_actuators, &m, 0);
 		}
 
 		vTaskDelay(pdMS_TO_TICKS(20));
