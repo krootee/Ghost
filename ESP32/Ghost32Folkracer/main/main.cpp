@@ -49,6 +49,7 @@ struct movement_t {
 	int speed;
 	eDirection direction;
 	int steering_angle;
+	//bool enabled;
 };
 
 struct sensorvalues_t {
@@ -75,11 +76,28 @@ struct sensorvalues_t {
 
 void task_listener(void *parameters) {
 	int x = 89;
+	//BaseType_t driverTask;
+	//BaseType_t actuatorTask;
 
 	while (true) {
 		ESP_LOGW(tag, "Listening on queue_startmodule...");
 		BaseType_t rc = xQueueReceive(queue_startmodule, &x, portMAX_DELAY);
 		ESP_LOGW(tag, "queue_startmodule said %d", rc);
+
+		//movement_t m;
+		//m.enabled = true;
+		//xQueueSend(queue_actuators, &m, 0);
+
+//		if (x == 1)
+//		{
+//			driverTask = xTaskCreate(task_drivecomputer, "Driver task", 4096, NULL, 4, NULL);
+//		    actuatorTask = xTaskCreate(task_actuators, "Actuators task", 4096, NULL, 5, NULL);
+//		}
+//		else
+//		{
+//			vTaskDelete(driverTask);
+//			vTaskDelete(actuatorTask);
+//		}
 	}
 }
 
@@ -126,6 +144,7 @@ void task_irsensors(void *p) {
 		//m.speed = 100;
 		//m.steering_angle = angle;
 
+		//Loop over all the 16 IR sensors, and get the distances.
 		for (int channel = 0; channel <= 15; channel++) {
 			tca9548.setChannel(channel);
 			data.irdata[channel] = irsensor.getDistance();
@@ -143,12 +162,23 @@ void task_irsensors(void *p) {
 void task_drivecomputer(void *p) {
 	ESP_LOGI(tag, "task_drivecomputer started");
 
+	//Wait for StartModule
+//	int x = 123;
+//	//BaseType_t rc = xQueueReceive(queue_startmodule, &x, portMAX_DELAY);
+//	ESP_LOGI(tag, "Drivecomputer waiting for Startmodule");
+//	while (x != 1)
+//	{
+//		BaseType_t rc = xQueueReceive(queue_startmodule, &x, 0);
+//	}
+
 	while (true) {
-		movement_t m;
+
+
 
 		//Listen for incoming sensor-data
 		sensorvalues_t data;
 		if (xQueueReceive(queue_sensorvalues, &data, portMAX_DELAY) == pdPASS) {
+			movement_t m;
 
 			int left1 = data.irdata[4];
 			int right1 = data.irdata[1];
@@ -161,13 +191,13 @@ void task_drivecomputer(void *p) {
 			//Speed
 			if (left2 < 20 || right2 < 20)
 			{
-				m.speed = 50;
+				m.speed = 25;
 				m.direction = BACKWARD;
 			}
 			else
 			{
+				m.speed = 25;
 				m.direction = FORWARD;
-				m.speed = 50;
 			}
 
 			//TODO, add PID controller?
@@ -195,10 +225,18 @@ void task_actuators(void *p) {
 		movement_t m;
 		//ESP_LOGI(tag, "task_actuators waiting for steering command...");
 
+		//Startmodule
+		int x = 0;
+		if (xQueueReceive(queue_startmodule, &x, portMAX_DELAY) == pdPASS) {
+			ESP_LOGI(tag, "Startmodule says: %d", x);
+			motor.ToggleEnable();
+		}
+
 		//Wait for an incoming command telling us to change motorspeed, or turn the wheels.
 		if (xQueueReceive(queue_actuators, &m, portMAX_DELAY) == pdPASS) {
 			//ESP_LOGI(tag, "TurnTo(%d)", m.steering_angle);
-			//steering.TurnTo(m.steering_angle);
+			//motor.SetEnable(false);
+			steering.TurnTo(m.steering_angle);
 			motor.SetDirection(m.direction);
 			motor.SetSpeed(m.speed);
 			ESP_LOGI(tag, "SetSpeed(%d)", m.speed);
@@ -242,6 +280,7 @@ void app_main(void) {
 
 	xTaskCreate(task_startmodule, "Startmodule task", 4096, NULL, 2, NULL);
 	xTaskCreate(task_irsensors, "IRSensors", 4096, NULL, 2, NULL);
+	//xTaskCreate(task_listener, "Listener", 4096, NULL, 2, NULL);
 	xTaskCreate(task_drivecomputer, "Driver task", 4096, NULL, 4, NULL);
 	xTaskCreate(task_actuators, "Actuators task", 4096, NULL, 5, NULL);
 

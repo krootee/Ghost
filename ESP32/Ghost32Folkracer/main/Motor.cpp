@@ -15,6 +15,7 @@ Motor::Motor(int pin, int min, int max) : PWM (pin, LEDC_CHANNEL_0, LEDC_TIMER_0
 	this->min = min;
 	this->current_duty_cycle = ((max-min)/2)+min; //center
 	this->center = ((max-min)/2)+min; //center
+	this->enabled = false;
 }
 
 
@@ -28,9 +29,19 @@ long map(long x, long in_min, long in_max, long out_min, long out_max)
 	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
+void Motor::ToggleEnable()
+{
+	//ESP_LOGI(tag, "SetEnable %d", enable);
+	this->enabled = !this->enabled;
+}
+
 //100 is full forward, 0 is stop, -100 is full reverse
 void Motor::SetSpeed(int percent)
 {
+	if (!this->enabled)
+		percent = 0;
+		//return;
+
 	//TODO, handle negative percent
 	//int duty_cycle;
 	//duty_cycle = (((this->max - this->min)*percent)/100)+this->min;
@@ -38,9 +49,9 @@ void Motor::SetSpeed(int percent)
 
 	int target_duty_cycle;
 	if (this->current_direction == eDirection::FORWARD)
-		target_duty_cycle = map(percent, 0, 100, this->center, this->max);
-	else
 		target_duty_cycle = map(percent, 0, 100, this->center, this->min);
+	else
+		target_duty_cycle = map(percent, 0, 100, this->center, this->max);
 	ESP_LOGI(tag, "Target Duty cycle: %d", target_duty_cycle);
 
 	//Change speed softly
@@ -74,6 +85,9 @@ void Motor::SetSpeed(int percent)
 
 void Motor::SetDirection(eDirection direction)
 {
+	if (!this->enabled)
+		return;
+
 	if (direction != this->current_direction) //about to change direction
 	{
 		this->SetSpeed(0);

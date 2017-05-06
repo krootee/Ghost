@@ -34,6 +34,7 @@ public:
 	//void SetPin(int);
 	void SetSpeed(int);
 	void SetDirection(eDirection);
+	void ToggleEnable();
 	void calibrate();
 
 private:
@@ -42,6 +43,7 @@ private:
 	int center;
 	int current_duty_cycle;
 	eDirection current_direction;
+	bool enabled;
 };
 
 #endif /* MAIN_MOTOR_H_ */
