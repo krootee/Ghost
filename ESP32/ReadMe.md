@@ -100,3 +100,8 @@ Reboot the machine afterwards.
 
 #### OTA fails
 https://github.com/espressif/esp-idf/issues/231
+
+
+#### TODO
+
+- separate task_actuators into task_motor and task_steering, and write to two separate queues from task_drivecomputer.
