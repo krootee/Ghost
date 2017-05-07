@@ -8,6 +8,8 @@
 #include "esp_log.h"
 #include "freertos/timers.h"
 
+#define LED_PIN GPIO_NUM_23
+
 const static char* tag = "SoftwareTimerExample";
 
 static int level = 0;
@@ -21,15 +23,14 @@ void ToggleLEDTimer(TimerHandle_t timer)
 {
   ESP_LOGI(tag, "Timer TICK!");
 
-  //int level = gpio_get_level(GPIO_NUM_23);
-  ESP_LOGI(tag, "Got level %d", level);
+  //Toggle LED
   level = !level;
-  gpio_set_level(GPIO_NUM_23, level);
+  gpio_set_level(LED_PIN, level);
 }
 
 void task_starttimer(void* p)
 {
-  TimerHandle_t t = xTimerCreate("Toggle LED timer", pdMS_TO_TICKS(200), pdTRUE, NULL, ToggleLEDTimer);
+  TimerHandle_t t = xTimerCreate("Toggle LED timer", pdMS_TO_TICKS(500), pdTRUE, NULL, ToggleLEDTimer);
   if (t == NULL)
   {
     ESP_LOGE(tag, "Unable to create timer");
@@ -42,13 +43,13 @@ void task_starttimer(void* p)
 
   while (1)
   {
-    vTaskDelay(pdMS_TO_TICKS(5000));
+    vTaskDelay(pdMS_TO_TICKS(20000));
   }
 }
 
 void app_main(void)
 {
-  gpio_set_direction(GPIO_NUM_23, GPIO_MODE_OUTPUT);
+  gpio_set_direction(LED_PIN, GPIO_MODE_OUTPUT);
 
   xTaskCreate(&task_starttimer, "Start timer", 4096, NULL, 2, NULL);
 
