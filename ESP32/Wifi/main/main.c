@@ -12,6 +12,26 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
+//http://www.barth-dev.de/websockets-on-the-esp32/
+
+void ws_server(void *pvParameters) {
+ //connection references
+ struct netconn *conn, *newconn;
+
+ //set up new TCP listener
+ conn = netconn_new(NETCONN_TCP);
+ netconn_bind(conn, NULL, 9998);
+ netconn_listen(conn);
+
+ //wait for connections
+ while (netconn_accept(conn, &newconn) == ERR_OK)
+ ws_server_netconn_serve(newconn);
+
+ //close connection
+ netconn_close(conn);
+ netconn_delete(conn);
+}
+
 void app_main(void)
 {
     nvs_flash_init();
@@ -23,10 +43,10 @@ void app_main(void)
     ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
     wifi_config_t sta_config = {
         .sta = {
-            .ssid = "norbot",
-            .password = "1A2B3C4D5E",
+            .ssid = "Skynet",
+            .password = "W4r3Zl4ck",
             .bssid_set = false
-        }
+        };
     };
     ESP_ERROR_CHECK( esp_wifi_set_config(WIFI_IF_STA, &sta_config) );
     ESP_ERROR_CHECK( esp_wifi_start() );

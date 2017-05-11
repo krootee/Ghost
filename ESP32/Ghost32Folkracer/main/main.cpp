@@ -7,13 +7,18 @@
  * 6. Rebuild the index
  */
 
+#include <stdio.h>
 #include <esp_log.h>
-#include <string>
+#include <string.h>
 #include "sdkconfig.h"
 #include "driver/gpio.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
+#include "nvs_flash.h"
+#include "esp_wifi.h"
+#include "esp_event.h"
+#include "esp_event_loop.h"
 #include "TaskMotor.cpp"
 #include "TaskDriveController.cpp"
 #include "TaskStartModule.cpp"
@@ -25,7 +30,14 @@
 #include "VectorCalculator.h"
 #include "MovementDetector.h"
 #include "Sensors/MPU6050.h"
+
+#include "Task.h"
+#include "WiFi.h"
+#include "WiFiEventHandler.h"
+
 #include <cmath>
+#include "SockServ.h"
+#include "WebSocketTask.h"
 
 #define MOTOR_PIN GPIO_NUM_26
 #define STEERING_PIN GPIO_NUM_27
@@ -37,6 +49,7 @@
 //#define ESP_ERROR_CHECK(x)   do { esp_err_t rc = (x); if (rc != ESP_OK) { ESP_LOGE("err", "esp_err_t = %d", rc); assert(0 && #x);} } while(0);
 
 static char tag[] = "Ghost32";
+static WiFi *wifi;
 
 extern "C" {
 void app_main(void);
@@ -48,14 +61,15 @@ int global_state_startmodule = eStartModuleState::WAITING;
 QueueHandle_t queue_startmodule;
 QueueHandle_t queue_sensorvalues;
 QueueHandle_t queue_actuators;
+QueueHandle_t WebSocket_rx_queue;
 
 //Configuration
 bool useWallCompensation = true;
 bool doubleSpeedWhenUsingWallCompensation = false; //Double speed if we're driving parallell to wall.
-bool useCrashSensing = true; 	//If we're about to hit a wall, then perform quick turn.
+bool useCrashSensing = true; //If we're about to hit a wall, then perform quick turn.
 bool useReverseOnCrash = true; //If up-close to wall in front, then reverse.
-int defaultSpeed = 14;
-//Cofnfiguration end
+int defaultSpeed = 12;
+//Configuration end
 
 struct movement_t {
 	int speed;
@@ -90,6 +104,11 @@ struct sensorvalues_t {
 //	int y;
 //	int z;
 //};
+
+esp_err_t event_handler(void *ctx, system_event_t *event)
+{
+    return ESP_OK;
+}
 
 void task_listener(void *parameters) {
 	int x = 89;
@@ -352,7 +371,57 @@ void task_actuators(void *p) {
 	vTaskDelete(NULL);
 }
 
+void task_process_WebSocket( void *pvParameters ){
+    (void)pvParameters;
+
+    //frame buffer
+    WebSocket_frame_t __RX_frame;
+
+    //create WebSocket RX Queue
+    WebSocket_rx_queue = xQueueCreate(10,sizeof(WebSocket_frame_t));
+
+    while (1){
+        //receive next WebSocket frame from queue
+        if(xQueueReceive(WebSocket_rx_queue,&__RX_frame, 3*portTICK_PERIOD_MS)==pdTRUE){
+
+        	//write frame inforamtion to UART
+        	printf("New Websocket frame. Length %d, payload %.*s \r\n", __RX_frame.payload_length, __RX_frame.payload_length, __RX_frame.payload);
+
+        	//loop back frame
+        	WS_write_data(__RX_frame.payload, __RX_frame.payload_length);
+
+        	//free memory
+			if (__RX_frame.payload != NULL)
+				free(__RX_frame.payload);
+
+        }
+    }
+}
+
 void app_main(void) {
+
+    nvs_flash_init();
+
+	//Connect to Wi-Fi
+	wifi = new WiFi();
+	//wifi->setWifiEventHandler(eventHandler);
+	wifi->connectAP("Skynet", "W4r3Zl4ck");
+
+	char test[6];
+	strcpy(test, "Hallo");
+
+	//SockServ mySockServer = SockServ(9876);
+	//mySockServer.start();
+
+	xTaskCreate(&task_process_WebSocket, "ws_process_rx", 2048, NULL, 5, NULL);
+	xTaskCreate(&ws_server, "ws_server", 2048, NULL, 5, NULL);
+
+	//create WebSocket receive task
+    //xTaskCreate	(&task_process_WebSocket, "ws_process_rx", 2048, NULL, 5, NULL);
+
+	//Create Websocket Server Task
+	//xTaskCreate(&ws_server, "ws_server", 2048, NULL, 5, NULL);
+
 	//Setup I2C
 	i2c_config_t conf;
 	conf.mode = I2C_MODE_MASTER;
@@ -391,74 +460,7 @@ void app_main(void) {
 
 	for (;;) {
 		vTaskDelay(pdMS_TO_TICKS(1000));
+		//WS_write_data("Ghost says hi!", 14);
+		//mySockServer.sendData("Ghost32!");
 	}
-
-	//Experimenting below...
-
-	//Motor motor(MOTOR_PIN, 1800, 3400);
-	//motor.calibrate();
-
-	//ServoSteering steering(STEERING_PIN, 2000, 4100);
-
-	//Sensors::TCA9548 tca9548;
-	//esp_err_t result = tca9548.setChannel(1);
-	//ESP_LOGD(tag, "TCA9548 channel result: %d", result);
-	//ESP_ERROR_CHECK(result);
-
-	//IRSensorArray irsensors();
-	//int readings[16] = irsensors.getDistances();
-
-	//double mounting_angle = 45.0;
-
-//	Sensors::IRSensorConfig irsensor_conf;
-//	irsensor_conf.mounting_angle = 45.0;
-//	irsensor_conf.offset_x_mm = 20.0;
-//	irsensor_conf.offset_y_mm = 9.5;
-//
-//	Sensors::IRSensor irsensor(irsensor_conf);
-	//esp_err_t irsensor_found = irsensor.detectDevice();
-	//if (irsensor_found != ESP_OK)
-	//	ESP_LOGE(tag, "Unable to detect IRSensor");
-
-	//Compass compass();
-	//int heading = compass.read();
-
-	//LED l(GPIO_NUM_23);
-	//l.Blink(200);
-
-//	for (;;) {
-//		if (global_state_startmodule == eStartModuleState::WAITING) {
-//			ESP_LOGD(tag, "In WAITING state");
-//			motor.SetSpeed(0);
-//			//steering.TurnTo(2200);
-//			int cm = irsensor.getDistance();
-//			ESP_LOGD(tag, "Distance: %d", cm);
-//			//printf("[W] CM: %d\n", cm);
-//		} else if (global_state_startmodule == eStartModuleState::RUNNING) {
-//			//ESP_LOGD(tag, "In RUNNING state");
-//			//motor.SetSpeed(3000);
-//
-//			int left, right = 0;
-//
-//			tca9548.setChannel(0);
-//			left = irsensor.getDistance();
-//			//ESP_LOGI(tag, "Left: %d", left);
-//
-//			tca9548.setChannel(1);
-//			right = irsensor.getDistance();
-//			//ESP_LOGI(tag, "Right: %d", right);
-//
-//			if (left > right)
-//				steering.TurnTo(3000);
-//			else
-//				steering.TurnTo(2200);
-//
-//		} else if (global_state_startmodule == eStartModuleState::STOPPED) {
-//			//ESP_LOGD(tag, "In STOPPED state");
-//			motor.SetSpeed(1500);
-//			steering.TurnTo(4000);
-//		}
-//
-//		vTaskDelay(100 / portTICK_PERIOD_MS);
-//	}
 }
