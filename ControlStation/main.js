@@ -36,6 +36,7 @@ window.onload = function() {
     //drawVector(v);
 
 
+<<<<<<< HEAD
     drawVector();
 
     render();
@@ -50,6 +51,10 @@ window.onload = function() {
 
       requestAnimationFrame(drawVector);
     }
+=======
+    render();
+    drawRaceTrack();
+>>>>>>> master
     //
     // function drawVector(va) {
     //   ve = Object.create(vector, va);
