@@ -54,7 +54,7 @@ bool useWallCompensation = true;
 bool doubleSpeedWhenUsingWallCompensation = false; //Double speed if we're driving parallell to wall.
 bool useCrashSensing = true; 	//If we're about to hit a wall, then perform quick turn.
 bool useReverseOnCrash = true; //If up-close to wall in front, then reverse.
-int defaultSpeed = 14;
+int defaultSpeed = 17;
 //Cofnfiguration end
 
 struct movement_t {
@@ -206,10 +206,10 @@ void task_drivecomputer(void *p) {
 
 			//ESP_LOGI(tag, "DriveComputer loop");
 
-//			Sensors::accelerometer_data acc = mpu6050.Read();
-//			ESP_LOGI(tag, "X: %d", acc.x);
-//			ESP_LOGI(tag, "Y: %d", acc.y);
-//			ESP_LOGI(tag, "Z: %d", acc.z);
+   		Sensors::accelerometer_data acc = mpu6050.Read();
+			ESP_LOGI(tag, "X: %d", acc.x);
+			ESP_LOGI(tag, "Y: %d", acc.y);
+			ESP_LOGI(tag, "Z: %d", acc.z);
 
 			//Listen for incoming sensor-data
 			sensorvalues_t data;
@@ -287,18 +287,18 @@ void task_drivecomputer(void *p) {
 				if (useCrashSensing) {
 					if (left2 < 20 && right2 < 20) {
 						if (m.steering_angle > 50)
-							m.steering_angle = 100;
+							m.steering_angle *= 2; //= 100;
 						else
-							m.steering_angle = 0;
+							m.steering_angle /= 2; // 0;
 					}
 				}
 
 				//Crashed into wall
 				if (useReverseOnCrash) {
 					if (left2 < 10 && right2 < 10) {
-						m.speed = 20;
+						m.speed = 50;
 						m.direction = BACKWARD;
-						m.steering_angle *= -2;
+						m.steering_angle = 0; //*= -2;
 					}
 				}
 

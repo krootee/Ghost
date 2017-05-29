@@ -59,3 +59,6 @@ Speed is in centimeters pr second. It is the actual speed, not the desired speed
 ___
 
 ## Sensor Fusion
+
+## Math
+For Matrix math - http://arma.sourceforge.net. Remains to figure out how to use it from ESP32.

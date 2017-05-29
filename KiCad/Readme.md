@@ -43,14 +43,23 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 - [ ] Move motor and steering connectors away from ESP32 on other board
 - [ ] Typo. Steering is mistakenly written as Start.
 - [ ] 6mm keepout around the mounting holes, see Sick of Beiges specs
-- [ ] Is the button on Sensorboard tall enough?
+- [ ] Is the button on Sensorboard tall enough? (And do we need it?)
 - [ ] All resistors and capacitors should use footprint 0402.
-- [ ] Add LiPo charger?
 - [ ] Add motor driver (MCP8063? DRV10970?)
-- [ ] Put an LED in each corner of the Ghost Sensorboard
+- [ ] Put an LED in each corner of the Ghost Sensorboard.
 - [ ] Ground area used by U12+P3 is not connected to rest of board!
 - [ ] TCA9548ARGER has wrong footprint. Needs one with thermal GND pad.
 - [ ] Breakout more of the pins from ESP32 to headers
+- [ ] Add JTAG header for ESP32
+- [ ] Connect battery directly to top board
+- [ ] Add on/off switch (MFP106D, 807527)
+- [ ] Remove the IR receiver?
+- [ ] Ability to measure battery voltage. (LTC2943CDD, 2366039)
+
+### Others
+
+Arduino code for the Startmodule-remote is here:
+http://p1r.se/startmodule/implement-yourself/#comment-1271
 
 
 ------- OLD BELOW ----------
