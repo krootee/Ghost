@@ -1,0 +1,590 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:sensors
+LIBS:switches
+LIBS:74xgxx
+LIBS:ac-dc
+LIBS:actel
+LIBS:allegro
+LIBS:Altera
+LIBS:analog_devices
+LIBS:battery_management
+LIBS:bbd
+LIBS:bosch
+LIBS:brooktre
+LIBS:cmos_ieee
+LIBS:dc-dc
+LIBS:diode
+LIBS:elec-unifil
+LIBS:ESD_Protection
+LIBS:ftdi
+LIBS:gennum
+LIBS:graphic
+LIBS:hc11
+LIBS:infineon
+LIBS:intersil
+LIBS:ir
+LIBS:Lattice
+LIBS:leds
+LIBS:LEM
+LIBS:logo
+LIBS:maxim
+LIBS:mechanical
+LIBS:microchip_dspic33dsc
+LIBS:microchip_pic10mcu
+LIBS:microchip_pic12mcu
+LIBS:microchip_pic16mcu
+LIBS:microchip_pic18mcu
+LIBS:microchip_pic24mcu
+LIBS:microchip_pic32mcu
+LIBS:modules
+LIBS:motor_drivers
+LIBS:motors
+LIBS:msp430
+LIBS:nordicsemi
+LIBS:nxp
+LIBS:nxp_armmcu
+LIBS:onsemi
+LIBS:Oscillators
+LIBS:powerint
+LIBS:Power_Management
+LIBS:pspice
+LIBS:references
+LIBS:relays
+LIBS:rfcom
+LIBS:RFSolutions
+LIBS:silabs
+LIBS:stm8
+LIBS:stm32
+LIBS:supertex
+LIBS:transf
+LIBS:triac_thyristor
+LIBS:ttl_ieee
+LIBS:video
+LIBS:wiznet
+LIBS:Worldsemi
+LIBS:Xicor
+LIBS:zetex
+LIBS:Zilog
+LIBS:NorBot
+LIBS:ExperimentVL53L0XMPU9250-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 2
+Title "Experimental board June 2017"
+Date "2017-05-29"
+Rev "1"
+Comp "Frode Lillerud"
+Comment1 "(github url)"
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L SW_SPDT SW?
+U 1 1 592C7E08
+P 1650 1150
+F 0 "SW?" H 1650 1435 50  0000 C CNN
+F 1 "SW_SPDT" H 1650 1344 50  0000 C CNN
+F 2 "" H 1650 1150 50  0001 C CNN
+F 3 "" H 1650 1150 50  0001 C CNN
+F 4 "MFP106D" H 1650 1150 60  0001 C CNN "Name"
+F 5 "807527" H 1650 1150 60  0001 C CNN "Farnell"
+	1    1650 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74HC595 U?
+U 1 1 592C80AF
+P 4400 7000
+F 0 "U?" H 4400 7766 50  0000 C CNN
+F 1 "74HC595" H 4400 7675 50  0000 C CNN
+F 2 "" H 4400 7000 50  0001 C CNN
+F 3 "" H 4400 7000 50  0001 C CNN
+	1    4400 7000
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74HC595 U?
+U 1 1 592C818F
+P 5950 7050
+F 0 "U?" H 5950 7816 50  0000 C CNN
+F 1 "74HC595" H 5950 7725 50  0000 C CNN
+F 2 "" H 5950 7050 50  0001 C CNN
+F 3 "" H 5950 7050 50  0001 C CNN
+	1    5950 7050
+	1    0    0    -1  
+$EndComp
+Text Notes 8750 6350 0    60   ~ 0
+- 7.4 Li-Po to connector\n- MFP106D switch\n- JTAG, 10-pins\n- ESP32-WROOM-32\n- Battery sensor, (LTC2943CDD or DS2438)\n- Shift registers x 2, (74HC595)\n- Connectors for VL53L0X (Time-of-Flight sensors)\n- Transistors and LEDs\n- MPU-9250 (acc+magn+gyro)\n- FXOS8700 (accelerometer / magnetometer)\n- FXAS21002 (gyro)\n- Voltage regulator(s), 3V3. Maybe 5V?
+$Comp
+L +BATT #PWR?
+U 1 1 592C8548
+P 750 950
+F 0 "#PWR?" H 750 800 50  0001 C CNN
+F 1 "+BATT" H 765 1123 50  0000 C CNN
+F 2 "" H 750 950 50  0001 C CNN
+F 3 "" H 750 950 50  0001 C CNN
+	1    750  950 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1450 1150 750  1150
+Wire Wire Line
+	750  1150 750  950 
+$Comp
+L PWR_FLAG #FLG?
+U 1 1 592C8630
+P 1100 1150
+F 0 "#FLG?" H 1100 1225 50  0001 C CNN
+F 1 "PWR_FLAG" H 1100 1324 50  0000 C CNN
+F 2 "" H 1100 1150 50  0001 C CNN
+F 3 "" H 1100 1150 50  0001 C CNN
+	1    1100 1150
+	1    0    0    -1  
+$EndComp
+Text Notes 700  1900 0    60   ~ 0
+Battery sensor\nLTC2943, Farnell: 236-6039
+Wire Wire Line
+	1850 1050 2400 1050
+$Comp
+L ESP-WROOM-32 U?
+U 1 1 592C89D2
+P 5850 2200
+F 0 "U?" H 5850 3187 60  0000 C CNN
+F 1 "ESP-WROOM-32" H 5850 3081 60  0000 C CNN
+F 2 "" H 5650 2350 60  0001 C CNN
+F 3 "" H 5650 2350 60  0001 C CNN
+	1    5850 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 592C8EEF
+P 7900 1350
+F 0 "R?" H 7830 1304 50  0000 R CNN
+F 1 "10K" H 7830 1395 50  0000 R CNN
+F 2 "" V 7830 1350 50  0001 C CNN
+F 3 "" H 7900 1350 50  0001 C CNN
+	1    7900 1350
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R?
+U 1 1 592C8FC2
+P 8150 1350
+F 0 "R?" H 8080 1304 50  0000 R CNN
+F 1 "10K" H 8080 1395 50  0000 R CNN
+F 2 "" V 8080 1350 50  0001 C CNN
+F 3 "" H 8150 1350 50  0001 C CNN
+	1    8150 1350
+	-1   0    0    1   
+$EndComp
+Text GLabel 7900 1650 3    60   Input ~ 0
+I2C_SDA
+Text GLabel 8150 1650 3    60   Input ~ 0
+I2C_SCL
+$Comp
+L +3V3 #PWR?
+U 1 1 592C93D1
+P 7900 1050
+F 0 "#PWR?" H 7900 900 50  0001 C CNN
+F 1 "+3V3" H 7915 1223 50  0000 C CNN
+F 2 "" H 7900 1050 50  0001 C CNN
+F 3 "" H 7900 1050 50  0001 C CNN
+	1    7900 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L +3V3 #PWR?
+U 1 1 592C94CB
+P 8150 1050
+F 0 "#PWR?" H 8150 900 50  0001 C CNN
+F 1 "+3V3" H 8165 1223 50  0000 C CNN
+F 2 "" H 8150 1050 50  0001 C CNN
+F 3 "" H 8150 1050 50  0001 C CNN
+	1    8150 1050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8150 1200 8150 1050
+Wire Wire Line
+	7900 1050 7900 1200
+Wire Wire Line
+	7900 1500 7900 1650
+Wire Wire Line
+	8150 1650 8150 1500
+$Comp
+L GND #PWR?
+U 1 1 592C96E1
+P 10650 1200
+F 0 "#PWR?" H 10650 950 50  0001 C CNN
+F 1 "GND" V 10655 1072 50  0000 R CNN
+F 2 "" H 10650 1200 50  0001 C CNN
+F 3 "" H 10650 1200 50  0001 C CNN
+	1    10650 1200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L AVR-JTAG-10 CON?
+U 1 1 592C7C44
+P 10150 1400
+F 0 "CON?" H 10124 1855 50  0000 C CNN
+F 1 "AVR-JTAG-10" H 10124 1764 50  0000 C CNN
+F 2 "AVR-JTAG-10" V 9580 1420 50  0001 C CNN
+F 3 "" H 10150 1400 50  0001 C CNN
+	1    10150 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10200 1200 10650 1200
+$Comp
+L GND #PWR?
+U 1 1 592C98FE
+P 10650 1600
+F 0 "#PWR?" H 10650 1350 50  0001 C CNN
+F 1 "GND" V 10655 1472 50  0000 R CNN
+F 2 "" H 10650 1600 50  0001 C CNN
+F 3 "" H 10650 1600 50  0001 C CNN
+	1    10650 1600
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	10650 1600 10200 1600
+$Comp
+L +3V3 #PWR?
+U 1 1 592C9A3C
+P 4200 1400
+F 0 "#PWR?" H 4200 1250 50  0001 C CNN
+F 1 "+3V3" H 4215 1573 50  0000 C CNN
+F 2 "" H 4200 1400 50  0001 C CNN
+F 3 "" H 4200 1400 50  0001 C CNN
+	1    4200 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_Push SW?
+U 1 1 592C9C79
+P 1400 3850
+F 0 "SW?" H 1400 4135 50  0000 C CNN
+F 1 "SW_Push" H 1400 4044 50  0000 C CNN
+F 2 "" H 1400 4050 50  0001 C CNN
+F 3 "" H 1400 4050 50  0001 C CNN
+	1    1400 3850
+	1    0    0    -1  
+$EndComp
+Text Notes 900  3500 0    60   ~ 0
+Reset button for ESP32
+$Comp
+L GND #PWR?
+U 1 1 592C9F9A
+P 1900 3850
+F 0 "#PWR?" H 1900 3600 50  0001 C CNN
+F 1 "GND" H 1905 3677 50  0000 C CNN
+F 2 "" H 1900 3850 50  0001 C CNN
+F 3 "" H 1900 3850 50  0001 C CNN
+	1    1900 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1900 3850 1600 3850
+Wire Wire Line
+	1200 3850 1000 3850
+Text GLabel 1000 3850 0    60   Input ~ 0
+EN
+Text Notes 4450 800  0    118  ~ 24
+Experimental board June 2017
+$Comp
+L C C?
+U 1 1 592CA365
+P 1400 4100
+F 0 "C?" V 1450 4000 50  0000 C CNN
+F 1 "1nF" V 1250 4100 50  0000 C CNN
+F 2 "" H 1438 3950 50  0001 C CNN
+F 3 "" H 1400 4100 50  0001 C CNN
+	1    1400 4100
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1550 4100 1700 4100
+Wire Wire Line
+	1700 4100 1700 3850
+Connection ~ 1700 3850
+Wire Wire Line
+	1250 4100 1150 4100
+Wire Wire Line
+	1150 4100 1150 3850
+Connection ~ 1150 3850
+Text Notes 1150 800  0    59   ~ 0
+On/Off switch, MFP106D\nFarnell no: 807527
+NoConn ~ 1850 1250
+$Comp
+L USB_OTG J?
+U 1 1 592CAB3E
+P 1100 5050
+F 0 "J?" H 1155 5517 50  0000 C CNN
+F 1 "USB_OTG" H 1155 5426 50  0000 C CNN
+F 2 "" H 1250 5000 50  0001 C CNN
+F 3 "" H 1250 5000 50  0001 C CNN
+	1    1100 5050
+	1    0    0    -1  
+$EndComp
+Text GLabel 1600 5150 2    59   Input ~ 0
+USB_DN
+Wire Wire Line
+	1600 5150 1400 5150
+Text GLabel 1600 5050 2    59   Input ~ 0
+USB_DP
+Wire Wire Line
+	1600 5050 1400 5050
+NoConn ~ 1400 5250
+$Comp
+L GND #PWR?
+U 1 1 592CB387
+P 1000 5550
+F 0 "#PWR?" H 1000 5300 50  0001 C CNN
+F 1 "GND" H 1005 5377 50  0000 C CNN
+F 2 "" H 1000 5550 50  0001 C CNN
+F 3 "" H 1000 5550 50  0001 C CNN
+	1    1000 5550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1000 5450 1000 5550
+Wire Wire Line
+	1100 5450 1100 5550
+Wire Wire Line
+	1100 5550 1000 5550
+$Comp
+L +5V #PWR?
+U 1 1 592CB8A7
+P 2000 4850
+F 0 "#PWR?" H 2000 4700 50  0001 C CNN
+F 1 "+5V" H 2015 5023 50  0000 C CNN
+F 2 "" H 2000 4850 50  0001 C CNN
+F 3 "" H 2000 4850 50  0001 C CNN
+	1    2000 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L D_Schottky D?
+U 1 1 592CBA02
+P 1700 4850
+F 0 "D?" H 1700 4634 50  0000 C CNN
+F 1 "D_Schottky" H 1700 4725 50  0000 C CNN
+F 2 "" H 1700 4850 50  0001 C CNN
+F 3 "" H 1700 4850 50  0001 C CNN
+	1    1700 4850
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1400 4850 1550 4850
+Wire Wire Line
+	1850 4850 2000 4850
+Text Notes 1200 5600 0    59   ~ 0
+Micro USB, Farnell no: 229-3836\nSSA33L schottky, Farnell no: 133-6552
+$Comp
+L NCP1117ST33T3G U?
+U 1 1 592CC22D
+P 3250 1900
+F 0 "U?" H 3250 2167 50  0000 C CNN
+F 1 "NCP1117ST33T3G" H 3250 2076 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-223" H 3300 1650 50  0001 L CNN
+F 3 "" H 3250 1900 50  0001 C CNN
+	1    3250 1900
+	1    0    0    -1  
+$EndComp
+$Sheet
+S 9350 4000 1350 850 
+U 592CC73F
+F0 "MEMS" 60
+F1 "mems.sch" 60
+$EndSheet
+$Comp
+L C C?
+U 1 1 592CCE06
+P 4400 1750
+F 0 "C?" H 4450 1850 50  0000 L CNN
+F 1 "1uF" H 4400 1650 50  0000 L CNN
+F 2 "" H 4438 1600 50  0001 C CNN
+F 3 "" H 4400 1750 50  0001 C CNN
+	1    4400 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 592CCE5A
+P 4200 1750
+F 0 "C?" H 4000 1850 50  0000 L CNN
+F 1 "100uF" H 3950 1650 50  0000 L CNN
+F 2 "" H 4238 1600 50  0001 C CNN
+F 3 "" H 4200 1750 50  0001 C CNN
+	1    4200 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4900 1550 4200 1550
+Wire Wire Line
+	4200 1400 4200 1600
+Connection ~ 4200 1550
+Wire Wire Line
+	4400 1600 4400 1550
+Connection ~ 4400 1550
+$Comp
+L GND #PWR?
+U 1 1 592CD3FC
+P 4200 2000
+F 0 "#PWR?" H 4200 1750 50  0001 C CNN
+F 1 "GND" H 4205 1827 50  0000 C CNN
+F 2 "" H 4200 2000 50  0001 C CNN
+F 3 "" H 4200 2000 50  0001 C CNN
+	1    4200 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 2000 4200 1900
+Wire Wire Line
+	4200 1900 4400 1900
+Text GLabel 4800 1650 0    60   Input ~ 0
+EN
+Wire Wire Line
+	4900 1650 4800 1650
+$Comp
+L GND #PWR?
+U 1 1 592CE504
+P 4750 3150
+F 0 "#PWR?" H 4750 2900 50  0001 C CNN
+F 1 "GND" H 4755 2977 50  0000 C CNN
+F 2 "" H 4750 3150 50  0001 C CNN
+F 3 "" H 4750 3150 50  0001 C CNN
+	1    4750 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4750 3150 4750 2950
+Wire Wire Line
+	4750 2950 4900 2950
+$Comp
+L GND #PWR?
+U 1 1 592CE708
+P 5450 3500
+F 0 "#PWR?" H 5450 3250 50  0001 C CNN
+F 1 "GND" H 5455 3327 50  0000 C CNN
+F 2 "" H 5450 3500 50  0001 C CNN
+F 3 "" H 5450 3500 50  0001 C CNN
+	1    5450 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5450 3500 5450 3350
+$Comp
+L GND #PWR?
+U 1 1 592CF01C
+P 7000 2900
+F 0 "#PWR?" H 7000 2650 50  0001 C CNN
+F 1 "GND" H 7005 2727 50  0000 C CNN
+F 2 "" H 7000 2900 50  0001 C CNN
+F 3 "" H 7000 2900 50  0001 C CNN
+	1    7000 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6800 2900 7000 2900
+Wire Wire Line
+	6800 2800 7000 2800
+Wire Wire Line
+	7000 2800 7000 2900
+$Comp
+L R R?
+U 1 1 592D04C3
+P 2150 2500
+F 0 "R?" H 2220 2546 50  0000 L CNN
+F 1 "50m ohm" H 2220 2455 50  0000 L CNN
+F 2 "" V 2080 2500 50  0001 C CNN
+F 3 "" H 2150 2500 50  0001 C CNN
+	1    2150 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L LTC2943 U?
+U 1 1 592D0823
+P 1500 2500
+F 0 "U?" H 1500 3037 60  0000 C CNN
+F 1 "LTC2943" H 1500 2931 60  0000 C CNN
+F 2 "" H 1450 2500 60  0001 C CNN
+F 3 "" H 1450 2500 60  0001 C CNN
+	1    1500 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2150 2650 1950 2650
+Wire Wire Line
+	2150 2350 1950 2350
+$Comp
+L C C?
+U 1 1 592D0AD5
+P 2550 2200
+F 0 "C?" V 2298 2200 50  0000 C CNN
+F 1 "1uF" V 2389 2200 50  0000 C CNN
+F 2 "" H 2588 2050 50  0001 C CNN
+F 3 "" H 2550 2200 50  0001 C CNN
+	1    2550 2200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2150 1900 2150 2350
+Wire Wire Line
+	2150 2200 2400 2200
+$Comp
+L GND #PWR?
+U 1 1 592D0CC7
+P 2850 2200
+F 0 "#PWR?" H 2850 1950 50  0001 C CNN
+F 1 "GND" H 2855 2027 50  0000 C CNN
+F 2 "" H 2850 2200 50  0001 C CNN
+F 3 "" H 2850 2200 50  0001 C CNN
+	1    2850 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2850 2200 2700 2200
+Text GLabel 2400 1050 2    60   Input ~ 0
+V_ON_OFF
+Text GLabel 2150 2850 2    60   Input ~ 0
+V_ON_OFF
+Wire Wire Line
+	2150 2850 2150 2650
+Wire Wire Line
+	2150 1900 2950 1900
+Connection ~ 2150 2200
+$EndSCHEMATC
