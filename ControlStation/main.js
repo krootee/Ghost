@@ -36,8 +36,25 @@ window.onload = function() {
     //drawVector(v);
 
 
+<<<<<<< HEAD
+    drawVector();
+
     render();
     drawRaceTrack();
+
+    function drawVector() {
+      context.beginPath();
+      //v1.getX();
+      context.moveTo(300,300);
+      context.lineTo(300+v.getX(), 300+v.getY());
+      context.stroke();
+
+      requestAnimationFrame(drawVector);
+    }
+=======
+    render();
+    drawRaceTrack();
+>>>>>>> master
     //
     // function drawVector(va) {
     //   ve = Object.create(vector, va);
