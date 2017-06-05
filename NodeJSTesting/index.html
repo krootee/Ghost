@@ -1,0 +1,38 @@
+<html>
+<head>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.2/socket.io.js'></script>
+<script>
+  var socket = io.connect('http://localhost:3001');
+  socket.on('news', function (data) {
+
+    //var text = String.fromCharCode.apply(null, new Uint8Array(data));
+    var data = JSON.parse(data);
+    var data = JSON.parse(data);
+    ////var text = data;
+    //var text = String.fromCharCode(data);
+
+    //console.log(text);
+    console.log(new Date + JSON.stringify(data));
+    //console.log(data.message)
+    //socket.emit('my other event', { my: 'data' });
+
+    var serial = document.getElementById('serial');
+    var line = JSON.stringify(data) + '<br/>';
+    serial.innerHTML = line + serial.innerHTML;
+
+    console.log('Startmodule says: ' + data.startmodule);
+    if (undefined != data.startmodule)
+    {
+      console.log("STARTMODULE!");
+      var startmodule = document.getElementById('startmodule');
+      startmodule.className = 'startmodule-' + data.startmodule;
+    }
+  });
+</script>
+<link rel='stylesheet' href='/style.css' />
+</head>
+<body>
+  <div id='serial'></div>
+  <div id='startmodule' class='startmodule-0'>Startmodule</div>
+</body>
+</html>
