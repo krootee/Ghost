@@ -5,9 +5,19 @@ This page contains my notes about programming the ESP-WROOM-32 module.
 The primary sourcecode for the Ghost-folkracer car is in the /Folkracer directory.
 All code for testing individual parts of the car can be found in the /TestPrograms dir.
 
+## Using Arduino IDE
+
+To program the board using the Arduino IDE first follow the installation instructions at https://github.com/espressif/arduino-esp32.
+
+In Arduino IDE choose the board called 'ESP32 Dev Module'.
+The blinky-led is on pin 23.
+
+
+## Using C++ and ESP-IDF
+
 Documentation and installation guide for ESP-IDF can be found at: https://esp-idf.readthedocs.io
 
-## Prerequisites (Ubuntu/Linux Mint)
+### Prerequisites (Ubuntu/Linux Mint)
 
 Perform installation Step 0 to Step 2 from the documentation link above.
 
@@ -15,7 +25,7 @@ In addition, add this to ~/.bashrc as well (from Step 4):
 
     export IDF_PATH=~/esp/esp-idf
 
-## Flashing
+### Flashing
 
 Go to the /Ghost/ESP32/Folkracer directory, and run
 
@@ -30,11 +40,11 @@ or
     make all flash monitor (builds everything, flashes and starts the monitor with one command)
 
 
-## Performance
+### Performance
 
     make -j5 (performs the build with parallell threads)
 
-## Configuring Eclipse
+### Configuring Eclipse
 
 When starting Eclipse, set ~/GIT/Ghost/ESP32 as the workspace folder.
 
@@ -53,7 +63,7 @@ and lastly
 
     /myapp/build/include (with the "Is a workspace path" checkbox ticked, and correct appname)
 
-## Using OTA
+### Using OTA
 
 First, make sure the ota.bin firmware has been deployed using USB cable.
 
@@ -69,7 +79,7 @@ Set up a local HTTP webserver in the /build directory of the application to depl
 Now, rebuild the project we want to deploy, so that the .bin file gets created/updated.
 Press Reset button on ESP to make it restart, download new image and reflash itself.
 
-## Connecting serial
+### Connecting serial
 
 Install Minicom
 
@@ -85,9 +95,9 @@ or you can use
 
 Quit it using Ctrl+] (which is Ctrl+AltGr+9)
 
-## Troubleshooting
+### Troubleshooting
 
-#### Unable to flash via USB - permission denied
+##### Unable to flash via USB - permission denied
 
 When running "make app-flash" or similar you get error saying permission denied to the USB device.
 
@@ -98,10 +108,10 @@ This can be fixed by adding the current Linux-user to the 'dialout' group.
 Reboot the machine afterwards.
 
 
-#### OTA fails
+##### OTA fails
 https://github.com/espressif/esp-idf/issues/231
 
 
-#### TODO
+##### TODO
 
 - separate task_actuators into task_motor and task_steering, and write to two separate queues from task_drivecomputer.
