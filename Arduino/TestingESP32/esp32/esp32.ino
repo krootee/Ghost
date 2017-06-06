@@ -1,6 +1,8 @@
 #include <Wire.h>
 
 int PIN_LED = 23;
+int PIN_SDA = 13;
+int PIN_SCL = 14;
 
 enum startmoduleStates {
   WAITING,
@@ -27,19 +29,21 @@ void setup() {
   startmodule_state = WAITING;
 
   //TODO - how to set which pins are used for I2C?? https://esp32.com/viewtopic.php?f=19&t=2058
+  Wire.begin(PIN_SDA, PIN_SCL);
   //setupIRSensors();
 
 }
 
 void loop() {
-  digitalWrite(PIN_LED, HIGH);
-  delay(1000);
-  digitalWrite(PIN_LED, LOW);
-  delay(2000);
-  Serial.println("{\"message\": \"Hello from custom ESP32!\"}");
+  //digitalWrite(PIN_LED, HIGH);
+  //delay(1000);
+  //digitalWrite(PIN_LED, LOW);
+  //delay(2000);
+  //Serial.println("{\"message\": \"Hello from custom ESP32!\"}");
   //Serial.println('{"message": "Hello from ESP32"');
-  //int dist = getSensorDistanceInCm(0);
-  //Serial.println("Distance: " + dist);
+  int dist = getSensorDistanceInCm(1);
+  Serial.println("{\"distance\": \"" + String(dist) + "\"}");
+  delay(20);
 }
 
 void changeStartmoduleState()

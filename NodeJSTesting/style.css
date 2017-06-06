@@ -35,3 +35,18 @@
   text-align: center;
   font-size: 30px
 }
+
+.distance {
+  position: absolute;
+  right: 0px;
+  top: 300px;
+  width: 300px;
+  height: 100px;
+  background: green;
+  text-align: center;
+  font-size: 30px;
+}
+
+#distance {
+  font-size: 30px;
+}

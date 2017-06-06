@@ -18,7 +18,7 @@
 
     var serial = document.getElementById('serial');
     var line = JSON.stringify(data) + '<br/>';
-    serial.innerHTML = line + serial.innerHTML;
+    //serial.innerHTML = line + serial.innerHTML;
 
     console.log('Startmodule says: ' + data.startmodule);
     if (undefined != data.startmodule)
@@ -27,6 +27,14 @@
       var startmodule = document.getElementById('startmodule');
       startmodule.className = 'startmodule-' + data.startmodule;
     }
+
+    if (undefined != data.distance)
+    {
+      //console.log("Setting distance");
+      var distance = document.getElementById('distance');
+      distance.innerHTML = data.distance;
+      distance.style.backgroundColor = "rgb(" + data.distance + ", 0, 0)";
+    }
   });
 </script>
 <link rel='stylesheet' href='/style.css' />
@@ -34,5 +42,6 @@
 <body>
   <div id='serial'></div>
   <div id='startmodule' class='startmodule-0'>Startmodule</div>
+  <div id='distance-container' class='distance'><span id='distance'>?</span></div>
 </body>
 </html>
