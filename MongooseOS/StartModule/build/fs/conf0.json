@@ -1,0 +1,117 @@
+{
+  "http": {
+    "enable": true, 
+    "listen_addr": "80", 
+    "ssl_cert": "", 
+    "ssl_key": "", 
+    "ssl_ca_cert": "", 
+    "upload_acl": "*", 
+    "hidden_files": "", 
+    "auth_domain": "", 
+    "auth_file": ""
+  }, 
+  "rpc": {
+    "enable": true, 
+    "max_frame_size": 4096, 
+    "max_queue_length": 25, 
+    "default_out_channel_idle_close_timeout": 10, 
+    "ws": {
+      "enable": true, 
+      "server_address": "", 
+      "reconnect_interval_min": 1, 
+      "reconnect_interval_max": 60, 
+      "ssl_server_name": "", 
+      "ssl_ca_file": "", 
+      "ssl_client_cert_file": ""
+    }
+  }, 
+  "dns_sd": {
+    "enable": false, 
+    "host_name": "mOS_esp32_??????", 
+    "txt": "", 
+    "ttl": 120
+  }, 
+  "i2c": {
+    "enable": false, 
+    "freq": 100000, 
+    "debug": false, 
+    "sda_gpio": 32, 
+    "scl_gpio": 33
+  }, 
+  "sntp": {
+    "enable": true, 
+    "server": "pool.ntp.org", 
+    "retry_min": 1, 
+    "retry_max": 30, 
+    "update_interval": 7200
+  }, 
+  "spi": {
+    "enable": false, 
+    "debug": false, 
+    "unit_no": 3, 
+    "miso_gpio": 19, 
+    "mosi_gpio": 23, 
+    "sclk_gpio": 18, 
+    "cs0_gpio": 5, 
+    "cs1_gpio": -1, 
+    "cs2_gpio": -1
+  }, 
+  "update": {
+    "url": "", 
+    "interval": 0, 
+    "timeout": 300, 
+    "commit_timeout": 0, 
+    "ssl_ca_file": "ca.pem", 
+    "ssl_client_cert_file": "", 
+    "ssl_server_name": "", 
+    "enable_post": true
+  }, 
+  "wifi": {
+    "sta": {
+      "enable": false, 
+      "ssid": "", 
+      "pass": "", 
+      "ip": "", 
+      "netmask": "", 
+      "gw": "", 
+      "nameserver": "", 
+      "dhcp_hostname": ""
+    }, 
+    "ap": {
+      "enable": true, 
+      "ssid": "Mongoose_??????", 
+      "pass": "Mongoose", 
+      "hidden": false, 
+      "channel": 6, 
+      "max_connections": 10, 
+      "ip": "192.168.4.1", 
+      "netmask": "255.255.255.0", 
+      "gw": "192.168.4.1", 
+      "dhcp_start": "192.168.4.2", 
+      "dhcp_end": "192.168.4.100", 
+      "keep_enabled": true
+    }
+  }, 
+  "device": {
+    "id": "esp32_??????", 
+    "password": ""
+  }, 
+  "debug": {
+    "udp_log_addr": "", 
+    "mbedtls_level": 0, 
+    "level": 2, 
+    "stdout_uart": 0, 
+    "stderr_uart": 0, 
+    "factory_reset_gpio": -1, 
+    "mg_mgr_hexdump_file": ""
+  }, 
+  "sys": {
+    "atca": {
+      "enable": false, 
+      "i2c_addr": 96, 
+      "ecdh_slots_mask": 12
+    }, 
+    "wdt_timeout": 30
+  }, 
+  "conf_acl": "*"
+}
