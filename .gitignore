@@ -8,3 +8,5 @@ ESP32/\.metadata
 *.resources
 
 node_modules
+
+MongooseOS/StartModule/build/
