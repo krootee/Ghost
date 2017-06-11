@@ -14,5 +14,20 @@
             "message": 5
         }
     },
-    "showOutput": "always"
+    "showOutput": "silent",
+    "echoCommand": true,
+    "tasks": [
+        {
+            "taskName": "build",
+            "args": [
+                "build"
+            ]
+        },
+        {
+            "taskName": "flash",
+            "args": [
+                "flash"
+            ]
+        }
+    ]
 }
