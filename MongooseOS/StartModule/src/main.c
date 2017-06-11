@@ -58,7 +58,7 @@ enum mgos_app_init_result mgos_app_init(void)
 
   //Listen for Startmodule interrupt
   mgos_gpio_set_mode(GPIO_PIN_STARTMODULE_SIGNAL, MGOS_GPIO_MODE_INPUT);
-  mgos_gpio_set_pull(GPIO_PIN_STARTMODULE_SIGNAL, MGOS_GPIO_PULL_UP);
+  //mgos_gpio_set_pull(GPIO_PIN_STARTMODULE_SIGNAL, MGOS_GPIO_PULL_UP);
   mgos_gpio_set_int_handler(GPIO_PIN_STARTMODULE_SIGNAL, MGOS_GPIO_INT_EDGE_ANY, startmodule_interrupt, NULL);
   LOG(LL_INFO, ("Attaching interrupt handler for startmodule"));
   bool interrupt = mgos_gpio_enable_int(GPIO_PIN_STARTMODULE_SIGNAL);
