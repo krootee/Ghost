@@ -583,4 +583,4 @@ mongoose.o:00000004 T tcp_recved_tcpip
 esp32_nsleep100.o:00000010 T esp32_nsleep100_160
 esp32_nsleep100.o:00000030 T esp32_nsleep100_240
 esp32_nsleep100.o:00000000 T esp32_nsleep100_80
-main.o:00000078 T mgos_app_init
+main.o:00000070 T mgos_app_init
