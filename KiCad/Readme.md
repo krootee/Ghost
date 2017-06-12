@@ -22,10 +22,11 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 - [x] MicroUSB
 - [x] USB-to-UART (CP2102)
 - [x] Power LED
-- [x] Tx/Rx LEDs
+- [x] ~~Tx/Rx LEDs~~
 - [x] Reset buttons for ESP-WROOM-32 (Reset)
-- [x] Accelerometer/Gyro (MPU-6050)
-- [x] Compass (HMC5883)
+- [x] ~~Accelerometer/Gyro (MPU-6050)~~
+- [x] ~~Compass (HMC5883)~~
+- [x] Accelerometer/Gyro/Compass (MPU-9250)
 
 ##### PCB - GhostSensorboard (Sensors and connectors)
 
@@ -38,22 +39,35 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 - [x] 3V3->5V level shifter (BSS138, see Sparkfun)
 
 ### Notes for Rev 3
-- [ ] Replace MPU6050 and HMC5883 with a MPU9250
-- [ ] Remove the TX/RX leds and BSS138 opamps
-- [ ] Move motor and steering connectors away from ESP32 on other board
-- [ ] Typo. Steering is mistakenly written as Start.
-- [ ] 6mm keepout around the mounting holes, see Sick of Beiges specs
+
+Schematic for Ghost ESP32 board
+- [x] Replace MPU6050 and HMC5883 with a MPU9250
+- [x] Remove the TX/RX leds and BSS138 opamps
+- [x] Breakout more of the pins from ESP32 to headers
+- [x] Add JTAG header for ESP32
+- [x] All resistors and capacitors should use footprint 0402.
+
 - [ ] Is the button on Sensorboard tall enough? (And do we need it?)
-- [ ] All resistors and capacitors should use footprint 0402.
 - [ ] Add motor driver (MCP8063? DRV10970?)
 - [ ] Put an LED in each corner of the Ghost Sensorboard.
-- [ ] Ground area used by U12+P3 is not connected to rest of board!
 - [ ] TCA9548ARGER has wrong footprint. Needs one with thermal GND pad.
-- [ ] Breakout more of the pins from ESP32 to headers
-- [ ] Add JTAG header for ESP32
 - [ ] Connect battery directly to top board
 - [ ] Add on/off switch (MFP106D, 807527)
 - [ ] Remove the IR receiver?
+- [ ] All resistors and capacitors should use footprint 0402.
+
+PCB
+- [ ] Move motor and steering connectors away from ESP32 on other board
+- [ ] Typo. Steering is mistakenly written as Start.
+- [ ] 6mm keepout around the mounting holes, see Sick of Beiges specs
+- [ ] Ground area used by U12+P3 is not connected to rest of board!
+- [ ] 4-layer board
+- [ ] Make sure no GND plane under MPU-9250, see https://github.com/kriswiner/MPU9250/issues/43
+
+### Notes for Rev 4
+
+- [ ] Replace CP2102 with CP2014 (slightly smaller, different pins)
+- [ ] Replace slide switch with side switch, f.inst: 131-6979
 - [ ] Ability to measure battery voltage. (LTC2943CDD, 2366039)
 
 ### Others

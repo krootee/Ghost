@@ -1,0 +1,598 @@
+EESchema Schematic File Version 2
+LIBS:GhostESP32-rescue
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:NorBot
+LIBS:switches
+LIBS:mpu9250
+LIBS:GhostESP32-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 2
+Title "Ghost ESP32"
+Date "2017-06-12"
+Rev "3"
+Comp "Frode Lillerud"
+Comment1 "https://github.com/Scalpel78/Ghost/tree/master/KiCad/GhostESP32/Rev3"
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text Notes 2100 2300 0    60   ~ 0
+MPU-6050 (Farnell: 186474, QFN-24)\nI2C address: 0x68 / 0x69 (depends on AD0 low or high)
+Text HLabel 2000 3400 0    60   Input ~ 0
+VCC
+$Comp
+L C C12
+U 1 1 58C9D2F8
+P 2400 3100
+F 0 "C12" H 2425 3200 50  0000 L CNN
+F 1 "10nF" H 2425 3000 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 2438 2950 50  0001 C CNN
+F 3 "" H 2400 3100 50  0000 C CNN
+	1    2400 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR052
+U 1 1 58C9D2F9
+P 2400 2850
+F 0 "#PWR052" H 2400 2600 50  0001 C CNN
+F 1 "GND" H 2400 2700 50  0000 C CNN
+F 2 "" H 2400 2850 50  0000 C CNN
+F 3 "" H 2400 2850 50  0000 C CNN
+	1    2400 2850
+	-1   0    0    1   
+$EndComp
+Text HLabel 2000 3650 0    60   Input ~ 0
+INT
+$Comp
+L GND #PWR053
+U 1 1 58C9D2FA
+P 2700 3850
+F 0 "#PWR053" H 2700 3600 50  0001 C CNN
+F 1 "GND" H 2700 3700 50  0000 C CNN
+F 2 "" H 2700 3850 50  0000 C CNN
+F 3 "" H 2700 3850 50  0000 C CNN
+	1    2700 3850
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR054
+U 1 1 58C9D2FB
+P 2800 4750
+F 0 "#PWR054" H 2800 4500 50  0001 C CNN
+F 1 "GND" H 2800 4600 50  0000 C CNN
+F 2 "" H 2800 4750 50  0000 C CNN
+F 3 "" H 2800 4750 50  0000 C CNN
+	1    2800 4750
+	1    0    0    -1  
+$EndComp
+Text HLabel 2950 4550 2    60   Input ~ 0
+GND
+$Comp
+L C C11
+U 1 1 58C9D2FC
+P 2150 4300
+F 0 "C11" H 2175 4400 50  0000 L CNN
+F 1 "0.1uF" H 2175 4200 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 2188 4150 50  0001 C CNN
+F 3 "" H 2150 4300 50  0000 C CNN
+	1    2150 4300
+	-1   0    0    1   
+$EndComp
+$Comp
+L C C13
+U 1 1 58C9D2FD
+P 2450 4300
+F 0 "C13" H 2475 4400 50  0000 L CNN
+F 1 "2.2nF" H 2475 4200 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 2488 4150 50  0001 C CNN
+F 3 "" H 2450 4300 50  0000 C CNN
+	1    2450 4300
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR055
+U 1 1 58C9D2FE
+P 4250 4000
+F 0 "#PWR055" H 4250 3750 50  0001 C CNN
+F 1 "GND" H 4250 3850 50  0000 C CNN
+F 2 "" H 4250 4000 50  0000 C CNN
+F 3 "" H 4250 4000 50  0000 C CNN
+	1    4250 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L HMC5883 U6
+U 1 1 58C9D2FF
+P 7500 3750
+F 0 "U6" H 8000 3050 60  0000 C CNN
+F 1 "HMC5883" H 7500 3750 60  0000 C CNN
+F 2 "Housings_DFN_QFN:QFN-16-1EP_3x3mm_Pitch0.5mm" H 7500 3750 60  0001 C CNN
+F 3 "" H 7500 3750 60  0000 C CNN
+	1    7500 3750
+	1    0    0    -1  
+$EndComp
+Text HLabel 6400 3650 0    60   Input ~ 0
+VCC
+Text HLabel 6400 4050 0    60   Input ~ 0
+VCC
+$Comp
+L C C14
+U 1 1 58C9D300
+P 7800 5000
+F 0 "C14" H 7825 5100 50  0000 L CNN
+F 1 "0.22uF" H 7825 4900 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 7838 4850 50  0001 C CNN
+F 3 "" H 7800 5000 50  0000 C CNN
+	1    7800 5000
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR056
+U 1 1 58C9D301
+P 9450 4350
+F 0 "#PWR056" H 9450 4100 50  0001 C CNN
+F 1 "GND" H 9450 4200 50  0000 C CNN
+F 2 "" H 9450 4350 50  0000 C CNN
+F 3 "" H 9450 4350 50  0000 C CNN
+	1    9450 4350
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C15
+U 1 1 58C9D302
+P 8850 3850
+F 0 "C15" H 8875 3950 50  0000 L CNN
+F 1 "4.7uF" H 8875 3750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 8888 3700 50  0001 C CNN
+F 3 "" H 8850 3850 50  0000 C CNN
+	1    8850 3850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2000 3400 2800 3400
+Wire Wire Line
+	2400 3250 2400 3500
+Connection ~ 2400 3400
+Wire Wire Line
+	2400 3500 2800 3500
+Wire Wire Line
+	2400 2950 2400 2850
+Wire Wire Line
+	2000 3650 2800 3650
+Wire Wire Line
+	2700 3750 2800 3750
+Wire Wire Line
+	2800 3850 2700 3850
+Wire Wire Line
+	2800 4150 2800 4750
+Wire Wire Line
+	2150 3950 2800 3950
+Wire Wire Line
+	2150 3950 2150 4150
+Wire Wire Line
+	2800 4050 2450 4050
+Wire Wire Line
+	2450 4050 2450 4150
+Wire Wire Line
+	2450 4450 2450 4550
+Wire Wire Line
+	2150 4550 2950 4550
+Connection ~ 2800 4550
+Wire Wire Line
+	2150 4450 2150 4550
+Connection ~ 2450 4550
+Wire Wire Line
+	4250 4000 4250 3900
+Wire Wire Line
+	4250 3900 4100 3900
+Wire Wire Line
+	4100 3800 4450 3800
+Wire Wire Line
+	4100 3700 4450 3700
+Wire Wire Line
+	6450 3450 6600 3450
+Wire Wire Line
+	7200 2850 7200 2700
+Wire Wire Line
+	6600 3650 6400 3650
+Wire Wire Line
+	6600 4050 6400 4050
+Wire Wire Line
+	8400 3450 9850 3450
+Wire Wire Line
+	7800 4850 7800 4650
+Wire Wire Line
+	7800 5400 7800 5150
+Wire Wire Line
+	9450 4050 8400 4050
+Wire Wire Line
+	9450 3650 9450 4350
+Wire Wire Line
+	8400 3650 9450 3650
+Connection ~ 9450 4050
+Wire Wire Line
+	8400 3850 8700 3850
+Wire Wire Line
+	9000 3850 9450 3850
+Connection ~ 9450 3850
+Text HLabel 7800 2700 1    60   Input ~ 0
+VCC
+Text HLabel 7400 2700 1    60   Input ~ 0
+DRDY
+Wire Wire Line
+	7400 2700 7400 2850
+Wire Wire Line
+	7800 2850 7800 2700
+$Comp
+L MPU-6050 U5
+U 1 1 58C9D303
+P 3450 3900
+F 0 "U5" H 3450 3450 60  0000 C CNN
+F 1 "MPU-6050" H 3450 4600 60  0000 C CNN
+F 2 "Housings_DFN_QFN:QFN-24-1EP_4x4mm_Pitch0.5mm" H 3250 3950 60  0001 C CNN
+F 3 "" H 3250 3950 60  0000 C CNN
+	1    3450 3900
+	1    0    0    -1  
+$EndComp
+Text HLabel 4450 3700 2    60   Input ~ 0
+SCL
+Text HLabel 4450 3800 2    60   Input ~ 0
+SDA
+Wire Wire Line
+	9850 3450 9850 5400
+Wire Wire Line
+	9850 5400 7800 5400
+NoConn ~ 4100 3500
+NoConn ~ 4100 3400
+Text HLabel 6450 3450 0    60   Input ~ 0
+SCL
+Text HLabel 7200 2700 1    60   Input ~ 0
+SDA
+$Comp
+L GND #PWR057
+U 1 1 58CD4E8D
+P 2700 3750
+F 0 "#PWR057" H 2700 3500 50  0001 C CNN
+F 1 "GND" H 2700 3600 50  0000 C CNN
+F 2 "" H 2700 3750 50  0000 C CNN
+F 3 "" H 2700 3750 50  0000 C CNN
+	1    2700 3750
+	0    1    1    0   
+$EndComp
+Text Notes 6300 2250 0    60   ~ 0
+HMC5883 compass\nFarnell no: 197-1743\n\nDRDY pin: "Data Ready, Interrupt Pin. Internally pulled high. Optional connection. Low for 250\nµsec when data is placed in the data output registers"
+$Comp
+L MPU-9250 U?
+U 1 1 593F150A
+P 5600 5850
+F 0 "U?" H 5625 6637 60  0000 C CNN
+F 1 "MPU-9250" H 5625 6531 60  0000 C CNN
+F 2 "" H 5600 5850 60  0001 C CNN
+F 3 "" H 5600 5850 60  0001 C CNN
+	1    5600 5850
+	1    0    0    -1  
+$EndComp
+Text HLabel 3650 5400 0    60   Input ~ 0
+VCC
+$Comp
+L C C?
+U 1 1 593F1F33
+P 3800 5550
+F 0 "C?" H 3915 5596 50  0000 L CNN
+F 1 "0.1uF" H 3915 5505 50  0000 L CNN
+F 2 "" H 3838 5400 50  0001 C CNN
+F 3 "" H 3800 5550 50  0001 C CNN
+	1    3800 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 593F1FCA
+P 4250 5650
+F 0 "C?" H 4365 5696 50  0000 L CNN
+F 1 "10nF" H 4365 5605 50  0000 L CNN
+F 2 "" H 4288 5500 50  0001 C CNN
+F 3 "" H 4250 5650 50  0001 C CNN
+	1    4250 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4750 5500 4250 5500
+Wire Wire Line
+	3650 5400 4750 5400
+Wire Wire Line
+	4750 5600 4550 5600
+Wire Wire Line
+	4550 5500 4550 5700
+Connection ~ 4550 5500
+Wire Wire Line
+	4550 5700 4750 5700
+Connection ~ 4550 5600
+$Comp
+L GND #PWR?
+U 1 1 593F21AF
+P 4250 5900
+F 0 "#PWR?" H 4250 5650 50  0001 C CNN
+F 1 "GND" H 4250 5750 50  0000 C CNN
+F 2 "" H 4250 5900 50  0000 C CNN
+F 3 "" H 4250 5900 50  0000 C CNN
+	1    4250 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 593F21CE
+P 3800 5900
+F 0 "#PWR?" H 3800 5650 50  0001 C CNN
+F 1 "GND" H 3800 5750 50  0000 C CNN
+F 2 "" H 3800 5900 50  0000 C CNN
+F 3 "" H 3800 5900 50  0000 C CNN
+	1    3800 5900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4250 5900 4250 5800
+Wire Wire Line
+	3800 5900 3800 5700
+Connection ~ 3800 5400
+Wire Wire Line
+	4250 5500 4250 5400
+Connection ~ 4250 5400
+NoConn ~ 4750 5900
+$Comp
+L C C?
+U 1 1 593F2987
+P 4400 6150
+F 0 "C?" H 4515 6196 50  0000 L CNN
+F 1 "0.1uF" H 4515 6105 50  0000 L CNN
+F 2 "" H 4438 6000 50  0001 C CNN
+F 3 "" H 4400 6150 50  0001 C CNN
+	1    4400 6150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4750 6000 4400 6000
+Wire Wire Line
+	4750 6100 4750 6400
+$Comp
+L GND #PWR?
+U 1 1 593F2C48
+P 4750 6400
+F 0 "#PWR?" H 4750 6150 50  0001 C CNN
+F 1 "GND" H 4750 6250 50  0000 C CNN
+F 2 "" H 4750 6400 50  0000 C CNN
+F 3 "" H 4750 6400 50  0000 C CNN
+	1    4750 6400
+	1    0    0    -1  
+$EndComp
+Connection ~ 4750 6200
+Wire Wire Line
+	4400 6300 4400 6350
+Wire Wire Line
+	4400 6350 4750 6350
+Connection ~ 4750 6350
+NoConn ~ 6500 5400
+NoConn ~ 6500 5500
+Text HLabel 6750 5700 2    60   Input ~ 0
+SCL
+Text HLabel 6750 5800 2    60   Input ~ 0
+SDA
+Wire Wire Line
+	6750 5700 6500 5700
+Wire Wire Line
+	6500 5800 6750 5800
+$Comp
+L GND #PWR?
+U 1 1 593F3CB6
+P 6900 6050
+F 0 "#PWR?" H 6900 5800 50  0001 C CNN
+F 1 "GND" H 6900 5900 50  0000 C CNN
+F 2 "" H 6900 6050 50  0000 C CNN
+F 3 "" H 6900 6050 50  0000 C CNN
+	1    6900 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6900 6050 6500 6050
+$Comp
+L GND #PWR?
+U 1 1 593F4269
+P 6500 6300
+F 0 "#PWR?" H 6500 6050 50  0001 C CNN
+F 1 "GND" H 6500 6150 50  0000 C CNN
+F 2 "" H 6500 6300 50  0000 C CNN
+F 3 "" H 6500 6300 50  0000 C CNN
+	1    6500 6300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6500 6300 6500 6150
+Text Notes 4350 4850 0    60   ~ 0
+MPU-9250 (Farnell:  ???????)\nI2C address: 0x68 / 0x69 (depends on AD0 low or high)
+Text HLabel 6750 5950 2    60   Input ~ 0
+INT
+Wire Wire Line
+	6750 5950 6500 5950
+$Comp
+L MPU-9250 U?
+U 1 1 593FB30F
+P 900 2500
+F 0 "U?" H 925 3287 60  0000 C CNN
+F 1 "MPU-9250" H 925 3181 60  0000 C CNN
+F 2 "" H 900 2500 60  0001 C CNN
+F 3 "" H 900 2500 60  0001 C CNN
+	1    900  2500
+	1    0    0    -1  
+$EndComp
+Text HLabel -1050 2050 0    60   Input ~ 0
+VCC
+$Comp
+L C C?
+U 1 1 593FB316
+P -900 2200
+F 0 "C?" H -785 2246 50  0000 L CNN
+F 1 "0.1uF" H -785 2155 50  0000 L CNN
+F 2 "" H -862 2050 50  0001 C CNN
+F 3 "" H -900 2200 50  0001 C CNN
+	1    -900 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 593FB31C
+P -450 2300
+F 0 "C?" H -335 2346 50  0000 L CNN
+F 1 "10nF" H -335 2255 50  0000 L CNN
+F 2 "" H -412 2150 50  0001 C CNN
+F 3 "" H -450 2300 50  0001 C CNN
+	1    -450 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	50   2150 -450 2150
+Wire Wire Line
+	-1050 2050 50   2050
+Wire Wire Line
+	50   2250 -150 2250
+Wire Wire Line
+	-150 2150 -150 2350
+Connection ~ -150 2150
+Wire Wire Line
+	-150 2350 50   2350
+Connection ~ -150 2250
+$Comp
+L GND #PWR?
+U 1 1 593FB329
+P -450 2550
+F 0 "#PWR?" H -450 2300 50  0001 C CNN
+F 1 "GND" H -450 2400 50  0000 C CNN
+F 2 "" H -450 2550 50  0000 C CNN
+F 3 "" H -450 2550 50  0000 C CNN
+	1    -450 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 593FB32F
+P -900 2550
+F 0 "#PWR?" H -900 2300 50  0001 C CNN
+F 1 "GND" H -900 2400 50  0000 C CNN
+F 2 "" H -900 2550 50  0000 C CNN
+F 3 "" H -900 2550 50  0000 C CNN
+	1    -900 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	-450 2550 -450 2450
+Wire Wire Line
+	-900 2550 -900 2350
+Connection ~ -900 2050
+Wire Wire Line
+	-450 2150 -450 2050
+Connection ~ -450 2050
+NoConn ~ 50   2550
+$Comp
+L C C?
+U 1 1 593FB33B
+P -300 2800
+F 0 "C?" H -185 2846 50  0000 L CNN
+F 1 "0.1uF" H -185 2755 50  0000 L CNN
+F 2 "" H -262 2650 50  0001 C CNN
+F 3 "" H -300 2800 50  0001 C CNN
+	1    -300 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	50   2650 -300 2650
+Wire Wire Line
+	50   2750 50   3050
+$Comp
+L GND #PWR?
+U 1 1 593FB343
+P 50 3050
+F 0 "#PWR?" H 50  2800 50  0001 C CNN
+F 1 "GND" H 50  2900 50  0000 C CNN
+F 2 "" H 50  3050 50  0000 C CNN
+F 3 "" H 50  3050 50  0000 C CNN
+	1    50   3050
+	1    0    0    -1  
+$EndComp
+Connection ~ 50   2850
+Wire Wire Line
+	-300 2950 -300 3000
+Wire Wire Line
+	-300 3000 50   3000
+Connection ~ 50   3000
+NoConn ~ 1800 2050
+NoConn ~ 1800 2150
+Text HLabel 2050 2350 2    60   Input ~ 0
+SCL
+Text HLabel 2050 2450 2    60   Input ~ 0
+SDA
+Wire Wire Line
+	2050 2350 1800 2350
+Wire Wire Line
+	1800 2450 2050 2450
+$Comp
+L GND #PWR?
+U 1 1 593FB353
+P 2200 2700
+F 0 "#PWR?" H 2200 2450 50  0001 C CNN
+F 1 "GND" H 2200 2550 50  0000 C CNN
+F 2 "" H 2200 2700 50  0000 C CNN
+F 3 "" H 2200 2700 50  0000 C CNN
+	1    2200 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 2700 1800 2700
+$Comp
+L GND #PWR?
+U 1 1 593FB35A
+P 1800 2950
+F 0 "#PWR?" H 1800 2700 50  0001 C CNN
+F 1 "GND" H 1800 2800 50  0000 C CNN
+F 2 "" H 1800 2950 50  0000 C CNN
+F 3 "" H 1800 2950 50  0000 C CNN
+	1    1800 2950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 2950 1800 2800
+Text HLabel 2050 2600 2    60   Input ~ 0
+INT
+Wire Wire Line
+	2050 2600 1800 2600
+$EndSCHEMATC
