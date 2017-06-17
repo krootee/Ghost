@@ -1,0 +1,33 @@
+{
+    "version": "0.1.0",
+    "command": "mos",
+    "args": ["build"],
+    "problemMatcher": {
+        "owner": "cpp",
+        "fileLocation": ["relative", "${workspaceRoot}"],
+        "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+        }
+    },
+    "showOutput": "silent",
+    "echoCommand": true,
+    "tasks": [
+        {
+            "taskName": "build",
+            "args": [
+                "build"
+            ]
+        },
+        {
+            "taskName": "flash",
+            "args": [
+                "flash"
+            ]
+        }
+    ]
+}
