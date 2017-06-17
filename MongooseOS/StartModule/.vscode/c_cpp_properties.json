@@ -28,7 +28,8 @@
             "browse": {
                 "path": [
                     "/usr/include",
-                    "/usr/local/include"
+                    "/usr/local/include",
+                    "~/GIT/mongoose-os"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
