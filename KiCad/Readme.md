@@ -43,29 +43,40 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 Schematic for Ghost ESP32 board
 - [x] Replace MPU6050 and HMC5883 with a MPU9250
 - [x] Remove the TX/RX leds and BSS138 opamps
+- [x] Remove the FX8 connectors
 - [x] Breakout more of the pins from ESP32 to headers
 - [x] Add JTAG header for ESP32
 - [x] All resistors and capacitors should use footprint 0402.
+- [x] Simplified components around reset switch
+- [x] ESD protection (Farnell: 238-3318)
+- [x] USB resistors on D+ and D-
+- [x] Temperature sensor (TMP102)
 
+Sensor board:
+- [x] Add 5V regulator to go from VBAT to +5V
 - [ ] Is the button on Sensorboard tall enough? (And do we need it?)
 - [ ] Add motor driver (MCP8063? DRV10970?)
-- [ ] Put an LED in each corner of the Ghost Sensorboard.
+- [x] Put an LED in each corner of the Ghost Sensorboard.
 - [ ] TCA9548ARGER has wrong footprint. Needs one with thermal GND pad.
-- [ ] Connect battery directly to top board
-- [ ] Add on/off switch (MFP106D, 807527)
+- [x] Connect battery directly to top board
+- [x] Add on/off switch (MFP106D, 807527)
 - [ ] Remove the IR receiver?
-- [ ] All resistors and capacitors should use footprint 0402.
+- [x] (alt: replace IR sensor with one in stock)
+- [x] All resistors and capacitors should use footprint 0402
+- [x] Add NeoPixel nano RGB leds
+- [x] Remove 8 of the IR sensors connectors + one I2C mux to save space
 
 PCB
 - [ ] Move motor and steering connectors away from ESP32 on other board
-- [ ] Typo. Steering is mistakenly written as Start.
-- [ ] 6mm keepout around the mounting holes, see Sick of Beiges specs
-- [ ] Ground area used by U12+P3 is not connected to rest of board!
+- [x] Typo. Steering is mistakenly written as Start.
+- [x] 6mm keepout around the mounting holes, see Sick of Beiges specs
+- [x] Ground area used by U12+P3 is not connected to rest of board!
 - [ ] 4-layer board
-- [ ] Make sure no GND plane under MPU-9250, see https://github.com/kriswiner/MPU9250/issues/43
+- [x] Make sure no GND plane under MPU-9250, see https://github.com/kriswiner/MPU9250/issues/43
 
 ### Notes for Rev 4
 
+- [ ] Smaller 3V3 regulator. How much current do we draw at most?
 - [ ] Replace CP2102 with CP2014 (slightly smaller, different pins)
 - [ ] Replace slide switch with side switch, f.inst: 131-6979
 - [ ] Ability to measure battery voltage. (LTC2943CDD, 2366039)
