@@ -1,27 +1,31 @@
-#pragma once
-#include <iostream>
-#include <stdlib.h>
-#include <string.h>
+/*
+ * Class responsible for capturing IR data.
+ * Uses Mongoose OS specific code.
+ * Frode Lillerud, june 2017
+ */
 
-#include "fw/src/mgos_app.h"
-#include "fw/src/mgos_gpio.h"       
+#include "fw/src/mgos_gpio.h"
 #include "fw/src/mgos_sys_config.h" //Needed for LOG
-#include "fw/src/mgos_timers.h"
-#include "fw/src/mgos_hal.h"
+#include "rc5statemachine.h"
 
-using namespace std;
-
-#define RC5_BIT_COUNT 14
-
-#define GPIO_PIN_IR 22
-
-#define MGOS_TIMER_FOREVER 1
-#define MGOS_TIMER_ONCE 0
+#define SHORT_PULSE_MIN 444     //us
+#define SHORT_PULSE_MAX 1333    //us
+#define LONG_PULSE_MIN 1334     //us
+#define LONG_PULSE_MAX 2222     //us
 
 class RC5 {
 public:
-    void start();
-    string get_ir_data();
+    //Configure RC5 to listen for interrupts on the given pin
+    RC5(int pin);
+    void set_bit(bool bit);
+    bool command_received();
+    bool command_reset();
+    uint8_t get_RC5_start_bits();
+    uint8_t get_RC5_toggle_bit();
+    uint8_t get_RC5_address_bits();
+    uint8_t get_RC5_command_bits();
 private:
-    char data[14];
+    int get_difference_us(double, double);
+    double time_previous_signal = 0.0;
+    RC5StateMachine state_machine;
 };

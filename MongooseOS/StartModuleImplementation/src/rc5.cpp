@@ -1,48 +1,58 @@
 #include "rc5.h"
 
-//Interrupt Service Routine called when incoming IR signal detected
-static void ir_signal_callback(int pin, void *arg) {
-  LOG(LL_INFO, ("Interrupted on pin %d\n", pin));
-  mgos_gpio_disable_int(pin);
-  //if (timer_id == 0) {
-  //  timer_id = mgos_set_timer(1, MGOS_TIMER_FOREVER, grab_RC5_data, NULL);
-//    LOG(LL_INFO, ("Timer ID: %d", timer_id));
-//  }
+static void receive_rc5_callback(int pin, void * args) {
+    LOG(LL_INFO, ("PIN triggered from RC5 class\n"));
+    //Grab current time
+    //Read event
+    //Check if time is a long or short pulse
+    //reset if illegal pulse length
 
-  char data[RC5_BIT_COUNT];
-
-  for (int i = 0; i < RC5_BIT_COUNT; i++) {
-    bool level = mgos_gpio_read(pin);
-    //LOG(LL_INFO, ("Data: %d", level));
-    data[i] = static_cast<char>(level ? '1' : '0');
-    mgos_usleep(1700);
-  }
-
-  string s;
-  
-  for (int i = 0; i < RC5_BIT_COUNT; i++) {
-    s.append(1u, data[i]);
-  //   LOG(LL_INF)
-   }
-
-   LOG(LL_INFO, ("Bitstream: %s", s.c_str()));
-
-  mgos_msleep(2000); // Wait a second
-  mgos_gpio_enable_int(pin);
+    //
 }
 
-void RC5::start() {
-    mgos_gpio_set_mode(GPIO_PIN_IR, MGOS_GPIO_MODE_INPUT);
-    mgos_gpio_set_int_handler(GPIO_PIN_IR, MGOS_GPIO_INT_EDGE_POS, ir_signal_callback, NULL);
-    mgos_gpio_enable_int(GPIO_PIN_IR);
+RC5::RC5(int pin) {
+    //Set up interrupt (NB, Mongoose OS specific code)
+    mgos_gpio_set_mode(pin, MGOS_GPIO_MODE_INPUT);
+    mgos_gpio_set_int_handler(pin, MGOS_GPIO_INT_EDGE_POS, receive_rc5_callback, NULL);
+    mgos_gpio_enable_int(pin);
+
+    //Set initial state
+    //this->state = STATE_RC5_BEGIN;
 }
 
-string RC5::get_ir_data() {
-  string s;
-  
-  for (int i = 0; i < RC5_BIT_COUNT; i++) {
-    s.append(1u, this->data[i]);
-  }
+// void RC5::reset() {
+//     this->state = STATE_RC5_BEGIN;
+// }
 
-  return s;
+
+
+void RC5::set_bit(bool bit) {
+
+    double now = mg_time(); //Grab the current time
+
+    int us_since_previous = this->get_difference_us(this->time_previous_signal, now);
+    
+    if (us_since_previous > SHORT_PULSE_MIN && us_since_previous < SHORT_PULSE_MAX)
+    {
+        //Short pulse detected
+    }
+    else if (us_since_previous > LONG_PULSE_MIN && us_since_previous < LONG_PULSE_MAX)
+    {
+        //Long pulse detected
+    }
+    else
+    {
+        //error 
+        //this->reset();
+    }
+
+    //Save the time for the next time we're called
+    this->time_previous_signal = now;
+
+    //this->state_machine.advance(this->current_state, this->current_event);
+}
+
+//Accepts two timestamps, and returns the difference in microseconds
+int RC5::get_difference_us(double time_first, double time_last) {
+  return (time_last * 1000 * 1000) - (time_first * 1000 * 1000);
 }
