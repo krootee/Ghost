@@ -1,5 +1,9 @@
 #include "rc5statemachine.h"
 
+RC5StateMachine::RC5StateMachine() {
+    
+}
+
 RC5State RC5StateMachine::reset() {
 
     memset(this->command, 0, sizeof(this->command)); //Clear the array

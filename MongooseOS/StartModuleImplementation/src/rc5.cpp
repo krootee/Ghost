@@ -6,6 +6,7 @@ static void receive_rc5_callback(int pin, void * args) {
     //Read event
     //Check if time is a long or short pulse
     //reset if illegal pulse length
+    //this->state_machine().advance();
 
     //
 }
