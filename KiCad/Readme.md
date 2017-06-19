@@ -263,6 +263,8 @@ If I need more than 500mA on the 3.3V rail I might go for å AMS1117 or similar,
 ## Further research
 
 https://github.com/guyc/RC5
+https://github.com/pinkeen/avr-rc5
+http://clearwater.com.au/code/rc5
 
 https://github.com/platisd/AndroidCar/
 
