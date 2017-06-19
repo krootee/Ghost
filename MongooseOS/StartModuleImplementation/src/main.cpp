@@ -68,6 +68,12 @@ enum mgos_app_init_result mgos_app_init(void) {
 
   //RC5 rc5 = new RC5(GPIO_PIN_IR);
   RC5 rc5(GPIO_PIN_IR);
+
+  if (rc5.command_available())
+  {
+    LOG(LL_INFO, ("RC5 Command available!"));
+    //RC5Command command = rc5.get
+  }
   //Hook up interrupt
   //mgos_gpio_set_mode(GPIO_PIN_IR, MGOS_GPIO_MODE_INPUT);
   //mgos_gpio_set_int_handler(GPIO_PIN_IR, MGOS_GPIO_INT_EDGE_POS, ir_rc5_callback, NULL);

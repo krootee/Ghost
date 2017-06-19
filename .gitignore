@@ -10,3 +10,5 @@ ESP32/\.metadata
 node_modules
 
 MongooseOS/StartModule/build/
+
+MongooseOS/StartModuleImplementation/build/

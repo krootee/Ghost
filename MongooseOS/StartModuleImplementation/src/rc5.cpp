@@ -52,7 +52,15 @@ void RC5::set_bit(bool bit) {
     //this->state_machine.advance(this->current_state, this->current_event);
 }
 
+// int * RC5::get_RC5_command() {
+//     return NULL; //TODO
+// }
+
 //Accepts two timestamps, and returns the difference in microseconds
 int RC5::get_difference_us(double time_first, double time_last) {
   return (time_last * 1000 * 1000) - (time_first * 1000 * 1000);
+}
+
+bool RC5::command_available() {
+    return false; //TODO
 }
