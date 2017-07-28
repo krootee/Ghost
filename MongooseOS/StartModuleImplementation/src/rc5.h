@@ -28,6 +28,7 @@ public:
     //uint8_t * get_RC5_command();
 private:
     //static void receive_rc5_callback(int pin, void * args);
+    void callback(int pin, void * args);
     int get_difference_us(double, double);
     double time_previous_signal = 0.0;
     RC5StateMachine state_machine;

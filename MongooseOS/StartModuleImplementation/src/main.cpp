@@ -25,7 +25,7 @@ using namespace std;
 //#define MGOS_TIMER_FOREVER 1
 //#define MGOS_TIMER_ONCE 0
 
-//RC5 rc5;
+RC5 rc5(GPIO_PIN_IR);
 
 // //Accepts two timestamps, and returns the difference in microseconds
 // int get_difference_us(double time_first, double time_last) {
@@ -58,26 +58,26 @@ using namespace std;
 //   mgos_gpio_enable_int(pin);
 // }
 
-// static void  ir_rc5_callback(int pin, void *args) {
-//   bool bit = mgos_gpio_read(pin);
-//   rc5.set_bit(bit);
-// }
+ static void  ir_rc5_callback(int pin, void *args) {
+   bool bit = mgos_gpio_read(pin);
+   rc5.set_bit(bit);
+ }
 
 //Main application starts here
 enum mgos_app_init_result mgos_app_init(void) {
 
   //RC5 rc5 = new RC5(GPIO_PIN_IR);
-  RC5 rc5(GPIO_PIN_IR);
+  //RC5 rc5(GPIO_PIN_IR);
 
-  if (rc5.command_available())
-  {
-    LOG(LL_INFO, ("RC5 Command available!"));
+  //if (rc5.command_available())
+  //{
+//    LOG(LL_INFO, ("RC5 Command available!"));
     //RC5Command command = rc5.get
-  }
+//  }
   //Hook up interrupt
-  //mgos_gpio_set_mode(GPIO_PIN_IR, MGOS_GPIO_MODE_INPUT);
-  //mgos_gpio_set_int_handler(GPIO_PIN_IR, MGOS_GPIO_INT_EDGE_POS, ir_rc5_callback, NULL);
-  //mgos_gpio_enable_int(GPIO_PIN_IR);
+  mgos_gpio_set_mode(GPIO_PIN_IR, MGOS_GPIO_MODE_INPUT);
+  mgos_gpio_set_int_handler(GPIO_PIN_IR, MGOS_GPIO_INT_EDGE_POS, ir_rc5_callback, NULL);
+  mgos_gpio_enable_int(GPIO_PIN_IR);
 
   //double before = mg_time();
   //mgos_usleep(500);
