@@ -5,7 +5,7 @@
     (no_connects 0)
     (area 98.302143 75.415952 176.137857 116.434047)
     (thickness 1.6)
-    (drawings 164)
+    (drawings 165)
     (tracks 935)
     (zones 0)
     (modules 67)
@@ -2840,6 +2840,9 @@
     (pad 3 thru_hole circle (at -4.6 0) (size 2 2) (drill 1.25) (layers *.Cu *.Mask))
   )
 
+  (gr_text "Ghost Sensorboard, Rev 3\n21.07.2017\nFrode Lillerud" (at 135.38 96.81) (layer B.SilkS)
+    (effects (font (size 1.5 1.5) (thickness 0.3)) (justify mirror))
+  )
   (gr_line (start 165.4468 113.875132) (end 166.0529 113.37768) (layer Edge.Cuts) (width 0.1))
   (gr_line (start 166.0529 78.72085) (end 165.4468 78.22335) (layer Edge.Cuts) (width 0.1))
   (gr_line (start 166.5504 79.32695) (end 166.0529 78.72085) (layer Edge.Cuts) (width 0.1))
