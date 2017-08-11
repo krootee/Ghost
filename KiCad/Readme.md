@@ -1,17 +1,14 @@
-# Custom PCB for Ghost
-
-
-https://esp-idf.readthedocs.io/
+# Custom PCBs for Ghost
 
 ### PCBs
 
-The electronics use two boards that are connected together using a Hirose FX8C connector.
-
-The bottom board, the GhostESP32, contains primarily the ESP32 and micro USB.
+The bottom board, the GhostESP32, contains primarily the ESP32, a micro USB, an MPU-9250 and connectors.
 
 The top board, the GhostSensorboard, contains primarily connectors for all the sensors, servos, power, startmodule, etc.
 
 In the first revision it used the "Sick of Beige" 50x50 formfactor, but in the second revision this has been reduced to the slightly smaller 60x37 formfactor. Also, in the second revision the accelerometer/gyro and compass has been moved from the top board to the bottom board.
+
+The electronics use two boards that are connected together using a Hirose FX8C connector.
 
 There is a KiCad footprint for the Hirose FX8C-60 pin connector at: https://github.com/librespacefoundation/lsf-kicad-libs
 and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
@@ -273,3 +270,5 @@ https://github.com/esp8266/Arduino/blob/master/doc/reference.md
 http://control.ee.ethz.ch/index.cgi?page=publications&action=list&publty=all&author=&firstyear=&lastyear=&ta_words=rule&ifagroup=all
 
 Check out the USB driver chip CH340.
+
+https://esp-idf.readthedocs.io/

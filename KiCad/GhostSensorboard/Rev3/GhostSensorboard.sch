@@ -38,7 +38,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 2
 Title "Ghost Sensorboard"
-Date "2017-06-17"
+Date "2017-08-08"
 Rev "3"
 Comp "Frode Lillerud"
 Comment1 "https://github.com/Scalpel78/Ghost/tree/master/KiCad/GhostSensorboard/Rev3"
