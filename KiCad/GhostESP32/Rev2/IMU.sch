@@ -1,35 +1,4 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:NorBot
-LIBS:switches
+EESchema Schematic File Version 4
 LIBS:GhostESP32-cache
 EELAYER 26 0
 EELAYER END
@@ -50,7 +19,7 @@ MPU-6050 (Farnell: 186474, QFN-24)\nI2C address: 0x68 / 0x69 (depends on AD0 low
 Text HLabel 2000 3400 0    60   Input ~ 0
 VCC
 $Comp
-L C C12
+L GhostESP32-rescue:C-RESCUE-GhostESP32 C12
 U 1 1 58C9D2F8
 P 2400 3100
 F 0 "C12" H 2425 3200 50  0000 L CNN
@@ -61,7 +30,7 @@ F 3 "" H 2400 3100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR052
+L GhostESP32-rescue:GND-RESCUE-GhostESP32 #PWR052
 U 1 1 58C9D2F9
 P 2400 2850
 F 0 "#PWR052" H 2400 2600 50  0001 C CNN
@@ -74,7 +43,7 @@ $EndComp
 Text HLabel 2000 3650 0    60   Input ~ 0
 INT
 $Comp
-L GND #PWR053
+L GhostESP32-rescue:GND-RESCUE-GhostESP32 #PWR053
 U 1 1 58C9D2FA
 P 2700 3850
 F 0 "#PWR053" H 2700 3600 50  0001 C CNN
@@ -85,7 +54,7 @@ F 3 "" H 2700 3850 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR054
+L GhostESP32-rescue:GND-RESCUE-GhostESP32 #PWR054
 U 1 1 58C9D2FB
 P 2800 4750
 F 0 "#PWR054" H 2800 4500 50  0001 C CNN
@@ -98,7 +67,7 @@ $EndComp
 Text HLabel 2950 4550 2    60   Input ~ 0
 GND
 $Comp
-L C C11
+L GhostESP32-rescue:C-RESCUE-GhostESP32 C11
 U 1 1 58C9D2FC
 P 2150 4300
 F 0 "C11" H 2175 4400 50  0000 L CNN
@@ -109,7 +78,7 @@ F 3 "" H 2150 4300 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L C C13
+L GhostESP32-rescue:C-RESCUE-GhostESP32 C13
 U 1 1 58C9D2FD
 P 2450 4300
 F 0 "C13" H 2475 4400 50  0000 L CNN
@@ -120,7 +89,7 @@ F 3 "" H 2450 4300 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR055
+L GhostESP32-rescue:GND-RESCUE-GhostESP32 #PWR055
 U 1 1 58C9D2FE
 P 4250 4000
 F 0 "#PWR055" H 4250 3750 50  0001 C CNN
@@ -131,7 +100,7 @@ F 3 "" H 4250 4000 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HMC5883 U6
+L NorBot:HMC5883 U6
 U 1 1 58C9D2FF
 P 7500 3750
 F 0 "U6" H 8000 3050 60  0000 C CNN
@@ -146,7 +115,7 @@ VCC
 Text HLabel 6400 4050 0    60   Input ~ 0
 VCC
 $Comp
-L C C14
+L GhostESP32-rescue:C-RESCUE-GhostESP32 C14
 U 1 1 58C9D300
 P 7800 5000
 F 0 "C14" H 7825 5100 50  0000 L CNN
@@ -157,7 +126,7 @@ F 3 "" H 7800 5000 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR056
+L GhostESP32-rescue:GND-RESCUE-GhostESP32 #PWR056
 U 1 1 58C9D301
 P 9450 4350
 F 0 "#PWR056" H 9450 4100 50  0001 C CNN
@@ -168,7 +137,7 @@ F 3 "" H 9450 4350 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C15
+L GhostESP32-rescue:C-RESCUE-GhostESP32 C15
 U 1 1 58C9D302
 P 8850 3850
 F 0 "C15" H 8875 3950 50  0000 L CNN
@@ -254,7 +223,7 @@ Wire Wire Line
 Wire Wire Line
 	7800 2850 7800 2700
 $Comp
-L MPU-6050 U5
+L NorBot:MPU-6050 U5
 U 1 1 58C9D303
 P 3450 3900
 F 0 "U5" H 3450 3450 60  0000 C CNN
@@ -279,7 +248,7 @@ SCL
 Text HLabel 7200 2700 1    60   Input ~ 0
 SDA
 $Comp
-L GND #PWR057
+L GhostESP32-rescue:GND-RESCUE-GhostESP32 #PWR057
 U 1 1 58CD4E8D
 P 2700 3750
 F 0 "#PWR057" H 2700 3500 50  0001 C CNN
