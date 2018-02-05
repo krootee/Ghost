@@ -1,14 +1,13 @@
-EESchema-LIBRARY Version 2.3
+EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# +3V3
+# GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard
 #
-DEF +3V3 #PWR 0 0 Y Y 1 F P
+DEF GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -150 50 H I C CNN
-F1 "+3V3" 0 140 50 H V C CNN
+F1 "GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard" 0 140 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
-ALIAS +3.3V
 DRAW
 P 2 0 1 0 -30 50 0 100 N
 P 2 0 1 0 0 0 0 100 N
@@ -17,11 +16,11 @@ X +3V3 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# +5V
+# GhostSensorboard-rescue:+5V-RESCUE-GhostSensorboard
 #
-DEF +5V #PWR 0 0 Y Y 1 F P
+DEF GhostSensorboard-rescue:+5V-RESCUE-GhostSensorboard #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -150 50 H I C CNN
-F1 "+5V" 0 140 50 H V C CNN
+F1 "GhostSensorboard-rescue:+5V-RESCUE-GhostSensorboard" 0 140 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -32,11 +31,11 @@ X +5V 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# +BATT
+# GhostSensorboard-rescue:+BATT-RESCUE-GhostSensorboard
 #
-DEF +BATT #PWR 0 0 Y Y 1 F P
+DEF GhostSensorboard-rescue:+BATT-RESCUE-GhostSensorboard #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -150 50 H I C CNN
-F1 "+BATT" 0 140 50 H V C CNN
+F1 "GhostSensorboard-rescue:+BATT-RESCUE-GhostSensorboard" 0 140 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -47,32 +46,11 @@ X +BATT 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# AP131-15
+# GhostSensorboard-rescue:BSS138-RESCUE-GhostSensorboard
 #
-DEF AP131-15 U 0 10 Y Y 1 F N
-F0 "U" -150 225 50 H V C CNN
-F1 "AP131-15" 0 225 50 H V L CNN
-F2 "TO_SOT_Packages_SMD:SOT-23-5" 0 325 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-ALIAS AP131-18 AP131-20 AP131-25 AP131-28 AP131-29 AP131-30 AP131-33 AP131-35 MIC5219-3.3 MIC5219-2.5 MIC5219-2.6 MIC5219-2.7 MIC5219-2.8 MIC5219-2.9 MIC5219-3.1 MIC5219-3.0 MIC5219-3.6 MIC5219-5.0 MIC5205-2.5 MIC5205-2.7 MIC5205-2.8 MIC5205-2.85 MIC5205-2.9 MIC5205-3.0 MIC5205-3.1 MIC5205-3.2 MIC5205-3.3 MIC5205-3.6 MIC5205-3.8 MIC5205-4.0 MIC5205-5.0
-$FPLIST
- SOT?23*
-$ENDFPLIST
-DRAW
-S -200 175 200 -200 0 1 10 f
-X IN 1 -300 100 100 R 50 50 1 1 W
-X GND 2 0 -300 100 U 50 50 1 1 W
-X EN 3 -300 0 100 R 50 50 1 1 I
-X BP 4 300 0 100 L 50 50 1 1 I
-X OUT 5 300 100 100 L 50 50 1 1 w
-ENDDRAW
-ENDDEF
-#
-# BSS138-RESCUE-GhostSensorboard
-#
-DEF BSS138-RESCUE-GhostSensorboard Q 0 0 Y Y 1 F N
+DEF GhostSensorboard-rescue:BSS138-RESCUE-GhostSensorboard Q 0 0 Y Y 1 F N
 F0 "Q" 200 75 50 H V L CNN
-F1 "BSS138-RESCUE-GhostSensorboard" 200 0 50 H V L CNN
+F1 "GhostSensorboard-rescue:BSS138-RESCUE-GhostSensorboard" 200 0 50 H V L CNN
 F2 "TO_SOT_Packages_SMD:SOT-23" 200 -75 50 H I L CIN
 F3 "" 0 0 50 H V L CNN
 $FPLIST
@@ -101,11 +79,11 @@ X D 3 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Battery_Cell
+# GhostSensorboard-rescue:Battery_Cell-RESCUE-GhostSensorboard
 #
-DEF Battery_Cell BT 0 0 N N 1 F N
+DEF GhostSensorboard-rescue:Battery_Cell-RESCUE-GhostSensorboard BT 0 0 N N 1 F N
 F0 "BT" 100 100 50 H V L CNN
-F1 "Battery_Cell" 100 0 50 H V L CNN
+F1 "GhostSensorboard-rescue:Battery_Cell-RESCUE-GhostSensorboard" 100 0 50 H V L CNN
 F2 "" 0 60 50 V I C CNN
 F3 "" 0 60 50 V I C CNN
 DRAW
@@ -120,11 +98,11 @@ X - 2 0 -100 100 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# C
+# GhostSensorboard-rescue:C-RESCUE-GhostSensorboard
 #
-DEF C C 0 10 N Y 1 F N
+DEF GhostSensorboard-rescue:C-RESCUE-GhostSensorboard C 0 10 N Y 1 F N
 F0 "C" 25 100 50 H V L CNN
-F1 "C" 25 -100 50 H V L CNN
+F1 "GhostSensorboard-rescue:C-RESCUE-GhostSensorboard" 25 -100 50 H V L CNN
 F2 "" 38 -150 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -138,11 +116,11 @@ X ~ 2 0 -150 110 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# CONN_01X03
+# GhostSensorboard-rescue:CONN_01X03-RESCUE-GhostSensorboard
 #
-DEF CONN_01X03 J 0 40 Y N 1 F N
+DEF GhostSensorboard-rescue:CONN_01X03-RESCUE-GhostSensorboard J 0 40 Y N 1 F N
 F0 "J" 0 200 50 H V C CNN
-F1 "CONN_01X03" 100 0 50 V V C CNN
+F1 "GhostSensorboard-rescue:CONN_01X03-RESCUE-GhostSensorboard" 100 0 50 V V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -162,11 +140,11 @@ X P3 3 -200 -100 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# CONN_01X10
+# GhostSensorboard-rescue:CONN_01X10-RESCUE-GhostSensorboard
 #
-DEF CONN_01X10 J 0 40 Y N 1 F N
+DEF GhostSensorboard-rescue:CONN_01X10-RESCUE-GhostSensorboard J 0 40 Y N 1 F N
 F0 "J" 0 550 50 H V C CNN
-F1 "CONN_01X10" 100 0 50 V V C CNN
+F1 "GhostSensorboard-rescue:CONN_01X10-RESCUE-GhostSensorboard" 100 0 50 V V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -188,6 +166,7 @@ S -50 355 10 345 0 1 0 N
 S -50 455 10 445 0 1 0 N
 S -50 500 50 -500 0 1 0 N
 X P1 1 -200 450 150 R 50 50 1 1 P
+X P10 10 -200 -450 150 R 50 50 1 1 P
 X P2 2 -200 350 150 R 50 50 1 1 P
 X P3 3 -200 250 150 R 50 50 1 1 P
 X P4 4 -200 150 150 R 50 50 1 1 P
@@ -196,15 +175,14 @@ X P6 6 -200 -50 150 R 50 50 1 1 P
 X P7 7 -200 -150 150 R 50 50 1 1 P
 X P8 8 -200 -250 150 R 50 50 1 1 P
 X P9 9 -200 -350 150 R 50 50 1 1 P
-X P10 10 -200 -450 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# CONN_01X14
+# GhostSensorboard-rescue:CONN_01X14-RESCUE-GhostSensorboard
 #
-DEF CONN_01X14 J 0 40 Y N 1 F N
+DEF GhostSensorboard-rescue:CONN_01X14-RESCUE-GhostSensorboard J 0 40 Y N 1 F N
 F0 "J" 0 750 50 H V C CNN
-F1 "CONN_01X14" 100 0 50 V V C CNN
+F1 "GhostSensorboard-rescue:CONN_01X14-RESCUE-GhostSensorboard" 100 0 50 V V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -230,6 +208,11 @@ S -50 555 10 545 0 1 0 N
 S -50 655 10 645 0 1 0 N
 S -50 700 50 -700 0 1 0 N
 X P1 1 -200 650 150 R 50 50 1 1 P
+X P10 10 -200 -250 150 R 50 50 1 1 P
+X P11 11 -200 -350 150 R 50 50 1 1 P
+X P12 12 -200 -450 150 R 50 50 1 1 P
+X P13 13 -200 -550 150 R 50 50 1 1 P
+X P14 14 -200 -650 150 R 50 50 1 1 P
 X P2 2 -200 550 150 R 50 50 1 1 P
 X P3 3 -200 450 150 R 50 50 1 1 P
 X P4 4 -200 350 150 R 50 50 1 1 P
@@ -238,19 +221,14 @@ X P6 6 -200 150 150 R 50 50 1 1 P
 X P7 7 -200 50 150 R 50 50 1 1 P
 X P8 8 -200 -50 150 R 50 50 1 1 P
 X P9 9 -200 -150 150 R 50 50 1 1 P
-X P10 10 -200 -250 150 R 50 50 1 1 P
-X P11 11 -200 -350 150 R 50 50 1 1 P
-X P12 12 -200 -450 150 R 50 50 1 1 P
-X P13 13 -200 -550 150 R 50 50 1 1 P
-X P14 14 -200 -650 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# C_Small
+# GhostSensorboard-rescue:C_Small-RESCUE-GhostSensorboard
 #
-DEF C_Small C 0 10 N N 1 F N
+DEF GhostSensorboard-rescue:C_Small-RESCUE-GhostSensorboard C 0 10 N N 1 F N
 F0 "C" 10 70 50 H V L CNN
-F1 "C_Small" 10 -80 50 H V L CNN
+F1 "GhostSensorboard-rescue:C_Small-RESCUE-GhostSensorboard" 10 -80 50 H V L CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -264,11 +242,11 @@ X ~ 2 0 -100 80 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# GND
+# GhostSensorboard-rescue:GND-RESCUE-GhostSensorboard
 #
-DEF GND #PWR 0 0 Y Y 1 F P
+DEF GhostSensorboard-rescue:GND-RESCUE-GhostSensorboard #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -250 50 H I C CNN
-F1 "GND" 0 -150 50 H V C CNN
+F1 "GhostSensorboard-rescue:GND-RESCUE-GhostSensorboard" 0 -150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -277,30 +255,11 @@ X GND 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# GP2Y0E02B
+# GhostSensorboard-rescue:LED-RESCUE-GhostSensorboard
 #
-DEF GP2Y0E02B U 0 40 Y Y 1 F N
-F0 "U" 0 300 60 H V C CNN
-F1 "GP2Y0E02B" 0 -300 60 H V C CNN
-F2 "" 0 50 60 H V C CNN
-F3 "" 0 50 60 H V C CNN
-$FPLIST
- *JST*SH*4*
-$ENDFPLIST
-DRAW
-S -250 250 200 -250 0 1 0 N
-X SCL 1 -450 -150 200 R 50 50 1 1 I
-X SDA 2 -450 -50 200 R 50 50 1 1 I
-X GND 3 400 -150 200 L 50 50 1 1 W
-X VDD 4 -450 150 200 R 50 50 1 1 W
-ENDDRAW
-ENDDEF
-#
-# LED
-#
-DEF LED D 0 40 Y N 1 F N
+DEF GhostSensorboard-rescue:LED-RESCUE-GhostSensorboard D 0 40 Y N 1 F N
 F0 "D" 0 100 50 H V C CNN
-F1 "LED" 0 -100 50 H V C CNN
+F1 "GhostSensorboard-rescue:LED-RESCUE-GhostSensorboard" 0 -100 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -317,40 +276,44 @@ X A 2 150 0 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# NeoPixelNano
+# GhostSensorboard-rescue:MIC5219-5.0-RESCUE-GhostSensorboard
 #
-DEF NeoPixelNano U 0 40 Y Y 1 F N
-F0 "U" 300 -200 60 H V C CNN
-F1 "NeoPixelNano" 0 200 60 H V C CNN
-F2 "" 0 0 60 H I C CNN
-F3 "" 0 0 60 H I C CNN
+DEF GhostSensorboard-rescue:MIC5219-5.0-RESCUE-GhostSensorboard U 0 10 Y Y 1 F N
+F0 "U" -150 225 50 H V C CNN
+F1 "GhostSensorboard-rescue:MIC5219-5.0-RESCUE-GhostSensorboard" 0 225 50 H V L CNN
+F2 "TO_SOT_Packages_SMD:SOT-23-5" 0 325 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ SOT?23*
+$ENDFPLIST
 DRAW
-S -250 150 250 -100 0 1 0 N
-X DOUT 1 350 100 100 L 50 50 1 1 O
-X GND 2 350 -50 100 L 50 50 1 1 W
-X DIN 3 -350 -50 100 R 50 50 1 1 I
-X VDD 4 -350 100 100 R 50 50 1 1 W
+S -200 175 200 -200 0 1 10 f
+X IN 1 -300 100 100 R 50 50 1 1 W
+X GND 2 0 -300 100 U 50 50 1 1 W
+X EN 3 -300 0 100 R 50 50 1 1 I
+X BP 4 300 0 100 L 50 50 1 1 I
+X OUT 5 300 100 100 L 50 50 1 1 w
 ENDDRAW
 ENDDEF
 #
-# PWR_FLAG
+# GhostSensorboard-rescue:PWR_FLAG-RESCUE-GhostSensorboard
 #
-DEF PWR_FLAG #FLG 0 0 N N 1 F P
+DEF GhostSensorboard-rescue:PWR_FLAG-RESCUE-GhostSensorboard #FLG 0 0 N N 1 F P
 F0 "#FLG" 0 75 50 H I C CNN
-F1 "PWR_FLAG" 0 150 50 H V C CNN
+F1 "GhostSensorboard-rescue:PWR_FLAG-RESCUE-GhostSensorboard" 0 150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
-X pwr 1 0 0 0 U 50 50 0 0 w
 P 6 0 1 0 0 0 0 50 -40 75 0 100 40 75 0 50 N
+X pwr 1 0 0 0 U 50 50 0 0 w
 ENDDRAW
 ENDDEF
 #
-# R
+# GhostSensorboard-rescue:R-RESCUE-GhostSensorboard
 #
-DEF R R 0 0 N Y 1 F N
+DEF GhostSensorboard-rescue:R-RESCUE-GhostSensorboard R 0 0 N Y 1 F N
 F0 "R" 80 0 50 V V C CNN
-F1 "R" 0 0 50 V V C CNN
+F1 "GhostSensorboard-rescue:R-RESCUE-GhostSensorboard" 0 0 50 V V C CNN
 F2 "" -70 0 50 V I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -364,11 +327,11 @@ X ~ 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# R_Small
+# GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard
 #
-DEF R_Small R 0 10 N N 1 F N
+DEF GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R 0 10 N N 1 F N
 F0 "R" 30 20 50 H V L CNN
-F1 "R_Small" 30 -40 50 H V L CNN
+F1 "GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard" 30 -40 50 H V L CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -381,11 +344,11 @@ X ~ 2 0 -100 30 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# SW_Push
+# GhostSensorboard-rescue:SW_Push-RESCUE-GhostSensorboard
 #
-DEF SW_Push SW 0 40 N N 1 F N
+DEF GhostSensorboard-rescue:SW_Push-RESCUE-GhostSensorboard SW 0 40 N N 1 F N
 F0 "SW" 50 100 50 H V L CNN
-F1 "SW_Push" 0 -60 50 H V C CNN
+F1 "GhostSensorboard-rescue:SW_Push-RESCUE-GhostSensorboard" 0 -60 50 H V C CNN
 F2 "" 0 200 50 H I C CNN
 F3 "" 0 200 50 H I C CNN
 DRAW
@@ -398,11 +361,11 @@ X 2 2 200 0 100 L 50 50 0 1 P
 ENDDRAW
 ENDDEF
 #
-# SW_SPDT
+# GhostSensorboard-rescue:SW_SPDT-RESCUE-GhostSensorboard
 #
-DEF SW_SPDT SW 0 0 Y N 1 F N
+DEF GhostSensorboard-rescue:SW_SPDT-RESCUE-GhostSensorboard SW 0 0 Y N 1 F N
 F0 "SW" 0 170 50 H V C CNN
-F1 "SW_SPDT" 0 -200 50 H V C CNN
+F1 "GhostSensorboard-rescue:SW_SPDT-RESCUE-GhostSensorboard" 0 -200 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -416,11 +379,61 @@ X C 3 200 -100 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# TCA9548ARGER
+# GhostSensorboard-rescue:VBUS-RESCUE-GhostSensorboard
 #
-DEF TCA9548ARGER U 0 40 Y Y 1 F N
+DEF GhostSensorboard-rescue:VBUS-RESCUE-GhostSensorboard #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "GhostSensorboard-rescue:VBUS-RESCUE-GhostSensorboard" 0 150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X VBUS 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# NorBot:GP2Y0E02B
+#
+DEF NorBot:GP2Y0E02B U 0 40 Y Y 1 F N
+F0 "U" 0 300 60 H V C CNN
+F1 "NorBot:GP2Y0E02B" 0 -300 60 H V C CNN
+F2 "" 0 50 60 H V C CNN
+F3 "" 0 50 60 H V C CNN
+$FPLIST
+ *JST*SH*4*
+$ENDFPLIST
+DRAW
+S -250 250 200 -250 0 1 0 N
+X SCL 1 -450 -150 200 R 50 50 1 1 I
+X SDA 2 -450 -50 200 R 50 50 1 1 I
+X GND 3 400 -150 200 L 50 50 1 1 W
+X VDD 4 -450 150 200 R 50 50 1 1 W
+ENDDRAW
+ENDDEF
+#
+# NorBot:NeoPixelNano
+#
+DEF NorBot:NeoPixelNano U 0 40 Y Y 1 F N
+F0 "U" 300 -200 60 H V C CNN
+F1 "NorBot:NeoPixelNano" 0 200 60 H V C CNN
+F2 "" 0 0 60 H I C CNN
+F3 "" 0 0 60 H I C CNN
+DRAW
+S -250 150 250 -100 0 1 0 N
+X DOUT 1 350 100 100 L 50 50 1 1 O
+X GND 2 350 -50 100 L 50 50 1 1 W
+X DIN 3 -350 -50 100 R 50 50 1 1 I
+X VDD 4 -350 100 100 R 50 50 1 1 W
+ENDDRAW
+ENDDEF
+#
+# NorBot:TCA9548ARGER
+#
+DEF NorBot:TCA9548ARGER U 0 40 Y Y 1 F N
 F0 "U" 0 600 60 H V C CNN
-F1 "TCA9548ARGER" 0 -1100 60 H V C CNN
+F1 "NorBot:TCA9548ARGER" 0 -1100 60 H V C CNN
 F2 "" 50 150 60 H V C CNN
 F3 "" 50 150 60 H V C CNN
 $FPLIST
@@ -430,7 +443,22 @@ $ENDFPLIST
 DRAW
 S -300 550 250 -1050 0 1 0 N
 X SD0 1 450 500 200 L 50 50 1 1 O
+X SD4 10 450 -300 200 L 50 50 1 1 O
+X SC4 11 450 -400 200 L 50 50 1 1 O
+X SD5 12 450 -500 200 L 50 50 1 1 O
+X SC5 13 450 -600 200 L 50 50 1 1 O
+X SD6 14 450 -700 200 L 50 50 1 1 O
+X SC6 15 450 -800 200 L 50 50 1 1 O
+X SD7 16 450 -900 200 L 50 50 1 1 O
+X SC7 17 450 -1000 200 L 50 50 1 1 O
+X A2 18 -500 -900 200 R 50 50 1 1 I
+X SCL 19 -500 -200 200 R 50 50 1 1 I
 X SC0 2 450 400 200 L 50 50 1 1 O
+X SDA 20 -500 -100 200 R 50 50 1 1 I
+X VCC 21 -500 500 200 R 50 50 1 1 W
+X A0 22 -500 -700 200 R 50 50 1 1 I
+X A1 23 -500 -800 200 R 50 50 1 1 I
+X ~Reset 24 -500 0 200 R 50 50 1 1 I
 X SD1 3 450 300 200 L 50 50 1 1 O
 X SC1 4 450 200 200 L 50 50 1 1 O
 X SD2 5 450 100 200 L 50 50 1 1 O
@@ -438,29 +466,14 @@ X SC2 6 450 0 200 L 50 50 1 1 O
 X SD3 7 450 -100 200 L 50 50 1 1 O
 X SC3 8 450 -200 200 L 50 50 1 1 O
 X GND 9 -500 -1000 200 R 50 50 1 1 I
-X SD4 10 450 -300 200 L 50 50 1 1 O
-X SDA 20 -500 -100 200 R 50 50 1 1 I
-X SC4 11 450 -400 200 L 50 50 1 1 O
-X VCC 21 -500 500 200 R 50 50 1 1 W
-X SD5 12 450 -500 200 L 50 50 1 1 O
-X A0 22 -500 -700 200 R 50 50 1 1 I
-X SC5 13 450 -600 200 L 50 50 1 1 O
-X A1 23 -500 -800 200 R 50 50 1 1 I
-X SD6 14 450 -700 200 L 50 50 1 1 O
-X ~Reset 24 -500 0 200 R 50 50 1 1 I
-X SC6 15 450 -800 200 L 50 50 1 1 O
-X SD7 16 450 -900 200 L 50 50 1 1 O
-X SC7 17 450 -1000 200 L 50 50 1 1 O
-X A2 18 -500 -900 200 R 50 50 1 1 I
-X SCL 19 -500 -200 200 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# TSOP752-TSOP754
+# NorBot:TSOP752-TSOP754
 #
-DEF TSOP752-TSOP754 U 0 40 Y Y 1 F N
+DEF NorBot:TSOP752-TSOP754 U 0 40 Y Y 1 F N
 F0 "U" 250 -350 60 H V C CNN
-F1 "TSOP752-TSOP754" 50 250 60 H V C CNN
+F1 "NorBot:TSOP752-TSOP754" 50 250 60 H V C CNN
 F2 "" -50 150 60 H I C CNN
 F3 "" -50 150 60 H I C CNN
 $FPLIST
@@ -475,11 +488,11 @@ X GND 4 -450 -200 200 R 50 50 1 1 W
 ENDDRAW
 ENDDEF
 #
-# Transmissive_Photo_Interrupter
+# NorBot:Transmissive_Photo_Interrupter
 #
-DEF Transmissive_Photo_Interrupter U 0 40 Y Y 1 F N
+DEF NorBot:Transmissive_Photo_Interrupter U 0 40 Y Y 1 F N
 F0 "U" 100 -400 60 H V C CNN
-F1 "Transmissive_Photo_Interrupter" 150 650 60 H V C CNN
+F1 "NorBot:Transmissive_Photo_Interrupter" 150 650 60 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -498,21 +511,6 @@ X ANODE 1 -750 400 200 R 50 50 1 1 B
 X CATHODE 2 -750 -150 200 R 50 50 1 1 W
 X COLLECTOR 3 900 -100 200 L 50 50 1 1 B
 X EMITTER 4 900 450 200 L 50 50 1 1 W
-ENDDRAW
-ENDDEF
-#
-# VBUS
-#
-DEF VBUS #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "VBUS" 0 150 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X VBUS 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #

@@ -1,36 +1,4 @@
-EESchema Schematic File Version 2
-LIBS:GhostSensorboard-rescue
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:NorBot
-LIBS:switches
+EESchema Schematic File Version 4
 LIBS:GhostSensorboard-cache
 EELAYER 26 0
 EELAYER END
@@ -47,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L GP2Y0E02B U2
+L NorBot:GP2Y0E02B U2
 U 1 1 58C86DA1
 P 7850 2000
 F 0 "U2" H 7825 2437 60  0000 C CNN
@@ -58,7 +26,7 @@ F 3 "" H 7850 2050 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GP2Y0E02B U3
+L NorBot:GP2Y0E02B U3
 U 1 1 58C86E23
 P 7850 2750
 F 0 "U3" H 7825 3187 60  0000 C CNN
@@ -69,7 +37,7 @@ F 3 "" H 7850 2800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GP2Y0E02B U7
+L NorBot:GP2Y0E02B U7
 U 1 1 58C86E59
 P 7850 3500
 F 0 "U7" H 7825 3937 60  0000 C CNN
@@ -80,7 +48,7 @@ F 3 "" H 7850 3550 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GP2Y0E02B U8
+L NorBot:GP2Y0E02B U8
 U 1 1 58C86EAD
 P 7850 4250
 F 0 "U8" H 7825 4687 60  0000 C CNN
@@ -91,7 +59,7 @@ F 3 "" H 7850 4300 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GP2Y0E02B U10
+L NorBot:GP2Y0E02B U10
 U 1 1 58C8705F
 P 9750 2000
 F 0 "U10" H 9725 2437 60  0000 C CNN
@@ -102,7 +70,7 @@ F 3 "" H 9750 2050 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GP2Y0E02B U11
+L NorBot:GP2Y0E02B U11
 U 1 1 58C87065
 P 9750 2750
 F 0 "U11" H 9725 3187 60  0000 C CNN
@@ -113,7 +81,7 @@ F 3 "" H 9750 2800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GP2Y0E02B U12
+L NorBot:GP2Y0E02B U12
 U 1 1 58C8706B
 P 9750 3500
 F 0 "U12" H 9725 3937 60  0000 C CNN
@@ -124,7 +92,7 @@ F 3 "" H 9750 3550 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GP2Y0E02B U13
+L NorBot:GP2Y0E02B U13
 U 1 1 58C87071
 P 9750 4250
 F 0 "U13" H 9725 4687 60  0000 C CNN
@@ -135,7 +103,7 @@ F 3 "" H 9750 4300 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L TCA9548ARGER U1
+L NorBot:TCA9548ARGER U1
 U 1 1 58C87BBF
 P 4700 2750
 F 0 "U1" H 4675 3497 60  0000 C CNN
@@ -146,7 +114,7 @@ F 3 "" H 4750 2900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R12
+L GhostSensorboard-rescue:R-RESCUE-GhostSensorboard R12
 U 1 1 58C88FA5
 P 3850 2500
 F 0 "R12" H 3920 2546 50  0000 L CNN
@@ -157,7 +125,7 @@ F 3 "" H 3850 2500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR043
+L GhostSensorboard-rescue:GND-RESCUE-GhostSensorboard #PWR043
 U 1 1 58C891DA
 P 4100 4000
 F 0 "#PWR043" H 4100 3750 50  0001 C CNN
@@ -189,7 +157,7 @@ Wire Wire Line
 Wire Wire Line
 	3850 2250 4200 2250
 $Comp
-L +3V3 #PWR044
+L GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard #PWR044
 U 1 1 58C89F76
 P 3850 2100
 F 0 "#PWR044" H 3850 1950 50  0001 C CNN
@@ -337,7 +305,7 @@ Wire Wire Line
 Wire Wire Line
 	9150 4400 9300 4400
 $Comp
-L GND #PWR045
+L GhostSensorboard-rescue:GND-RESCUE-GhostSensorboard #PWR045
 U 1 1 58C9A570
 P 8350 2150
 F 0 "#PWR045" H 8350 1900 50  0001 C CNN
@@ -348,7 +316,7 @@ F 3 "" H 8350 2150 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L GND #PWR046
+L GhostSensorboard-rescue:GND-RESCUE-GhostSensorboard #PWR046
 U 1 1 58C9ABDE
 P 8350 2900
 F 0 "#PWR046" H 8350 2650 50  0001 C CNN
@@ -359,7 +327,7 @@ F 3 "" H 8350 2900 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L GND #PWR047
+L GhostSensorboard-rescue:GND-RESCUE-GhostSensorboard #PWR047
 U 1 1 58C9AC15
 P 8350 3650
 F 0 "#PWR047" H 8350 3400 50  0001 C CNN
@@ -370,7 +338,7 @@ F 3 "" H 8350 3650 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L GND #PWR048
+L GhostSensorboard-rescue:GND-RESCUE-GhostSensorboard #PWR048
 U 1 1 58C9AF22
 P 8350 4400
 F 0 "#PWR048" H 8350 4150 50  0001 C CNN
@@ -381,7 +349,7 @@ F 3 "" H 8350 4400 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L GND #PWR049
+L GhostSensorboard-rescue:GND-RESCUE-GhostSensorboard #PWR049
 U 1 1 58C9B715
 P 10250 2150
 F 0 "#PWR049" H 10250 1900 50  0001 C CNN
@@ -392,7 +360,7 @@ F 3 "" H 10250 2150 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L GND #PWR050
+L GhostSensorboard-rescue:GND-RESCUE-GhostSensorboard #PWR050
 U 1 1 58C9B74C
 P 10250 2900
 F 0 "#PWR050" H 10250 2650 50  0001 C CNN
@@ -403,7 +371,7 @@ F 3 "" H 10250 2900 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L GND #PWR051
+L GhostSensorboard-rescue:GND-RESCUE-GhostSensorboard #PWR051
 U 1 1 58C9B783
 P 10250 3650
 F 0 "#PWR051" H 10250 3400 50  0001 C CNN
@@ -414,7 +382,7 @@ F 3 "" H 10250 3650 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L GND #PWR052
+L GhostSensorboard-rescue:GND-RESCUE-GhostSensorboard #PWR052
 U 1 1 58C9B7BA
 P 10250 4400
 F 0 "#PWR052" H 10250 4150 50  0001 C CNN
@@ -441,7 +409,7 @@ Wire Wire Line
 Wire Wire Line
 	8250 4400 8350 4400
 $Comp
-L +3V3 #PWR053
+L GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard #PWR053
 U 1 1 58C9DB9B
 P 7250 1850
 F 0 "#PWR053" H 7250 1700 50  0001 C CNN
@@ -452,7 +420,7 @@ F 3 "" H 7250 1850 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L +3V3 #PWR054
+L GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard #PWR054
 U 1 1 58C9E117
 P 7250 2600
 F 0 "#PWR054" H 7250 2450 50  0001 C CNN
@@ -463,7 +431,7 @@ F 3 "" H 7250 2600 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L +3V3 #PWR055
+L GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard #PWR055
 U 1 1 58C9E14E
 P 7250 3350
 F 0 "#PWR055" H 7250 3200 50  0001 C CNN
@@ -474,7 +442,7 @@ F 3 "" H 7250 3350 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L +3V3 #PWR056
+L GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard #PWR056
 U 1 1 58C9E185
 P 7250 4100
 F 0 "#PWR056" H 7250 3950 50  0001 C CNN
@@ -485,7 +453,7 @@ F 3 "" H 7250 4100 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L +3V3 #PWR057
+L GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard #PWR057
 U 1 1 58C9FCAA
 P 9100 1850
 F 0 "#PWR057" H 9100 1700 50  0001 C CNN
@@ -496,7 +464,7 @@ F 3 "" H 9100 1850 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L +3V3 #PWR058
+L GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard #PWR058
 U 1 1 58C9FCE1
 P 9100 2600
 F 0 "#PWR058" H 9100 2450 50  0001 C CNN
@@ -507,7 +475,7 @@ F 3 "" H 9100 2600 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L +3V3 #PWR059
+L GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard #PWR059
 U 1 1 58C9FD18
 P 9100 3350
 F 0 "#PWR059" H 9100 3200 50  0001 C CNN
@@ -518,7 +486,7 @@ F 3 "" H 9100 3350 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L +3V3 #PWR060
+L GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard #PWR060
 U 1 1 58C9FD4F
 P 9100 4100
 F 0 "#PWR060" H 9100 3950 50  0001 C CNN
@@ -609,7 +577,7 @@ Wire Wire Line
 Wire Wire Line
 	1150 3700 1400 3700
 $Comp
-L +3V3 #PWR061
+L GhostSensorboard-rescue:+3V3-RESCUE-GhostSensorboard #PWR061
 U 1 1 58CA550D
 P 1900 2100
 F 0 "#PWR061" H 1900 1950 50  0001 C CNN
@@ -651,7 +619,7 @@ Pull-up resistors for the IR-sensors\n1k ohm, 0402 size
 Text Notes 4050 1650 0    60   ~ 0
 TCA9548ARGER I2C multiplexer\nI2C address: 0x70\nFarnell no: 269-0239
 $Comp
-L R_Small R23
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R23
 U 1 1 5945CFBC
 P 1500 2900
 F 0 "R23" V 1550 3050 50  0000 C CNN
@@ -662,7 +630,7 @@ F 3 "" H 1500 2900 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R22
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R22
 U 1 1 5945F8C2
 P 1500 2800
 F 0 "R22" V 1550 2950 50  0000 C CNN
@@ -673,7 +641,7 @@ F 3 "" H 1500 2800 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R21
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R21
 U 1 1 5945F8EE
 P 1500 2700
 F 0 "R21" V 1550 2850 50  0000 C CNN
@@ -684,7 +652,7 @@ F 3 "" H 1500 2700 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R20
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R20
 U 1 1 5945F91C
 P 1500 2600
 F 0 "R20" V 1550 2750 50  0000 C CNN
@@ -695,7 +663,7 @@ F 3 "" H 1500 2600 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R19
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R19
 U 1 1 5945F950
 P 1500 2500
 F 0 "R19" V 1550 2650 50  0000 C CNN
@@ -706,7 +674,7 @@ F 3 "" H 1500 2500 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R13
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R13
 U 1 1 5945F986
 P 1500 2400
 F 0 "R13" V 1550 2550 50  0000 C CNN
@@ -717,7 +685,7 @@ F 3 "" H 1500 2400 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R10
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R10
 U 1 1 5945F9C4
 P 1500 2300
 F 0 "R10" V 1550 2450 50  0000 C CNN
@@ -728,7 +696,7 @@ F 3 "" H 1500 2300 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R9
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R9
 U 1 1 5945F9FA
 P 1500 2200
 F 0 "R9" V 1550 2350 50  0000 C CNN
@@ -739,7 +707,7 @@ F 3 "" H 1500 2200 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R31
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R31
 U 1 1 59461171
 P 1500 3700
 F 0 "R31" V 1550 3850 50  0000 C CNN
@@ -750,7 +718,7 @@ F 3 "" H 1500 3700 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R30
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R30
 U 1 1 59461177
 P 1500 3600
 F 0 "R30" V 1550 3750 50  0000 C CNN
@@ -761,7 +729,7 @@ F 3 "" H 1500 3600 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R29
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R29
 U 1 1 5946117D
 P 1500 3500
 F 0 "R29" V 1550 3650 50  0000 C CNN
@@ -772,7 +740,7 @@ F 3 "" H 1500 3500 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R28
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R28
 U 1 1 59461183
 P 1500 3400
 F 0 "R28" V 1550 3550 50  0000 C CNN
@@ -783,7 +751,7 @@ F 3 "" H 1500 3400 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R27
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R27
 U 1 1 59461189
 P 1500 3300
 F 0 "R27" V 1550 3450 50  0000 C CNN
@@ -794,7 +762,7 @@ F 3 "" H 1500 3300 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R26
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R26
 U 1 1 5946118F
 P 1500 3200
 F 0 "R26" V 1550 3350 50  0000 C CNN
@@ -805,7 +773,7 @@ F 3 "" H 1500 3200 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R25
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R25
 U 1 1 59461195
 P 1500 3100
 F 0 "R25" V 1550 3250 50  0000 C CNN
@@ -816,7 +784,7 @@ F 3 "" H 1500 3100 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R_Small R24
+L GhostSensorboard-rescue:R_Small-RESCUE-GhostSensorboard R24
 U 1 1 5946119B
 P 1500 3000
 F 0 "R24" V 1550 3150 50  0000 C CNN

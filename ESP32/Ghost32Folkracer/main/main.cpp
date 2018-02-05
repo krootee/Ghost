@@ -353,7 +353,10 @@ void task_actuators(void *p) {
 }
 
 void app_main(void) {
-	//Setup I2C
+
+	/*
+	 * Configure I2C
+	 */
 	i2c_config_t conf;
 	conf.mode = I2C_MODE_MASTER;
 	conf.sda_io_num = SDA_PIN;
@@ -364,7 +367,12 @@ void app_main(void) {
 	i2c_param_config(I2C_NUM_0, &conf);
 	i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
 
-	//Create Queues
+	/*
+	 * Create Queues
+	 *
+	 * TODO -  describe what queues are used for...
+	 */
+
 	int queue_size_startmodule = 1;
 	queue_startmodule = xQueueCreate(queue_size_startmodule, sizeof(int));
 	queue_sensorvalues = xQueueCreate(1, sizeof(sensorvalues_t));
