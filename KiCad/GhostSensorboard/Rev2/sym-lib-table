@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name GhostSensorboard-rescue)(type Legacy)(uri ${KIPRJMOD}/GhostSensorboard-rescue.lib)(options "")(descr ""))
+  (lib (name NorBot)(type Legacy)(uri /home/frode/GIT/NorBotKiCadSchematicLibraries/NorBot.lib)(options "")(descr ""))
+)
