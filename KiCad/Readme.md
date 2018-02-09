@@ -78,6 +78,13 @@ PCB
 - [ ] Replace slide switch with side switch, f.inst: 131-6979
 - [ ] Ability to measure battery voltage. (LTC2943CDD, 2366039)
 
+### Notes for Rev 5 (feb 2018)
+
+- [x] Fix footprint for TMP102. Was too big on Rev4.
+- [ ] Figure out why MPU9250 doesn't work on Rev4.
+- [ ] Test I2C and IR sensors on Rev4
+- [ ] Test the NanoPixels on Rev4
+
 ### Others
 
 Arduino code for the Startmodule-remote is here:

@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name GhostESP32-rescue)(type Legacy)(uri ${KIPRJMOD}/GhostESP32-rescue.lib)(options "")(descr ""))
+  (lib (name NorBot)(type Legacy)(uri /home/frode/GIT/NorBotKiCadSchematicLibraries/NorBot.lib)(options "")(descr ""))
+)
