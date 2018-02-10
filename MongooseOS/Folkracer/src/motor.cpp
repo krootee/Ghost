@@ -2,7 +2,7 @@
  *
  */
 
-#include <mgos.h>
+#include "mgos.h"
 #include "motor.hpp"
 
 namespace Actuators {
@@ -11,12 +11,12 @@ namespace Actuators {
         this->_pin = pin;
     }
 
-    void Motor::setDesiredSpeed(int speed) {
+    void Motor::setDesiredSpeed(float duty_cycle) {
 
         const int frequency = 50; //50Hz = 20ms
 
         //duty between 0 and 1.
-        float duty_cycle = 0.5f;
+        //float duty_cycle = 0.075f;
     
         //Servos typically need a PWM signal that is high somewhere between 1ms and 2ms. 
         //With a period of 20 ms, that means we get the following duty cycles:

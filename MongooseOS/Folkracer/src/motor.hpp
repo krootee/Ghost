@@ -9,8 +9,8 @@ namespace Actuators {
         private:
         int _pin = 0;
         public:
-        Motor(int pin);
-        void setDesiredSpeed(int speed);
+        Motor(int pin); 
+        void setDesiredSpeed(float duty_cycle);
         void disable();
     };
 }

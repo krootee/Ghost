@@ -37,7 +37,8 @@
                 "${workspaceRoot}",
                 "/home/frode/GIT/mongoose-os",
                 "/home/frode/GIT/mongoose-os/fw",
-                "/home/frode/GIT/mongoose-os/fw/include"
+                "/home/frode/GIT/mongoose-os/fw/include",
+                "/home/frode/Arduino/hardware/espressif/esp32/cores/esp32"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -54,9 +55,10 @@
                     "${workspaceRoot}",
                     "/home/frode/GIT/mongoose-os",
                     "/home/frode/GIT/mongoose-os/fw",
-                    "/home/frode/GIT/mongoose-os/fw/include"
+                    "/home/frode/GIT/mongoose-os/fw/include",
+                    "/home/frode/Arduino/hardware/espressif/esp32/cores/esp32"
                 ],
-                "limitSymbolsToIncludedHeaders": true,
+                "limitSymbolsToIncludedHeaders": false,
                 "databaseFilename": ""
             }
         },
