@@ -71,7 +71,7 @@ PCB
 - [ ] 4-layer board
 - [x] Make sure no GND plane under MPU-9250, see https://github.com/kriswiner/MPU9250/issues/43
 
-### Notes for Rev 4
+### Notes for Rev 4 (aug 2017)
 
 - [ ] Smaller 3V3 regulator. How much current do we draw at most?
 - [ ] Replace CP2102 with CP2014 (slightly smaller, different pins)
@@ -84,6 +84,10 @@ PCB
 - [ ] Figure out why MPU9250 doesn't work on Rev4.
 - [ ] Test I2C and IR sensors on Rev4
 - [ ] Test the NanoPixels on Rev4
+- [ ] Test the Motor/ESC pwm and Steering PWM
+- [ ] Change to the slightly bigger TCA9548 chip for easier soldering?
+- [ ] Minor layout adjustments; Move Q1, Q2, R1, R2 between CP2102 and ESP32
+- [ ] Minor layout adjustments; Move R15 and C12 closer to SW1 switch
 
 ### Others
 
