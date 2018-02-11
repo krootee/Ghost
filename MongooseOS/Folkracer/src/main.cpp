@@ -5,6 +5,7 @@
 #include "mgos.h"
 #include "motor.hpp"
 #include "gp2y0e02b.hpp"
+#include "startmodule.hpp"
 
 #include <iostream>
 #include <chrono>
@@ -39,6 +40,12 @@ enum mgos_app_init_result mgos_app_init(void) {
     LOG(LL_INFO, ("Interrupt attached to pin %d", GPIO_PIN_STARTMODULE_SIGNAL));
   else
     LOG(LL_INFO, ("Interrupt NOT attached!"));
+
+  Sensor::StartModule start_module(GPIO_PIN_STARTMODULE_SIGNAL);
+  //start_module.enable();
+  //start_module.disable();
+  start_module.powercycle();
+  //start_module.get_current_state();
 
   //Actuators::Motor steering(GPIO_PIN_26);
 
