@@ -6,7 +6,7 @@
 #include "mgos.h"
 #include "mgos_i2c.h"
 #include "gp2y0e02b.hpp"
-#include "math.h"
+#include <math.h>
 
 #define I2C_ADDRESS     0x40
 #define SHIFT_REG       0x35

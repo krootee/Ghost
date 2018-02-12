@@ -2,8 +2,9 @@
  * MEMS
  */
 
-#include "mpu6050.hpp"
+#include "mgos.h"
 #include "mgos_i2c.h"
+#include "mpu6050.hpp"
 
 #define MPU6050_I2C_ADDRESS 0x68
 
