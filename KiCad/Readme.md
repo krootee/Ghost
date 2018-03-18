@@ -35,9 +35,34 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 - [x] Connector for ESC/Motor
 - [x] 3V3->5V level shifter (BSS138, see Sparkfun)
 
-### Notes for Rev 3
+### Rev 6 (future)
 
-Schematic for Ghost ESP32 board
+- [ ] Replace CP2102 with CP2014 (slightly smaller, different pins)
+- [ ] Replace slide switch with side switch, f.inst: 131-6979
+- [ ] Smaller 3V3 regulator. How much current do we draw at most?
+- [ ] Ability to measure battery voltage. (LTC2943CDD, 2366039)
+
+### Rev 5 (spring 2018)
+
+- [x] Fix footprint for TMP102. Was too big on Rev4.
+- [-] Figure out why MPU9250 doesn't work on Rev4.
+- [-] Test I2C and IR sensors on Rev4
+- [-] Test the NanoPixels on Rev4
+- [ ] Test the Motor/ESC pwm and Steering PWM
+- [ ] Change to the slightly bigger TCA9548 chip for easier soldering?
+- [ ] Minor layout adjustments; Move Q1, Q2, R1, R2 between CP2102 and ESP32
+- [ ] Minor layout adjustments; Move R15 and C12 closer to SW1 switch
+- [x] Remove the NanoPixels
+- [x] Change I2C to use pins 21 (SDA) and 22 (SCL)
+- [x] Changed I2C pullups from 2k2 to 10k
+- [ ] Change PCB outline to a rectangle with rounded corners
+- [x] Change MPU9250 to use I2C addr 0x69, instead of 0x68
+
+### Rev 4 (aug 2017)
+
+Formfactor: ca 63x43mm with "drone arms"
+Had wrong footprint for TMP102.
+
 - [x] Replace MPU6050 and HMC5883 with a MPU9250
 - [x] Remove the TX/RX leds and BSS138 opamps
 - [x] Remove the FX8 connectors
@@ -48,6 +73,19 @@ Schematic for Ghost ESP32 board
 - [x] ESD protection (Farnell: 238-3318)
 - [x] USB resistors on D+ and D-
 - [x] Temperature sensor (TMP102)
+
+
+### Rev 3 (never built??)
+
+### Rev 2 (mars 2017)
+
+Used formfactor Sick-of-beige 60x37
+
+### Rev 1 (feb 2017)
+
+Used formfactor Sick-of-beige 50x50.
+
+### Other
 
 Sensor board:
 - [x] Add 5V regulator to go from VBAT to +5V
@@ -71,28 +109,20 @@ PCB
 - [ ] 4-layer board
 - [x] Make sure no GND plane under MPU-9250, see https://github.com/kriswiner/MPU9250/issues/43
 
-### Notes for Rev 4 (aug 2017)
 
-- [ ] Smaller 3V3 regulator. How much current do we draw at most?
-- [ ] Replace CP2102 with CP2014 (slightly smaller, different pins)
-- [ ] Replace slide switch with side switch, f.inst: 131-6979
-- [ ] Ability to measure battery voltage. (LTC2943CDD, 2366039)
 
-### Notes for Rev 5 (feb 2018)
-
-- [x] Fix footprint for TMP102. Was too big on Rev4.
-- [ ] Figure out why MPU9250 doesn't work on Rev4.
-- [ ] Test I2C and IR sensors on Rev4
-- [ ] Test the NanoPixels on Rev4
-- [ ] Test the Motor/ESC pwm and Steering PWM
-- [ ] Change to the slightly bigger TCA9548 chip for easier soldering?
-- [ ] Minor layout adjustments; Move Q1, Q2, R1, R2 between CP2102 and ESP32
-- [ ] Minor layout adjustments; Move R15 and C12 closer to SW1 switch
 
 ### Others
 
 Arduino code for the Startmodule-remote is here:
 http://p1r.se/startmodule/implement-yourself/#comment-1271
+
+
+
+
+
+
+
 
 
 ------- OLD BELOW ----------

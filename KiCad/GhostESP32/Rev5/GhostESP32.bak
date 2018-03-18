@@ -6,16 +6,16 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Ghost ESP32"
-Date "2017-08-09"
-Rev "Rev 4"
+Date "2018-02-09"
+Rev "Rev 5"
 Comp "Frode Lillerud"
-Comment1 "http://github.com/Scalpel78/Ghost/treemaster/KiCad/GhostESP32/Rev4"
+Comment1 "http://github.com/Scalpel78/Ghost/treemaster/KiCad/GhostESP32/Rev5"
 Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
 Text Notes 4500 900  0    157  ~ 31
-Ghost ESP32, Rev 4
+Ghost ESP32, Rev 5
 $Comp
 L NorBot:ESP-WROOM-32 U5
 U 1 1 598AF1A3
@@ -107,12 +107,12 @@ $EndComp
 $Comp
 L GhostESP32-rescue:LED_ALT-RESCUE-GhostESP32 D7
 U 1 1 598B0330
-P 8300 2500
-F 0 "D7" H 8292 2245 50  0000 C CNN
-F 1 "YELLOW" H 8292 2336 50  0000 C CNN
-F 2 "Diodes_SMD:D_0603" H 8300 2500 50  0001 C CNN
-F 3 "" H 8300 2500 50  0001 C CNN
-	1    8300 2500
+P 8300 2600
+F 0 "D7" H 8292 2345 50  0000 C CNN
+F 1 "YELLOW" H 8292 2436 50  0000 C CNN
+F 2 "Diodes_SMD:D_0603" H 8300 2600 50  0001 C CNN
+F 3 "" H 8300 2600 50  0001 C CNN
+	1    8300 2600
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -194,9 +194,9 @@ IO26
 Text GLabel 4850 2850 0    39   Input ~ 0
 IO25
 Text GLabel 4850 2950 0    39   Input ~ 0
-IO33/SDA
+IO33
 Text GLabel 4850 3050 0    39   Input ~ 0
-IO32/SCL
+IO32
 Text GLabel 4850 3150 0    39   Input ~ 0
 I35
 Text GLabel 4850 3250 0    39   Input ~ 0
@@ -275,13 +275,13 @@ NoConn ~ 6850 2650
 Text GLabel 6950 2150 2    39   Input ~ 0
 IO23
 Text GLabel 6950 2250 2    39   Input ~ 0
-IO22
+IO22(SCL)
 Text GLabel 6950 2350 2    39   Input ~ 0
 RXD
 Text GLabel 6950 2450 2    39   Input ~ 0
 TXD
 Text GLabel 6950 2550 2    39   Input ~ 0
-IO21
+IO21(SDA)
 Text GLabel 6950 2750 2    39   Input ~ 0
 IO19
 Text GLabel 6950 2850 2    39   Input ~ 0
@@ -898,13 +898,13 @@ $EndComp
 $Comp
 L GhostESP32-rescue:GND-RESCUE-GhostESP32 #PWR025
 U 1 1 598CD339
-P 6500 7500
-F 0 "#PWR025" H 6500 7250 50  0001 C CNN
-F 1 "GND" H 6505 7327 50  0000 C CNN
-F 2 "" H 6500 7500 50  0001 C CNN
-F 3 "" H 6500 7500 50  0001 C CNN
-	1    6500 7500
-	1    0    0    -1  
+P 6600 7300
+F 0 "#PWR025" H 6600 7050 50  0001 C CNN
+F 1 "GND" H 6605 7127 50  0000 C CNN
+F 2 "" H 6600 7300 50  0001 C CNN
+F 3 "" H 6600 7300 50  0001 C CNN
+	1    6600 7300
+	0    -1   -1   0   
 $EndComp
 $Comp
 L NorBot:MPU-9250 U4
@@ -978,17 +978,14 @@ Wire Wire Line
 	4800 7500 4800 7600
 Wire Wire Line
 	4800 7600 5250 7600
-Wire Wire Line
-	6500 7300 6500 7400
-Connection ~ 6500 7400
 Text GLabel 6600 7200 2    39   Input ~ 0
 I35
 Wire Wire Line
 	6600 7200 6500 7200
 Text GLabel 6600 7050 2    39   Input ~ 0
-IO33/SDA
+IO21(SDA)
 Text GLabel 6600 6950 2    39   Input ~ 0
-IO32/SCL
+IO22(SCL)
 Wire Wire Line
 	6600 7050 6500 7050
 Wire Wire Line
@@ -998,68 +995,68 @@ NoConn ~ 6500 6650
 $Comp
 L GhostESP32-rescue:R_Small-RESCUE-GhostESP32 R14
 U 1 1 598BE6F1
-P 10550 2950
-F 0 "R14" H 10609 2996 50  0000 L CNN
-F 1 "2k2" H 10609 2905 50  0000 L CNN
-F 2 "Resistors_SMD:R_0402" H 10550 2950 50  0001 C CNN
-F 3 "" H 10550 2950 50  0001 C CNN
-	1    10550 2950
+P 10550 3050
+F 0 "R14" H 10609 3096 50  0000 L CNN
+F 1 "10k" H 10609 3005 50  0000 L CNN
+F 2 "Resistors_SMD:R_0402" H 10550 3050 50  0001 C CNN
+F 3 "" H 10550 3050 50  0001 C CNN
+	1    10550 3050
 	1    0    0    -1  
 $EndComp
-Text GLabel 10300 3150 3    39   Input ~ 0
-IO32/SCL
-Text GLabel 10550 3150 3    39   Input ~ 0
-IO33/SDA
+Text GLabel 10300 3250 3    39   Input ~ 0
+IO22(SCL)
+Text GLabel 10550 3250 3    39   Input ~ 0
+IO21(SDA)
 $Comp
 L GhostESP32-rescue:+3V3-RESCUE-GhostESP32 #PWR028
 U 1 1 598BEB83
-P 10300 2750
-F 0 "#PWR028" H 10300 2600 50  0001 C CNN
-F 1 "+3V3" H 10315 2923 50  0000 C CNN
-F 2 "" H 10300 2750 50  0001 C CNN
-F 3 "" H 10300 2750 50  0001 C CNN
-	1    10300 2750
+P 10300 2850
+F 0 "#PWR028" H 10300 2700 50  0001 C CNN
+F 1 "+3V3" H 10315 3023 50  0000 C CNN
+F 2 "" H 10300 2850 50  0001 C CNN
+F 3 "" H 10300 2850 50  0001 C CNN
+	1    10300 2850
 	1    0    0    -1  
 $EndComp
 $Comp
 L GhostESP32-rescue:R_Small-RESCUE-GhostESP32 R13
 U 1 1 598BEC47
-P 10300 2950
-F 0 "R13" H 10359 2996 50  0000 L CNN
-F 1 "2k2" H 10359 2905 50  0000 L CNN
-F 2 "Resistors_SMD:R_0402" H 10300 2950 50  0001 C CNN
-F 3 "" H 10300 2950 50  0001 C CNN
-	1    10300 2950
+P 10300 3050
+F 0 "R13" H 10359 3096 50  0000 L CNN
+F 1 "10k" H 10359 3005 50  0000 L CNN
+F 2 "Resistors_SMD:R_0402" H 10300 3050 50  0001 C CNN
+F 3 "" H 10300 3050 50  0001 C CNN
+	1    10300 3050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10300 3150 10300 3050
+	10300 3250 10300 3150
 Wire Wire Line
-	10550 3150 10550 3050
+	10550 3250 10550 3150
 Wire Wire Line
-	10550 2850 10550 2800
+	10550 2950 10550 2900
 Wire Wire Line
-	10550 2800 10300 2800
+	10550 2900 10300 2900
 Wire Wire Line
-	10300 2750 10300 2800
-Connection ~ 10300 2800
-Text Notes 10200 2500 0    60   ~ 0
-I2C pullups
+	10300 2850 10300 2900
+Connection ~ 10300 2900
+Text Notes 10200 2600 0    60   ~ 0
+I2C pullups\nUse range 2k2 - 10k
 $Comp
 L NorBot:TMP102 U3
 U 1 1 598C0312
 P 5850 5500
 F 0 "U3" H 5875 5887 60  0000 C CNN
 F 1 "TMP102" H 5875 5781 60  0000 C CNN
-F 2 "TO_SOT_Packages_SMD:SOT-23-6" H 5875 5781 60  0001 C CNN
+F 2 "NorBotKiCadFootprints:SOT563" H 5875 5781 60  0001 C CNN
 F 3 "" H 5850 5450 60  0001 C CNN
 	1    5850 5500
 	1    0    0    -1  
 $EndComp
 Text GLabel 5250 5400 0    39   Input ~ 0
-IO32/SCL
+IO22(SCL)
 Text GLabel 6500 5400 2    39   Input ~ 0
-IO33/SDA
+IO21(SDA)
 $Comp
 L GhostESP32-rescue:GND-RESCUE-GhostESP32 #PWR029
 U 1 1 598C0DEA
@@ -1253,25 +1250,25 @@ Level shifting IO-signals from 3V3 to 5V\nBSS138
 $Comp
 L GhostESP32-rescue:R_Small-RESCUE-GhostESP32 R7
 U 1 1 598C9B01
-P 8300 2150
-F 0 "R7" H 8359 2196 50  0000 L CNN
-F 1 "330" H 8359 2105 50  0000 L CNN
-F 2 "Resistors_SMD:R_0402" H 8300 2150 50  0001 C CNN
-F 3 "" H 8300 2150 50  0001 C CNN
-	1    8300 2150
+P 8300 2250
+F 0 "R7" H 8359 2296 50  0000 L CNN
+F 1 "330" H 8359 2205 50  0000 L CNN
+F 2 "Resistors_SMD:R_0402" H 8300 2250 50  0001 C CNN
+F 3 "" H 8300 2250 50  0001 C CNN
+	1    8300 2250
 	1    0    0    -1  
 $EndComp
-Text GLabel 8500 2750 2    39   Input ~ 0
+Text GLabel 8500 2850 2    39   Input ~ 0
 LED
 $Comp
 L GhostESP32-rescue:GND-RESCUE-GhostESP32 #PWR036
 U 1 1 598CA5A3
-P 8300 3400
-F 0 "#PWR036" H 8300 3150 50  0001 C CNN
-F 1 "GND" H 8305 3227 50  0000 C CNN
-F 2 "" H 8300 3400 50  0001 C CNN
-F 3 "" H 8300 3400 50  0001 C CNN
-	1    8300 3400
+P 8300 3500
+F 0 "#PWR036" H 8300 3250 50  0001 C CNN
+F 1 "GND" H 8305 3327 50  0000 C CNN
+F 2 "" H 8300 3500 50  0001 C CNN
+F 3 "" H 8300 3500 50  0001 C CNN
+	1    8300 3500
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1376,19 +1373,19 @@ F 3 "" H 9550 2150 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Text Notes 3950 1600 0    59   ~ 0
-Board powered by 5V either via USB, or from ESC connected to motor headers.\nNote, GPIO 34-39 are INPUT mode ONLY\nNote, GPIO 6-11 are used by SPI-flash, and canot be used for other purposes\nNote, GPIO0, GPIO2, GPIO5, GPIO12 and GPIO15 are strapping pins, and cannot be pulled high/low.\nNote, GPIO23 is dedicated to LED\nNote, GPIO32 and GPIO33 are dedicated to I2C
-Text GLabel 9550 1650 0    39   Input ~ 0
-IO14
+Board powered by 5V either via USB, or from ESC connected to motor headers.\nNote, GPIO 34-39 are INPUT mode ONLY\nNote, GPIO 6-11 are used by SPI-flash, and canot be used for other purposes\nNote, GPIO0, GPIO2, GPIO5, GPIO12 and GPIO15 are strapping pins, and cannot be pulled high/low.\nNote, GPIO23 is dedicated to LED\nNote, GPIO21 (SDA) and GPIO22 (SCL) are dedicated to I2C
 Text GLabel 9550 1150 0    39   Input ~ 0
-IO27
-Text GLabel 9550 1250 0    39   Input ~ 0
-IO26
-Text GLabel 9550 1750 0    39   Input ~ 0
-IO25
+IO14
 Text GLabel 9550 1350 0    39   Input ~ 0
-IO33/SDA
+IO27
 Text GLabel 9550 1450 0    39   Input ~ 0
-IO32/SCL
+IO26
+Text GLabel 9550 1550 0    39   Input ~ 0
+IO25
+Text GLabel 9550 1650 0    39   Input ~ 0
+IO33
+Text GLabel 9550 1750 0    39   Input ~ 0
+IO32
 Text GLabel 9550 1850 0    39   Input ~ 0
 I34
 Text GLabel 9550 1950 0    39   Input ~ 0
@@ -1408,9 +1405,9 @@ IO18
 Text GLabel 10550 1750 2    39   Input ~ 0
 IO19
 Text GLabel 10550 1850 2    39   Input ~ 0
-IO21
+IO21(SDA)
 Text GLabel 10550 1950 2    39   Input ~ 0
-IO22
+IO22(SCL)
 $Comp
 L GhostESP32-rescue:GND-RESCUE-GhostESP32 #PWR040
 U 1 1 598D9E51
@@ -1433,7 +1430,7 @@ F 3 "" H 9550 1050 50  0001 C CNN
 	1    9550 1050
 	0    -1   -1   0   
 $EndComp
-Text GLabel 9550 1550 0    39   Input ~ 0
+Text GLabel 9550 1250 0    39   Input ~ 0
 IO13
 $Comp
 L GhostESP32-rescue:CONN_01X12-RESCUE-GhostESP32 J2
@@ -1519,56 +1516,56 @@ Wire Wire Line
 $Comp
 L GhostESP32-rescue:Q_NPN_BEC-RESCUE-GhostESP32 Q3
 U 1 1 598E129C
-P 8200 3050
-F 0 "Q3" H 8391 3096 50  0000 L CNN
-F 1 "Q_NPN_BEC" H 8391 3005 50  0000 L CNN
-F 2 "TO_SOT_Packages_SMD:SOT-23" H 8400 3150 50  0001 C CNN
-F 3 "" H 8200 3050 50  0001 C CNN
-	1    8200 3050
+P 8200 3150
+F 0 "Q3" H 8391 3196 50  0000 L CNN
+F 1 "Q_NPN_BEC" H 8391 3105 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23" H 8400 3250 50  0001 C CNN
+F 3 "" H 8200 3150 50  0001 C CNN
+	1    8200 3150
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8300 3400 8300 3250
-Text GLabel 7850 2250 1    39   Input ~ 0
+	8300 3500 8300 3350
+Text GLabel 7850 2350 1    39   Input ~ 0
 IO23
 $Comp
 L GhostESP32-rescue:R_Small-RESCUE-GhostESP32 R5
 U 1 1 598E3761
-P 7850 2600
-F 0 "R5" H 7791 2554 50  0000 R CNN
-F 1 "10k" H 7791 2645 50  0000 R CNN
-F 2 "Resistors_SMD:R_0402" H 7850 2600 50  0001 C CNN
-F 3 "" H 7850 2600 50  0001 C CNN
-	1    7850 2600
+P 7850 2700
+F 0 "R5" H 7791 2654 50  0000 R CNN
+F 1 "10k" H 7791 2745 50  0000 R CNN
+F 2 "Resistors_SMD:R_0402" H 7850 2700 50  0001 C CNN
+F 3 "" H 7850 2700 50  0001 C CNN
+	1    7850 2700
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	7850 2250 7850 2500
+	7850 2350 7850 2600
 Wire Wire Line
-	7850 2700 7850 3050
+	7850 2800 7850 3150
 Wire Wire Line
-	7850 3050 8000 3050
+	7850 3150 8000 3150
 Wire Wire Line
-	8300 2650 8300 2750
+	8300 2750 8300 2850
 Wire Wire Line
-	8500 2750 8300 2750
-Connection ~ 8300 2750
+	8500 2850 8300 2850
+Connection ~ 8300 2850
 Wire Wire Line
-	8300 2350 8300 2250
+	8300 2450 8300 2350
 $Comp
 L GhostESP32-rescue:+3V3-RESCUE-GhostESP32 #PWR043
 U 1 1 598E449C
-P 8300 1950
-F 0 "#PWR043" H 8300 1800 50  0001 C CNN
-F 1 "+3V3" H 8315 2123 50  0000 C CNN
-F 2 "" H 8300 1950 50  0001 C CNN
-F 3 "" H 8300 1950 50  0001 C CNN
-	1    8300 1950
+P 8300 2050
+F 0 "#PWR043" H 8300 1900 50  0001 C CNN
+F 1 "+3V3" H 8315 2223 50  0000 C CNN
+F 2 "" H 8300 2050 50  0001 C CNN
+F 3 "" H 8300 2050 50  0001 C CNN
+	1    8300 2050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8300 2050 8300 1950
-Text Notes 8400 3400 0    59   ~ 0
+	8300 2150 8300 2050
+Text Notes 8400 3500 0    59   ~ 0
 MMBT2222A\nFarnell no: 177-3626
 Text Notes 3250 7650 0    59   ~ 0
 CP2102 USB interface\nFarnell no: 928-2130
@@ -1695,113 +1692,22 @@ Wire Wire Line
 	6300 4100 6300 4000
 Wire Wire Line
 	6400 4100 6400 4000
-Text GLabel 9500 2600 0    39   Input ~ 0
-IO2
-Text GLabel 9500 2500 0    39   Input ~ 0
-IO5
-Text GLabel 9500 2700 0    39   Input ~ 0
-IO15
 Text GLabel 9500 2800 0    39   Input ~ 0
+IO2
+Text GLabel 9500 2700 0    39   Input ~ 0
+IO5
+Text GLabel 9500 2900 0    39   Input ~ 0
+IO15
+Text GLabel 9500 3000 0    39   Input ~ 0
 IO12
-NoConn ~ 9500 2500
-NoConn ~ 9500 2600
 NoConn ~ 9500 2700
 NoConn ~ 9500 2800
-Text Notes 9050 2400 0    59   ~ 0
+NoConn ~ 9500 2900
+NoConn ~ 9500 3000
+Text Notes 9050 2600 0    59   ~ 0
 Unconnected GPIOs
 Text Notes 5400 5050 0    59   ~ 0
 TMP102 temperature\nI2C-address: 0x48\nFarnell no: 165-2477
-$Comp
-L NorBot:NeoPixelNano U7
-U 1 1 598D7AB3
-P 4050 4250
-F 0 "U7" H 4050 4597 60  0000 C CNN
-F 1 "NeoPixelNano" H 4050 4491 60  0000 C CNN
-F 2 "NorBotKiCadFootprints:NeoPixelNano" H 4050 4250 60  0001 C CNN
-F 3 "" H 4050 4250 60  0001 C CNN
-	1    4050 4250
-	1    0    0    -1  
-$EndComp
-$Comp
-L NorBot:NeoPixelNano U6
-U 1 1 598D8E7E
-P 3100 4250
-F 0 "U6" H 3100 4597 60  0000 C CNN
-F 1 "NeoPixelNano" H 3100 4491 60  0000 C CNN
-F 2 "NorBotKiCadFootprints:NeoPixelNano" H 3100 4250 60  0001 C CNN
-F 3 "" H 3100 4250 60  0001 C CNN
-	1    3100 4250
-	1    0    0    -1  
-$EndComp
-$Comp
-L GhostESP32-rescue:+5V-RESCUE-GhostESP32 #PWR045
-U 1 1 598D96C2
-P 2650 4000
-F 0 "#PWR045" H 2650 3850 50  0001 C CNN
-F 1 "+5V" H 2665 4173 50  0000 C CNN
-F 2 "" H 2650 4000 50  0001 C CNN
-F 3 "" H 2650 4000 50  0001 C CNN
-	1    2650 4000
-	1    0    0    -1  
-$EndComp
-$Comp
-L GhostESP32-rescue:+5V-RESCUE-GhostESP32 #PWR046
-U 1 1 598D9EB9
-P 3600 4000
-F 0 "#PWR046" H 3600 3850 50  0001 C CNN
-F 1 "+5V" H 3615 4173 50  0000 C CNN
-F 2 "" H 3600 4000 50  0001 C CNN
-F 3 "" H 3600 4000 50  0001 C CNN
-	1    3600 4000
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2750 4150 2650 4150
-Wire Wire Line
-	2650 4150 2650 4000
-Wire Wire Line
-	3700 4300 3550 4300
-Wire Wire Line
-	3550 4300 3550 4150
-Wire Wire Line
-	3550 4150 3450 4150
-Text GLabel 2650 4300 0    39   Input ~ 0
-NEOPIXEL
-Wire Wire Line
-	2750 4300 2650 4300
-$Comp
-L GhostESP32-rescue:GND-RESCUE-GhostESP32 #PWR047
-U 1 1 598DC04C
-P 3450 4400
-F 0 "#PWR047" H 3450 4150 50  0001 C CNN
-F 1 "GND" H 3455 4227 50  0000 C CNN
-F 2 "" H 3450 4400 50  0001 C CNN
-F 3 "" H 3450 4400 50  0001 C CNN
-	1    3450 4400
-	1    0    0    -1  
-$EndComp
-$Comp
-L GhostESP32-rescue:GND-RESCUE-GhostESP32 #PWR048
-U 1 1 598DC0BF
-P 4400 4400
-F 0 "#PWR048" H 4400 4150 50  0001 C CNN
-F 1 "GND" H 4405 4227 50  0000 C CNN
-F 2 "" H 4400 4400 50  0001 C CNN
-F 3 "" H 4400 4400 50  0001 C CNN
-	1    4400 4400
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3450 4300 3450 4400
-Wire Wire Line
-	4400 4400 4400 4300
-NoConn ~ 4400 4150
-Wire Wire Line
-	3700 4150 3600 4150
-Wire Wire Line
-	3600 4150 3600 4000
-Text Notes 2800 3750 0    59   ~ 0
-Nexpixel leds\nAdafruit prod no: 3484
 Wire Wire Line
 	6950 3550 6950 3600
 Wire Wire Line
@@ -1841,9 +1747,7 @@ Wire Wire Line
 Wire Wire Line
 	5250 7450 5250 7600
 Wire Wire Line
-	6500 7400 6500 7500
-Wire Wire Line
-	10300 2800 10300 2850
+	10300 2900 10300 2950
 Wire Wire Line
 	8300 5000 8550 5000
 Wire Wire Line
@@ -1861,7 +1765,7 @@ Wire Wire Line
 Wire Wire Line
 	900  4800 1000 4800
 Wire Wire Line
-	8300 2750 8300 2850
+	8300 2850 8300 2950
 Wire Wire Line
 	3500 2750 3650 2750
 Wire Wire Line
@@ -1872,4 +1776,21 @@ Wire Wire Line
 	1250 2600 1500 2600
 Wire Wire Line
 	2300 1150 2400 1150
+Wire Wire Line
+	6600 7300 6500 7300
+$Comp
+L GhostESP32-rescue:+3V3-RESCUE-GhostESP32 #PWR048
+U 1 1 5AB342AB
+P 6600 7500
+F 0 "#PWR048" H 6600 7350 50  0001 C CNN
+F 1 "+3V3" H 6615 7673 50  0000 C CNN
+F 2 "" H 6600 7500 50  0001 C CNN
+F 3 "" H 6600 7500 50  0001 C CNN
+	1    6600 7500
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	6500 7400 6600 7400
+Wire Wire Line
+	6600 7400 6600 7500
 $EndSCHEMATC
