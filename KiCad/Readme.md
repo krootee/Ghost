@@ -41,21 +41,24 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 - [ ] Replace slide switch with side switch, f.inst: 131-6979
 - [ ] Smaller 3V3 regulator. How much current do we draw at most?
 - [ ] Ability to measure battery voltage. (LTC2943CDD, 2366039)
+- [ ] Use Sick-of-beige 60x37
 
-### Rev 5 (spring 2018)
+### Rev 5 (18.mar 2018)
+
+Formfactor: Sick-of-beige 70x43
 
 - [x] Fix footprint for TMP102. Was too big on Rev4.
 - [-] Figure out why MPU9250 doesn't work on Rev4.
 - [-] Test I2C and IR sensors on Rev4
 - [-] Test the NanoPixels on Rev4
-- [ ] Test the Motor/ESC pwm and Steering PWM
-- [ ] Change to the slightly bigger TCA9548 chip for easier soldering?
-- [ ] Minor layout adjustments; Move Q1, Q2, R1, R2 between CP2102 and ESP32
-- [ ] Minor layout adjustments; Move R15 and C12 closer to SW1 switch
+- [-] Test the Motor/ESC pwm and Steering PWM
+- [x] Change to the slightly bigger TCA9548 chip for easier soldering?
+- [x] Minor layout adjustments; Move Q1, Q2, R1, R2 between CP2102 and ESP32
+- [x] Minor layout adjustments; Move R15 and C12 closer to SW1 switch
 - [x] Remove the NanoPixels
 - [x] Change I2C to use pins 21 (SDA) and 22 (SCL)
 - [x] Changed I2C pullups from 2k2 to 10k
-- [ ] Change PCB outline to a rectangle with rounded corners
+- [x] Change PCB outline to a rectangle with rounded corners
 - [x] Change MPU9250 to use I2C addr 0x69, instead of 0x68
 
 ### Rev 4 (aug 2017)
