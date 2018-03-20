@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "thread": "cpp",
+    "mgos.h": "c",
+    "mgos_net.h": "c",
+    "mgos_config.h": "c"
+  }
+}

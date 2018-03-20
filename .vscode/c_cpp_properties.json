@@ -37,10 +37,7 @@
                 "${workspaceRoot}",
                 "/home/frode/GIT/mongoose-os",
                 "/home/frode/GIT/mongoose-os/fw",
-                "/home/frode/GIT/mongoose-os/fw/src",
-                "/home/frode/GIT/mongoose-os/fw/include",
-                "/home/frode/Arduino/hardware/espressif/esp32/cores/esp32",
-                "${workspaceRoot}/build/gen"
+                "/home/frode/GIT/mongoose-os/fw/include"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -57,11 +54,9 @@
                     "${workspaceRoot}",
                     "/home/frode/GIT/mongoose-os",
                     "/home/frode/GIT/mongoose-os/fw",
-                    "/home/frode/GIT/mongoose-os/fw/src",
-                    "/home/frode/GIT/mongoose-os/fw/include",
-                    "/home/frode/Arduino/hardware/espressif/esp32/cores/esp32"
+                    "/home/frode/GIT/mongoose-os/fw/include"
                 ],
-                "limitSymbolsToIncludedHeaders": false,
+                "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
             }
         },
@@ -69,21 +64,18 @@
             "name": "Win32",
             "includePath": [
                 "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include",
-                "${workspaceRoot}",
-                "c:/MOS/mongoose-os",
-                "C:/MOS/mongoose-os/fw/src"
+                "${workspaceRoot}"
             ],
             "defines": [
                 "_DEBUG",
-                "UNICODE"
+                "UNICODE",
+                "_UNICODE"
             ],
             "intelliSenseMode": "msvc-x64",
             "browse": {
                 "path": [
                     "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*",
-                    "${workspaceRoot}",
-                    "c:/MOS/mongoose-os",
-                    "C:/MOS/mongoose-os/fw/src"
+                    "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""

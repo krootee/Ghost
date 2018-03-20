@@ -14,7 +14,11 @@ See https://www.mongoose-os.com and https://forum.mongoose-os.com
       cd MOSprojectABC
       mos init
 
-    4) After making changes to the generated src/main.c file use this to build and flash to board.
+    4) In mos.yml, add the following line
+
+      platform: esp32
+
+    5) After making changes to the generated src/main.c file use this to build and flash to board.
 
       mos build
       mos flash

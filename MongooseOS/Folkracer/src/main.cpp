@@ -32,19 +32,19 @@ enum mgos_app_init_result mgos_app_init(void) {
   //mgos_gpio_enable_int(4);
 
   //Listen for Startmodule interrupt
-  LOG(LL_INFO, ("Attaching interrupt handler for startmodule"));
-  mgos_gpio_set_mode(GPIO_PIN_STARTMODULE_SIGNAL, MGOS_GPIO_MODE_INPUT);
-  mgos_gpio_set_int_handler(GPIO_PIN_STARTMODULE_SIGNAL, MGOS_GPIO_INT_EDGE_ANY, toggle_led_cb, NULL);
-  bool interrupt = mgos_gpio_enable_int(GPIO_PIN_STARTMODULE_SIGNAL);
-  if (interrupt)
-    LOG(LL_INFO, ("Interrupt attached to pin %d", GPIO_PIN_STARTMODULE_SIGNAL));
-  else
-    LOG(LL_INFO, ("Interrupt NOT attached!"));
+  //LOG(LL_INFO, ("Attaching interrupt handler for startmodule"));
+  //mgos_gpio_set_mode(GPIO_PIN_STARTMODULE_SIGNAL, MGOS_GPIO_MODE_INPUT);
+  //mgos_gpio_set_int_handler(GPIO_PIN_STARTMODULE_SIGNAL, MGOS_GPIO_INT_EDGE_ANY, toggle_led_cb, NULL);
+  //bool interrupt = mgos_gpio_enable_int(GPIO_PIN_STARTMODULE_SIGNAL);
+  //if (interrupt)
+//    LOG(LL_INFO, ("Interrupt attached to pin %d", GPIO_PIN_STARTMODULE_SIGNAL));
+//  else
+    //LOG(LL_INFO, ("Interrupt NOT attached!"));
 
   Sensor::StartModule start_module(GPIO_PIN_STARTMODULE_SIGNAL);
-  //start_module.enable();
+  start_module.initialize();
   //start_module.disable();
-  start_module.powercycle();
+  //start_module.powercycle();
   //start_module.get_current_state();
 
   //Actuators::Motor steering(GPIO_PIN_26);
