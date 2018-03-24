@@ -3,41 +3,64 @@
  * Frode Lillerud, 20.mar 2018
  */
 
-#include "mgos.h"
+#include <mgos.h>
 #include "startmodule.hpp"
 
 namespace Sensor {
 
   StartModule::StartModule(int pin) {
-      this->_pin_signal = pin;
-
-      this->_current_state = startmodule_state::ready;
+    LOG(LL_INFO, ("StartModule::StartModule(int)"));
+    this->_pin_signal = pin;
+    count = 1;
+    this->_current_state = startmodule_state::ready;
   }
 
   StartModule::StartModule(int signal, int vcc) {
-      this->_pin_signal = signal;
-      this->_pin_vcc = vcc;
+    LOG(LL_INFO, ("StartModule::StartModule(int, int)"));
+    this->_pin_signal = signal;
+    this->_pin_vcc = vcc;
+    this->count = 0;
 
-      this->_current_state = startmodule_state::ready;
+    this->_current_state = startmodule_state::ready;
+  }
+
+  StartModule::~StartModule()
+  {
+    //Destructor
   }
   
   //Hook up interrupts
   void StartModule::initialize() {
+    LOG(LL_INFO, ("StartModule::initialize()"));
     this->_current_state = startmodule_state::ready;
   
     mgos_gpio_set_mode(_pin_signal, MGOS_GPIO_MODE_INPUT);
-    mgos_gpio_set_int_handler(_pin_signal, MGOS_GPIO_INT_EDGE_ANY, StartModule::goto_next_state, this);
+    mgos_gpio_set_int_handler(_pin_signal, MGOS_GPIO_INT_EDGE_ANY, StartModule::state_change_callback, this);
     bool interrupt = mgos_gpio_enable_int(_pin_signal); 
     if (interrupt)
         LOG(LL_INFO, ("Interrupt attached to pin %d", _pin_signal));
     else
         LOG(LL_ERROR, ("Interrupt NOT attached for startmodule!"));
-  }
 
+    //mgos_set_timer(4*1000, 1, StartModule::timer_cb, this);
+  }
+/*
+  void StartModule::timer_cb(void *arg)
+  {
+    StartModule* pThis = reinterpret_cast<StartModule*>(arg);
+    pThis->count++;
+
+    LOG(LL_INFO, ("Count=%d", pThis->count));
+  }
+*/
   //Set the internal state engine to the next state.
-  void StartModule::goto_next_state(int pin, void * arg) {
+  void StartModule::state_change_callback(int pin, void * arg) {
+    LOG(LL_INFO, ("StartModule::goto_next_state(void * arg)"));
 
     StartModule* pThis = reinterpret_cast<StartModule*>(arg);
+    pThis->count++;
+
+    LOG(LL_INFO, ("Interrupt count: %d", pThis->count));
 
     if (pThis->_current_state == startmodule_state::ready)
         pThis->_current_state = startmodule_state::started;
@@ -76,5 +99,9 @@ namespace Sensor {
   //Get the current state from the internal state engine
   startmodule_state StartModule::get_current_state() {
       return this->_current_state;
+  }
+
+  int StartModule::get_count() {
+    return this->count;
   }
 }

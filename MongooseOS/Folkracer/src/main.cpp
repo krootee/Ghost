@@ -6,6 +6,7 @@
 #include "motor.hpp"
 #include "gp2y0e02b.hpp"
 #include "startmodule.hpp"
+#include "carstate.hpp"
 
 #include <iostream>
 #include <chrono>
@@ -20,6 +21,18 @@ void toggle_led_cb(int pin, void *arg) {
   LOG(LL_INFO, ("Interrupt triggered on pin %d", pin));
   mgos_gpio_toggle(GPIO_PIN_LED);
   (void) arg;
+}
+
+void timer_cb(void * arg) {
+
+  Sensor::StartModule * startmodule = reinterpret_cast<Sensor::StartModule*>(arg);
+
+  LOG(LL_INFO, ("[TICK] Count: %d", startmodule->get_count()));
+}
+
+void carstate_cb(void * arg) {
+  CarState * carstate = reinterpret_cast<CarState*>(arg);
+  LOG(LL_INFO, ("Carstate.count=%d", carstate->count));
 }
 
 enum mgos_app_init_result mgos_app_init(void) {
@@ -41,12 +54,37 @@ enum mgos_app_init_result mgos_app_init(void) {
 //  else
     //LOG(LL_INFO, ("Interrupt NOT attached!"));
 
-  Sensor::StartModule start_module(GPIO_PIN_STARTMODULE_SIGNAL);
-  start_module.initialize();
+  Sensor::StartModule * _startmodule;
+  _startmodule = new Sensor::StartModule(GPIO_PIN_STARTMODULE_SIGNAL);
+  _startmodule->initialize();
+
+  CarState * carstate;
+  carstate = new CarState();
+
+  mgos_set_timer(5*1000, 1, timer_cb, _startmodule);
+  mgos_set_timer(5*1000, 1, carstate_cb, carstate);
   //start_module.disable();
   //start_module.powercycle();
   //start_module.get_current_state();
 
+/*
+  while (_startmodule->get_current_state() == Sensor::startmodule_state::ready)
+  {
+    int c = _startmodule->get_count();
+    LOG(LL_INFO, ("Ready %d...", c));
+  }
+
+  while (_startmodule->get_current_state() == Sensor::startmodule_state::started)
+  {
+    int c = _startmodule->get_count();
+    LOG(LL_INFO, ("Started...%d", c));
+  }
+
+  while (_startmodule->get_current_state() == Sensor::startmodule_state::stopped)
+  {
+    LOG(LL_INFO, ("Stopped"));
+  }
+*/
   //Actuators::Motor steering(GPIO_PIN_26);
 
   // while (true) {
