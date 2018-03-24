@@ -5,6 +5,7 @@
 
 #include <mgos.h>
 #include "startmodule.hpp"
+#include "carstate.hpp"
 
 namespace Sensor {
 
@@ -56,6 +57,8 @@ namespace Sensor {
   //Set the internal state engine to the next state.
   void StartModule::state_change_callback(int pin, void * arg) {
     LOG(LL_INFO, ("StartModule::goto_next_state(void * arg)"));
+
+    g_carstate->count++;
 
     StartModule* pThis = reinterpret_cast<StartModule*>(arg);
     pThis->count++;

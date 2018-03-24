@@ -8,4 +8,4 @@ class CarState {
   private:
 };
 
-extern CarState g_carstate;
+extern CarState * g_carstate;

@@ -41,31 +41,40 @@ enum mgos_app_init_result mgos_app_init(void) {
   //std::thread led_thread(turn_on_led);
   //led_thread.join();
 
-  //mgos_gpio_set_int_handler(4, MGOS_GPIO_INT_EDGE_ANY, toggle_led_cb, null);
-  //mgos_gpio_enable_int(4);
-
   //Listen for Startmodule interrupt
-  //LOG(LL_INFO, ("Attaching interrupt handler for startmodule"));
-  //mgos_gpio_set_mode(GPIO_PIN_STARTMODULE_SIGNAL, MGOS_GPIO_MODE_INPUT);
-  //mgos_gpio_set_int_handler(GPIO_PIN_STARTMODULE_SIGNAL, MGOS_GPIO_INT_EDGE_ANY, toggle_led_cb, NULL);
-  //bool interrupt = mgos_gpio_enable_int(GPIO_PIN_STARTMODULE_SIGNAL);
-  //if (interrupt)
-//    LOG(LL_INFO, ("Interrupt attached to pin %d", GPIO_PIN_STARTMODULE_SIGNAL));
-//  else
-    //LOG(LL_INFO, ("Interrupt NOT attached!"));
-
   Sensor::StartModule * _startmodule;
   _startmodule = new Sensor::StartModule(GPIO_PIN_STARTMODULE_SIGNAL);
   _startmodule->initialize();
-
-  CarState * carstate;
-  carstate = new CarState();
-
-  mgos_set_timer(5*1000, 1, timer_cb, _startmodule);
-  mgos_set_timer(5*1000, 1, carstate_cb, carstate);
   //start_module.disable();
   //start_module.powercycle();
   //start_module.get_current_state();
+
+  mgos_set_timer(5*1000, 1, timer_cb, _startmodule);
+  mgos_set_timer(5*1000, 1, carstate_cb, g_carstate);
+
+  //Playing around with JSON
+  //https://github.com/cesanta/frozen
+  int a = 0;
+  const char * json = "{\"a\":123, \"b\":\"hallo\"}";
+  int r = json_scanf(json, strlen(json), "{a:%d}", &a);
+  LOG(LL_INFO, ("a is %d", a));
+  (void)r;
+
+  struct car {
+    int wheels = 4;
+    int gears = 7;
+  };
+
+  printf("testign printf");
+
+  //car c;
+  //c.wheels = 5;
+  //c.gears = 8;
+  char str_out[256];
+  struct json_out out = JSON_OUT_BUF(str_out, sizeof(str_out));
+  //json_printf(&out, "{wheels: %M}", c);
+  json_printf(&out, "{count: %d}", g_carstate->count);
+  LOG(LL_INFO, ("str_out=%s", str_out));
 
 /*
   while (_startmodule->get_current_state() == Sensor::startmodule_state::ready)
