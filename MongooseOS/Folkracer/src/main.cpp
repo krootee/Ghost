@@ -25,15 +25,21 @@ void toggle_led_cb(int pin, void *arg) {
 
 void timer_cb(void * arg) {
 
-  Sensor::StartModule * startmodule = reinterpret_cast<Sensor::StartModule*>(arg);
+  //Sensor::StartModule * startmodule = reinterpret_cast<Sensor::StartModule*>(arg);
 
-  LOG(LL_INFO, ("[TICK] Count: %d", startmodule->get_count()));
+  //LOG(LL_INFO, ("[TICK] Count: %d", startmodule->get_count()));
+
+  //Print out carstate as JSON
+  char json[256];
+  struct json_out out = JSON_OUT_BUF(json, sizeof(json));
+  json_printf(&out, "{count: %d, temperature: %d, startmodule: %d}", g_carstate->count, g_carstate->temperature, g_carstate->startmodule);
+  LOG(LL_INFO, ("json = %s", json));
 }
 
-void carstate_cb(void * arg) {
-  CarState * carstate = reinterpret_cast<CarState*>(arg);
-  LOG(LL_INFO, ("Carstate.count=%d", carstate->count));
-}
+//void carstate_cb(void * arg) {
+//  CarState * carstate = reinterpret_cast<CarState*>(arg);
+//  LOG(LL_INFO, ("Carstate.count=%d", carstate->count));
+//}
 
 enum mgos_app_init_result mgos_app_init(void) {
 
@@ -49,32 +55,26 @@ enum mgos_app_init_result mgos_app_init(void) {
   //start_module.powercycle();
   //start_module.get_current_state();
 
-  mgos_set_timer(5*1000, 1, timer_cb, _startmodule);
-  mgos_set_timer(5*1000, 1, carstate_cb, g_carstate);
+  mgos_set_timer(5*1000, 1, timer_cb, NULL);
+  //mgos_set_timer(5*1000, 1, carstate_cb, g_carstate);
 
   //Playing around with JSON
   //https://github.com/cesanta/frozen
-  int a = 0;
+  /*int a = 0;
   const char * json = "{\"a\":123, \"b\":\"hallo\"}";
   int r = json_scanf(json, strlen(json), "{a:%d}", &a);
   LOG(LL_INFO, ("a is %d", a));
   (void)r;
+  */
 
-  struct car {
-    int wheels = 4;
-    int gears = 7;
-  };
+  // struct car {
+  //   int wheels = 4;
+  //   int gears = 7;
+  // };
 
-  printf("testign printf");
+  // printf("TESTING printf");
 
-  //car c;
-  //c.wheels = 5;
-  //c.gears = 8;
-  char str_out[256];
-  struct json_out out = JSON_OUT_BUF(str_out, sizeof(str_out));
-  //json_printf(&out, "{wheels: %M}", c);
-  json_printf(&out, "{count: %d}", g_carstate->count);
-  LOG(LL_INFO, ("str_out=%s", str_out));
+  
 
 /*
   while (_startmodule->get_current_state() == Sensor::startmodule_state::ready)

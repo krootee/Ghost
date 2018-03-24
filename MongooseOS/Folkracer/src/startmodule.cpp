@@ -56,19 +56,26 @@ namespace Sensor {
 */
   //Set the internal state engine to the next state.
   void StartModule::state_change_callback(int pin, void * arg) {
-    LOG(LL_INFO, ("StartModule::goto_next_state(void * arg)"));
+    //LOG(LL_INFO, ("StartModule::goto_next_state(void * arg)"));
 
     g_carstate->count++;
+    g_carstate->temperature *= 2;
 
     StartModule* pThis = reinterpret_cast<StartModule*>(arg);
     pThis->count++;
 
-    LOG(LL_INFO, ("Interrupt count: %d", pThis->count));
+    //LOG(LL_INFO, ("Interrupt count: %d", pThis->count));
 
     if (pThis->_current_state == startmodule_state::ready)
+    {
         pThis->_current_state = startmodule_state::started;
+        g_carstate->startmodule = startmodule_state::started;
+    }
     else if (pThis->_current_state == startmodule_state::started)
+    {
         pThis->_current_state = startmodule_state::stopped;
+        g_carstate->startmodule = startmodule_state::stopped;
+    }
     else {
         //Already in Stopped state. Do nothing.
     }
@@ -82,7 +89,7 @@ namespace Sensor {
     } else if (state == 3) {
       LOG(LL_INFO, ("Stopped"));
     }
-    LOG(LL_INFO, ("New state in startmodule: %d", pThis->_current_state));
+    //LOG(LL_INFO, ("New state in startmodule: %d", pThis->_current_state));
   }
   
   //Powercycle the StartModule by turning off power to it, waiting a second, and turning power back on.
