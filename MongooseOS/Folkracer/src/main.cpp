@@ -47,8 +47,14 @@ enum mgos_app_init_result mgos_app_init(void) {
   //std::thread led_thread(turn_on_led);
   //led_thread.join();
 
+  //Testing configuration
+  //LOG(LL_INFO, ("Hello, %s", mgos_sys_config_get_hello_who()));
+  //const char * world = mgos_sys_config_get_hello_who();
+
   //Listen for Startmodule interrupt
+  //int pin = mgos_sys_config_get_ghost32_startmodule_signal_gpio();
   Sensor::StartModule * _startmodule;
+//  _startmodule = new Sensor::StartModule(pin);
   _startmodule = new Sensor::StartModule(GPIO_PIN_STARTMODULE_SIGNAL);
   _startmodule->initialize();
   //start_module.disable();
@@ -94,18 +100,19 @@ enum mgos_app_init_result mgos_app_init(void) {
     LOG(LL_INFO, ("Stopped"));
   }
 */
-  //Actuators::Motor steering(GPIO_PIN_26);
+  Actuators::Motor * steering;
+  steering = new Actuators::Motor(GPIO_PIN_26);
 
-  // while (true) {
-  //   steering.setDesiredSpeed(0.075);
-  //   std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+  while (true) {
+    steering->setDesiredSpeed(0.075);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
-  //   steering.setDesiredSpeed(0.05);
-  //   std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    steering->setDesiredSpeed(0.05);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
-  //   steering.setDesiredSpeed(0.10);
-  //   std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-  // }
+    steering->setDesiredSpeed(0.10);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+  }
 
   // Sensor::GP2Y0E02B irsensor;
   // int distance = irsensor.getDistance();

@@ -11,6 +11,7 @@ namespace Actuators {
         this->_pin = pin;
     }
 
+    //Fra CPP filen
     void Motor::setDesiredSpeed(float duty_cycle) {
 
         const int frequency = 50; //50Hz = 20ms

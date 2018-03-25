@@ -24,11 +24,11 @@ filesystem:
 # Below is a custom firmware configuration example.
 # Uncomment and modify according to your needs:
 
-# config_schema:
-#  - ["my_app", "o", {title: "My app custom settings"}]
-#  - ["my_app.bool_value", "b", false, {title: "Some boolean value"}]
-#  - ["my_app.string_value", "s", "", {title: "Some string value"}]
-#  - ["my_app.int_value", "i", 123, {title: "Some integer value"}]
+#config_schema:
+ #- ["ghost32.startmodule_signal_gpio", "i", 27, {title: "Startmodule signal pin"}]
+ #- ["my_app.bool_value", "b", false, {title: "Some boolean value"}]
+# - ["my_app.string_value", "s", "", {title: "Some string value"}]
+# - ["my_app.int_value", "i", 123, {title: "Some integer value"}]
 
 # These settings get compiled into the C structure, and can be accessed
 # from the C code this way:
@@ -44,9 +44,13 @@ filesystem:
 # settings that has been created by other libraries. For example, debug log
 # level is 2 by default. For this firmware we can override it to 3:
 #
-# config_schema:
-#  - ["debug.level", 3]
+#config_schema:
+  #- ["debug.level", 3]
+  #- ["my_app.bool_value", true]
+  #- ["ghost32.startmodule_signal_gpio", 27]
+
 config_schema:
+  - ["hello.who", "s", "world", {"title": "Who to say hello to"}]
   - ["debug.level", 3]
   - ["i2c.enable", true]
   - ["i2c.debug", false]
