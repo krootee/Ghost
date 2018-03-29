@@ -9,6 +9,6 @@ CarState::CarState() {
   LOG(LL_INFO, ("CarState constructor"));
   
   this->count = 18;
-  this->temperature = 32;
+  this->temperature = 32.5;
   this->startmodule = Sensor::startmodule_state::ready;
 }

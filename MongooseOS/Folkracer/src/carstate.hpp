@@ -9,7 +9,7 @@ class CarState {
 
     //Variables
     int count;
-    int temperature;
+    float temperature;
     int desired_speed;
 
     //Methods

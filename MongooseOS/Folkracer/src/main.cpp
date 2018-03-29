@@ -7,14 +7,19 @@
 #include "gp2y0e02b.hpp"
 #include "startmodule.hpp"
 #include "carstate.hpp"
+#include "tca9548.hpp"
+#include "tmp102.hpp"
 
 #include <iostream>
+#include <vector>
 #include <chrono>
 #include <thread>
 
 #define GPIO_PIN_26  26
 #define GPIO_PIN_STARTMODULE_SIGNAL  27
 #define GPIO_PIN_LED 23
+#define TCA9548_I2C_ADDRESS 0x999
+#define TMP102_I2C_ADDRESS 0x998
 
 void toggle_led_cb(int pin, void *arg) {
   //mgos_gpio_write(23, true);
@@ -41,6 +46,12 @@ void timer_cb(void * arg) {
 //  LOG(LL_INFO, ("Carstate.count=%d", carstate->count));
 //}
 
+/*
+void startmoduleChangedEvent(void * arg) {
+  LOG(LL_INFO, ("Startmodule event raised"));
+}
+*/
+
 enum mgos_app_init_result mgos_app_init(void) {
 
   mgos_gpio_set_mode(GPIO_PIN_LED, MGOS_GPIO_MODE_OUTPUT);
@@ -54,17 +65,48 @@ enum mgos_app_init_result mgos_app_init(void) {
   //Listen for Startmodule interrupt
   //int pin = mgos_sys_config_get_ghost32_startmodule_signal_gpio();
   Sensor::StartModule * _startmodule;
-//  _startmodule = new Sensor::StartModule(pin);
   _startmodule = new Sensor::StartModule(GPIO_PIN_STARTMODULE_SIGNAL);
   _startmodule->initialize();
   //start_module.disable();
   //start_module.powercycle();
   //start_module.get_current_state();
 
+  //std::vector<Sensor::GP2Y0E02B> irsensors;
+  //irsensors.reserve(3);
+  //irsensors.push_back()
+
+
+  int sensor_count = 8;
+  Sensor::GP2Y0E02B **sensors = new Sensor::GP2Y0E02B*[sensor_count];
+  for (int i=0; i < sensor_count; i++) {
+    sensors[i] = new Sensor::GP2Y0E02B();
+  }
+
+  //I2C multiplexer
+  Sensor::TCA9548 * tca9548;
+  tca9548 = new Sensor::TCA9548(TCA9548_I2C_ADDRESS);
+  if (tca9548->detect_device()) {
+    tca9548->set_channel(2);
+    int activechannel = tca9548->get_channel();
+  } else {
+    LOG(LL_ERROR, ("Unable to detect TCA9548"));
+  }
+
+  //TMP102 temperature sensor
+  Sensor::TMP102 * tmp102;
+  tmp102 = new Sensor::TMP102(TMP102_I2C_ADDRESS);
+  float temperature = tmp102->readTemperature();
+  g_carstate->temperature = temperature;
+
+
+
   mgos_set_timer(5*1000, 1, timer_cb, NULL);
   //mgos_set_timer(5*1000, 1, carstate_cb, g_carstate);
 
-  //Playing around with JSON
+  //Hook up timers
+  //mgos_set_timer(200, )
+
+  //Playing around with JSON  
   //https://github.com/cesanta/frozen
   /*int a = 0;
   const char * json = "{\"a\":123, \"b\":\"hallo\"}";
@@ -73,7 +115,7 @@ enum mgos_app_init_result mgos_app_init(void) {
   (void)r;
   */
 
-  // struct car {
+  // struct driver {
   //   int wheels = 4;
   //   int gears = 7;
   // };
@@ -105,15 +147,27 @@ enum mgos_app_init_result mgos_app_init(void) {
 
   while (true) {
     steering->setDesiredSpeed(0.075);
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
     steering->setDesiredSpeed(0.05);
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+
+    steering->setDesiredSpeed(0.075);
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
     steering->setDesiredSpeed(0.10);
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+
+    mgos_wdt_feed(); //Feed the watchdog so that it doesn't crash after 30 seconds.
   }
 
+/*  Driver * driver;
+  driver = new Driver(steering, motor, startmodule);
+  if (g_carstate == Sensor::startmodule_state::started())
+  {
+    driver->drive();
+  }
+*/
   // Sensor::GP2Y0E02B irsensor;
   // int distance = irsensor.getDistance();
   // LOG(LL_INFO, ("Distance: %d", distance));
