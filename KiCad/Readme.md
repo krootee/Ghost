@@ -19,11 +19,11 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 - [x] MicroUSB
 - [x] USB-to-UART (CP2102)
 - [x] Power LED
-- [x] ~~Tx/Rx LEDs~~
 - [x] Reset buttons for ESP-WROOM-32 (Reset)
-- [x] ~~Accelerometer/Gyro (MPU-6050)~~
-- [x] ~~Compass (HMC5883)~~
 - [x] Accelerometer/Gyro/Compass (MPU-9250)
+- [x] Temperature (TMP102)
+- [x] Connector for ESC/Motor
+- [x] Connector for Steering servo
 
 ##### PCB - GhostSensorboard (Sensors and connectors)
 
@@ -31,22 +31,34 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 - [x] 16 connectors for I2C/IR sensors
 - [ ] RGB LED
 - [x] Connector for Startmodule
-- [x] Connector for Steering servo
-- [x] Connector for ESC/Motor
 - [x] 3V3->5V level shifter (BSS138, see Sparkfun)
 
 ### Rev 6 (future)
 
-- [ ] Replace CP2102 with CP2014 (slightly smaller, different pins)
+#### New/Changes
+- [ ] Fix schematic for Q2. Pins 2 and 3 are switched.
+- [ ] Use Sick-of-beige 60x37
+- [ ] Change footprint for the 100uF capacitors to a bigger one?
+- [ ] CP2102, remove the resistors for D- and D+
+- [ ] Make sure the capacitors for MPU9250, CP2102 and ESP32 as placed close to the chip.
+- [ ] CP2102, Add 4.7k pullup resistor to 3V3 on RST pin
+- [ ] Replace CP2102 with CP2102N (faster, pin compatible, might require two more resistors)
+- [ ] Make the CP210N bus-powered. No need to power it except when programming via USB. 
+(see https://www.silabs.com/documents/public/application-notes/an976-cp2102-3-4-9-to-cp2102n-porting-guide.pdf)
+Add 22.1k and 47.5k voltage divider.
 - [ ] Replace slide switch with side switch, f.inst: 131-6979
 - [ ] Smaller 3V3 regulator. How much current do we draw at most?
 - [ ] Ability to measure battery voltage. (LTC2943CDD, 2366039)
-- [ ] Use Sick-of-beige 60x37
+- [ ] Change resistors and capacitors 0402 to 0603.
 
 ### Rev 5 (18.mar 2018)
 
 Formfactor: Sick-of-beige 70x43
 
+#### Notes and workarounds
+- The Q2 schematic is wrong. Pins 2 and 3 are switched.
+
+#### New/Changes
 - [x] Fix footprint for TMP102. Was too big on Rev4.
 - [-] Figure out why MPU9250 doesn't work on Rev4.
 - [-] Test I2C and IR sensors on Rev4
