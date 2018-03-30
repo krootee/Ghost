@@ -39,6 +39,8 @@ or
 
     make all flash monitor (builds everything, flashes and starts the monitor with one command)
 
+To close the 'monitor' use keys Ctrl+] (which is Ctrl+AltGr+9 on Norwegian keyboards).
+
 
 ### Performance
 
