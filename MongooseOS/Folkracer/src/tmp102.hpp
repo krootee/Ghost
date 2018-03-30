@@ -9,5 +9,6 @@ namespace Sensor {
       
       float readTemperature();
     private:
+      uint16_t i2c_address;
   };
 }

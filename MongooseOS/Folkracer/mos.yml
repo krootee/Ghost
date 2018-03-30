@@ -54,8 +54,8 @@ config_schema:
   - ["debug.level", 3]
   - ["i2c.enable", true]
   - ["i2c.debug", false]
-  - ["i2c.sda_gpio", 33]
-  - ["i2c.scl_gpio", 32]
+  - ["i2c.sda_gpio", 21]
+  - ["i2c.scl_gpio", 22]
 
 
 # List of libraries used by this app, in order of initialisation
