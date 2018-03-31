@@ -19,7 +19,7 @@
 #define GPIO_PIN_STARTMODULE_SIGNAL  27
 #define GPIO_PIN_LED 23
 #define TCA9548_I2C_ADDRESS 0x999
-#define TMP102_I2C_ADDRESS 0x998
+#define TMP102_I2C_ADDRESS 0x48
 
 void toggle_led_cb(int pin, void *arg) {
   //mgos_gpio_write(23, true);
@@ -28,17 +28,29 @@ void toggle_led_cb(int pin, void *arg) {
   (void) arg;
 }
 
-void timer_cb(void * arg) {
+void read_temperature_cb(void * arg) {
+  
+  //TMP102 temperature sensor
+  Sensor::TMP102 * tmp102;
+  //tmp102 = new Sensor::TMP102(TMP102_I2C_ADDRESS);
+  tmp102 = new Sensor::TMP102();
+  if (tmp102->detect_device())
+  {
+    float temperature = tmp102->read_temperature();
+    g_carstate->temperature = temperature;
+  } else {
+    LOG(LL_ERROR, ("Unable to detect TMP102 device."));
+  }
+  
+  (void) arg;
+}
 
-  //Sensor::StartModule * startmodule = reinterpret_cast<Sensor::StartModule*>(arg);
-
-  //LOG(LL_INFO, ("[TICK] Count: %d", startmodule->get_count()));
-
+void print_carstate_cb(void * arg) {
   //Print out carstate as JSON
   char json[256];
   struct json_out out = JSON_OUT_BUF(json, sizeof(json));
-  json_printf(&out, "{count: %d, temperature: %d, startmodule: %d}", g_carstate->count, g_carstate->temperature, g_carstate->startmodule);
-  LOG(LL_INFO, ("json = %s", json));
+  json_printf(&out, "{temperature: %.2f, startmodule: %d}", g_carstate->temperature, g_carstate->startmodule);
+  LOG(LL_INFO, ("state = %s", json));
 }
 
 //void carstate_cb(void * arg) {
@@ -92,16 +104,15 @@ enum mgos_app_init_result mgos_app_init(void) {
     LOG(LL_ERROR, ("Unable to detect TCA9548"));
   }
 
-  //TMP102 temperature sensor
+/*  //TMP102 temperature sensor
   Sensor::TMP102 * tmp102;
   tmp102 = new Sensor::TMP102(TMP102_I2C_ADDRESS);
   float temperature = tmp102->readTemperature();
   g_carstate->temperature = temperature;
-
-
-
-  mgos_set_timer(5*1000, 1, timer_cb, NULL);
-  //mgos_set_timer(5*1000, 1, carstate_cb, g_carstate);
+*/
+  mgos_set_timer(1*1000, 1, print_carstate_cb, NULL);
+  mgos_set_timer(.5*1000, 1, read_temperature_cb, NULL);
+//  mgos_set_timer(5*1000, 1, carstate_cb, g_carstate);
 
   //Hook up timers
   //mgos_set_timer(200, )
@@ -145,7 +156,7 @@ enum mgos_app_init_result mgos_app_init(void) {
   Actuators::Motor * steering;
   steering = new Actuators::Motor(GPIO_PIN_26);
 
-  while (true) {
+/*  while (true) {
     steering->setDesiredSpeed(0.075);
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
@@ -160,14 +171,8 @@ enum mgos_app_init_result mgos_app_init(void) {
 
     mgos_wdt_feed(); //Feed the watchdog so that it doesn't crash after 30 seconds.
   }
-
-/*  Driver * driver;
-  driver = new Driver(steering, motor, startmodule);
-  if (g_carstate == Sensor::startmodule_state::started())
-  {
-    driver->drive();
-  }
 */
+
   // Sensor::GP2Y0E02B irsensor;
   // int distance = irsensor.getDistance();
   // LOG(LL_INFO, ("Distance: %d", distance));

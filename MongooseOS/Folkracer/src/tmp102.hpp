@@ -1,4 +1,6 @@
 #pragma once
+
+#include "mgos.h"
 #include "mgos_i2c.h"
 
 namespace Sensor {
@@ -7,8 +9,10 @@ namespace Sensor {
       TMP102();
       TMP102(int);
       
-      float readTemperature();
+      bool detect_device();
+      float read_temperature();
     private:
       uint16_t i2c_address;
+      int read_configuration();
   };
 }

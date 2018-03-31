@@ -35,7 +35,7 @@ and Sick-of-beige layout from https://github.com/TomKeddie/openscad-scripts
 
 ### Rev 6 (future)
 
-#### New/Changes
+#### Changes from Rev 5 to Rev 6
 - [ ] Fix schematic for Q2. Pins 2 and 3 are switched.
 - [ ] Use Sick-of-beige 60x37
 - [ ] Change footprint for the 100uF capacitors to a bigger one?
