@@ -28,6 +28,11 @@ void toggle_led_cb(int pin, void *arg) {
   (void) arg;
 }
 
+void led_blink_cb(void * arg) {
+  mgos_gpio_toggle(GPIO_PIN_LED);
+  (void) arg;
+}
+
 void read_temperature_cb(void * arg) {
   
   //TMP102 temperature sensor
@@ -98,8 +103,13 @@ enum mgos_app_init_result mgos_app_init(void) {
   Sensor::TCA9548 * tca9548;
   tca9548 = new Sensor::TCA9548(TCA9548_I2C_ADDRESS);
   if (tca9548->detect_device()) {
-    tca9548->set_channel(2);
-    int activechannel = tca9548->get_channel();
+    LOG(LL_INFO, ("Success, found TCA9548"));
+    for (int i = 0; i < 8; i++) {
+      LOG(LL_INFO, ("Setting channel to %d", i));
+      tca9548->set_channel(i);
+      int activechannel = tca9548->get_channel();
+      LOG(LL_INFO, ("Active channel is %d", activechannel));
+    }
   } else {
     LOG(LL_ERROR, ("Unable to detect TCA9548"));
   }
@@ -112,6 +122,7 @@ enum mgos_app_init_result mgos_app_init(void) {
 */
   mgos_set_timer(1*1000, 1, print_carstate_cb, NULL);
   mgos_set_timer(.5*1000, 1, read_temperature_cb, NULL);
+  mgos_set_timer(1*1000, 1, led_blink_cb, NULL);
 //  mgos_set_timer(5*1000, 1, carstate_cb, g_carstate);
 
   //Hook up timers
