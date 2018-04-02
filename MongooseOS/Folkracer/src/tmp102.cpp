@@ -90,7 +90,7 @@ namespace Sensor {
         //Negative temperature and 'normal' mode
         //Under freezing temperature (0 celsius)
         //NB - NOT CORRECT BELOW!!!! Needs fixing.
-        int twos_complement = -twelve_bits+1; //Notice negative sign.
+        int twos_complement = ~twelve_bits+1; //Notice tilde sign. Not tested!
         return twos_complement * resolution * -1;
       } else {
         //TODO - extended mode

@@ -11,5 +11,6 @@ namespace Sensor {
       int get_channel();
       bool detect_device();
     private:
+      int i2c_address;
   };
 }

@@ -8,9 +8,9 @@ class CarState {
     CarState();
 
     //Variables
-    int count;
     float temperature;
     int desired_speed;
+    int actual_speed;
 
     //Methods
     Sensor::startmodule_state startmodule;

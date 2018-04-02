@@ -50,6 +50,7 @@ Add 22.1k and 47.5k voltage divider.
 - [ ] Smaller 3V3 regulator. How much current do we draw at most?
 - [ ] Ability to measure battery voltage. (LTC2943CDD, 2366039)
 - [ ] Change resistors and capacitors 0402 to 0603.
+- [ ] Fix footprint for TMP102 on Ghost Sensorboard
 
 ### Rev 5 (18.mar 2018)
 

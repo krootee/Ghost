@@ -8,7 +8,8 @@ CarState * g_carstate = new CarState();
 CarState::CarState() {
   LOG(LL_INFO, ("CarState constructor"));
   
-  this->count = 18;
-  this->temperature = 32.5;
+  this->temperature = 0;
   this->startmodule = Sensor::startmodule_state::ready;
+  this->desired_speed = 0;
+  this->actual_speed = 0;
 }
