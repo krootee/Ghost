@@ -18,6 +18,7 @@
 #define GPIO_PIN_26  26
 #define GPIO_PIN_STARTMODULE_SIGNAL  27
 #define GPIO_PIN_LED 23
+#define GPIO_PIN_BUTTON 18
 #define TCA9548_I2C_ADDRESS 0x70
 #define TMP102_I2C_ADDRESS 0x48
 
@@ -58,6 +59,11 @@ void print_carstate_cb(void * arg) {
   LOG(LL_INFO, ("state = %s", json));
 }
 
+void button_pressed_cb(int pin, void * arg) {
+  LOG(LL_INFO, ("Button click!"));
+  (void) arg;
+}
+
 //void carstate_cb(void * arg) {
 //  CarState * carstate = reinterpret_cast<CarState*>(arg);
 //  LOG(LL_INFO, ("Carstate.count=%d", carstate->count));
@@ -92,7 +98,6 @@ enum mgos_app_init_result mgos_app_init(void) {
   //irsensors.reserve(3);
   //irsensors.push_back()
 
-
   int sensor_count = 8;
   Sensor::GP2Y0E02B **sensors = new Sensor::GP2Y0E02B*[sensor_count];
   for (int i=0; i < sensor_count; i++) {
@@ -105,33 +110,27 @@ enum mgos_app_init_result mgos_app_init(void) {
   if (tca9548->detect_device()) {
     LOG(LL_INFO, ("Success, found TCA9548"));
     for (int i = 0; i < 8; i++) {
-      LOG(LL_INFO, ("Setting channel to %d", i));
+      //LOG(LL_INFO, ("Setting channel to %d", i));
       if (!tca9548->set_channel(i))
         LOG(LL_WARN, ("Unable to set channel"));
-      //else
-      //  LOG(LL_INFO, ("Channel set successfully"));
       int activechannel = tca9548->get_channel();
       LOG(LL_INFO, ("Active channel is %d", activechannel));
+
+      Sensor::GP2Y0E02B * irsensor = new Sensor::GP2Y0E02B();
+      irsensor->getDistance();
     }
   } else {
     LOG(LL_ERROR, ("Unable to detect TCA9548"));
   }
 
-  //Sensor::GP2Y0E02B * ir_sensor = new Sensor::GP2Y0E02B();
-
-/*  //TMP102 temperature sensor
-  Sensor::TMP102 * tmp102;
-  tmp102 = new Sensor::TMP102(TMP102_I2C_ADDRESS);
-  float temperature = tmp102->readTemperature();
-  g_carstate->temperature = temperature;
-*/
+  //Hook up timers
   mgos_set_timer(1*1000, 1, print_carstate_cb, NULL);
   mgos_set_timer(.5*1000, 1, read_temperature_cb, NULL);
   mgos_set_timer(1*1000, 1, led_blink_cb, NULL);
 //  mgos_set_timer(5*1000, 1, carstate_cb, g_carstate);
 
-  //Hook up timers
-  //mgos_set_timer(200, )
+  //Hook up button on the Ghost32 Shield.
+  mgos_gpio_set_button_handler(GPIO_PIN_BUTTON, MGOS_GPIO_PULL_UP, MGOS_GPIO_INT_EDGE_NEG, 50, button_pressed_cb, NULL);
 
   //Playing around with JSON  
   //https://github.com/cesanta/frozen
@@ -140,16 +139,7 @@ enum mgos_app_init_result mgos_app_init(void) {
   int r = json_scanf(json, strlen(json), "{a:%d}", &a);
   LOG(LL_INFO, ("a is %d", a));
   (void)r;
-  */
-
-  // struct driver {
-  //   int wheels = 4;
-  //   int gears = 7;
-  // };
-
-  // printf("TESTING printf");
-
-  
+  */ 
 
 /*
   while (_startmodule->get_current_state() == Sensor::startmodule_state::ready)
@@ -188,10 +178,6 @@ enum mgos_app_init_result mgos_app_init(void) {
     mgos_wdt_feed(); //Feed the watchdog so that it doesn't crash after 30 seconds.
   }
 */
-
-  // Sensor::GP2Y0E02B irsensor;
-  // int distance = irsensor.getDistance();
-  // LOG(LL_INFO, ("Distance: %d", distance));
 
   return MGOS_APP_INIT_SUCCESS;
 }
