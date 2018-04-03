@@ -58,8 +58,8 @@ namespace Sensor {
   void StartModule::state_change_callback(int pin, void * arg) {
     //LOG(LL_INFO, ("StartModule::goto_next_state(void * arg)"));
 
-    g_carstate->count++;
-    g_carstate->temperature *= 2;
+    //g_carstate->count++;
+    //g_carstate->temperature *= 2;
 
     StartModule* pThis = reinterpret_cast<StartModule*>(arg);
     pThis->count++;

@@ -18,7 +18,7 @@
 #define GPIO_PIN_26  26
 #define GPIO_PIN_STARTMODULE_SIGNAL  27
 #define GPIO_PIN_LED 23
-#define TCA9548_I2C_ADDRESS 0x999
+#define TCA9548_I2C_ADDRESS 0x70
 #define TMP102_I2C_ADDRESS 0x48
 
 void toggle_led_cb(int pin, void *arg) {
@@ -106,13 +106,18 @@ enum mgos_app_init_result mgos_app_init(void) {
     LOG(LL_INFO, ("Success, found TCA9548"));
     for (int i = 0; i < 8; i++) {
       LOG(LL_INFO, ("Setting channel to %d", i));
-      tca9548->set_channel(i);
+      if (!tca9548->set_channel(i))
+        LOG(LL_WARN, ("Unable to set channel"));
+      //else
+      //  LOG(LL_INFO, ("Channel set successfully"));
       int activechannel = tca9548->get_channel();
       LOG(LL_INFO, ("Active channel is %d", activechannel));
     }
   } else {
     LOG(LL_ERROR, ("Unable to detect TCA9548"));
   }
+
+  //Sensor::GP2Y0E02B * ir_sensor = new Sensor::GP2Y0E02B();
 
 /*  //TMP102 temperature sensor
   Sensor::TMP102 * tmp102;

@@ -7,7 +7,7 @@ namespace Sensor {
       TCA9548();
       TCA9548(int);
 
-      bool set_channel(int);
+      bool set_channel(uint8_t);
       int get_channel();
       bool detect_device();
     private:
