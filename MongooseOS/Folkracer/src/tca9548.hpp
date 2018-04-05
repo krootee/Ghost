@@ -1,4 +1,5 @@
 #pragma once
+#include "mgos.h"
 #include "mgos_i2c.h"
 
 namespace Sensor {

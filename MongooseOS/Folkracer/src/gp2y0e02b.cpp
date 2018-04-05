@@ -20,6 +20,12 @@ namespace Sensor {
     this->i2c_address = GP2Y0E02B_I2C_ADDRESS;
   }
 
+  bool GP2Y0E02B::detect_device() {
+    struct mgos_i2c *i2c = mgos_i2c_get_global();
+
+    return mgos_i2c_read_reg_b(i2c, this->i2c_address, GP2Y0E02B_REGISTER_DISTANCE) != -1;
+  }
+
   int GP2Y0E02B::getDistance() {
 
       //Get reference to the global I2C instance
@@ -27,9 +33,9 @@ namespace Sensor {
 
       uint8_t buffer[2];
       if (mgos_i2c_read_reg_n(i2c, this->i2c_address, GP2Y0E02B_REGISTER_DISTANCE, sizeof(buffer), buffer)) {
-        LOG(LL_INFO, ("SUCCESS"));
+        //LOG(LL_INFO, ("SUCCESS"));
       } else {
-        LOG(LL_ERROR, ("Couldn't even read two measly bytes from Distance register..."));
+        LOG(LL_ERROR, ("ERROR reading sensor"));
       }
 
 /*
@@ -42,7 +48,7 @@ namespace Sensor {
 */
       //Read two bytes from DISTANCE register
       int value = mgos_i2c_read_reg_w(i2c, GP2Y0E02B_I2C_ADDRESS, GP2Y0E02B_REGISTER_DISTANCE);
-      LOG(LL_INFO, ("Distance = %d", value));
+      //LOG(LL_INFO, ("Distance = %d", value));
       //return value;
       //Calculate distance
       //short high = data[0], low = data[1];

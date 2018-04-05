@@ -27,6 +27,10 @@ See https://www.mongoose-os.com and https://forum.mongoose-os.com
 Note; for Ghost32 PCB revisions 1-5 the maximum baudrate when flashing is 921600bps (from CP2102).
 Planning to use CP2102N in revision 6+, which will give maximum baudrate 3Mbps.
 
+      mos build --clean | grep "error"
+      mos flash --esp-baud-rate 921600
+      mos console
+
 ### Using Visual Studio Code
 Once you've got the basic setup above working you should also consider configuring VS.CODE to have a better programming experience.
 

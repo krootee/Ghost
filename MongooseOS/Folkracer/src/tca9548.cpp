@@ -1,4 +1,5 @@
 #include "tca9548.hpp"
+#include <bitset>
 
 /*
  * Mongoose OS driver for TCA9548 I2C multiplexer chip
@@ -51,18 +52,17 @@ namespace Sensor {
 
   /*
    * Set the active channel
+   * Accepts a 8-bit value, where each bit determines if the port is open or closed.
+   * So passing in 32 will set the fifth channel.
+   * Passing in 170 (binary 10101010) will set every other bit/channel.
    * Returns true if successful write, or false if unable to write.
    */
-  bool TCA9548::set_channel(uint8_t channel) {
-
-    //Only channels between 0 and 7 allowed.
-    if (channel < 0 || channel > 7)
-      return false;
+  bool TCA9548::set_channel(uint8_t channels) {
 
     //Get global I2C reference
     struct mgos_i2c *i2c = mgos_i2c_get_global();
 
-    //Write the channelnumber to the device, and return true if success.
-    return mgos_i2c_write(i2c, this->i2c_address, (void*) &channel, sizeof(channel), true);
+    //Write the channelsnumber to the device, and return true if success.
+    return mgos_i2c_write(i2c, this->i2c_address, (void*) &channels, sizeof(channels), true);
   }
 }

@@ -1,6 +1,10 @@
 {
   "files.associations": {
     "thread": "cpp",
-    "*.ipp": "cpp"
+    "*.ipp": "cpp",
+    "*.tcc": "cpp",
+    "ratio": "cpp",
+    "system_error": "cpp",
+    "type_traits": "cpp"
   }
 }

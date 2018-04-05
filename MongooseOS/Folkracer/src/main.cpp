@@ -64,6 +64,37 @@ void button_pressed_cb(int pin, void * arg) {
   (void) arg;
 }
 
+void read_irsensors(void * arg) {
+
+  double start = mg_time();
+
+  //I2C multiplexer
+  Sensor::TCA9548 * tca9548;
+  tca9548 = new Sensor::TCA9548(TCA9548_I2C_ADDRESS);
+  if (tca9548->detect_device()) {
+    //LOG(LL_INFO, ("Success, found TCA9548"));
+    for (int i = 0; i < 8; i++) {
+      //LOG(LL_INFO, ("Setting channel to %d", i));
+      if (!tca9548->set_channel(1 << i))
+        LOG(LL_WARN, ("Unable to set channel to %d", i));
+      int activechannel = tca9548->get_channel();
+
+      Sensor::GP2Y0E02B * irsensor = new Sensor::GP2Y0E02B();
+      if (irsensor->detect_device()) {
+        int distance = irsensor->getDistance();
+        LOG(LL_INFO, ("Active channel is %d, distance: %d", activechannel, distance));
+      }
+    }
+  } else {
+    LOG(LL_ERROR, ("Unable to detect TCA9548"));
+  }
+
+  double delta = (mg_time() - start) * 1000.0;
+  LOG(LL_INFO, ("IRSensors read in %.2f milliseconds", delta));
+
+  (void) arg;
+}
+
 //void carstate_cb(void * arg) {
 //  CarState * carstate = reinterpret_cast<CarState*>(arg);
 //  LOG(LL_INFO, ("Carstate.count=%d", carstate->count));
@@ -98,34 +129,18 @@ enum mgos_app_init_result mgos_app_init(void) {
   //irsensors.reserve(3);
   //irsensors.push_back()
 
-  int sensor_count = 8;
-  Sensor::GP2Y0E02B **sensors = new Sensor::GP2Y0E02B*[sensor_count];
-  for (int i=0; i < sensor_count; i++) {
-    sensors[i] = new Sensor::GP2Y0E02B();
-  }
+//  int sensor_count = 8;
+//  Sensor::GP2Y0E02B **sensors = new Sensor::GP2Y0E02B*[sensor_count];
+//  for (int i=0; i < sensor_count; i++) {
+//    sensors[i] = new Sensor::GP2Y0E02B();
+//  }
 
-  //I2C multiplexer
-  Sensor::TCA9548 * tca9548;
-  tca9548 = new Sensor::TCA9548(TCA9548_I2C_ADDRESS);
-  if (tca9548->detect_device()) {
-    LOG(LL_INFO, ("Success, found TCA9548"));
-    for (int i = 0; i < 8; i++) {
-      //LOG(LL_INFO, ("Setting channel to %d", i));
-      if (!tca9548->set_channel(i))
-        LOG(LL_WARN, ("Unable to set channel"));
-      int activechannel = tca9548->get_channel();
-      LOG(LL_INFO, ("Active channel is %d", activechannel));
 
-      Sensor::GP2Y0E02B * irsensor = new Sensor::GP2Y0E02B();
-      irsensor->getDistance();
-    }
-  } else {
-    LOG(LL_ERROR, ("Unable to detect TCA9548"));
-  }
 
   //Hook up timers
   mgos_set_timer(1*1000, 1, print_carstate_cb, NULL);
   mgos_set_timer(.5*1000, 1, read_temperature_cb, NULL);
+  mgos_set_timer(2*1000, 1, read_irsensors, NULL);
   mgos_set_timer(1*1000, 1, led_blink_cb, NULL);
 //  mgos_set_timer(5*1000, 1, carstate_cb, g_carstate);
 
