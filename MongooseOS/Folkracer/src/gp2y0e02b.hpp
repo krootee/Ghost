@@ -10,9 +10,10 @@ namespace Sensor {
       GP2Y0E02B();
       //GP2Y0E02B(int);
 
-      int getDistance();
+      int get_distance();
       bool detect_device();
     private:
       int i2c_address;
+      int shift;
   };
 }

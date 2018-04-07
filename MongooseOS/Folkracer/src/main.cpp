@@ -81,7 +81,7 @@ void read_irsensors(void * arg) {
 
       Sensor::GP2Y0E02B * irsensor = new Sensor::GP2Y0E02B();
       if (irsensor->detect_device()) {
-        int distance = irsensor->getDistance();
+        int distance = irsensor->get_distance();
         LOG(LL_INFO, ("Active channel is %d, distance: %d", activechannel, distance));
       }
     }
@@ -138,10 +138,10 @@ enum mgos_app_init_result mgos_app_init(void) {
 
 
   //Hook up timers
-  mgos_set_timer(1*1000, 1, print_carstate_cb, NULL);
-  mgos_set_timer(.5*1000, 1, read_temperature_cb, NULL);
-  mgos_set_timer(2*1000, 1, read_irsensors, NULL);
-  mgos_set_timer(1*1000, 1, led_blink_cb, NULL);
+  //mgos_set_timer(1*1000, 1, print_carstate_cb, NULL);
+  //mgos_set_timer(.5*1000, 1, read_temperature_cb, NULL);
+  mgos_set_timer(0.05*1000, 1, read_irsensors, NULL);
+  mgos_set_timer(0.05*1000, 1, led_blink_cb, NULL);
 //  mgos_set_timer(5*1000, 1, carstate_cb, g_carstate);
 
   //Hook up button on the Ghost32 Shield.
