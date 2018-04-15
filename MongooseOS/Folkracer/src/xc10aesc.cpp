@@ -23,15 +23,15 @@ namespace Actuators {
 
         float wait_time_ms = 2.5 * 1000; //milliseconds
 
-        const int frequency = 50; //50Hz = 20ms period
+        
 
         //Go to MAX 
         float pulse_width_ms = 2.0; //ms 
-        float period_length = 1 / frequency * 1000; //normally 20ms
+        float period_length = 1 / _frequency * 1000; //normally 20ms
         //const float duty_cycle = pulse_width_ms / period_length;
-        float duty_cycle = 0.1;
+        float duty_cycle = 0.10;
         LOG(LL_INFO, ("Duty cycle set to %.4f", duty_cycle));
-        if (!mgos_pwm_set(_pin, frequency, duty_cycle))
+        if (!mgos_pwm_set(_pin, _frequency, duty_cycle))
           LOG(LL_ERROR, ("Unable to set PWM for XC-10A"));
 
         LOG(LL_INFO, ("MAX - Waiting for %.2f milliseconds", wait_time_ms));
@@ -40,7 +40,7 @@ namespace Actuators {
         //Go to MIN
         //pulse_width_ms = 1.0; //ms
         duty_cycle = 0.05;
-        mgos_pwm_set(_pin, frequency, duty_cycle);
+        mgos_pwm_set(_pin, _frequency, duty_cycle);
         //set_pulse_width(pulse_width_ms);
         LOG(LL_INFO, ("MIN - Waiting"));
         mgos_msleep(wait_time_ms);
@@ -49,12 +49,20 @@ namespace Actuators {
         //pulse_width_ms = 1.5; //ms
         //set_pulse_width(pulse_width_ms);
         duty_cycle = 0.075;
-        mgos_pwm_set(_pin, frequency, duty_cycle);
+        mgos_pwm_set(_pin, _frequency, duty_cycle);
         LOG(LL_INFO, ("CENTER - Waiting"));
-        mgos_msleep(wait_time_ms);
+        mgos_msleep(wait_time_ms * 3); //NB, doubled.
+
+      }
+
+      void drive() {
+        //float duty_cycle = 0.10;
+        mgos_pwm_set(_pin, 50, 0.1);
+        LOG(LL_INFO, ("DRIVING!"));
       }
 
     private:
       int _pin;
+      const int _frequency = 50; //50Hz = 20ms period
   };
 }

@@ -136,6 +136,7 @@ enum mgos_app_init_result mgos_app_init(void) {
   Actuators::xc10aesc * _esc;
   _esc = new Actuators::xc10aesc(GPIO_PIN_MOTOR);
   _esc->calibrate();
+  _esc->drive();
 
   //Testing configuration
   //LOG(LL_INFO, ("Hello, %s", mgos_sys_config_get_hello_who()));
