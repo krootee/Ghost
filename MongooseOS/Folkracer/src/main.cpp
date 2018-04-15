@@ -9,6 +9,7 @@
 #include "carstate.hpp"
 #include "tca9548.hpp"
 #include "tmp102.hpp"
+#include "xc10aesc.cpp" 
 
 #include <iostream>
 #include <vector>
@@ -16,18 +17,21 @@
 #include <thread>
 
 #define GPIO_PIN_26  26
-#define GPIO_PIN_STARTMODULE_SIGNAL  27
+#define GPIO_PIN_STARTMODULE_SIGNAL 25
+#define GPIO_PIN_STARTMODULE_VCC 13
 #define GPIO_PIN_LED 23
 #define GPIO_PIN_BUTTON 18
-#define TCA9548_I2C_ADDRESS 0x70
-#define TMP102_I2C_ADDRESS 0x48
+#define GPIO_PIN_MOTOR 27
+#define I2C_ADDRESS_TCA9548 0x70
+#define I2C_ADDRESS_TMP102 0x48
 
+/*
 void toggle_led_cb(int pin, void *arg) {
-  //mgos_gpio_write(23, true);
   LOG(LL_INFO, ("Interrupt triggered on pin %d", pin));
   mgos_gpio_toggle(GPIO_PIN_LED);
   (void) arg;
 }
+*/
 
 void led_blink_cb(void * arg) {
   mgos_gpio_toggle(GPIO_PIN_LED);
@@ -38,7 +42,7 @@ void read_temperature_cb(void * arg) {
   
   //TMP102 temperature sensor
   Sensor::TMP102 * tmp102;
-  //tmp102 = new Sensor::TMP102(TMP102_I2C_ADDRESS);
+  //tmp102 = new Sensor::TMP102(I2C_ADDRESS_TMP102);
   tmp102 = new Sensor::TMP102();
   if (tmp102->detect_device())
   {
@@ -70,7 +74,7 @@ void read_irsensors(void * arg) {
 
   //I2C multiplexer
   Sensor::TCA9548 * tca9548;
-  tca9548 = new Sensor::TCA9548(TCA9548_I2C_ADDRESS);
+  tca9548 = new Sensor::TCA9548(I2C_ADDRESS_TCA9548);
   if (tca9548->detect_device()) {
     //LOG(LL_INFO, ("Success, found TCA9548"));
     for (int i = 0; i < 8; i++) {
@@ -92,7 +96,20 @@ void read_irsensors(void * arg) {
   double delta = (mg_time() - start) * 1000.0;
   LOG(LL_INFO, ("IRSensors read in %.2f milliseconds", delta));
 
+  //mgos_wdt_feed(); //Feed the watchdog timer to avoid crashes.
+
   (void) arg;
+}
+
+//This method is the one responsible to assessing the read sensors,
+//figure out where to go, and write the desired direction to the car_state
+void driver_cb(void * arg) {
+
+  //Look at the aquired sensor readings
+
+  //Do math
+
+  //Control the actuators
 }
 
 //void carstate_cb(void * arg) {
@@ -112,6 +129,10 @@ enum mgos_app_init_result mgos_app_init(void) {
   //std::thread led_thread(turn_on_led);
   //led_thread.join();
 
+  //Initialize the Electronic Speed Control
+  Actuators::xc10aesc esc(GPIO_PIN_MOTOR);
+  esc.calibrate();
+
   //Testing configuration
   //LOG(LL_INFO, ("Hello, %s", mgos_sys_config_get_hello_who()));
   //const char * world = mgos_sys_config_get_hello_who();
@@ -119,7 +140,7 @@ enum mgos_app_init_result mgos_app_init(void) {
   //Listen for Startmodule interrupt
   //int pin = mgos_sys_config_get_ghost32_startmodule_signal_gpio();
   Sensor::StartModule * _startmodule;
-  _startmodule = new Sensor::StartModule(GPIO_PIN_STARTMODULE_SIGNAL);
+  _startmodule = new Sensor::StartModule(GPIO_PIN_STARTMODULE_SIGNAL, GPIO_PIN_STARTMODULE_VCC);
   _startmodule->initialize();
   //start_module.disable();
   //start_module.powercycle();
@@ -140,8 +161,8 @@ enum mgos_app_init_result mgos_app_init(void) {
   //Hook up timers
   //mgos_set_timer(1*1000, 1, print_carstate_cb, NULL);
   //mgos_set_timer(.5*1000, 1, read_temperature_cb, NULL);
-  mgos_set_timer(0.05*1000, 1, read_irsensors, NULL);
-  mgos_set_timer(0.05*1000, 1, led_blink_cb, NULL);
+  //mgos_set_timer(0.2*1000, 1, read_irsensors, NULL);
+  mgos_set_timer(0.2*1000, 1, led_blink_cb, NULL);
 //  mgos_set_timer(5*1000, 1, carstate_cb, g_carstate);
 
   //Hook up button on the Ghost32 Shield.
