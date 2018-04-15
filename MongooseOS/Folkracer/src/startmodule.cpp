@@ -22,6 +22,11 @@ namespace Sensor {
     this->_pin_vcc = vcc;
     this->count = 0;
 
+    //Set VCC power
+    mgos_gpio_set_mode(this->_pin_vcc, MGOS_GPIO_MODE_OUTPUT);
+    mgos_gpio_write(this->_pin_vcc, true);
+
+    //Set internal state
     this->_current_state = startmodule_state::ready;
   }
 
