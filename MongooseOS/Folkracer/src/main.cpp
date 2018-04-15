@@ -3,6 +3,8 @@
  */
 
 #include "mgos.h"
+#include "mgos_system.h"
+
 #include "motor.hpp"
 #include "gp2y0e02b.hpp"
 #include "startmodule.hpp"
@@ -130,8 +132,10 @@ enum mgos_app_init_result mgos_app_init(void) {
   //led_thread.join();
 
   //Initialize the Electronic Speed Control
-  Actuators::xc10aesc esc(GPIO_PIN_MOTOR);
-  esc.calibrate();
+  //Actuators::xc10aesc esc(GPIO_PIN_MOTOR);
+  Actuators::xc10aesc * _esc;
+  _esc = new Actuators::xc10aesc(GPIO_PIN_MOTOR);
+  _esc->calibrate();
 
   //Testing configuration
   //LOG(LL_INFO, ("Hello, %s", mgos_sys_config_get_hello_who()));
