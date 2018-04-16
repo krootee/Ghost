@@ -12,6 +12,9 @@ class CarState {
     int desired_speed;
     int actual_speed;
 
+    bool sensor_available[8] = {false};
+    int sensor_reading[8] = {0};
+
     //Methods
     Sensor::startmodule_state startmodule;
     //CarState & getCarState(); //Singleton

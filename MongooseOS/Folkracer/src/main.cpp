@@ -11,14 +11,15 @@
 #include "carstate.hpp"
 #include "tca9548.hpp"
 #include "tmp102.hpp"
-#include "xc10aesc.cpp" 
+#include "xc10aesc.cpp"
+#include "point.cpp"
 
 #include <iostream>
 #include <vector>
 #include <chrono>
 #include <thread>
 
-#define GPIO_PIN_26  26
+#define GPIO_PIN_STEERING 26
 #define GPIO_PIN_STARTMODULE_SIGNAL 25
 #define GPIO_PIN_STARTMODULE_VCC 13
 #define GPIO_PIN_LED 23
@@ -88,15 +89,23 @@ void read_irsensors(void * arg) {
       Sensor::GP2Y0E02B * irsensor = new Sensor::GP2Y0E02B();
       if (irsensor->detect_device()) {
         int distance = irsensor->get_distance();
-        LOG(LL_INFO, ("Active channel is %d, distance: %d", activechannel, distance));
+        //LOG(LL_INFO, ("Active channel is %d, distance: %d", activechannel, distance));
+        g_carstate->sensor_available[i] = true;
+        g_carstate->sensor_reading[i] = distance;
+      } else {
+        g_carstate->sensor_available[i] = false;
       }
+
+      delete irsensor;
     }
   } else {
     LOG(LL_ERROR, ("Unable to detect TCA9548"));
   }
 
+  delete tca9548;
+
   double delta = (mg_time() - start) * 1000.0;
-  LOG(LL_INFO, ("IRSensors read in %.2f milliseconds", delta));
+  //LOG(LL_INFO, ("IRSensors read in %.2f milliseconds", delta));
 
   //mgos_wdt_feed(); //Feed the watchdog timer to avoid crashes.
 
@@ -108,6 +117,26 @@ void read_irsensors(void * arg) {
 void driver_cb(void * arg) {
 
   //Look at the aquired sensor readings
+  int sensor7_distance = g_carstate->sensor_reading[7];
+  int sensor3_distance = g_carstate->sensor_reading[3];
+
+  PointFloat sensor7Offset(-4.0, 2.0);
+  PointFloat sensor3Offset(2.0, -2.0);
+
+  PointFloat sensor7(sensor7_distance*1.0, 0.0);
+  sensor7.rotate(45); //Ca value!
+
+  PointFloat sensor3(sensor3_distance*1.0, 0.0);
+  sensor3.rotate(60); //Ca value!
+
+  PointFloat wall7 = sensor7 + sensor7Offset;
+  PointFloat wall3 = sensor3 + sensor3Offset;
+  //LOG(LL_INFO, ("Wall7: [%.2f, %.2f]", wall7.x, wall7.y));
+  //LOG(LL_INFO, ("Wall3: [%.2f, %.2f]", wall3.x, wall3.y));
+
+  PointFloat wall = wall3.subtract(wall7);
+  LOG(LL_INFO, ("Angle to wall: %.2f", wall.angle()));
+
 
   //Do math
 
@@ -136,7 +165,7 @@ enum mgos_app_init_result mgos_app_init(void) {
   Actuators::xc10aesc * _esc;
   _esc = new Actuators::xc10aesc(GPIO_PIN_MOTOR);
   _esc->calibrate();
-  _esc->drive();
+  //_esc->drive();
 
   //Testing configuration
   //LOG(LL_INFO, ("Hello, %s", mgos_sys_config_get_hello_who()));
@@ -165,9 +194,10 @@ enum mgos_app_init_result mgos_app_init(void) {
 
   //Hook up timers
   //mgos_set_timer(1*1000, 1, print_carstate_cb, NULL);
-  //mgos_set_timer(.5*1000, 1, read_temperature_cb, NULL);
-  //mgos_set_timer(0.2*1000, 1, read_irsensors, NULL);
+  mgos_set_timer(.5*1000, 1, read_temperature_cb, NULL);
+  mgos_set_timer(0.2*1000, 1, read_irsensors, NULL);
   mgos_set_timer(0.2*1000, 1, led_blink_cb, NULL);
+  mgos_set_timer(0.5*1000, 1, driver_cb, NULL);
 //  mgos_set_timer(5*1000, 1, carstate_cb, g_carstate);
 
   //Hook up button on the Ghost32 Shield.
@@ -201,7 +231,7 @@ enum mgos_app_init_result mgos_app_init(void) {
   }
 */
   Actuators::Motor * steering;
-  steering = new Actuators::Motor(GPIO_PIN_26);
+  steering = new Actuators::Motor(GPIO_PIN_STEERING);
 
 /*  while (true) {
     steering->setDesiredSpeed(0.075);

@@ -7,6 +7,9 @@
     "system_error": "cpp",
     "type_traits": "cpp",
     "ostream": "cpp",
-    "scoped_allocator": "cpp"
+    "scoped_allocator": "cpp",
+    "complex": "cpp",
+    "array": "cpp",
+    "rope": "cpp"
   }
 }

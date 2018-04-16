@@ -77,7 +77,7 @@ typedef Point<float> PointFloat;
 //  return stream << p.toString();
 //}
 
-
+/*
 int main() {
 
   PointFloat a(10.0, 0.0);
@@ -119,28 +119,6 @@ int main() {
   PointFloat wall = wall1.subtract(wall2);
   printf("Subtracting gives [%.2f, %.2f] with angle %.2f\n", wall.x, wall.y, wall.angle());
 
-
-  //float angle12 = 
-
-/*
-  PointInt a(4,7);
-  Point<int> b(4,5);
-  Point<int> c = a.add(b);
-  Point<int> d = a + b;
-  PointInt e;
-  Point<int> f = e + a;
-
-  float angle = d.angle();
-
-  cout << c.x << endl;
-  cout << d.x << endl;
-
-  PointFloat g(3.14, 7.89);
-  PointFloat h(1.11, 2.22);
-  PointFloat i = g + h;
-  cout << i.x << ", " << i.y << endl;
-
-  cout << "test" << endl;
-  */
   return 0;
 } 
+*/
