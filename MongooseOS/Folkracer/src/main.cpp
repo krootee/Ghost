@@ -13,6 +13,7 @@
 #include "tmp102.hpp"
 #include "xc10aesc.cpp"
 #include "point.cpp"
+#include "mpu9250.hpp"
 
 #include <iostream>
 #include <vector>
@@ -27,6 +28,7 @@
 #define GPIO_PIN_MOTOR 27
 #define I2C_ADDRESS_TCA9548 0x70
 #define I2C_ADDRESS_TMP102 0x48
+#define I2C_ADDRESS_MPU9250 0x69
 
 /*
 void toggle_led_cb(int pin, void *arg) {
@@ -161,11 +163,14 @@ enum mgos_app_init_result mgos_app_init(void) {
   //led_thread.join();
 
   //Initialize the Electronic Speed Control
-  //Actuators::xc10aesc esc(GPIO_PIN_MOTOR);
-  Actuators::xc10aesc * _esc;
-  _esc = new Actuators::xc10aesc(GPIO_PIN_MOTOR);
-  _esc->calibrate();
-  //_esc->drive();
+//  Actuators::xc10aesc * _esc;
+//  _esc = new Actuators::xc10aesc(GPIO_PIN_MOTOR);
+//  _esc->calibrate();
+
+  Sensor::MPU9250 * mpu9250;
+  mpu9250 = new Sensor::MPU9250(I2C_ADDRESS_MPU9250);
+  mpu9250->enable();
+  //xyz data = mpu9250->read_compass();
 
   //Testing configuration
   //LOG(LL_INFO, ("Hello, %s", mgos_sys_config_get_hello_who()));

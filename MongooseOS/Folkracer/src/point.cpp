@@ -38,8 +38,6 @@ class Point {
       return radians * 180.0 / M_PI; 
     }
 
-
-
     T dot(Point other) {
       return x * other.y + y * other.x;
     }
