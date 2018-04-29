@@ -12,3 +12,5 @@ node_modules
 MongooseOS/StartModule/build/
 
 MongooseOS/StartModuleImplementation/build/
+MongooseOS/Folkracer/src/point
+Simulator/parabola
