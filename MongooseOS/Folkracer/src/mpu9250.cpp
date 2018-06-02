@@ -19,7 +19,7 @@ namespace Sensor {
     this->i2c_address = i2c_adr;
   }
 
-  MPU9250::enable() {
+  void MPU9250::enable() {
     
     //Get global I2C reference
     struct mgos_i2c *i2c = mgos_i2c_get_global();
