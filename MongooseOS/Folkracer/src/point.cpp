@@ -74,7 +74,7 @@ typedef Point<float> PointFloat;
 //ostream& operator<< (ostream &stream, const Point &p) {
 //  return stream << p.toString();
 //}
-
+/*
 int main() {
 
   PointFloat a(10.0, 0.0);
@@ -118,3 +118,4 @@ int main() {
 
   return 0;
 } 
+*/
