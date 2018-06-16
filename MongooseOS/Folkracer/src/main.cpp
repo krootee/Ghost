@@ -181,13 +181,27 @@ static void rpc_call_car_drive(struct mg_rpc_request_info *ri, void *cb_arg, str
   //TODO - do something
   LOG(LL_INFO, ("Got angle = %d, and speed = %d", angle, speed));
 
-  //mg_rpc_send_responsef(ri, NULL);
-  //const char * response_json = "{'status': 'ok'}";
+  //Send response
   int value = 42;
   mg_rpc_send_responsef(ri, "{value: %d}", value);
 
   (void)cb_arg;
   (void)fi;
+}
+
+static void rpc_car_get_state(struct mg_rpc_request_info *ri, void *cb_arg, struct mg_rpc_frame_info *fi, struct mg_str args) {
+
+  //Get the Carstate
+  char json[256];
+  struct json_out out = JSON_OUT_BUF(json, sizeof(json));
+  json_printf(&out, "{temperature: %.2f, startmodule: %d}", g_carstate->temperature, g_carstate->startmodule);
+  LOG(LL_INFO, ("state = %s", json));
+
+  //Return it as JSON
+  mg_rpc_send_responsef(ri, "%s", json);
+
+  (void) cb_arg;
+  (void) fi;
 }
 
 enum mgos_app_init_result mgos_app_init(void) {
@@ -210,12 +224,7 @@ enum mgos_app_init_result mgos_app_init(void) {
   //Set up RPC/JSON/REST server
   struct mg_rpc *rpc = mgos_rpc_get_global();
   mg_rpc_add_handler(rpc, "Car.Drive", "{angle: %d, speed: %d}", rpc_call_car_drive, NULL);
-  //struct mg_rpc *c = mgos_rpc_get_global();
-  //mg_rpc_add_handler(c, "Car.Cmd1", "{angle: %d, speed: %d}", rpc_call_car_drive, NULL);
-
-  //Testing configuration
-  //LOG(LL_INFO, ("Hello, %s", mgos_sys_config_get_hello_who()));
-  //const char * world = mgos_sys_config_get_hello_who();
+  mg_rpc_add_handler(rpc, "Car.GetState", "", rpc_car_get_state, NULL);
 
   //Listen for Startmodule interrupt
   //int pin = mgos_sys_config_get_ghost32_startmodule_signal_gpio();
