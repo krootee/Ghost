@@ -24,6 +24,10 @@ See https://www.mongoose-os.com and https://forum.mongoose-os.com
       mos flash
       mos console
 
+    6) Connect to WIFI using
+
+      mos wifi SSID password
+
 Note; for Ghost32 PCB revisions 1-5 the maximum baudrate when flashing is 921600bps (from CP2102).
 Planning to use CP2102N in revision 6+, which will give maximum baudrate 3Mbps.
 

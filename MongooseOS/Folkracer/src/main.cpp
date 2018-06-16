@@ -166,21 +166,25 @@ void startmoduleChangedEvent(void * arg) {
 //Handler for RPC calls to "Car.Drive"
 //Expects JSON like {angle: 13, speed: 30 }
 //https://forum.mongoose-os.com/discussion/2408/creating-a-rest-server
-static void rpc_call_car_drive(struct mg_rpc_request_info *request, void *cb_arg, struct mg_rpc_frame_info *fi, struct mg_str args) {
+//https://mongoose-os.com/docs/quickstart/prog2.md
+static void rpc_call_car_drive(struct mg_rpc_request_info *ri, void *cb_arg, struct mg_rpc_frame_info *fi, struct mg_str args) {
   int angle = -1;
   int speed = -1;
 
-  json_scanf(args.p, args.len, request->args_fmt, &angle, &speed); //Get the values from the incoming JSON structure.
+  json_scanf(args.p, args.len, ri->args_fmt, &angle, &speed); //Get the values from the incoming JSON structure.
   if (angle < 0 || speed < 0) {
     //Either angle or speed was not given. Return an error.
-    mg_rpc_send_errorf(request, 400, "Invalid or missing parameters");
+    mg_rpc_send_errorf(ri, 400, "Invalid or missing parameters");
     return;
   }
 
   //TODO - do something
   LOG(LL_INFO, ("Got angle = %d, and speed = %d", angle, speed));
 
-  mg_rpc_send_responsef(request, NULL);
+  //mg_rpc_send_responsef(ri, NULL);
+  //const char * response_json = "{'status': 'ok'}";
+  int value = 42;
+  mg_rpc_send_responsef(ri, "{value: %d}", value);
 
   (void)cb_arg;
   (void)fi;
