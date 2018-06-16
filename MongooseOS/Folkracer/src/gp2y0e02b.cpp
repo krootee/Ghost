@@ -35,6 +35,7 @@ namespace Sensor {
     return mgos_i2c_read_reg_b(i2c, this->i2c_address, GP2Y0E02B_REGISTER_DISTANCE) != -1;
   }
 
+  //Get distance in Centimeters
   int GP2Y0E02B::get_distance() {
 
       //Get reference to the global I2C instance

@@ -82,12 +82,16 @@ void read_irsensors(void * arg) {
   tca9548 = new Sensor::TCA9548(I2C_ADDRESS_TCA9548);
   if (tca9548->detect_device()) {
     //LOG(LL_INFO, ("Success, found TCA9548"));
+
+    //Loop over the channels in the multiplexer
     for (int i = 0; i < 8; i++) {
       //LOG(LL_INFO, ("Setting channel to %d", i));
+      //Set the channel
       if (!tca9548->set_channel(1 << i))
         LOG(LL_WARN, ("Unable to set channel to %d", i));
       int activechannel = tca9548->get_channel();
 
+      //Get sensor data
       Sensor::GP2Y0E02B * irsensor = new Sensor::GP2Y0E02B();
       if (irsensor->detect_device()) {
         int distance = irsensor->get_distance();
@@ -106,7 +110,7 @@ void read_irsensors(void * arg) {
 
   delete tca9548;
 
-  double delta = (mg_time() - start) * 1000.0;
+  //double delta = (mg_time() - start) * 1000.0;
   //LOG(LL_INFO, ("IRSensors read in %.2f milliseconds", delta));
 
   //mgos_wdt_feed(); //Feed the watchdog timer to avoid crashes.
@@ -117,6 +121,8 @@ void read_irsensors(void * arg) {
 //This method is the one responsible to assessing the read sensors,
 //figure out where to go, and write the desired direction to the car_state
 void driver_cb(void * arg) {
+
+  //TODO!
 
   //Look at the aquired sensor readings
   int sensor7_distance = g_carstate->sensor_reading[7];
@@ -167,6 +173,7 @@ enum mgos_app_init_result mgos_app_init(void) {
 //  _esc = new Actuators::xc10aesc(GPIO_PIN_MOTOR);
 //  _esc->calibrate();
 
+  //Turn ON the Accelerometer/Gyro/Compass
   Sensor::MPU9250 * mpu9250;
   mpu9250 = new Sensor::MPU9250(I2C_ADDRESS_MPU9250);
   mpu9250->enable();
@@ -197,7 +204,7 @@ enum mgos_app_init_result mgos_app_init(void) {
 
 
 
-  //Hook up timers
+  //Hook up timers to regularly call methods.
   //mgos_set_timer(1*1000, 1, print_carstate_cb, NULL);
   mgos_set_timer(.5*1000, 1, read_temperature_cb, NULL);
   mgos_set_timer(0.2*1000, 1, read_irsensors, NULL);
