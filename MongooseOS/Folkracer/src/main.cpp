@@ -4,6 +4,7 @@
 
 #include "mgos.h"
 #include "mgos_system.h"
+#include "mgos_rpc.h"
 
 #include "motor.hpp"
 #include "gp2y0e02b.hpp"
@@ -162,6 +163,29 @@ void startmoduleChangedEvent(void * arg) {
 }
 */
 
+//Handler for RPC calls to "Car.Drive"
+//Expects JSON like {angle: 13, speed: 30 }
+//https://forum.mongoose-os.com/discussion/2408/creating-a-rest-server
+static void rpc_call_car_drive(struct mg_rpc_request_info *request, void *cb_arg, struct mg_rpc_frame_info *fi, struct mg_str args) {
+  int angle = -1;
+  int speed = -1;
+
+  json_scanf(args.p, args.len, request->args_fmt, &angle, &speed); //Get the values from the incoming JSON structure.
+  if (angle < 0 || speed < 0) {
+    //Either angle or speed was not given. Return an error.
+    mg_rpc_send_errorf(request, 400, "Invalid or missing parameters");
+    return;
+  }
+
+  //TODO - do something
+  LOG(LL_INFO, ("Got angle = %d, and speed = %d", angle, speed));
+
+  mg_rpc_send_responsef(request, NULL);
+
+  (void)cb_arg;
+  (void)fi;
+}
+
 enum mgos_app_init_result mgos_app_init(void) {
 
   mgos_gpio_set_mode(GPIO_PIN_LED, MGOS_GPIO_MODE_OUTPUT);
@@ -178,6 +202,12 @@ enum mgos_app_init_result mgos_app_init(void) {
   mpu9250 = new Sensor::MPU9250(I2C_ADDRESS_MPU9250);
   mpu9250->enable();
   //xyz data = mpu9250->read_compass();
+
+  //Set up RPC/JSON/REST server
+  struct mg_rpc *rpc = mgos_rpc_get_global();
+  mg_rpc_add_handler(rpc, "Car.Drive", "{angle: %d, speed: %d}", rpc_call_car_drive, NULL);
+  //struct mg_rpc *c = mgos_rpc_get_global();
+  //mg_rpc_add_handler(c, "Car.Cmd1", "{angle: %d, speed: %d}", rpc_call_car_drive, NULL);
 
   //Testing configuration
   //LOG(LL_INFO, ("Hello, %s", mgos_sys_config_get_hello_who()));
